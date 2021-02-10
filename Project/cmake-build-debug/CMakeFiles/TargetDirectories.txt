@@ -1,3 +1,0 @@
-D:/University/Bachelor 1/PSE/Vaccin Simulator/Project/cmake-build-debug/CMakeFiles/Project.dir
-D:/University/Bachelor 1/PSE/Vaccin Simulator/Project/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/University/Bachelor 1/PSE/Vaccin Simulator/Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
