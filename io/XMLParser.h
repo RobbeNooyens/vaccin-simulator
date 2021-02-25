@@ -10,9 +10,11 @@
 
 class XMLParser {
 public:
-    XMLParser(std::string file);
-    std::streambuf readAsStream();
+    XMLParser(const std::string& file);
+    std::streambuf readAsStream() const;
 
+private:
+    const std::string fileName;
 };
 
 

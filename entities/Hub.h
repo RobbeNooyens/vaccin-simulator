@@ -9,20 +9,24 @@
 #include <istream>
 #include <ostream>
 
-class VaccinatieCentrum;
+class VaccinationCenter;
 class Hub {
 public:
     Hub();
 
+    // Getters
+    unsigned int getVaccins();
+
     // IO Mapping
-    void fromStream(std::istream inputStream);
-    void toStream(std::ostream outputStream) const;
+    void fromStream(std::istream);
+    void toStream(std::ostream) const;
 
 private:
-    unsigned int levering;
+    unsigned int delivery;
     unsigned int interval;
     unsigned int transport;
-    std::vector<VaccinatieCentrum> centra;
+    unsigned int vaccins;
+    std::vector<VaccinationCenter*> centers;
 };
 
 

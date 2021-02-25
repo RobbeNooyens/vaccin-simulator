@@ -5,11 +5,16 @@
 #ifndef VACCIN_SIMULATOR_SIMULATOR_H
 #define VACCIN_SIMULATOR_SIMULATOR_H
 
-#include "domain/Hub.h"
+#include "entities/Hub.h"
+#include <string>
 
 class Simulator {
 public:
     Simulator();
+
+    // IO
+    void import(std::string file);
+    void export(std::string file);
 
     // Run
     void run(const unsigned int cycles);
