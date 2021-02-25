@@ -17,7 +17,7 @@ public:
     void export(std::string file);
 
     // Run
-    void run(const unsigned int cycles);
+    void run(unsigned int cycles);
 //    void reset();
 
 private:
