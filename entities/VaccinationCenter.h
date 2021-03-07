@@ -22,7 +22,7 @@ public:
     unsigned int getVaccinationsLeft() const;
 
     // IO Mapping
-    void toStream(std::ostream) const;
+    void toStream(std::ostream&) const;
 
 private:
     const std::string name;

@@ -13,8 +13,8 @@ public:
     Simulator();
 
     // IO
-    void import(std::string file);
-    void export(std::string file);
+    void importSimulation(const std::string& fileName);
+    void exportSimulation(const std::string& fileName);
 
     // Run
     void run(unsigned int cycles);

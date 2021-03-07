@@ -31,7 +31,7 @@ unsigned int VaccinationCenter::getVaccins() const {
 }
 
 
-void VaccinationCenter::toStream(std::ostream outStream) const {
+void VaccinationCenter::toStream(std::ostream &outStream) const {
     outStream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft() << " inwoners niet gevaccineerd" << std::endl;
 }
 

@@ -10,15 +10,15 @@ Hub::Hub() {
 
 }
 
-unsigned int Hub::getVaccins() {
+unsigned int Hub::getVaccins() const {
     return vaccins;
 }
 
-void Hub::fromStream(std::istream inStream) {
+void Hub::fromStream(std::istream &inStream) {
 
 }
 
-void Hub::toStream(std::ostream outStream) const {
+void Hub::toStream(std::ostream &outStream) const {
     outStream << "Hub (" << getVaccins() << "): " << std::endl;
     for(VaccinationCenter* center: centers)
         outStream << "  -> " << center->getName() << " (" << center->getVaccins() << " vaccins)" << std::endl;

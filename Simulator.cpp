@@ -8,11 +8,11 @@ Simulator::Simulator() {
 
 }
 
-void Simulator::import(std::string file) {
+void Simulator::importSimulation(const std::string& fileName) {
 
 }
 
-void Simulator::export(std::string file) {
+void Simulator::exportSimulation(const std::string& fileName) {
 
 }
 

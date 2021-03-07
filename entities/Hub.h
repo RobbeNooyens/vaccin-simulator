@@ -15,11 +15,11 @@ public:
     Hub();
 
     // Getters
-    unsigned int getVaccins();
+    unsigned int getVaccins() const;
 
     // IO Mapping
-    void fromStream(std::istream);
-    void toStream(std::ostream) const;
+    void fromStream(std::istream&);
+    void toStream(std::ostream&) const;
 
 private:
     unsigned int delivery;
