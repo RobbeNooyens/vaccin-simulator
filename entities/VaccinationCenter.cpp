@@ -45,3 +45,11 @@ unsigned int VaccinationCenter::getVaccinationsDone() const {
 unsigned int VaccinationCenter::getVaccinationsLeft() const {
     return inhabitants - vaccinated;
 }
+
+void VaccinationCenter::transportArrived(unsigned int vaccinCount) {
+    vaccins += vaccinCount;
+}
+
+void VaccinationCenter::vaccinateInhabitants() {
+
+}

@@ -24,12 +24,19 @@ public:
     void fromStream(std::istream&);
     void toStream(std::ostream&) const;
 
+    // Events
+    void simulateDay(unsigned int day);
+
 private:
     unsigned int delivery;
     unsigned int interval;
     unsigned int transport;
     unsigned int vaccins;
     VaccinationCenters centers;
+
+    // Simulation
+    void distributeVaccins();
+    void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
 };
 
 

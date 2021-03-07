@@ -12,6 +12,10 @@ class VaccinationCenter {
 public:
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
 
+    // Simulation
+    void transportArrived(unsigned int vaccinCount);
+    void vaccinateInhabitants();
+
     // Getters
     std::string getName() const;
     std::string getAddress() const;

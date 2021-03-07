@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iostream>
+#include <map>
 #include "Hub.h"
 #include "VaccinationCenter.h"
 
@@ -27,4 +28,26 @@ void Hub::toStream(std::ostream &outStream) const {
     outStream << std::endl;
     for(center = centers.begin(); center != centers.end(); center++)
         (*center)->toStream(outStream);
+}
+
+void Hub::simulateDay(unsigned int day) {
+    // Check if the cargo will be delivered today
+    if (day % (interval+1) == 0)
+        vaccins += delivery;
+    // Distribute the vaccins over the centra
+
+}
+
+void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount) {
+    center->transportArrived(vaccinCount);
+}
+
+void Hub::distributeVaccins() {
+    std::map<VaccinationCenter*, int> vaccinsPerCenter;
+    VaccinationCenters::const_iterator center;
+    for(center = centers.begin(); center != centers.end(); center++)
+        vaccinsPerCenter.
+    // Distribute evenly
+
+
 }
