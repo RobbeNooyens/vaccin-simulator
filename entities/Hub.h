@@ -10,6 +10,9 @@
 #include <ostream>
 
 class VaccinationCenter;
+
+typedef std::vector<VaccinationCenter*> VaccinationCenters;
+
 class Hub {
 public:
     Hub();
@@ -26,7 +29,7 @@ private:
     unsigned int interval;
     unsigned int transport;
     unsigned int vaccins;
-    std::vector<VaccinationCenter*> centers;
+    VaccinationCenters centers;
 };
 
 

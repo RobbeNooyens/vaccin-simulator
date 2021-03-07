@@ -4,8 +4,8 @@
 
 #include "Simulator.h"
 
-Simulator::Simulator() {
-
+Simulator::Simulator(): daycount(0) {
+    daycount = 0;
 }
 
 void Simulator::importSimulation(const std::string& fileName) {

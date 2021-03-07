@@ -5,10 +5,18 @@
 #include "VaccinationCenter.h"
 #include <ostream>
 
-VaccinationCenter::VaccinationCenter(std::string name, std::string address, unsigned int inhabitants,
+VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
                                      unsigned int capacity) : name(name), address(address), inhabitants(inhabitants), capacity(capacity) {
 
 }
+
+// IO Streams
+
+void VaccinationCenter::toStream(std::ostream &outStream) const {
+    outStream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft() << " inwoners niet gevaccineerd" << std::endl;
+}
+
+// Getters
 
 std::string VaccinationCenter::getName() const {
     return name;
@@ -28,11 +36,6 @@ unsigned int VaccinationCenter::getCapacity() const {
 
 unsigned int VaccinationCenter::getVaccins() const {
     return vaccins;
-}
-
-
-void VaccinationCenter::toStream(std::ostream &outStream) const {
-    outStream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft() << " inwoners niet gevaccineerd" << std::endl;
 }
 
 unsigned int VaccinationCenter::getVaccinationsDone() const {
