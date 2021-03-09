@@ -1,16 +1,18 @@
-//
-// Created by robbe on 25/02/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
 #include <vector>
 #include <iostream>
 #include <map>
+
 #include "Hub.h"
 #include "VaccinationCenter.h"
 
-Hub::Hub() {
-
-}
+Hub::Hub() : initCheck(this), delivery(), interval(), transport(), vaccins() {}
 
 unsigned int Hub::getVaccins() const {
     return vaccins;
@@ -36,6 +38,10 @@ void Hub::simulateDay(unsigned int day) {
         vaccins += delivery;
     // Distribute the vaccins over the centra
     distributeVaccins();
+    // Vaccinate inhabitants
+    VaccinationCenters::iterator center;
+    for(center = centers.begin(); center != centers.end(); center++)
+        (*center)->vaccinateInhabitants();
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount) {
@@ -56,4 +62,8 @@ void Hub::distributeVaccins() {
     for(center = centers.begin(); center != centers.end(); center++)
         Hub::transportVaccinsTo(*center, vaccinsPerCenter[*center]);
 
+}
+
+bool Hub::properlyInitialized() const {
+    return initCheck == this;
 }

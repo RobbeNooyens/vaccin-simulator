@@ -1,6 +1,9 @@
-//
-// Created by robbe on 25/02/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
 #ifndef VACCIN_SIMULATOR_VACCINATIONCENTER_H
 #define VACCIN_SIMULATOR_VACCINATIONCENTER_H
@@ -10,7 +13,20 @@
 
 class VaccinationCenter {
 public:
+    // Initialization
+    const VaccinationCenter* initCheck;
+
+    // Metadata
+    const std::string name;
+    const std::string address;
+    unsigned int vaccins;
+    unsigned int inhabitants;
+    unsigned int vaccinated;
+    unsigned int capacity;
+
+    // Constructor
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
+    bool properlyInitialized() const;
 
     // Simulation
     void transportArrived(unsigned int vaccinCount);
@@ -25,17 +41,8 @@ public:
     unsigned int getVaccinationsDone() const;
     unsigned int getVaccinationsLeft() const;
 
-    // IO Mapping
+    // IO Streams
     void toStream(std::ostream&) const;
-
-private:
-    const std::string name;
-    const std::string address;
-    unsigned int vaccins;
-    unsigned int inhabitants;
-    unsigned int vaccinated;
-    unsigned int capacity;
-
 };
 
 

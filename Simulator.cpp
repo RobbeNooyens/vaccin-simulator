@@ -1,6 +1,9 @@
-//
-// Created by robbe on 25/02/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
 #include <fstream>
 #include <cassert>
@@ -14,8 +17,8 @@ void Simulator::importSimulation(const std::string& fileName) {
 
 }
 
-void Simulator::exportSimulation(const std::string& fileName) {
-    assert(!fileName.empty() && stringContains(fileName, ".xml"));
+void Simulator::exportSimulation(const std::string& fileName) const {
+    assert(!fileName.empty() && stringutil::contains(fileName, ".xml"));
     std::ofstream file;
     file.open("output.txt");
     assert(file.is_open());
@@ -25,9 +28,12 @@ void Simulator::exportSimulation(const std::string& fileName) {
 }
 
 void Simulator::run(const unsigned int cycles) {
-
+    unsigned int lastDay = daycount + cycles;
+    for(; daycount < lastDay; daycount++){
+        hub.simulateDay(daycount);
+    }
 }
 
-void Simulator::cycle() {
-
+bool Simulator::properlyInitialized() const {
+    return initCheck == this;
 }

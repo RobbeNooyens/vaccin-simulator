@@ -1,6 +1,9 @@
-//
-// Created by robbe on 25/02/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
 #ifndef VACCIN_SIMULATOR_XMLPARSER_H
 #define VACCIN_SIMULATOR_XMLPARSER_H

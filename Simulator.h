@@ -1,6 +1,9 @@
-//
-// Created by robbe on 25/02/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
 #ifndef VACCIN_SIMULATOR_SIMULATOR_H
 #define VACCIN_SIMULATOR_SIMULATOR_H
@@ -10,22 +13,25 @@
 
 class Simulator {
 public:
-    Simulator();
+    // Initialization
+    const Simulator* initCheck;
 
-    // IO
-    void importSimulation(const std::string& fileName);
-    void exportSimulation(const std::string& fileName);
-
-    // Run
-    void run(unsigned int cycles);
-//    void reset();
-
-private:
+    // Simulation
     Hub hub;
     unsigned int daycount;
 
-    void cycle();
+    // Constructor
+    Simulator();
+    bool properlyInitialized() const;
 
+    // IO
+    void importSimulation(const std::string& fileName);
+    void exportSimulation(const std::string& fileName) const;
+
+    // Run
+    void run(unsigned int cycles);
+
+//    void reset();
 };
 
 

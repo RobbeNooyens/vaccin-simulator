@@ -1,12 +1,16 @@
-//
-// Created by robbe on 25/02/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
-#include "VaccinationCenter.h"
 #include <ostream>
 
+#include "VaccinationCenter.h"
+
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
-                                     unsigned int capacity) : name(name), address(address), inhabitants(inhabitants), capacity(capacity) {
+                                     unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity) {
 
 }
 
@@ -53,4 +57,8 @@ void VaccinationCenter::transportArrived(unsigned int vaccinCount) {
 void VaccinationCenter::vaccinateInhabitants() {
     vaccinated += vaccins;
     vaccins = 0;
+}
+
+bool VaccinationCenter::properlyInitialized() const {
+    return initCheck == this;
 }
