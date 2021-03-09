@@ -35,7 +35,7 @@ void Hub::simulateDay(unsigned int day) {
     if (day % (interval+1) == 0)
         vaccins += delivery;
     // Distribute the vaccins over the centra
-
+    distributeVaccins();
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount) {
@@ -44,10 +44,16 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount
 
 void Hub::distributeVaccins() {
     std::map<VaccinationCenter*, int> vaccinsPerCenter;
-    VaccinationCenters::const_iterator center;
+    // Distribution algorithm
+    // Give each center the maximum amount of vaccins it can store.
+    VaccinationCenters::iterator center;
+    for(center = centers.begin(); center != centers.end(); center++) {
+        unsigned int amount = std::min((*center)->getCapacity(), vaccins);
+        vaccins -= amount;
+        vaccinsPerCenter[*center] = amount;
+    }
+    // Transport vaccins
     for(center = centers.begin(); center != centers.end(); center++)
-        vaccinsPerCenter.
-    // Distribute evenly
-
+        Hub::transportVaccinsTo(*center, vaccinsPerCenter[*center]);
 
 }

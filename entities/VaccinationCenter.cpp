@@ -51,5 +51,6 @@ void VaccinationCenter::transportArrived(unsigned int vaccinCount) {
 }
 
 void VaccinationCenter::vaccinateInhabitants() {
-
+    vaccinated += vaccins;
+    vaccins = 0;
 }

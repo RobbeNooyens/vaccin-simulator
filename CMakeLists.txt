@@ -12,7 +12,7 @@ include_directories(gtest/include)
 link_directories(gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES main.cpp io/XMLParser.cpp io/XMLParser.h entities/Hub.cpp entities/Hub.h entities/VaccinationCenter.cpp entities/VaccinationCenter.h Simulator.cpp Simulator.h)
+set(RELEASE_SOURCE_FILES main.cpp io/XMLParser.cpp io/XMLParser.h entities/Hub.cpp entities/Hub.h entities/VaccinationCenter.cpp entities/VaccinationCenter.h Simulator.cpp Simulator.h utils.h)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES main.cpp io/XMLParser.cpp io/XMLParser.h entities/Hub.cpp entities/Hub.h entities/VaccinationCenter.cpp entities/VaccinationCenter.h Simulator.cpp Simulator.h)

@@ -36,7 +36,7 @@ private:
 
     // Simulation
     void distributeVaccins();
-    void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
+    static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
 };
 
 
