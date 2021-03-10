@@ -14,13 +14,13 @@ Simulator::Simulator(): daycount(0) {
 }
 
 void Simulator::importSimulation(const std::string& fileName) {
-
+    assert(!fileName.empty() && stringutil::contains(fileName, ".xml"));
 }
 
 void Simulator::exportSimulation(const std::string& fileName) const {
-    assert(!fileName.empty() && stringutil::contains(fileName, ".xml"));
+    assert(!fileName.empty() && stringutil::contains(fileName, ".txt"));
     std::ofstream file;
-    file.open("output.txt");
+    file.open(fileName.c_str());
     assert(file.is_open());
     hub.toStream(file);
     file.close();
