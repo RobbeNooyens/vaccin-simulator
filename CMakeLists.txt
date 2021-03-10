@@ -22,7 +22,7 @@ set(RELEASE_SOURCE_FILES
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
         Simulator.cpp Simulator.h
-        utils.h)
+        utils.h VaccimulatorTests.cpp tests/domain/VaccinationCenterTests.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES Vaccimulator.cpp
