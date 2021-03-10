@@ -1416,7 +1416,7 @@ public:
 	/// Save a file using the current document value. Returns true if successful.
 	bool SaveFile() const;
 	/// Load a file using the given filename. Returns true if successful.
-	bool LoadFile(std::basic_string<char> filename, TiXmlEncoding encoding = TIXML_DEFAULT_ENCODING );
+	bool LoadFile(const char* filename, TiXmlEncoding encoding = TIXML_DEFAULT_ENCODING );
 	/// Save a file using the given filename. Returns true if successful.
 	bool SaveFile( const char * filename ) const;
 	/** Load a file using the given FILE*. Returns true if successful. Note that this method

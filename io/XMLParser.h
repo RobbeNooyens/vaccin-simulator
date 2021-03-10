@@ -15,11 +15,11 @@ class Hub;
 
 class XMLParser {
 public:
-    XMLParser(const std::string& file);
+    XMLParser(const char* file);
     void parseXML(Hub&);
 
 private:
-    const std::string fileName;
+    const char* fileName;
 };
 
 

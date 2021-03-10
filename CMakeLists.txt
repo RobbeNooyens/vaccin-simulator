@@ -13,7 +13,7 @@ link_directories(gtest/lib)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
-        Vaccimulator.cpp
+        main.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
@@ -25,7 +25,7 @@ set(RELEASE_SOURCE_FILES
         utils.h)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES Vaccimulator.cpp
+set(DEBUG_SOURCE_FILES main.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp

@@ -10,7 +10,7 @@
 #include "../entities/Hub.h"
 #include "../tinyxml/tinyxml.h"
 
-XMLParser::XMLParser(const std::string& file): fileName(file){
+XMLParser::XMLParser(const char* file): fileName(file){
 }
 
 void XMLParser::parseXML(Hub &hub) {
