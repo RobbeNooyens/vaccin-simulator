@@ -18,10 +18,6 @@ unsigned int Hub::getVaccins() const {
     return vaccins;
 }
 
-void Hub::fromStream(std::istream &inStream) {
-
-}
-
 void Hub::toStream(std::ostream &outStream) const {
     outStream << "Hub (" << getVaccins() << "): " << std::endl;
     VaccinationCenters::const_iterator center;
@@ -66,4 +62,8 @@ void Hub::distributeVaccins() {
 
 bool Hub::properlyInitialized() const {
     return initCheck == this;
+}
+
+void Hub::fromTiXMLElement(TiXmlElement *element) {
+
 }

@@ -78,7 +78,7 @@ distribution.
 		#define TIXML_SNPRINTF snprintf
 		#define TIXML_SSCANF   sscanf
 	#endif
-#endif	
+#endif
 
 class TiXmlDocument;
 class TiXmlElement;

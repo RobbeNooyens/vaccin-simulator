@@ -12,6 +12,7 @@
 #include <istream>
 #include <ostream>
 
+class TiXmlElement;
 class VaccinationCenter;
 
 typedef std::vector<VaccinationCenter*> VaccinationCenters;
@@ -37,8 +38,8 @@ public:
     // Getters
     unsigned int getVaccins() const;
 
-    // IO Streams
-    void fromStream(std::istream&);
+    // IO
+    void fromTiXMLElement(TiXmlElement* element);
     void toStream(std::ostream&) const;
 
     // Events

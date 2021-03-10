@@ -10,6 +10,7 @@
 
 #include <string>
 
+class TiXmlElement;
 
 class VaccinationCenter {
 public:
@@ -41,7 +42,8 @@ public:
     unsigned int getVaccinationsDone() const;
     unsigned int getVaccinationsLeft() const;
 
-    // IO Streams
+    // IO
+    void fromTiXMLElement(TiXmlElement*);
     void toStream(std::ostream&) const;
 };
 

@@ -12,10 +12,28 @@ include_directories(gtest/include)
 link_directories(gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES main.cpp io/XMLParser.cpp io/XMLParser.h entities/Hub.cpp entities/Hub.h entities/VaccinationCenter.cpp entities/VaccinationCenter.h Simulator.cpp Simulator.h utils.h)
+set(RELEASE_SOURCE_FILES
+        Vaccimulator.cpp
+        tinyxml/tinyxmlparser.cpp
+        tinyxml/tinyxmlerror.cpp
+        tinyxml/tinyxml.h tinyxml/tinyxml.cpp
+        tinyxml/tinystr.h tinyxml/tinystr.cpp
+        io/XMLParser.cpp io/XMLParser.h
+        entities/Hub.cpp entities/Hub.h
+        entities/VaccinationCenter.cpp entities/VaccinationCenter.h
+        Simulator.cpp Simulator.h
+        utils.h)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES main.cpp io/XMLParser.cpp io/XMLParser.h entities/Hub.cpp entities/Hub.h entities/VaccinationCenter.cpp entities/VaccinationCenter.h Simulator.cpp Simulator.h)
+set(DEBUG_SOURCE_FILES Vaccimulator.cpp
+        tinyxml/tinyxmlparser.cpp
+        tinyxml/tinyxmlerror.cpp
+        tinyxml/tinyxml.h tinyxml/tinyxml.cpp
+        tinyxml/tinystr.h tinyxml/tinystr.cpp
+        io/XMLParser.cpp io/XMLParser.h
+        entities/Hub.cpp entities/Hub.h
+        entities/VaccinationCenter.cpp entities/VaccinationCenter.h
+        Simulator.cpp Simulator.h)
 
 # Create RELEASE target
 add_executable(Vaccimulator ${RELEASE_SOURCE_FILES})

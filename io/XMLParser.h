@@ -11,10 +11,12 @@
 #include <streambuf>
 #include <string>
 
+class Hub;
+
 class XMLParser {
 public:
     XMLParser(const std::string& file);
-    std::streambuf readAsStream() const;
+    void parseXML(Hub&);
 
 private:
     const std::string fileName;
