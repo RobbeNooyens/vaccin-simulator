@@ -1,0 +1,136 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.cpp
+fstream
+-
+cassert
+-
+Simulator.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+entities/Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+string
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Vaccimulator.cpp
+iostream
+-
+string
+-
+Simulator.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.cpp
+vector
+-
+iostream
+-
+map
+-
+Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+VaccinationCenter.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+vector
+-
+istream
+-
+ostream
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.cpp
+ostream
+-
+VaccinationCenter.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+string
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.cpp
+iostream
+-
+XMLParser.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
+../entities/Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+../tinyxml/tinyxml.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
+streambuf
+-
+string
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp
+tinystr.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h
+assert.h
+-
+string.h
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.cpp
+ctype.h
+-
+sstream
+-
+iostream
+-
+tinyxml.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+ctype.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+assert.h
+-
+string
+-
+iostream
+-
+sstream
+-
+tinystr.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxmlerror.cpp
+tinyxml.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxmlparser.cpp
+ctype.h
+-
+stddef.h
+-
+tinyxml.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+windows.h
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+string
+-
+

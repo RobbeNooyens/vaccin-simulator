@@ -1,0 +1,19 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/VaccimulatorTests.dir/VaccimulatorTests.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o"
+  "VaccimulatorTests.pdb"
+  "VaccimulatorTests"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/VaccimulatorTests.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
