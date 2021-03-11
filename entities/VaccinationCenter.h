@@ -26,6 +26,7 @@ public:
     unsigned int capacity;
 
     // Constructor
+    VaccinationCenter();
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
     bool properlyInitialized() const;
 

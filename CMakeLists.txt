@@ -12,8 +12,7 @@ include_directories(gtest/include)
 link_directories(gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES
-        Vaccimulator.cpp
+set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
@@ -22,10 +21,11 @@ set(RELEASE_SOURCE_FILES
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
         Simulator.cpp Simulator.h
-        utils.h VaccimulatorTests.cpp tests/domain/VaccinationCenterTests.cpp)
+        utils.h)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES Vaccimulator.cpp
+set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
+        tests/domain/VaccinationCenterTests.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp

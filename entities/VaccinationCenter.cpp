@@ -66,3 +66,6 @@ bool VaccinationCenter::properlyInitialized() const {
 void VaccinationCenter::fromTiXMLElement(TiXmlElement* element) {
 
 }
+
+VaccinationCenter::VaccinationCenter(): initCheck(this) {
+}
