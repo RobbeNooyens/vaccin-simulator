@@ -7,25 +7,25 @@
 #include <gtest/gtest.h>
 #include "../../entities/VaccinationCenter.h"
 #include "../../entities/Hub.h"
-#include "../../utils.h"
+//#include "../../utils.h"
 
-class MockVaccinationCenter: public VaccinationCenter {
-public:
-    MockVaccinationCenter(): VaccinationCenter() {
-        std::string counterAsString;
-        intutil::toString(counter, counterAsString);
-        stringutil::concat("Center", counterAsString, this->name);
-        stringutil::concat(this->name, "Street", this->address);
-        this->capacity = 100 + counter*10;
-        this->vaccins = 0;
-        this->inhabitants = 2000 + counter*50;
-        this->vaccinated = 0;
-        counter++;
-    }
-
-private:
-    static unsigned int counter;
-};
+//class MockVaccinationCenter: public VaccinationCenter {
+//public:
+//    MockVaccinationCenter(): VaccinationCenter() {
+//        std::string counterAsString;
+//        intutil::toString(counter, counterAsString);
+//        stringutil::concat("Center", counterAsString, this->name);
+//        stringutil::concat(this->name, "Street", this->address);
+//        this->capacity = 100 + counter*10;
+//        this->vaccins = 0;
+//        this->inhabitants = 2000 + counter*50;
+//        this->vaccinated = 0;
+//        counter++;
+//    }
+//
+//private:
+//    static unsigned int counter;
+//};
 
 class HubTests: public ::testing::Test {
 protected:
@@ -46,13 +46,13 @@ TEST_F(HubTests, DefaultConstructor) {
 }
 
 TEST_F(HubTests, HappyDay){
-    hub.delivery = 300;
-    hub.interval = 5;
-    hub.transport = 60;
-    hub.vaccins = 2000;
-    for(int i = 0; i < 5; i++) {
-        MockVaccinationCenter* center = new MockVaccinationCenter();
-        hub.centers.push_back(center);
-    }
+//    hub.delivery = 300;
+//    hub.interval = 5;
+//    hub.transport = 60;
+//    hub.vaccins = 2000;
+//    for(int i = 0; i < 5; i++) {
+//        MockVaccinationCenter* center = new MockVaccinationCenter();
+//        hub.centers.push_back(center);
+//    }
 
 }

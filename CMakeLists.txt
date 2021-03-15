@@ -34,7 +34,8 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         io/XMLParser.cpp io/XMLParser.h
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        Simulator.cpp Simulator.h tests/domain/HubTests.cpp)
+        Simulator.cpp Simulator.h tests/domain/HubTests.cpp
+        utils.h)
 
 # Create RELEASE target
 add_executable(Vaccimulator ${RELEASE_SOURCE_FILES})
