@@ -33,6 +33,7 @@ public:
 
     // Constructor
     Hub();
+	~Hub();
     bool properlyInitialized() const;
 
     // Getters
