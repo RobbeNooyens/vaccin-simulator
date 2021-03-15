@@ -40,6 +40,30 @@ CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: io/XMLParser.h
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: tinyxml/tinystr.h
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: tinyxml/tinyxml.h
 
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/Hub.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/VaccinationCenter.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: tests/domain/HubTests.cpp
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: utils.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-death-test.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-message.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-param-test.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-printers.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-test-part.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-typed-test.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest_pred_impl.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest_prod.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-death-test-internal.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-filepath.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-internal.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-linked_ptr.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-param-util-generated.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-param-util.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-port.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-string.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-tuple.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/internal/gtest-type-util.h
+
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: entities/VaccinationCenter.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: tests/domain/VaccinationCenterTests.cpp

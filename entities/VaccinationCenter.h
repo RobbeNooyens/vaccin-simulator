@@ -18,8 +18,8 @@ public:
     const VaccinationCenter* initCheck;
 
     // Metadata
-    const std::string name;
-    const std::string address;
+    std::string name;
+    std::string address;
     unsigned int vaccins;
     unsigned int inhabitants;
     unsigned int vaccinated;
@@ -31,7 +31,7 @@ public:
     bool properlyInitialized() const;
 
     // Simulation
-    void transportArrived(unsigned int vaccinCount);
+    void transportationArrived(unsigned int vaccinCount);
     void vaccinateInhabitants();
 
     // Getters

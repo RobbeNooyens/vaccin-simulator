@@ -41,7 +41,7 @@ void Hub::simulateDay(unsigned int day) {
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount) {
-    center->transportArrived(vaccinCount);
+    center->transportationArrived(vaccinCount);
 }
 
 void Hub::distributeVaccins() {
