@@ -133,4 +133,8 @@ windows.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 string
 -
+iostream
+-
+sstream
+-
 

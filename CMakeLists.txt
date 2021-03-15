@@ -26,6 +26,7 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         tests/domain/VaccinationCenterTests.cpp
+        tests/domain/HubTests.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
@@ -33,7 +34,8 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         io/XMLParser.cpp io/XMLParser.h
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        Simulator.cpp Simulator.h)
+        Simulator.cpp Simulator.h tests/domain/HubTests.cpp
+        utils.h)
 
 # Create RELEASE target
 add_executable(Vaccimulator ${RELEASE_SOURCE_FILES})

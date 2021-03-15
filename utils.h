@@ -9,6 +9,8 @@
 #define VACCIMULATOR_UTILS_H
 
 #include <string>
+#include<iostream>
+#include <sstream>  // for string streams
 
 namespace stringutil {
 
@@ -22,5 +24,31 @@ namespace stringutil {
         return source.find(target) != std::string::npos;
     }
 
+    /**
+     * Concatenates s1 and s2 in result
+     * @param s1 the left side of the concatenated string
+     * @param s2 the right side of the concatenated string
+     * @param result s1 and s2 concatenated
+     */
+    void concat(const std::string &s1, const std::string &s2, std::string &result) {
+        std::stringstream ss;
+        ss << s1 << s2;
+        result = ss.str();
+    }
+
+}
+
+namespace intutil {
+
+    /**
+     * Casts an int to a string
+     * @param num is the number to be converted
+     * @param target is the string that will contain the converted number as a string
+     */
+    void toString(int num, std::string &target) {
+        std::ostringstream convert;   // stream used for the conversion
+        convert << num;      // insert the textual representation of 'Number' in the characters in the stream
+        target = convert.str();
+    }
 }
 #endif //VACCIMULATOR_UTILS_H

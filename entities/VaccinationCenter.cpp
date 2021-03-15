@@ -50,13 +50,13 @@ unsigned int VaccinationCenter::getVaccinationsLeft() const {
     return inhabitants - vaccinated;
 }
 
-void VaccinationCenter::transportArrived(unsigned int vaccinCount) {
+void VaccinationCenter::transportationArrived(unsigned int vaccinCount) {
     vaccins += vaccinCount;
 }
 
 void VaccinationCenter::vaccinateInhabitants() {
-    vaccinated += vaccins;
-    vaccins = 0;
+    vaccinated += std::min(capacity, vaccins);
+    vaccins -= std::min(capacity, vaccins);
 }
 
 bool VaccinationCenter::properlyInitialized() const {

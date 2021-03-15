@@ -72,6 +72,14 @@ streambuf
 string
 -
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/HubTests.cpp
+gtest/gtest.h
+-
+../../entities/VaccinationCenter.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+../../entities/Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp
 gtest/gtest.h
 -
@@ -136,6 +144,10 @@ windows.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 string
+-
+iostream
+-
+sstream
 -
 
 gtest/include/gtest/gtest-death-test.h

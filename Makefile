@@ -310,6 +310,33 @@ io/XMLParser.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.s
 .PHONY : io/XMLParser.cpp.s
 
+tests/domain/HubTests.o: tests/domain/HubTests.cpp.o
+
+.PHONY : tests/domain/HubTests.o
+
+# target to build an object file
+tests/domain/HubTests.cpp.o:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
+.PHONY : tests/domain/HubTests.cpp.o
+
+tests/domain/HubTests.i: tests/domain/HubTests.cpp.i
+
+.PHONY : tests/domain/HubTests.i
+
+# target to preprocess a source file
+tests/domain/HubTests.cpp.i:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.i
+.PHONY : tests/domain/HubTests.cpp.i
+
+tests/domain/HubTests.s: tests/domain/HubTests.cpp.s
+
+.PHONY : tests/domain/HubTests.s
+
+# target to generate assembly for a file
+tests/domain/HubTests.cpp.s:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.s
+.PHONY : tests/domain/HubTests.cpp.s
+
 tests/domain/VaccinationCenterTests.o: tests/domain/VaccinationCenterTests.cpp.o
 
 .PHONY : tests/domain/VaccinationCenterTests.o
@@ -485,6 +512,9 @@ help:
 	@echo "... io/XMLParser.o"
 	@echo "... io/XMLParser.i"
 	@echo "... io/XMLParser.s"
+	@echo "... tests/domain/HubTests.o"
+	@echo "... tests/domain/HubTests.i"
+	@echo "... tests/domain/HubTests.s"
 	@echo "... tests/domain/VaccinationCenterTests.o"
 	@echo "... tests/domain/VaccinationCenterTests.i"
 	@echo "... tests/domain/VaccinationCenterTests.s"

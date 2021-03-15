@@ -31,7 +31,7 @@ public:
     bool properlyInitialized() const;
 
     // Simulation
-    void transportArrived(unsigned int vaccinCount);
+    void transportationArrived(unsigned int vaccinCount);
     void vaccinateInhabitants();
 
     // Getters

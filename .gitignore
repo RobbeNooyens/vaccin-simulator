@@ -108,3 +108,5 @@ fabric.properties
 
 # Prevent gtest from being pushed to master
 gtest/
+
+openwsl.bat
