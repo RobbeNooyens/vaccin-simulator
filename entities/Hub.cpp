@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include <map>
+#include "../tinyxml/tinyxml.h"
 
 #include "Hub.h"
 #include "VaccinationCenter.h"
@@ -66,8 +67,8 @@ bool Hub::properlyInitialized() const {
 
 void Hub::fromTiXMLElement(TiXmlElement *element) {
 	int centrum_count = 0;
-	std::vector<std::string> elements_hub = {"levering", "interval", "transport", "CENTRA"};
-	std::vector<std::string> elements_centra = {"naam", "adres", "inwoners", "capaciteit"};
+	const std::string elements_hub[] = {"levering", "interval", "transport", "CENTRA"};
+	const std::string elements_centra[] = {"naam", "adres", "inwoners", "capaciteit"};
 	TiXmlElement* elem = element->FirstChildElement("HUB");
 	if (elem == NULL) {
 		throw "Hub niet gevonden.";
@@ -121,6 +122,10 @@ void Hub::fromTiXMLElement(TiXmlElement *element) {
 	if (centrum_count != VaccinationCenters.size()) {
 		throw "niet alle vaccinatie centers zijn gelezen";
 	}		
+}
+
+void Hub::fromJSON(JObject* json){
+
 }
 
 Hub::~Hub() {

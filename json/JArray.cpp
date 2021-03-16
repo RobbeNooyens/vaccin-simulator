@@ -4,10 +4,7 @@
 
 #include "JArray.h"
 
-JArray::JArray() {
-}
-
-void JArray::append(JValue * val) {
+void JArray::insertValue(JValue * val) {
     items.push_back(val);
 }
 
@@ -17,4 +14,7 @@ std::vector<JValue *> &JArray::getItems() {
 
 JArray::~JArray() {
 
+}
+
+JArray::JArray() {
 }

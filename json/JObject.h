@@ -4,7 +4,6 @@
 
 #ifndef VACCIN_SIMULATOR_JOBJECT_H
 #define VACCIN_SIMULATOR_JOBJECT_H
-
 #include <string>
 #include <map>
 
@@ -13,9 +12,7 @@ class JValue;
 class JObject {
 public:
     JObject();
-
-    void put(std::string, JValue*);
-
+    void insertValue(std::string, JValue*);
     JValue* getValue(const std::string&);
 
 private:

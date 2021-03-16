@@ -10,9 +10,10 @@
 class JValue;
 
 class JArray {
+public:
     JArray();
     ~JArray();
-    void append(JValue*);
+    void insertValue(JValue*);
     std::vector<JValue*>& getItems();
 
 private:
