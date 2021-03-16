@@ -7,16 +7,20 @@
 
 #include <ostream>
 
+#include "../DesignByContract.h"
 #include "VaccinationCenter.h"
+#include "../json/JObject.h"
+#include "../json/JValue.h"
 
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
                                      unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity) {
-
+    ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
 // IO Streams
 
 void VaccinationCenter::toStream(std::ostream &outStream) const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     outStream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft() << " inwoners niet gevaccineerd" << std::endl;
 }
 
@@ -55,6 +59,7 @@ void VaccinationCenter::transportationArrived(unsigned int vaccinCount) {
 }
 
 void VaccinationCenter::vaccinateInhabitants() {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     vaccinated += std::min(capacity, vaccins);
     vaccins -= std::min(capacity, vaccins);
 }
@@ -68,20 +73,12 @@ void VaccinationCenter::fromTiXMLElement(TiXmlElement* element) {
 }
 
 VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
+    ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
-void VaccinationCenter::setName(const std::string& n) {
-	name = n;
-}
-
-void VaccinationCenter::setAddress(const std::string& a) {
-	address = a;
-}
-
-void VaccinationCenter::setInhabitants(unsigned int i) {
-	inhabitants = i;
-}
-
-void VaccinationCenter::setCapacity(unsigned int c) {
-	capacity = c;
+void VaccinationCenter::fromJSON(JObject* json) {
+    address = json->getValue("address")->asString();
+    capacity = json->getValue("capacity")->asUnsignedint();
+    inhabitants = json->getValue("inwoners")->asUnsignedint();
+    name = json->getValue("naam")->asString();
 }

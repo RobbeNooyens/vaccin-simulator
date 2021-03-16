@@ -9,6 +9,7 @@
 #define VACCIN_SIMULATOR_SIMULATOR_H
 
 #include "entities/Hub.h"
+#include "io/XMLParser.h"
 #include <string>
 
 class Simulator {
@@ -18,6 +19,7 @@ public:
 
     // Simulation
     Hub hub;
+    XMLParser xmlParser;
     unsigned int daycount;
 
     // Constructor

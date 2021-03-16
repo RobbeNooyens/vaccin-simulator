@@ -11,6 +11,7 @@
 #include <string>
 
 class TiXmlElement;
+class JObject;
 
 class VaccinationCenter {
 public:
@@ -42,12 +43,9 @@ public:
     unsigned int getVaccins() const;
     unsigned int getVaccinationsDone() const;
     unsigned int getVaccinationsLeft() const;
-	void setName(const std::string &name);
-	void setAddress(const std::string &address);
-	void setInhabitants(unsigned int inhabitants);
-	void setCapacity(unsigned int capacity);
 
     // IO
+    void fromJSON(JObject*);
     void fromTiXMLElement(TiXmlElement*);
     void toStream(std::ostream&) const;
 };

@@ -13,12 +13,12 @@
 #include "../json/JValue.h"
 #include "../json/JArray.h"
 
-XMLParser::XMLParser(const char* file): fileName(file){
+XMLParser::XMLParser() {
 }
 
-JObject* XMLParser::parse() {
+JObject* XMLParser::parse(const std::string& fileName) {
     TiXmlDocument xml_document = TiXmlDocument();
-    if (!xml_document.LoadFile(fileName)) {
+    if (!xml_document.LoadFile(fileName.c_str())) {
         std::cerr << xml_document.ErrorDesc() << std::endl;
         throw std::runtime_error(xml_document.ErrorDesc());
     }
@@ -29,9 +29,10 @@ JObject* XMLParser::parse() {
     }
     TiXmlElement* elem = xml_document.FirstChildElement("HUB");
     if (elem == NULL) {
-        throw std::runtime_error("Hub niet gevonden");
+        throw std::runtime_error("Hub not found");
     }
     JObject* json = new JObject;
+    unsigned int count = 0;
     json->insertValue("hub", new JValue(new JArray));
     json->insertValue("centra", new JValue(new JArray));
     std::vector<std::string> elements_hub;
@@ -65,6 +66,7 @@ JObject* XMLParser::parse() {
     }
     elem = xml_document.FirstChildElement("VACCINATIECENTRUM");
     for (TiXmlElement* e = xml_document.FirstChildElement("VACCINATIECENTRUM"); e != NULL; e = e->NextSiblingElement("VACCINATIECENTRUM")) {
+        json->getValue("centra")->asJArray()->insertValue(new JValue(new JObject));
         for (int i = 0; i < 4; i++) {
             nested_elem = e->FirstChildElement(elements_centra[i].c_str());
             if (nested_elem == NULL) {
@@ -75,18 +77,20 @@ JObject* XMLParser::parse() {
                     throw std::runtime_error("waarde niet gevonden in element '" + elements_centra[i] + "'");
                 }
                 if (elements_centra[i] == "inwoners" || elements_centra[i] == "capaciteit") {
-
+                    char *ptr;
+                    std::string value = e_text->Value();
+                    unsigned int k = strtoul(value.c_str(), &ptr, 10);
+                    if (value.c_str() == ptr) {
+                        throw std::runtime_error("waarde kon niet ingelezen worden van element '" + elements_centra[i] + "'");
+                    }
+                    json->getValue("centra")->asJArray()->getItems()[count]->asJObject()->insertValue(elements_centra[i], new JValue(k));
+                } else {
+                    json->getValue("centra")->asJArray()->getItems()[count]->asJObject()->insertValue(elements_centra[i], new JValue(e_text));
                 }
             }
         }
+        ++count;
     }
-    elem->FirstChildElement("hhhhh");
-    nested_elem = elem->FirstChildElement("heell");
-    std::string elements_centra[] = {"naam", "adres", "inwoners", "capaciteit"};
-    //json->getValue("hub")->asJObject()->insertValue("delivery
-
-
     xml_document.Clear();
-
     return json;
 }

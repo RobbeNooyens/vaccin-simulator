@@ -6,14 +6,13 @@
 // ╘============================================╛
 
 #include <fstream>
-#include <cassert>
 #include "Simulator.h"
 #include "utils.h"
 #include "DesignByContract.h"
-#include <cassert>
+#include "json/JObject.h"
 
 
-Simulator::Simulator(): daycount(0) {
+Simulator::Simulator(): initCheck(this), daycount(0) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
 }
 
@@ -21,6 +20,8 @@ void Simulator::importSimulation(const std::string& fileName) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
     REQUIRE(stringutil::contains(fileName, ".xml"), "File should be an XML file!");
+    JObject* json = xmlParser.parse(fileName);
+    hub.fromJSON(json);
 }
 
 void Simulator::exportSimulation(const std::string& fileName) const {
