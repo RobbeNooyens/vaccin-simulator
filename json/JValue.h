@@ -5,6 +5,8 @@
 #ifndef VACCIN_SIMULATOR_JVALUE_H
 #define VACCIN_SIMULATOR_JVALUE_H
 
+#include <string>
+
 class JObject;
 class JArray;
 
