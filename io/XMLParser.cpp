@@ -27,13 +27,13 @@ JObject* XMLParser::parse(const std::string& fileName) {
         xml_document.Clear();
         throw std::runtime_error("Failed to load file: No root element.");
     }
-    TiXmlElement* elem = xml_document.FirstChildElement("HUB");
+    TiXmlElement* elem = root->FirstChildElement("HUB");
     if (elem == NULL) {
         throw std::runtime_error("Hub not found");
     }
     JObject* json = new JObject;
     unsigned int count = 0;
-    json->insertValue("hub", new JValue(new JArray));
+    json->insertValue("hub", new JValue(new JObject));
     json->insertValue("centra", new JValue(new JArray));
     std::vector<std::string> elements_hub;
     std::vector<std::string> elements_centra;
