@@ -81,6 +81,7 @@ void Hub::fromJSON(JObject* json){
     delivery = json->getValue("hub")->asJObject()->getValue("levering")->asUnsignedint();
     interval = json->getValue("hub")->asJObject()->getValue("interval")->asUnsignedint();
     transport = json->getValue("hub")->asJObject()->getValue("transport")->asUnsignedint();
+    vaccins = delivery;
     std::vector<JValue*> centra = json->getValue("centra")->asJArray()->getItems();
     std::vector<JValue*>::iterator center;
     for(center = centra.begin(); center != centra.end(); center++) {

@@ -110,3 +110,5 @@ fabric.properties
 gtest/
 
 openwsl.bat
+
+CMakeCache.txt

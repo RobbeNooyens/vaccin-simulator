@@ -27,7 +27,7 @@ public:
     // Metadata
     unsigned int delivery;
     unsigned int interval;
-    unsigned int transport;
+    unsigned int transport; // Vaccines per load
     unsigned int vaccins;
 
     // Connected vaccinationcenters

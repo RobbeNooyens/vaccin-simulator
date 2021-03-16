@@ -6,19 +6,29 @@
 
 #IncludeRegexTransform: 
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+assert.h
+-
+iostream
+-
+
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.cpp
 fstream
--
-cassert
 -
 Simulator.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
 utils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
 entities/Hub.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+io/XMLParser.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
 string
 -
 
@@ -37,6 +47,16 @@ iostream
 -
 map
 -
+../tinyxml/tinyxml.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 Hub.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
 VaccinationCenter.h
@@ -49,12 +69,20 @@ istream
 -
 ostream
 -
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.cpp
 ostream
 -
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
 VaccinationCenter.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
 string
@@ -69,10 +97,48 @@ XMLParser.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
 ../tinyxml/tinyxml.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
 streambuf
 -
+string
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp
+JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+vector
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp
+JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+string
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+string
+-
+map
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp
+JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 string
 -
 

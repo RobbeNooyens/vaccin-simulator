@@ -273,6 +273,78 @@ CMakeFiles/Vaccimulator.dir/Simulator.cpp.o.provides: CMakeFiles/Vaccimulator.di
 CMakeFiles/Vaccimulator.dir/Simulator.cpp.o.provides.build: CMakeFiles/Vaccimulator.dir/Simulator.cpp.o
 
 
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: CMakeFiles/Vaccimulator.dir/flags.make
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp"
+
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Vaccimulator.dir/json/JValue.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp" > CMakeFiles/Vaccimulator.dir/json/JValue.cpp.i
+
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Vaccimulator.dir/json/JValue.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp" -o CMakeFiles/Vaccimulator.dir/json/JValue.cpp.s
+
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.requires:
+
+.PHONY : CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.requires
+
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.provides: CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.provides.build
+.PHONY : CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.provides
+
+CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.provides.build: CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o
+
+
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: CMakeFiles/Vaccimulator.dir/flags.make
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: json/JObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp"
+
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Vaccimulator.dir/json/JObject.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp" > CMakeFiles/Vaccimulator.dir/json/JObject.cpp.i
+
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Vaccimulator.dir/json/JObject.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp" -o CMakeFiles/Vaccimulator.dir/json/JObject.cpp.s
+
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.requires:
+
+.PHONY : CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.requires
+
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.provides: CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.provides.build
+.PHONY : CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.provides
+
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.provides.build: CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o
+
+
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o: CMakeFiles/Vaccimulator.dir/flags.make
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o: json/JArray.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp"
+
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Vaccimulator.dir/json/JArray.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp" > CMakeFiles/Vaccimulator.dir/json/JArray.cpp.i
+
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Vaccimulator.dir/json/JArray.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp" -o CMakeFiles/Vaccimulator.dir/json/JArray.cpp.s
+
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.requires:
+
+.PHONY : CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.requires
+
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.provides: CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.provides.build
+.PHONY : CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.provides
+
+CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.provides.build: CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o
+
+
 # Object files for target Vaccimulator
 Vaccimulator_OBJECTS = \
 "CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o" \
@@ -283,7 +355,10 @@ Vaccimulator_OBJECTS = \
 "CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o" \
 "CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o" \
 "CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o" \
-"CMakeFiles/Vaccimulator.dir/Simulator.cpp.o"
+"CMakeFiles/Vaccimulator.dir/Simulator.cpp.o" \
+"CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o" \
+"CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o" \
+"CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o"
 
 # External object files for target Vaccimulator
 Vaccimulator_EXTERNAL_OBJECTS =
@@ -297,9 +372,12 @@ Vaccimulator: CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o
 Vaccimulator: CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o
 Vaccimulator: CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o
 Vaccimulator: CMakeFiles/Vaccimulator.dir/Simulator.cpp.o
+Vaccimulator: CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o
+Vaccimulator: CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o
+Vaccimulator: CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o
 Vaccimulator: CMakeFiles/Vaccimulator.dir/build.make
 Vaccimulator: CMakeFiles/Vaccimulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Vaccimulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable Vaccimulator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Vaccimulator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -316,6 +394,9 @@ CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/io/XMLParser.c
 CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o.requires
 CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o.requires
 CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/Simulator.cpp.o.requires
+CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o.requires
+CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o.requires
+CMakeFiles/Vaccimulator.dir/requires: CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o.requires
 
 .PHONY : CMakeFiles/Vaccimulator.dir/requires
 

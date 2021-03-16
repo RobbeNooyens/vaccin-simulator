@@ -11,7 +11,7 @@
 class MockVaccinationCenter: public VaccinationCenter {
 public:
     explicit MockVaccinationCenter(int capacity): VaccinationCenter() {
-        setCapacity(capacity);
+        this->capacity = capacity;
     }
 
 };
@@ -41,7 +41,7 @@ TEST_F(HubTests, HappyDay){
     unsigned int initialVaccins = 2000, transport = 60;
     unsigned int days = 5;
     hub.delivery = 300;
-    hub.interval = 1;
+    hub.interval = 7;
     hub.transport = transport;
     hub.vaccins = initialVaccins;
     int capacity = 10;
@@ -49,7 +49,7 @@ TEST_F(HubTests, HappyDay){
         VaccinationCenter* center = new MockVaccinationCenter(capacity);
         hub.centers.push_back(center);
     }
-    for(int day = 0; day < days; day++)
+    for(unsigned int day = 0; day < days; day++)
         hub.simulateDay(day);
-    EXPECT_TRUE(hub.vaccins == initialVaccins - (5*transport));
+    EXPECT_TRUE(hub.vaccins == initialVaccins - (5*transport) + hub.delivery);
 }

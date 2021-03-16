@@ -310,6 +310,96 @@ io/XMLParser.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.s
 .PHONY : io/XMLParser.cpp.s
 
+json/JArray.o: json/JArray.cpp.o
+
+.PHONY : json/JArray.o
+
+# target to build an object file
+json/JArray.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o
+.PHONY : json/JArray.cpp.o
+
+json/JArray.i: json/JArray.cpp.i
+
+.PHONY : json/JArray.i
+
+# target to preprocess a source file
+json/JArray.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JArray.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.i
+.PHONY : json/JArray.cpp.i
+
+json/JArray.s: json/JArray.cpp.s
+
+.PHONY : json/JArray.s
+
+# target to generate assembly for a file
+json/JArray.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JArray.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.s
+.PHONY : json/JArray.cpp.s
+
+json/JObject.o: json/JObject.cpp.o
+
+.PHONY : json/JObject.o
+
+# target to build an object file
+json/JObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o
+.PHONY : json/JObject.cpp.o
+
+json/JObject.i: json/JObject.cpp.i
+
+.PHONY : json/JObject.i
+
+# target to preprocess a source file
+json/JObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JObject.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.i
+.PHONY : json/JObject.cpp.i
+
+json/JObject.s: json/JObject.cpp.s
+
+.PHONY : json/JObject.s
+
+# target to generate assembly for a file
+json/JObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JObject.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.s
+.PHONY : json/JObject.cpp.s
+
+json/JValue.o: json/JValue.cpp.o
+
+.PHONY : json/JValue.o
+
+# target to build an object file
+json/JValue.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o
+.PHONY : json/JValue.cpp.o
+
+json/JValue.i: json/JValue.cpp.i
+
+.PHONY : json/JValue.i
+
+# target to preprocess a source file
+json/JValue.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JValue.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.i
+.PHONY : json/JValue.cpp.i
+
+json/JValue.s: json/JValue.cpp.s
+
+.PHONY : json/JValue.s
+
+# target to generate assembly for a file
+json/JValue.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/json/JValue.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.s
+.PHONY : json/JValue.cpp.s
+
 tests/domain/HubTests.o: tests/domain/HubTests.cpp.o
 
 .PHONY : tests/domain/HubTests.o
@@ -512,6 +602,15 @@ help:
 	@echo "... io/XMLParser.o"
 	@echo "... io/XMLParser.i"
 	@echo "... io/XMLParser.s"
+	@echo "... json/JArray.o"
+	@echo "... json/JArray.i"
+	@echo "... json/JArray.s"
+	@echo "... json/JObject.o"
+	@echo "... json/JObject.i"
+	@echo "... json/JObject.s"
+	@echo "... json/JValue.o"
+	@echo "... json/JValue.i"
+	@echo "... json/JValue.s"
 	@echo "... tests/domain/HubTests.o"
 	@echo "... tests/domain/HubTests.i"
 	@echo "... tests/domain/HubTests.s"
