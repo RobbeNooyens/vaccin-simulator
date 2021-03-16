@@ -1,7 +1,9 @@
-//
-// Created by robbe on 16/03/2021.
-//
-
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 1.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 #include "JArray.h"
 
 void JArray::insertValue(JValue * val) {

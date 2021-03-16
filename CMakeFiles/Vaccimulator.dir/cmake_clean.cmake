@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o"
   "CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o"
   "CMakeFiles/Vaccimulator.dir/json/JArray.cpp.o"
+  "CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o"
+  "CMakeFiles/Vaccimulator.dir/utils.cpp.o"
   "Vaccimulator.pdb"
   "Vaccimulator"
 )

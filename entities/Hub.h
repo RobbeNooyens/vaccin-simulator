@@ -43,8 +43,8 @@ public:
 
     // Getters
     /**
+     * @return the amount of vaccins there are currently available in the hub
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-     * @return
      */
     unsigned int getVaccins() const;
 

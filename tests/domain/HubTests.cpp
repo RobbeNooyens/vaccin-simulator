@@ -39,17 +39,17 @@ TEST_F(HubTests, DefaultConstructor) {
  */
 TEST_F(HubTests, HappyDay){
     unsigned int initialVaccins = 2000, transport = 60;
-    unsigned int days = 5;
+    unsigned int days = 5, centers = 3;
     hub.delivery = 300;
     hub.interval = 7;
     hub.transport = transport;
     hub.vaccins = initialVaccins;
     int capacity = 10;
-    for(int i = 0; i < 5; i++) {
+    for(unsigned int i = 0; i < centers; i++) {
         VaccinationCenter* center = new MockVaccinationCenter(capacity);
         hub.centers.push_back(center);
     }
     for(unsigned int day = 0; day < days; day++)
         hub.simulateDay(day);
-    EXPECT_TRUE(hub.vaccins == initialVaccins - (5*transport) + hub.delivery);
+    EXPECT_TRUE(hub.vaccins == initialVaccins - (centers*days*capacity) + hub.delivery);
 }

@@ -114,6 +114,16 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
  gtest/include/gtest/internal/gtest-string.h
  gtest/include/gtest/internal/gtest-tuple.h
  gtest/include/gtest/internal/gtest-type-util.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutputTests.cpp
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h

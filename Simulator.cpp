@@ -19,7 +19,6 @@ Simulator::Simulator(): initCheck(this), daycount(0) {
 void Simulator::importSimulation(const std::string& fileName) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-    REQUIRE(stringutil::contains(fileName, ".xml"), "File should be an XML file!");
     JObject* json = xmlParser.parse(fileName);
     hub.fromJSON(json);
 }
@@ -27,7 +26,6 @@ void Simulator::importSimulation(const std::string& fileName) {
 void Simulator::exportSimulation(const std::string& fileName) const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-    REQUIRE(stringutil::contains(fileName, ".txt"), "File should be a text file!");
     std::ofstream file;
     file.open(fileName.c_str());
     assert(file.is_open());

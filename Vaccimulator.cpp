@@ -11,10 +11,9 @@
 #include "Simulator.h"
 
 int main() {
-    std::cout << "Vaccin Simulator" << std::endl;
     Simulator simulator = Simulator();
-    simulator.importSimulation("input.xml");
-    simulator.run(10);
-    simulator.exportSimulation("output.txt");
+    simulator.importSimulation("io/input.xml");
+    simulator.run(1);
+    simulator.exportSimulation("io/output.txt");
     return 0;
 }

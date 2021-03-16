@@ -51,6 +51,16 @@ CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.cpp
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.h
 
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: Simulator.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: entities/Hub.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: entities/VaccinationCenter.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: io/XMLParser.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: json/JArray.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: json/JObject.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: json/JValue.h
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: tests/presentation/HubOutputTests.cpp
+CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: utils.h
+
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.cpp
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.h
 
@@ -65,4 +75,7 @@ CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlerror.cpp.o: tinyxml/tinyxmlerror.cpp
 CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinystr.h
 CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxmlparser.cpp
+
+CMakeFiles/Vaccimulator.dir/utils.cpp.o: utils.cpp
+CMakeFiles/Vaccimulator.dir/utils.cpp.o: utils.h
 

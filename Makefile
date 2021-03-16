@@ -454,6 +454,36 @@ tests/domain/VaccinationCenterTests.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.s
 .PHONY : tests/domain/VaccinationCenterTests.cpp.s
 
+tests/presentation/HubOutputTests.o: tests/presentation/HubOutputTests.cpp.o
+
+.PHONY : tests/presentation/HubOutputTests.o
+
+# target to build an object file
+tests/presentation/HubOutputTests.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o
+.PHONY : tests/presentation/HubOutputTests.cpp.o
+
+tests/presentation/HubOutputTests.i: tests/presentation/HubOutputTests.cpp.i
+
+.PHONY : tests/presentation/HubOutputTests.i
+
+# target to preprocess a source file
+tests/presentation/HubOutputTests.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.i
+.PHONY : tests/presentation/HubOutputTests.cpp.i
+
+tests/presentation/HubOutputTests.s: tests/presentation/HubOutputTests.cpp.s
+
+.PHONY : tests/presentation/HubOutputTests.s
+
+# target to generate assembly for a file
+tests/presentation/HubOutputTests.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.s
+.PHONY : tests/presentation/HubOutputTests.cpp.s
+
 tinyxml/tinystr.o: tinyxml/tinystr.cpp.o
 
 .PHONY : tinyxml/tinystr.o
@@ -574,6 +604,33 @@ tinyxml/tinyxmlparser.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.s
 .PHONY : tinyxml/tinyxmlparser.cpp.s
 
+utils.o: utils.cpp.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/utils.cpp.o
+.PHONY : utils.cpp.o
+
+utils.i: utils.cpp.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/utils.cpp.i
+.PHONY : utils.cpp.i
+
+utils.s: utils.cpp.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/utils.cpp.s
+.PHONY : utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -617,6 +674,9 @@ help:
 	@echo "... tests/domain/VaccinationCenterTests.o"
 	@echo "... tests/domain/VaccinationCenterTests.i"
 	@echo "... tests/domain/VaccinationCenterTests.s"
+	@echo "... tests/presentation/HubOutputTests.o"
+	@echo "... tests/presentation/HubOutputTests.i"
+	@echo "... tests/presentation/HubOutputTests.s"
 	@echo "... tinyxml/tinystr.o"
 	@echo "... tinyxml/tinystr.i"
 	@echo "... tinyxml/tinystr.s"
@@ -629,6 +689,9 @@ help:
 	@echo "... tinyxml/tinyxmlparser.o"
 	@echo "... tinyxml/tinyxmlparser.i"
 	@echo "... tinyxml/tinyxmlparser.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 .PHONY : help
 
 

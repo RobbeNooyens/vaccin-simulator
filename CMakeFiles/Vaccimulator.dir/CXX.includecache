@@ -142,6 +142,24 @@ JArray.h
 string
 -
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutputTests.cpp
+../../entities/VaccinationCenter.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+../../entities/Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+../../Simulator.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+../../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+fstream
+-
+
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp
 tinystr.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h
@@ -196,7 +214,15 @@ tinyxml.h
 windows.h
 -
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.cpp
+utils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+fstream
+-
+sys/stat.h
+-
 string
 -
 iostream

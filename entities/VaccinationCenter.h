@@ -27,12 +27,28 @@ public:
     unsigned int capacity;
 
     // Constructor
+    /**
+     * Default constructor
+     * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     VaccinationCenter();
+    /**
+     * VaccionationCenter parameter constructor
+     * @param name: center's name
+     * @param address: the address where the center is located
+     * @param inhabitants: the amount of inhabitants that should be vaccinated in this center
+     * @param capacity: the max amount of people that can be vaccinated here daily
+     * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
     bool properlyInitialized() const;
 
     // Simulation
     void transportationArrived(unsigned int vaccinCount);
+    /**
+     * Simulate the situation where the capacity amount of people are being vaccinated
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     void vaccinateInhabitants();
 
     // Getters
@@ -45,9 +61,13 @@ public:
     unsigned int getVaccinationsLeft() const;
 
     // IO
-    void fromJSON(JObject*);
-    void fromTiXMLElement(TiXmlElement*);
-    void toStream(std::ostream&) const;
+    /**
+     * Load a VaccinationCenter from a Json object
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(json != NULL, "Json can't be NULL!");
+     */
+    void fromJSON(JObject* json);
+    void toStream(std::ostream& stream) const;
 };
 
 

@@ -35,7 +35,6 @@ public:
      * @param fileName: name of the XML file with extension
      * REQUIRE(properlyInitialized(), "Object hasn't been properly initialized!");
      * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-     * REQUIRE(stringutil::contains(fileName, ".xml"), "File should be an XML file!");
      */
     void importSimulation(const std::string& fileName);
     /**
@@ -43,7 +42,6 @@ public:
      * @param fileName: name of the text file to write to
      * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-     * REQUIRE(stringutil::contains(fileName, ".txt"), "File should be a text file!");
      */
     void exportSimulation(const std::string& fileName) const;
 

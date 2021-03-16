@@ -74,10 +74,10 @@ JObject* XMLParser::parse(const std::string& fileName) {
                 throw std::runtime_error("'" + elements_centra[i] + "' niet gevonden");
             } else {
                 e_text = nested_elem->FirstChild()->ToText();
-                std::string value = e_text->Value();
                 if (e_text == NULL) {
                     throw std::runtime_error("waarde niet gevonden in element '" + elements_centra[i] + "'");
                 }
+                std::string value = e_text->Value();
                 if (elements_centra[i] == "inwoners" || elements_centra[i] == "capaciteit") {
                     char *ptr;
                     unsigned int k = strtoul(value.c_str(), &ptr, 10);
