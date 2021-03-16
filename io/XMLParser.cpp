@@ -34,19 +34,51 @@ JObject* XMLParser::parse() {
     JObject* json = new JObject;
     json->insertValue("hub", new JValue(new JArray));
     json->insertValue("centra", new JValue(new JArray));
-    int centrum_count = 0;
-    static const char* arr[] = {"levering", "interval", "transport", "CENTRA"};
-    static const char* arr2[] = {"naam", "adres", "inwonders", "capaciteit"};
-    std::vector<const char*> elements_hub(arr, arr+sizeof(arr)/sizeof(arr[0]));
-    std::vector<const char*> elements_centra(arr2, arr2+sizeof(arr2)/sizeof(arr2[0]));
+    std::vector<std::string> elements_hub;
+    std::vector<std::string> elements_centra;
+    elements_hub.push_back("levering");
+    elements_hub.push_back("interval");
+    elements_hub.push_back("transport");
+    elements_centra.push_back("naam");
+    elements_centra.push_back("adres");
+    elements_centra.push_back("inwoners");
+    elements_centra.push_back("capaciteit");
     TiXmlElement* nested_elem;
     TiXmlText* e_text;
-    for (int i = 0; i < 4; i++) {
-        nested_elem = elem->FirstChildElement(elements_hub[i]);
-        if (nested_elem == NULL){
-            throw std::runtime_error(elements_hub[i] + " niet gevonden");
+    for (int i = 0; i < 3; i++) {
+        nested_elem = elem->FirstChildElement(elements_hub[i].c_str());
+        if (nested_elem == NULL) {
+            throw std::runtime_error("'" + elements_hub[i] + "' niet gevonden");
+        } else {
+            e_text = nested_elem->FirstChild()->ToText();
+            if (e_text == NULL) {
+                throw std::runtime_error("waarde niet gevonden in element '" + elements_hub[i] + "'");
+            }
+            char *ptr;
+            std::string value = e_text->Value();
+            unsigned int k = strtoul(value.c_str(), &ptr, 10);
+            if (value.c_str() == ptr) {
+                throw std::runtime_error("waarde kon niet ingelezen worden van element '" + elements_hub[i] + "'");
+            }
+            json->getValue("hub")->asJObject()->insertValue(elements_hub[i], new JValue(k));
         }
-        e_
+    }
+    elem = xml_document.FirstChildElement("VACCINATIECENTRUM");
+    for (TiXmlElement* e = xml_document.FirstChildElement("VACCINATIECENTRUM"); e != NULL; e = e->NextSiblingElement("VACCINATIECENTRUM")) {
+        for (int i = 0; i < 4; i++) {
+            nested_elem = e->FirstChildElement(elements_centra[i].c_str());
+            if (nested_elem == NULL) {
+                throw std::runtime_error("'" + elements_centra[i] + "' niet gevonden");
+            } else {
+                e_text = nested_elem->FirstChild()->ToText();
+                if (e_text == NULL) {
+                    throw std::runtime_error("waarde niet gevonden in element '" + elements_centra[i] + "'");
+                }
+                if (elements_centra[i] == "inwoners" || elements_centra[i] == "capaciteit") {
+
+                }
+            }
+        }
     }
     elem->FirstChildElement("hhhhh");
     nested_elem = elem->FirstChildElement("heell");

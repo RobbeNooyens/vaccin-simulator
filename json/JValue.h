@@ -17,11 +17,13 @@ public:
     JValue(double);
     JValue(char);
     JValue(bool);
+    JValue(unsigned int);
     JValue(std::string);
     JValue(JObject*);
     JValue(JArray*);
 
     int asInt() const;
+    unsigned int asUnsignedint() const;
     float asFloat() const;
     double asDouble() const;
     char asChar() const;
@@ -34,6 +36,7 @@ private:
     int valInt;
     float valFloat;
     double valDouble;
+    unsigned int valUnsignedint;
     char valChar;
     bool valBool;
     std::string valString;

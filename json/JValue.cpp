@@ -14,8 +14,10 @@ JValue::JValue(bool val): valBool(val){}
 JValue::JValue(std::string val): valString(val){}
 JValue::JValue(JObject* val): valJObject(val){}
 JValue::JValue(JArray* val): valJArray(val){}
+JValue::JValue(unsigned int val): valUnsignedint(val) {}
 
 int JValue::asInt() const{ return valInt; }
+unsigned int JValue::asUnsignedint() const { return valUnsignedint;}
 float JValue::asFloat() const{ return valFloat;}
 double JValue::asDouble() const{ return valDouble; }
 char JValue::asChar() const{ return valChar; }

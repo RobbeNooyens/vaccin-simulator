@@ -9,6 +9,10 @@
 #include "../../entities/Hub.h"
 
 class MockVaccinationCenter: public VaccinationCenter {
+public:
+    explicit MockVaccinationCenter(int capacity): VaccinationCenter() {
+        setCapacity(capacity);
+    }
 
 };
 
@@ -30,14 +34,22 @@ TEST_F(HubTests, DefaultConstructor) {
     EXPECT_TRUE(hub.centers.empty());
 }
 
+/**
+ * Test the Happy Day
+ */
 TEST_F(HubTests, HappyDay){
+    unsigned int initialVaccins = 2000, transport = 60;
+    unsigned int days = 5;
     hub.delivery = 300;
-    hub.interval = 5;
-    hub.transport = 60;
-    hub.vaccins = 2000;
+    hub.interval = 1;
+    hub.transport = transport;
+    hub.vaccins = initialVaccins;
+    int capacity = 10;
     for(int i = 0; i < 5; i++) {
-        MockVaccinationCenter* center = new MockVaccinationCenter();
+        VaccinationCenter* center = new MockVaccinationCenter(capacity);
         hub.centers.push_back(center);
     }
-
+    for(int day = 0; day < days; day++)
+        hub.simulateDay(day);
+    EXPECT_TRUE(hub.vaccins == initialVaccins - (5*transport));
 }

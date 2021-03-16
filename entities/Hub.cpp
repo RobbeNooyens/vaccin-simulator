@@ -9,17 +9,22 @@
 #include <iostream>
 #include <map>
 #include "../tinyxml/tinyxml.h"
+#include "../DesignByContract.h"
 
 #include "Hub.h"
 #include "VaccinationCenter.h"
 
-Hub::Hub() : initCheck(this), delivery(), interval(), transport(), vaccins() {}
+Hub::Hub() : initCheck(this), delivery(0), interval(0), transport(0), vaccins(0) {
+    ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+}
 
 unsigned int Hub::getVaccins() const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return vaccins;
 }
 
 void Hub::toStream(std::ostream &outStream) const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     outStream << "Hub (" << getVaccins() << "): " << std::endl;
     VaccinationCenters::const_iterator center;
     for(center = centers.begin(); center != centers.end(); center++)
@@ -30,6 +35,7 @@ void Hub::toStream(std::ostream &outStream) const {
 }
 
 void Hub::simulateDay(unsigned int day) {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     // Check if the cargo will be delivered today
     if (day % (interval+1) == 0)
         vaccins += delivery;
@@ -46,6 +52,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount
 }
 
 void Hub::distributeVaccins() {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     std::map<VaccinationCenter*, int> vaccinsPerCenter;
     // Distribution algorithm
     // Give each center the maximum amount of vaccins it can store.
@@ -66,6 +73,8 @@ bool Hub::properlyInitialized() const {
 }
 
 void Hub::fromTiXMLElement(TiXmlElement *element) {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    REQUIRE(element != NULL, "");
 	int centrum_count = 0;
 	const std::string elements_hub[] = {"levering", "interval", "transport", "CENTRA"};
 	const std::string elements_centra[] = {"naam", "adres", "inwoners", "capaciteit"};
