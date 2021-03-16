@@ -3,3 +3,18 @@
 //
 
 #include "JArray.h"
+
+JArray::JArray() {
+}
+
+void JArray::append(JValue * val) {
+    items.push_back(val);
+}
+
+std::vector<JValue *> &JArray::getItems() {
+    return items;
+}
+
+JArray::~JArray() {
+
+}

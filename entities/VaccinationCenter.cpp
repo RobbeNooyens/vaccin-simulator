@@ -67,21 +67,21 @@ void VaccinationCenter::fromTiXMLElement(TiXmlElement* element) {
 
 }
 
-VaccinationCenter::VaccinationCenter(): initCheck(this) {
+VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
 }
 
-void VaccinationCenter::setName(const std::string& name) {
-	name = name;
+void VaccinationCenter::setName(const std::string& n) {
+	name = n;
 }
 
-void VaccinationCenter::setAddress(const std::string& address) {
-	address = address;
+void VaccinationCenter::setAddress(const std::string& a) {
+	address = a;
 }
 
-void VaccinationCenter::setInhabitants(unsigned int a) {
-	inhabitants = a;
+void VaccinationCenter::setInhabitants(unsigned int i) {
+	inhabitants = i;
 }
 
-void VaccinationCenter::setCapacity(unsigned int a) {
-	capacity = a;
+void VaccinationCenter::setCapacity(unsigned int c) {
+	capacity = c;
 }

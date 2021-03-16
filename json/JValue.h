@@ -18,27 +18,27 @@ public:
     JValue(char);
     JValue(bool);
     JValue(std::string);
-    JValue(JObject);
-    JValue(JArray);
+    JValue(JObject*);
+    JValue(JArray*);
 
-    int asInt();
-    float asFloat();
-    double asDouble();
-    char asChar();
-    bool asBool();
+    int asInt() const;
+    float asFloat() const;
+    double asDouble() const;
+    char asChar() const;
+    bool asBool() const;
     std::string asString();
+    JObject* asJObject();
+    JArray* asJArray();
 
 private:
     int valInt;
-    float varFloat;
+    float valFloat;
     double valDouble;
     char valChar;
-    bool varBool;
+    bool valBool;
     std::string valString;
-    JObject varJObject;
-    JArray varJArray;
-
-
+    JObject* valJObject;
+    JArray* valJArray;
 };
 
 

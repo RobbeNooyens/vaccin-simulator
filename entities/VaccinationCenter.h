@@ -26,7 +26,7 @@ public:
     unsigned int capacity;
 
     // Constructor
-    VaccinationCenter(){};
+    VaccinationCenter();
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
     bool properlyInitialized() const;
 
@@ -42,10 +42,10 @@ public:
     unsigned int getVaccins() const;
     unsigned int getVaccinationsDone() const;
     unsigned int getVaccinationsLeft() const;
-	void setName(std::string name);
-	void setAddress(std::string address);
-	void setInhabitants(unsigned int a);
-	void setCapacity(unsigned int a);
+	void setName(const std::string &name);
+	void setAddress(const std::string &address);
+	void setInhabitants(unsigned int inhabitants);
+	void setCapacity(unsigned int capacity);
 
     // IO
     void fromTiXMLElement(TiXmlElement*);
