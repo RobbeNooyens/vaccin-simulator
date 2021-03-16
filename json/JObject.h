@@ -12,7 +12,9 @@ class JValue;
 
 class JObject {
 public:
-    JObject(std::string, JValue*);
+    JObject();
+
+    void put(std::string, JValue*);
 
     JValue* getValue(const std::string&);
 

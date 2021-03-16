@@ -12,11 +12,13 @@
 #include <string>
 
 class Hub;
+class JObject;
 
 class XMLParser {
 public:
     XMLParser(const char* file);
     void parseXML(Hub&);
+    JObject* parse();
 
 private:
     const char* fileName;

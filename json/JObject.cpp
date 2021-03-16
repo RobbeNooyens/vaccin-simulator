@@ -5,10 +5,13 @@
 #include "JObject.h"
 #include <string>
 
-JObject::JObject(std::string key, JValue* value) {
-    values.insert(std::pair<std::string, JValue*>(key, value));
+JObject::JObject() {
 }
 
 JValue* JObject::getValue(const std::string& key) {
     return values.find(key)->second;
+}
+
+void JObject::put(std::string, JValue *) {
+    values.insert(std::pair<std::string, JValue*>(key, value));
 }

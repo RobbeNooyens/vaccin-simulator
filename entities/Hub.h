@@ -12,6 +12,8 @@
 #include <istream>
 #include <ostream>
 
+#include "../json/JObject.h"
+
 class TiXmlElement;
 class VaccinationCenter;
 
@@ -40,6 +42,7 @@ public:
     unsigned int getVaccins() const;
 
     // IO
+    void fromJSON(JObject* json);
     void fromTiXMLElement(TiXmlElement* element);
     void toStream(std::ostream&) const;
 

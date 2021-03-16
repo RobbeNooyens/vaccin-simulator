@@ -9,6 +9,8 @@
 #include "XMLParser.h"
 #include "../entities/Hub.h"
 #include "../tinyxml/tinyxml.h"
+#include "../json/JObject.h"
+#include "../json/JValue.h"
 
 XMLParser::XMLParser(const char* file): fileName(file){
 }
@@ -26,4 +28,11 @@ void XMLParser::parseXML(Hub &hub) {
     }
     hub.fromTiXMLElement(root);
     xml_document.Clear();
+}
+
+JObject* XMLParser::parse() {
+    JObject* json = new JObject();
+    JValue* centra = new JValue(0);
+    json->put("hub", centra);
+    return NULL;
 }
