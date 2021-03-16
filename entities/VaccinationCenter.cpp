@@ -77,8 +77,8 @@ VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants
 }
 
 void VaccinationCenter::fromJSON(JObject* json) {
-    address = json->getValue("address")->asString();
-    capacity = json->getValue("capacity")->asUnsignedint();
+    address = json->getValue("adres")->asString();
+    capacity = json->getValue("capaciteit")->asUnsignedint();
     inhabitants = json->getValue("inwoners")->asUnsignedint();
     name = json->getValue("naam")->asString();
 }

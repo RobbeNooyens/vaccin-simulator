@@ -85,8 +85,9 @@ void Hub::fromJSON(JObject* json){
     std::vector<JValue*> centra = json->getValue("centra")->asJArray()->getItems();
     std::vector<JValue*>::iterator center;
     for(center = centra.begin(); center != centra.end(); center++) {
-        centers.push_back(new VaccinationCenter());
-        centers.back()->fromJSON((*center)->asJObject());
+        VaccinationCenter* vaccinationCenter = new VaccinationCenter();
+        vaccinationCenter->fromJSON((*center)->asJObject());
+        centers.push_back(vaccinationCenter);
     }
 }
 

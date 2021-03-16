@@ -6,7 +6,7 @@
 #include <string>
 
 JValue* JObject::getValue(const std::string& key) {
-    return values.find(key)->second;
+    return values[key];
 }
 
 JObject::JObject() {
