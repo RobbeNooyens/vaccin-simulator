@@ -10,7 +10,7 @@
 
 class MockVaccinationCenter: public VaccinationCenter {
 public:
-    explicit MockVaccinationCenter(int capacity): VaccinationCenter() {
+    explicit MockVaccinationCenter(unsigned int capacity): VaccinationCenter() {
         this->capacity = capacity;
     }
 
@@ -35,21 +35,23 @@ TEST_F(HubTests, DefaultConstructor) {
 }
 
 /**
- * Test the Happy Day
+ * Test the Happy Day scenario
  */
 TEST_F(HubTests, HappyDay){
-    unsigned int initialVaccins = 2000, transport = 60;
-    unsigned int days = 5, centers = 3;
+    unsigned int initialVaccins = 20000, transport = 50;
+    unsigned int days = 10, centers = 3;
     hub.delivery = 300;
     hub.interval = 7;
     hub.transport = transport;
     hub.vaccins = initialVaccins;
-    int capacity = 10;
+    unsigned int capacity = 100;
     for(unsigned int i = 0; i < centers; i++) {
         VaccinationCenter* center = new MockVaccinationCenter(capacity);
         hub.centers.push_back(center);
     }
     for(unsigned int day = 0; day < days; day++)
         hub.simulateDay(day);
-    EXPECT_TRUE(hub.vaccins == initialVaccins - (centers*days*capacity) + hub.delivery);
+    unsigned int expectedLoss = (2*centers*capacity) + (centers*capacity*(days-1));
+    unsigned int expectedGain = hub.delivery*((days/hub.interval)+1);
+    EXPECT_TRUE(hub.vaccins == initialVaccins - expectedLoss + expectedGain);
 }
