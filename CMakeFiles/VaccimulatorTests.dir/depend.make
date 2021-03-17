@@ -46,6 +46,7 @@ CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o: entities/Vacc
 CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o: json/JValue.h
 
+CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: DesignByContract.h
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: io/XMLParser.cpp
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: io/XMLParser.h
@@ -68,7 +69,6 @@ CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: json/JValue.h
 
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/VaccinationCenter.h
-CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: tests/domain/HubTests.cpp
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-death-test.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtest/gtest-message.h
@@ -92,7 +92,6 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtes
 
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: entities/VaccinationCenter.h
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: tests/domain/VaccinationCenterTests.cpp
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-death-test.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-message.h
@@ -114,15 +113,32 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtes
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/internal/gtest-tuple.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/internal/gtest-type-util.h
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: Simulator.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: entities/Hub.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: entities/VaccinationCenter.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: io/XMLParser.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: json/JArray.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: json/JObject.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: json/JValue.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: tests/presentation/HubOutputTests.cpp
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o: utils.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: entities/Hub.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: entities/VaccinationCenter.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: json/JArray.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: json/JObject.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: json/JValue.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: tests/presentation/HubOutTests.cpp
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: utils.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-death-test.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-message.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-param-test.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-printers.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-test-part.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-typed-test.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest_pred_impl.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest_prod.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-death-test-internal.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-filepath.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-internal.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-linked_ptr.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-param-util-generated.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-param-util.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-port.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-string.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-tuple.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/internal/gtest-type-util.h
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.cpp
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.h
@@ -138,4 +154,7 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o: tinyxml/tinyxmlerro
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinystr.h
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxmlparser.cpp
+
+CMakeFiles/VaccimulatorTests.dir/utils.cpp.o: utils.cpp
+CMakeFiles/VaccimulatorTests.dir/utils.cpp.o: utils.h
 

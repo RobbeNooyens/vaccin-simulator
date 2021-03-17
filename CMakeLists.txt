@@ -25,13 +25,14 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
         DesignByContract.h
-        tests/presentation/HubOutputTests.cpp utils.cpp utils.h)
+        utils.cpp utils.h)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
+        utils.h utils.cpp
         tests/domain/VaccinationCenterTests.cpp
         tests/domain/HubTests.cpp
-        tests/presentation/HubOutputTests.cpp
+        tests/presentation/HubOutTests.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp

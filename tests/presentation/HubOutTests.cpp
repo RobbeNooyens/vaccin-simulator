@@ -4,19 +4,18 @@
 // | Version: 1.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
-
 #include "../../entities/VaccinationCenter.h"
 #include "../../entities/Hub.h"
-#include "../../Simulator.h"
 #include "../../json/JArray.h"
-#include "../../json/JObject.h"
 #include "../../json/JValue.h"
+#include "../../json/JObject.h"
 #include "../../utils.h"
 
 #include <fstream>
+#include <gtest/gtest.h>
 
 
-class HubOutputTests /*: public ::testing::Test*/ {
+class HubOutTests: public ::testing::Test {
 protected:
     // You should make the members protected s.t. they can be
     // accessed from sub-classes.
@@ -24,9 +23,9 @@ protected:
 };
 
 /**
-Compares the output file with the expected file.
+Tests the output.
 */
-/*TEST_F(HubOutputTests, FileCompare) {
+TEST_F(HubOutTests, Output) {
     JObject* json = new JObject();
     // Initialize Hub
     JObject* h = new JObject();
@@ -61,13 +60,14 @@ Compares the output file with the expected file.
 
     hub.fromJSON(json);
 
-    ASSERT_TRUE(FileUtil::DirectoryExists("testOutput"));
+    ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
     std::ofstream file;
     file.open("tests/presentation/out/hub_output.txt");
     ASSERT_TRUE(file.is_open());
     hub.toStream(file);
     file.close();
-
 //    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/hub_output.txt", "tests/presentation/expected/hub_output.txt"));
-}*/
+
+    delete json;
+}

@@ -13,7 +13,6 @@ CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: Simulator.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: Vaccimulator.cpp
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: entities/Hub.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: io/XMLParser.h
-CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JObject.h
 
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/Hub.cpp
@@ -31,6 +30,7 @@ CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: entities/Vaccinati
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: json/JValue.h
 
+CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o: entities/Hub.h
 CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o: io/XMLParser.cpp
 CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o: io/XMLParser.h
@@ -50,16 +50,6 @@ CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JArray.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.cpp
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.h
-
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: Simulator.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: entities/Hub.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: entities/VaccinationCenter.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: io/XMLParser.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: json/JArray.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: json/JObject.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: json/JValue.h
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: tests/presentation/HubOutputTests.cpp
-CMakeFiles/Vaccimulator.dir/tests/presentation/HubOutputTests.cpp.o: utils.h
 
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.cpp
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.h

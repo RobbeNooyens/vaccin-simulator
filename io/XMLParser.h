@@ -16,7 +16,11 @@ class JObject;
 
 class XMLParser {
 public:
+    const XMLParser *initCheck;
+
     XMLParser();
+    bool properlyInitialized() const;
+
     JObject* parse(const std::string& fileName);
 };
 

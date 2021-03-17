@@ -12,10 +12,9 @@
 #include <istream>
 #include <ostream>
 
-#include "../json/JObject.h"
-
 class TiXmlElement;
 class VaccinationCenter;
+class JObject;
 
 typedef std::vector<VaccinationCenter*> VaccinationCenters;
 

@@ -12,8 +12,14 @@
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 #include "../json/JArray.h"
+#include "../DesignByContract.h"
 
-XMLParser::XMLParser() {
+XMLParser::XMLParser() : initCheck(this) {
+    ENSURE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
+}
+
+bool XMLParser::properlyInitialized() const {
+    return initCheck == this;
 }
 
 JObject* XMLParser::parse(const std::string& fileName) {

@@ -47,6 +47,7 @@ CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
@@ -69,7 +70,6 @@ CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
- /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/HubTests.cpp
  gtest/include/gtest/gtest-death-test.h
  gtest/include/gtest/gtest-message.h
@@ -93,7 +93,6 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
- /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp
  gtest/include/gtest/gtest-death-test.h
  gtest/include/gtest/gtest-message.h
@@ -114,16 +113,33 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
  gtest/include/gtest/internal/gtest-string.h
  gtest/include/gtest/internal/gtest-tuple.h
  gtest/include/gtest/internal/gtest-type-util.h
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o
- /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
- /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
- /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutputTests.cpp
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutTests.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+ gtest/include/gtest/gtest-death-test.h
+ gtest/include/gtest/gtest-message.h
+ gtest/include/gtest/gtest-param-test.h
+ gtest/include/gtest/gtest-printers.h
+ gtest/include/gtest/gtest-test-part.h
+ gtest/include/gtest/gtest-typed-test.h
+ gtest/include/gtest/gtest.h
+ gtest/include/gtest/gtest_pred_impl.h
+ gtest/include/gtest/gtest_prod.h
+ gtest/include/gtest/internal/gtest-death-test-internal.h
+ gtest/include/gtest/internal/gtest-filepath.h
+ gtest/include/gtest/internal/gtest-internal.h
+ gtest/include/gtest/internal/gtest-linked_ptr.h
+ gtest/include/gtest/internal/gtest-param-util-generated.h
+ gtest/include/gtest/internal/gtest-param-util.h
+ gtest/include/gtest/internal/gtest-port.h
+ gtest/include/gtest/internal/gtest-string.h
+ gtest/include/gtest/internal/gtest-tuple.h
+ gtest/include/gtest/internal/gtest-type-util.h
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h
@@ -139,3 +155,6 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxmlparser.cpp
+CMakeFiles/VaccimulatorTests.dir/utils.cpp.o
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.cpp
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h

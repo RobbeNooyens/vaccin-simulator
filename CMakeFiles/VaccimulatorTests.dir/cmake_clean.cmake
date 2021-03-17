@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/VaccimulatorTests.dir/VaccimulatorTests.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/utils.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o"
-  "CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutputTests.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o"
