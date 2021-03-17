@@ -23,6 +23,7 @@ bool XMLParser::properlyInitialized() const {
 }
 
 JObject* XMLParser::parse(const std::string& fileName) {
+    REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
     TiXmlDocument xml_document = TiXmlDocument();
     if (!xml_document.LoadFile(fileName.c_str())) {
         std::cerr << xml_document.ErrorDesc() << std::endl;
@@ -52,7 +53,7 @@ JObject* XMLParser::parse(const std::string& fileName) {
     elements_centra.push_back("capaciteit");
     TiXmlElement* nested_elem;
     TiXmlText* e_text;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < (int) elements_hub.size(); i++) {
         nested_elem = elem->FirstChildElement(elements_hub[i].c_str());
         if (nested_elem == NULL) {
             throw std::runtime_error("'" + elements_hub[i] + "' niet gevonden");

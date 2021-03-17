@@ -138,6 +138,16 @@ JArray.h
 string
 -
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/XMLParserTests.cpp
+gtest/gtest.h
+-
+../../io/XMLParser.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
+../../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/HubTests.cpp
 gtest/gtest.h
 -

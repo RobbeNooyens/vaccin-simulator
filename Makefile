@@ -400,6 +400,33 @@ json/JValue.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.s
 .PHONY : json/JValue.cpp.s
 
+tests/data/XMLParserTests.o: tests/data/XMLParserTests.cpp.o
+
+.PHONY : tests/data/XMLParserTests.o
+
+# target to build an object file
+tests/data/XMLParserTests.cpp.o:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o
+.PHONY : tests/data/XMLParserTests.cpp.o
+
+tests/data/XMLParserTests.i: tests/data/XMLParserTests.cpp.i
+
+.PHONY : tests/data/XMLParserTests.i
+
+# target to preprocess a source file
+tests/data/XMLParserTests.cpp.i:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.i
+.PHONY : tests/data/XMLParserTests.cpp.i
+
+tests/data/XMLParserTests.s: tests/data/XMLParserTests.cpp.s
+
+.PHONY : tests/data/XMLParserTests.s
+
+# target to generate assembly for a file
+tests/data/XMLParserTests.cpp.s:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.s
+.PHONY : tests/data/XMLParserTests.cpp.s
+
 tests/domain/HubTests.o: tests/domain/HubTests.cpp.o
 
 .PHONY : tests/domain/HubTests.o
@@ -668,6 +695,9 @@ help:
 	@echo "... json/JValue.o"
 	@echo "... json/JValue.i"
 	@echo "... json/JValue.s"
+	@echo "... tests/data/XMLParserTests.o"
+	@echo "... tests/data/XMLParserTests.i"
+	@echo "... tests/data/XMLParserTests.s"
 	@echo "... tests/domain/HubTests.o"
 	@echo "... tests/domain/HubTests.i"
 	@echo "... tests/domain/HubTests.s"

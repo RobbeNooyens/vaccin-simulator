@@ -33,6 +33,7 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         tests/domain/VaccinationCenterTests.cpp
         tests/domain/HubTests.cpp
         tests/presentation/HubOutTests.cpp
+        tests/data/XMLParserTests.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
