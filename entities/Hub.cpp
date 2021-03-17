@@ -62,14 +62,22 @@ void Hub::distributeVaccins() {
     // Give each center the maximum amount of vaccins it can store.
     VaccinationCenters::iterator center;
     for(center = centers.begin(); center != centers.end(); center++) {
-        unsigned int amount = std::min((*center)->getCapacity(), vaccins);
-        vaccins -= amount;
-        vaccinsPerCenter[*center] = amount;
+        const unsigned int capacity = (*center)->getCapacity();
+        const unsigned int vaccinsCenter = (*center)->getVaccins();
+        unsigned int vaccinsTransport = 0;
+        unsigned int nextVaccinsTransport = vaccinsTransport + transport;
+        while(nextVaccinsTransport < vaccins && nextVaccinsTransport + vaccinsCenter <= 2*capacity) {
+            vaccins -= transport;
+            vaccinsTransport = nextVaccinsTransport;
+            nextVaccinsTransport += transport;
+        }
+        if(vaccinsTransport == 0)
+            vaccinsTransport = capacity;
+        vaccinsPerCenter[*center] = vaccinsTransport;
     }
     // Transport vaccins
     for(center = centers.begin(); center != centers.end(); center++)
         Hub::transportVaccinsTo(*center, vaccinsPerCenter[*center]);
-
 }
 
 bool Hub::properlyInitialized() const {
