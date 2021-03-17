@@ -55,7 +55,6 @@ public:
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     void fromJSON(JObject* json);
-    void fromTiXMLElement(TiXmlElement* element);
     /**
      * Exports Hub object member to the given stream
      * @param ostream:
@@ -75,6 +74,7 @@ private:
     // Simulation
     /**
      * Simulate vaccin distribution over the vaccinationcenters
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     void distributeVaccins();
     /**

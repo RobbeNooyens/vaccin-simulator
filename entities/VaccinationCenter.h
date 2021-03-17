@@ -63,10 +63,16 @@ public:
     // IO
     /**
      * Load a VaccinationCenter from a Json object
+     * @param json: the Json object representing a VaccinationCenter
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      * REQUIRE(json != NULL, "Json can't be NULL!");
      */
     void fromJSON(JObject* json);
+    /**
+     * Sends the center represented as a string to the given stream
+     * @param stream: The stream that should be used
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     void toStream(std::ostream& stream) const;
 };
 
