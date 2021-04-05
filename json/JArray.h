@@ -13,12 +13,22 @@ class JValue;
 
 class JArray {
 public:
+    // Constructors and destructors
     JArray();
     ~JArray();
+
+    // Initialization
+    bool properlyInitialized();
+
+    // Insertion and retrieval
     void insertValue(JValue*);
     std::vector<JValue*>& getItems();
 
 private:
+    // Initialization
+    JArray* initCheck;
+
+    // Values
     std::vector<JValue*> items;
 
 };

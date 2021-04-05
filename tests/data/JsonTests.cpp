@@ -5,13 +5,15 @@
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 #include <gtest/gtest.h>
-#include "../../io/XMLParser.h"
 #include "../../json/JObject.h"
 #include "../../json/JValue.h"
+#include "../../json/JArray.h"
 
 class JsonTests : public ::testing::Test {
 protected:
-//    XMLParser parser;
+    JArray array;
+    JObject object;
+    JValue value;
 };
 
 ///**

@@ -20,3 +20,7 @@ JArray::~JArray() {
 
 JArray::JArray() {
 }
+
+bool JArray::properlyInitialized() {
+    return initCheck == this;
+}

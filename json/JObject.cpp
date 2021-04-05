@@ -43,3 +43,7 @@ bool JObject::containsAll(std::vector<std::string> keys) {
     }
     return true;
 }
+
+bool JObject::properlyInitialized() {
+    return initCheck == this;
+}

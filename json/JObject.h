@@ -16,12 +16,23 @@ class JValue;
 class JObject {
 public:
     JObject();
+
+    // Initialization
+    bool properlyInitialized();
+
+    // Insertion and retrieval
     void insertValue(std::string, JValue*);
     JValue* getValue(const std::string&);
+
+    // Bool methods
     bool contains(std::string key);
     bool containsAll(std::vector<std::string> keys);
 
 private:
+    // Initialization
+    JObject* initCheck;
+
+    // Map of values the JObject stores
     std::map<std::string, JValue*> values;
 
 };

@@ -15,15 +15,18 @@ class JArray;
 
 class JValue {
 public:
-    JValue(int);
-    JValue(float);
-    JValue(double);
-    JValue(char);
-    JValue(bool);
-    JValue(unsigned int);
-    JValue(std::string);
-    JValue(JObject*);
-    JValue(JArray*);
+    JValue();
+    explicit JValue(int);
+    explicit JValue(float);
+    explicit JValue(double);
+    explicit JValue(char);
+    explicit JValue(bool);
+    explicit JValue(unsigned int);
+    explicit JValue(std::string);
+    explicit JValue(JObject*);
+    explicit JValue(JArray*);
+
+    bool properlyInitialized();
 
     int asInt() const;
     unsigned int asUnsignedint() const;
@@ -36,6 +39,10 @@ public:
     JArray* asJArray();
 
 private:
+    // Initialization
+    const JValue* initCheck;
+
+    // Actual value the JValue stores
     int valInt;
     float valFloat;
     double valDouble;
