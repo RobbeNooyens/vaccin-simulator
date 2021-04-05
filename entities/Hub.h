@@ -20,18 +20,6 @@ typedef std::vector<VaccinationCenter*> VaccinationCenters;
 
 class Hub {
 public:
-    // Initialization
-    const Hub* initCheck;
-
-    // Metadata
-    unsigned int delivery;
-    unsigned int interval;
-    unsigned int transport; // Vaccines per load
-    unsigned int vaccins;
-
-    // Connected vaccinationcenters
-    VaccinationCenters centers;
-
     // Constructor
     /**
      * ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
@@ -69,7 +57,26 @@ public:
      */
     void simulateDay(unsigned int day);
 
+    // Validations
+    /**
+     * Checks if any of the saved centers is invalid
+     * @return bool: true if this hub contains an invalid center
+     */
+    bool containsInvalidCenter() const;
+
 private:
+    // Initialization
+    const Hub* initCheck;
+
+    // Metadata
+    unsigned int delivery;
+    unsigned int interval;
+    unsigned int transport; // Vaccines per load
+    unsigned int vaccins;
+
+    // Connected vaccinationcenters
+    VaccinationCenters centers;
+
     // Simulation
     /**
      * Simulate vaccin distribution over the vaccinationcenters

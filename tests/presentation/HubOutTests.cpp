@@ -66,8 +66,9 @@ TEST_F(HubOutTests, Output) {
     file.open("tests/presentation/out/hub_output.txt");
     ASSERT_TRUE(file.is_open());
     hub.toStream(file);
+    hub.toStream(std::cout);
     file.close();
-//    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/hub_output.txt", "tests/presentation/expected/hub_output.txt"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/hub_output.txt", "tests/presentation/expected/hub_output.txt"));
 
     delete json;
 }

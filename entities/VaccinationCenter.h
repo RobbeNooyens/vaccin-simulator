@@ -15,17 +15,6 @@ class JObject;
 
 class VaccinationCenter {
 public:
-    // Initialization
-    const VaccinationCenter* initCheck;
-
-    // Metadata
-    std::string name;
-    std::string address;
-    unsigned int vaccins;
-    unsigned int inhabitants;
-    unsigned int vaccinated;
-    unsigned int capacity;
-
     // Constructor
     /**
      * Default constructor
@@ -74,6 +63,18 @@ public:
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     void toStream(std::ostream& stream) const;
+
+private:
+    // Initialization
+    const VaccinationCenter* initCheck;
+
+    // Metadata
+    std::string name;
+    std::string address;
+    unsigned int vaccins;
+    unsigned int inhabitants;
+    unsigned int vaccinated;
+    unsigned int capacity;
 };
 
 

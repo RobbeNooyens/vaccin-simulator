@@ -51,6 +51,8 @@ CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.cpp
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.h
 
+CMakeFiles/Vaccimulator.dir/tests/data/JsonTests.cpp.o: tests/data/JsonTests.cpp
+
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.cpp
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.h
 

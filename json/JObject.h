@@ -9,6 +9,7 @@
 #define VACCIN_SIMULATOR_JOBJECT_H
 #include <string>
 #include <map>
+#include <vector>
 
 class JValue;
 
@@ -17,6 +18,8 @@ public:
     JObject();
     void insertValue(std::string, JValue*);
     JValue* getValue(const std::string&);
+    bool contains(std::string key);
+    bool containsAll(std::vector<std::string> keys);
 
 private:
     std::map<std::string, JValue*> values;

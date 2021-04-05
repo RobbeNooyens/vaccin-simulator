@@ -62,5 +62,4 @@ namespace FileUtil {
     bool FileCompare(const std::string leftFileName, const std::string rightFileName);
 }
 
-
 #endif //VACCIMULATOR_UTILS_H
