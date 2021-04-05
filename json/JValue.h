@@ -15,7 +15,9 @@ class JArray;
 
 class JValue {
 public:
+    // Constructors and destructors
     JValue();
+    ~JValue();
     explicit JValue(int);
     explicit JValue(float);
     explicit JValue(double);

@@ -47,3 +47,9 @@ bool JObject::containsAll(std::vector<std::string> keys) {
 bool JObject::properlyInitialized() {
     return initCheck == this;
 }
+
+JObject::~JObject() {
+    for(std::map<std::string, JValue*>::iterator it = values.begin(); it != values.end(); it++) {
+        delete it->second;
+    }
+}

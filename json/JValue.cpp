@@ -32,3 +32,8 @@ JObject* JValue::asJObject(){ return valJObject; }
 JArray* JValue::asJArray(){ return valJArray; }
 
 bool JValue::properlyInitialized() { return initCheck == this; }
+
+JValue::~JValue() {
+    delete valJArray;
+    delete valJObject;
+}

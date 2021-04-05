@@ -15,7 +15,9 @@ class JValue;
 
 class JObject {
 public:
+    // Constructors and destructors
     JObject();
+    ~JObject();
 
     // Initialization
     bool properlyInitialized();
