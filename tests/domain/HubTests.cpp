@@ -30,7 +30,7 @@ TEST_F(HubTests, DefaultConstructor) {
     EXPECT_TRUE(hub.properlyInitialized());
     // Check initial values
     // These fields should be 0 after initialization.
-    EXPECT_FALSE(hub.delivery || hub.interval || hub.transport || hub.vaccins);
+    EXPECT_FALSE(hub.delivery || hub.interval || hub.transport || hub.vaccinsCount);
     EXPECT_TRUE(hub.centers.empty());
 }
 
@@ -43,7 +43,7 @@ TEST_F(HubTests, HappyDay){
     hub.delivery = 300;
     hub.interval = 7;
     hub.transport = transport;
-    hub.vaccins = initialVaccins;
+    hub.vaccinsCount = initialVaccins;
     unsigned int capacity = 100;
     for(unsigned int i = 0; i < centers; i++) {
         VaccinationCenter* center = new MockVaccinationCenter(capacity);
@@ -53,5 +53,5 @@ TEST_F(HubTests, HappyDay){
         hub.simulateDay(day);
     unsigned int expectedLoss = (2*centers*capacity) + (centers*capacity*(days-1));
     unsigned int expectedGain = hub.delivery*((days/hub.interval)+1);
-    EXPECT_TRUE(hub.vaccins == initialVaccins - expectedLoss + expectedGain);
+    EXPECT_TRUE(hub.vaccinsCount == initialVaccins - expectedLoss + expectedGain);
 }

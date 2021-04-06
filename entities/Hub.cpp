@@ -20,13 +20,13 @@
 #define ITERATE_OVER_CENTERS VaccinationCenters::iterator center = centers.begin(); center != centers.end(); center++
 #define ITERATE_OVER_CONST_CENTERS VaccinationCenters::const_iterator center = centers.begin(); center != centers.end(); center++
 
-Hub::Hub() : initCheck(this), delivery(0), interval(0), transport(0), vaccins(0) {
+Hub::Hub() : initCheck(this), delivery(0), interval(0), transport(0), vaccinsCount(0) {
     ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
 }
 
 unsigned int Hub::getVaccins() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    return vaccins;
+    return vaccinsCount;
 }
 
 void Hub::toStream(std::ostream &outStream) const {
@@ -48,7 +48,7 @@ void Hub::simulateDay(unsigned int day) {
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     // Check if the cargo will be delivered today
     if (day % (interval+1) == 0)
-        vaccins += delivery;
+        vaccinsCount += delivery;
     // Distribute the vaccins over the centra
     distributeVaccins();
     // Vaccinate inhabitants
@@ -72,8 +72,8 @@ void Hub::distributeVaccins() {
         const unsigned int vaccinsCenter = (*center)->getVaccins();
         unsigned int vaccinsTransport = 0;
         unsigned int nextVaccinsTransport = vaccinsTransport + transport;
-        while(nextVaccinsTransport < vaccins && nextVaccinsTransport + vaccinsCenter <= 2*capacity) {
-            vaccins -= transport;
+        while(nextVaccinsTransport < vaccinsCount && nextVaccinsTransport + vaccinsCenter <= 2 * capacity) {
+            vaccinsCount -= transport;
             vaccinsTransport = nextVaccinsTransport;
             nextVaccinsTransport += transport;
         }
@@ -102,7 +102,7 @@ void Hub::fromJSON(JObject* json){
     delivery = json->getValue("hub.levering")->asUnsignedint();
     interval = json->getValue("hub.interval")->asUnsignedint();
     transport = json->getValue("hub.transport")->asUnsignedint();
-    vaccins = delivery;
+    vaccinsCount = delivery;
     std::vector<JValue*> centra = json->getValue("centra")->asJArray()->getItems();
     for(std::vector<JValue*>::iterator center = centra.begin(); center != centra.end(); center++) {
         VaccinationCenter* vaccinationCenter = new VaccinationCenter();

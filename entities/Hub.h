@@ -15,8 +15,10 @@
 class TiXmlElement;
 class VaccinationCenter;
 class JObject;
+class Vaccin;
 
 typedef std::vector<VaccinationCenter*> VaccinationCenters;
+typedef std::vector<Vaccin*> Vaccins;
 
 class Hub {
 public:
@@ -88,10 +90,13 @@ private:
     unsigned int delivery;
     unsigned int interval;
     unsigned int transport; // Vaccines per load
-    unsigned int vaccins;
+    unsigned int vaccinsCount;
 
     // Connected vaccinationcenters
     VaccinationCenters centers;
+
+    // Vaccins
+    Vaccins vaccins;
 
     // Simulation
     /**
