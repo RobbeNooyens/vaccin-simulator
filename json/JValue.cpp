@@ -84,7 +84,6 @@ bool JValue::properlyInitialized() const {
 }
 
 JValue::~JValue() {
-    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
     delete valJArray;
     delete valJObject;
     valJArray = NULL;

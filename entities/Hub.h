@@ -11,6 +11,7 @@
 #include <vector>
 #include <istream>
 #include <ostream>
+#include <iostream>
 
 class TiXmlElement;
 class VaccinationCenter;
@@ -63,7 +64,8 @@ public:
      * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
-    void toStream(std::ostream&) const;
+    void toSummaryStream(std::ostream&) const;
+    void toProgressStream(std::ostream&) const;
 
     // Events
     /**
@@ -103,7 +105,7 @@ private:
      * Simulate vaccin distribution over the vaccinationcenters
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
-    void distributeVaccins();
+    void distributeVaccins(std::ostream& outStream = std::cout);
     /**
      * Transport a specific amount of vaccinations to the specified vaccination center.
      * @param center: the center where the vaccins should be transported to

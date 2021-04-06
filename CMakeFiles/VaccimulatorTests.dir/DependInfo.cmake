@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o"
+  "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/JsonTests.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/XMLParserTests.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/HubTests.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp" "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o"

@@ -29,7 +29,7 @@ unsigned int Hub::getVaccins() const {
     return vaccinsCount;
 }
 
-void Hub::toStream(std::ostream &outStream) const {
+void Hub::toSummaryStream(std::ostream & outStream) const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
     REQUIRE(outStream.good(), "Output stream contains error flags!");
@@ -39,7 +39,7 @@ void Hub::toStream(std::ostream &outStream) const {
         outStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
     outStream << std::endl;
     for(ITERATE_OVER_CONST_CENTERS)
-        (*center)->toStream(outStream);
+        (*center)->toSummaryStream(outStream);
     ENSURE(outStream.good(), "Failed to write to output stream!");
 }
 
@@ -61,7 +61,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount
     center->transportationArrived(vaccinCount);
 }
 
-void Hub::distributeVaccins() {
+void Hub::distributeVaccins(std::ostream& outStream) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     std::map<VaccinationCenter*, int> vaccinsPerCenter;
@@ -72,18 +72,23 @@ void Hub::distributeVaccins() {
         const unsigned int vaccinsCenter = (*center)->getVaccins();
         unsigned int vaccinsTransport = 0;
         unsigned int nextVaccinsTransport = vaccinsTransport + transport;
+        unsigned int transportationCount = 0;
         while(nextVaccinsTransport < vaccinsCount && nextVaccinsTransport + vaccinsCenter <= 2 * capacity) {
+            transportationCount++;
             vaccinsCount -= transport;
             vaccinsTransport = nextVaccinsTransport;
             nextVaccinsTransport += transport;
         }
         if(vaccinsTransport == 0)
             vaccinsTransport = capacity;
-        vaccinsPerCenter[*center] = vaccinsTransport;
+        vaccinsPerCenter[*center] = transportationCount;
     }
     // Transport vaccins
-    for(ITERATE_OVER_CENTERS)
-        Hub::transportVaccinsTo(*center, vaccinsPerCenter[*center]);
+    for(ITERATE_OVER_CENTERS) {
+        int batches = vaccinsPerCenter[*center];
+        Hub::transportVaccinsTo(*center, batches*transport);
+        outStream << "Er werden " << batches << " ladingen (" << batches*transport << " vaccins) getransporteerd naar " << (*center)->getName() << '.' << std::endl;
+    }
     ENSURE(centers.size() == vaccinsPerCenter.size(), "Map vaccinsPerCenter should contain all centers!");
 }
 
@@ -129,4 +134,11 @@ bool Hub::containsInvalidCenter() const {
             return true;
     }
     return false;
+}
+
+void Hub::toProgressStream(std::ostream &outStream) const {
+    for(ITERATE_OVER_CONST_CENTERS) {
+        (*center)->toProgressStream(outStream);
+    }
+
 }

@@ -250,6 +250,33 @@ entities/Hub.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.s
 .PHONY : entities/Hub.cpp.s
 
+entities/Vaccin.o: entities/Vaccin.cpp.o
+
+.PHONY : entities/Vaccin.o
+
+# target to build an object file
+entities/Vaccin.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.o
+.PHONY : entities/Vaccin.cpp.o
+
+entities/Vaccin.i: entities/Vaccin.cpp.i
+
+.PHONY : entities/Vaccin.i
+
+# target to preprocess a source file
+entities/Vaccin.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.i
+.PHONY : entities/Vaccin.cpp.i
+
+entities/Vaccin.s: entities/Vaccin.cpp.s
+
+.PHONY : entities/Vaccin.s
+
+# target to generate assembly for a file
+entities/Vaccin.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.s
+.PHONY : entities/Vaccin.cpp.s
+
 entities/VaccinationCenter.o: entities/VaccinationCenter.cpp.o
 
 .PHONY : entities/VaccinationCenter.o
@@ -406,7 +433,7 @@ tests/data/JsonTests.o: tests/data/JsonTests.cpp.o
 
 # target to build an object file
 tests/data/JsonTests.cpp.o:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/data/JsonTests.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o
 .PHONY : tests/data/JsonTests.cpp.o
 
 tests/data/JsonTests.i: tests/data/JsonTests.cpp.i
@@ -415,7 +442,7 @@ tests/data/JsonTests.i: tests/data/JsonTests.cpp.i
 
 # target to preprocess a source file
 tests/data/JsonTests.cpp.i:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/data/JsonTests.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.i
 .PHONY : tests/data/JsonTests.cpp.i
 
 tests/data/JsonTests.s: tests/data/JsonTests.cpp.s
@@ -424,7 +451,7 @@ tests/data/JsonTests.s: tests/data/JsonTests.cpp.s
 
 # target to generate assembly for a file
 tests/data/JsonTests.cpp.s:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/data/JsonTests.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.s
 .PHONY : tests/data/JsonTests.cpp.s
 
 tests/data/XMLParserTests.o: tests/data/XMLParserTests.cpp.o
@@ -707,6 +734,9 @@ help:
 	@echo "... entities/Hub.o"
 	@echo "... entities/Hub.i"
 	@echo "... entities/Hub.s"
+	@echo "... entities/Vaccin.o"
+	@echo "... entities/Vaccin.i"
+	@echo "... entities/Vaccin.s"
 	@echo "... entities/VaccinationCenter.o"
 	@echo "... entities/VaccinationCenter.i"
 	@echo "... entities/VaccinationCenter.s"

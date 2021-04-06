@@ -39,6 +39,14 @@ string
 -
 Simulator.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
+json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.cpp
 vector
@@ -68,6 +76,18 @@ vector
 istream
 -
 ostream
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccin.cpp
+Vaccin.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccin.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccin.h
+string
 -
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.cpp
@@ -113,6 +133,10 @@ string
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp
 JArray.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
 vector
@@ -121,6 +145,10 @@ vector
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp
 JObject.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
 string
 -
 
@@ -128,6 +156,8 @@ string
 string
 -
 map
+-
+vector
 -
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp
@@ -137,12 +167,12 @@ JObject.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
 JArray.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 string
 -
-
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/JsonTests.cpp
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp
 tinystr.h

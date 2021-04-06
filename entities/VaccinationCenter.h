@@ -105,7 +105,8 @@ public:
      * REQUIRE(outStream.good(), "Output stream contains error flags!");
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
-    void toStream(std::ostream& stream) const;
+    void toSummaryStream(std::ostream& stream) const;
+    void toProgressStream(std::ostream& stream) const;
 
 private:
     // Initialization
