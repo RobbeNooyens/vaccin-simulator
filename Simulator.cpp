@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -31,16 +31,17 @@ void Simulator::exportSimulation(const std::string& fileName) const {
     assert(file.is_open());
     hub.toStream(file);
     file.close();
-    assert(!file.is_open());
+    ENSURE(!file.is_open(), "File wasn't closed properly!");
 }
 
 void Simulator::run(const unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
-    unsigned int lastDay = daycount + cycles;
+    unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
     for(; daycount < lastDay; daycount++){
         hub.simulateDay(daycount);
     }
+    ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
 }
 
 bool Simulator::properlyInitialized() const {

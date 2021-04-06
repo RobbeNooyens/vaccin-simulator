@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -71,7 +71,6 @@ JObject* XMLParser::parse(const std::string& fileName) {
             json->getValue("hub")->asJObject()->insertValue(elements_hub[i], new JValue(k));
         }
     }
-    elem = xml_document.FirstChildElement("VACCINATIECENTRUM");
     for (TiXmlElement* e = root->FirstChildElement("VACCINATIECENTRUM"); e != NULL; e = e->NextSiblingElement("VACCINATIECENTRUM")) {
         JObject* center = new JObject();
         json->getValue("centra")->asJArray()->insertValue(new JValue(center));

@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 #include <gtest/gtest.h>
@@ -26,6 +26,9 @@ TEST_F(JsonTests, DefaultConstructor) {
     EXPECT_TRUE(value.properlyInitialized());
 }
 
+/**
+ * Tests setting and retrieving values in JValue objects
+ */
 TEST_F(JsonTests, SettingValues) {
     value = JValue((std::string) "1");
     EXPECT_TRUE(value.asString() == "1");
@@ -51,6 +54,9 @@ TEST_F(JsonTests, SettingValues) {
     delete jarray;
 }
 
+/**
+ * Tests the happyday scenarios by inserting data in the 3 different datastructures and using and deleting them.
+ */
 TEST_F(JsonTests, HappyDay) {
     JObject* jObject = new JObject();
     jObject->insertValue("key", new JValue("value"));
@@ -64,5 +70,20 @@ TEST_F(JsonTests, HappyDay) {
     std::vector<JValue*> values = json->getValue("data")->asJArray()->getItems();
     EXPECT_TRUE(values[0]->asJObject()->getValue("key")->asString() == "value");
     EXPECT_TRUE(values[1]->asJObject()->getValue("key2")->asString() == "value2");
-
+    delete json;
+    // Test dot operator on nested JObjects
+    JObject* inner = new JObject();
+    inner->insertValue("3", new JValue("4"));
+    JObject* middle = new JObject();
+    middle->insertValue("2", new JValue(inner));
+    JObject* outer = new JObject();
+    outer->insertValue("1", new JValue(middle));
+    EXPECT_TRUE(outer->getValue("1.2.3")->asString() == "4");
+    // Test deletion
+    JArray* deletionTest = new JArray();
+    deletionTest->insertValue(new JValue(outer));
+    delete deletionTest;
+    EXPECT_TRUE(outer == NULL);
+    EXPECT_TRUE(middle == NULL);
+    EXPECT_TRUE(inner == NULL);
 }

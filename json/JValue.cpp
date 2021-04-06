@@ -1,39 +1,92 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
 #include "JValue.h"
 #include "JObject.h"
 #include "JArray.h"
+#include "../DesignByContract.h"
 
-JValue::JValue(): initCheck(this) {}
-JValue::JValue(int val): initCheck(this), valInt(val){}
-JValue::JValue(float val): initCheck(this), valFloat(val){}
-JValue::JValue(double val): initCheck(this), valDouble(val){}
-JValue::JValue(char val): initCheck(this), valChar(val){}
-JValue::JValue(bool val): initCheck(this), valBool(val){}
-JValue::JValue(std::string val): initCheck(this), valString(val){}
-JValue::JValue(JObject* val): initCheck(this), valJObject(val){}
-JValue::JValue(JArray* val): initCheck(this), valJArray(val){}
+JValue::JValue(): initCheck(this) {
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(int val): initCheck(this), valInt(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(float val): initCheck(this), valFloat(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(double val): initCheck(this), valDouble(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(char val): initCheck(this), valChar(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(bool val): initCheck(this), valBool(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(std::string val): initCheck(this), valString(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(JObject* val): initCheck(this), valJObject(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(JArray* val): initCheck(this), valJArray(val){
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
+JValue::JValue(unsigned int val): initCheck(this), valUnsignedint(val) {
+    ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+}
 
-JValue::JValue(unsigned int val): initCheck(this), valUnsignedint(val) {}
-int JValue::asInt() const{ return valInt; }
-unsigned int JValue::asUnsignedint() const { return valUnsignedint;}
-float JValue::asFloat() const{ return valFloat;}
-double JValue::asDouble() const{ return valDouble; }
-char JValue::asChar() const{ return valChar; }
-bool JValue::asBool() const{ return valBool; }
-std::string JValue::asString(){ return valString; }
-JObject* JValue::asJObject(){ return valJObject; }
+int JValue::asInt() const{
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valInt;
+}
+unsigned int JValue::asUnsignedint() const {
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valUnsignedint;
+}
+float JValue::asFloat() const{
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valFloat;
+}
+double JValue::asDouble() const{
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valDouble;
+}
+char JValue::asChar() const{
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valChar;
+}
+bool JValue::asBool() const{
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valBool;
+}
+std::string JValue::asString(){
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valString;
+}
+JObject* JValue::asJObject(){
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valJObject;
+}
 
-JArray* JValue::asJArray(){ return valJArray; }
+JArray* JValue::asJArray(){
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
+    return valJArray;
+}
 
-bool JValue::properlyInitialized() { return initCheck == this; }
+bool JValue::properlyInitialized() const {
+    return initCheck == this;
+}
 
 JValue::~JValue() {
+    REQUIRE(properlyInitialized(), "JValue object hasn't been initialized properly!");
     delete valJArray;
     delete valJObject;
+    valJArray = NULL;
+    valJObject = NULL;
 }

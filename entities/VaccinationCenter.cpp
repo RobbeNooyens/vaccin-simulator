@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -66,7 +66,9 @@ unsigned int VaccinationCenter::getVaccinationsLeft() const {
 
 void VaccinationCenter::transportationArrived(unsigned int vaccinCount) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    unsigned int oldVaccins = vaccins;
     vaccins += vaccinCount;
+    ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
 }
 
 void VaccinationCenter::vaccinateInhabitants() {

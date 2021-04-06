@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -33,20 +33,56 @@ public:
     bool properlyInitialized() const;
 
     // Simulation
+    /**
+     * Simulates the event of an arriving truck with vaccines.
+     * @param vaccinCount: unsigned int; the amount of vaccines that are being delivered
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
+     */
     void transportationArrived(unsigned int vaccinCount);
     /**
-     * Simulate the situation where the capacity amount of people are being vaccinated
+     * Simulate the situation where the highest possible amount of inhabitants are being vaccinated
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
+     * ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
      */
     void vaccinateInhabitants();
 
     // Getters
+    /**
+     * @return string; name of the vaccinationcenter
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     std::string getName() const;
+    /**
+     * @return string; address of the vaccinationcenter
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     std::string getAddress() const;
+    /**
+     * @return unsigned int; total amount of people that should be vaccinated in this center
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     unsigned int getInhabitants() const;
+    /**
+     * @return unsigned int; the maximum amount of people that can be vaccinated during one day in this center
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     unsigned int getCapacity() const;
+    /**
+     * @return unsigned int; the amount of vaccines in stock
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     unsigned int getVaccins() const;
+    /**
+     * @return unsigned int; amount of inhabitants who are already vaccinated
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     unsigned int getVaccinationsDone() const;
+    /**
+     * @return unsigned int; the amount of non-vaccinated inhabitants
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     unsigned int getVaccinationsLeft() const;
 
     // IO
@@ -55,12 +91,19 @@ public:
      * @param json: the Json object representing a VaccinationCenter
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      * REQUIRE(json != NULL, "Json can't be NULL!");
+     * REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
+     * REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
+     * REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
+     * REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
      */
     void fromJSON(JObject* json);
     /**
      * Sends the center represented as a string to the given stream
      * @param stream: The stream that should be used
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
+     * REQUIRE(outStream.good(), "Output stream contains error flags!");
+     * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toStream(std::ostream& stream) const;
 

@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -14,19 +14,13 @@
 
 class Simulator {
 public:
-    // Initialization
-    const Simulator* initCheck;
-
-    // Simulation
-    Hub hub;
-    XMLParser xmlParser;
-    unsigned int daycount;
-
     // Constructor
     /**
      * ENSURE(properlyInitialized(), "Object hasn't been initialized properly!");
      */
     Simulator();
+
+    // Initialization
     bool properlyInitialized() const;
 
     // IO
@@ -42,6 +36,7 @@ public:
      * @param fileName: name of the text file to write to
      * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
+     * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
     void exportSimulation(const std::string& fileName) const;
 
@@ -51,8 +46,18 @@ public:
      * @param cycles: the amount of times the simulation should run
      * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * REQUIRE(cycles != 0, "Cycles cannot be 0!");
+     * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
     void run(unsigned int cycles);
+
+private:
+    // Initialization
+    const Simulator* initCheck;
+
+    // Simulation
+    Hub hub;
+    XMLParser xmlParser;
+    unsigned int daycount;
 };
 
 

@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -16,8 +16,6 @@ class JObject;
 
 class XMLParser {
 public:
-    const XMLParser *initCheck;
-
     /**
      * ENSURE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
      */
@@ -31,6 +29,10 @@ public:
      * REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
      */
     JObject* parse(const std::string& fileName);
+
+private:
+    // Initialization
+    const XMLParser *initCheck;
 };
 
 

@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -99,9 +99,6 @@ void Hub::fromJSON(JObject* json){
     REQUIRE(json->contains("hub.interval"), "Hub JSON should contain field 'hub.interval'");
     REQUIRE(json->contains("hub.transport"), "Hub JSON should contain field 'hub.transport'");
     REQUIRE(json->contains("centra"), "Hub JSON should contain field 'hub.centra'");
-//    delivery = json->getValue("hub")->asJObject()->getValue("levering")->asUnsignedint();
-//    interval = json->getValue("hub")->asJObject()->getValue("interval")->asUnsignedint();
-//    transport = json->getValue("hub")->asJObject()->getValue("transport")->asUnsignedint();
     delivery = json->getValue("hub.levering")->asUnsignedint();
     interval = json->getValue("hub.interval")->asUnsignedint();
     transport = json->getValue("hub.transport")->asUnsignedint();
@@ -116,6 +113,7 @@ void Hub::fromJSON(JObject* json){
 }
 
 Hub::~Hub() {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
 	for (ITERATE_OVER_CENTERS)
 		delete *center;
 }

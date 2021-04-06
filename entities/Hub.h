@@ -1,7 +1,7 @@
 // ╒============================================╕
 // | Authors: Mohammed Shakleya, Robbe Nooyens  |
 // | Project: Vaccimulator                      |
-// | Version: 1.0                               |
+// | Version: 2.0                               |
 // |             UAntwerpen 2021                |
 // ╘============================================╛
 
@@ -25,6 +25,9 @@ public:
      * ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     Hub();
+    /**
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
 	~Hub();
     bool properlyInitialized() const;
 
@@ -40,12 +43,23 @@ public:
      * Loads a hub from a JObject
      * @param json: JSON object containing the data for the hub and centers
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * REQUIRE(json != NULL, "JSON can't be NULL!");
+     * REQUIRE(json->contains("hub.levering"), "Hub JSON should contain field 'hub.levering'");
+     * REQUIRE(json->contains("hub.interval"), "Hub JSON should contain field 'hub.interval'");
+     * REQUIRE(json->contains("hub.transport"), "Hub JSON should contain field 'hub.transport'");
+     * REQUIRE(json->contains("centra"), "Hub JSON should contain field 'hub.centra'");
+     * ENSURE(centra.size() == centers.size(), "Not all centers are loaded succesfully.");
      */
     void fromJSON(JObject* json);
     /**
      * Exports Hub object member to the given stream
      * @param ostream:
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
+     * REQUIRE(outStream.good(), "Output stream contains error flags!");
+     * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toStream(std::ostream&) const;
 
@@ -61,6 +75,8 @@ public:
     /**
      * Checks if any of the saved centers is invalid
      * @return bool: true if this hub contains an invalid center
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(&centers != NULL, "Centers can't be NULL!");
      */
     bool containsInvalidCenter() const;
 
