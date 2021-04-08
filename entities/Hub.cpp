@@ -17,8 +17,8 @@
 #include "Hub.h"
 #include "VaccinationCenter.h"
 
-#define ITERATE_OVER_CENTERS VaccinationCenters::iterator center = centers.begin(); center != centers.end(); center++
-#define ITERATE_OVER_CONST_CENTERS VaccinationCenters::const_iterator center = centers.begin(); center != centers.end(); center++
+#define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
+#define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
 Hub::Hub() : initCheck(this), delivery(0), interval(0), transport(0), vaccinsCount(0) {
     ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
@@ -35,10 +35,10 @@ void Hub::toSummaryStream(std::ostream & outStream) const {
     REQUIRE(outStream.good(), "Output stream contains error flags!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     outStream << "Hub (" << getVaccins() << "): " << std::endl;
-    for(ITERATE_OVER_CONST_CENTERS)
+    C_ITERATE(VaccinationCenters, centers, center)
         outStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
     outStream << std::endl;
-    for(ITERATE_OVER_CONST_CENTERS)
+    C_ITERATE(VaccinationCenters, centers, center)
         (*center)->toSummaryStream(outStream);
     ENSURE(outStream.good(), "Failed to write to output stream!");
 }
@@ -52,7 +52,7 @@ void Hub::simulateDay(unsigned int day) {
     // Distribute the vaccins over the centra
     distributeVaccins();
     // Vaccinate inhabitants
-    for(ITERATE_OVER_CENTERS)
+    ITERATE(VaccinationCenters, centers, center)
         (*center)->vaccinateInhabitants();
 }
 
@@ -67,7 +67,7 @@ void Hub::distributeVaccins(std::ostream& outStream) {
     std::map<VaccinationCenter*, int> vaccinsPerCenter;
     // Distribution algorithm
     // Give each center the maximum amount of vaccins it can store.
-    for(ITERATE_OVER_CONST_CENTERS) {
+    ITERATE(VaccinationCenters, centers, center) {
         const unsigned int capacity = (*center)->getCapacity();
         const unsigned int vaccinsCenter = (*center)->getVaccins();
         unsigned int vaccinsTransport = 0;
@@ -84,7 +84,7 @@ void Hub::distributeVaccins(std::ostream& outStream) {
         vaccinsPerCenter[*center] = transportationCount;
     }
     // Transport vaccins
-    for(ITERATE_OVER_CENTERS) {
+    ITERATE(VaccinationCenters, centers, center) {
         int batches = vaccinsPerCenter[*center];
         Hub::transportVaccinsTo(*center, batches*transport);
         outStream << "Er werden " << batches << " ladingen (" << batches*transport << " vaccins) getransporteerd naar " << (*center)->getName() << '.' << std::endl;
@@ -109,7 +109,7 @@ void Hub::fromJSON(JObject* json){
     transport = json->getValue("hub.transport")->asUnsignedint();
     vaccinsCount = delivery;
     std::vector<JValue*> centra = json->getValue("centra")->asJArray()->getItems();
-    for(std::vector<JValue*>::iterator center = centra.begin(); center != centra.end(); center++) {
+    ITERATE(std::vector<JValue*>, centra, center) {
         VaccinationCenter* vaccinationCenter = new VaccinationCenter();
         vaccinationCenter->fromJSON((*center)->asJObject());
         centers.push_back(vaccinationCenter);
@@ -119,7 +119,7 @@ void Hub::fromJSON(JObject* json){
 
 Hub::~Hub() {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-	for (ITERATE_OVER_CENTERS)
+	ITERATE(VaccinationCenters, centers, center)
 		delete *center;
 }
 
@@ -137,8 +137,7 @@ bool Hub::containsInvalidCenter() const {
 }
 
 void Hub::toProgressStream(std::ostream &outStream) const {
-    for(ITERATE_OVER_CONST_CENTERS) {
+    C_ITERATE(VaccinationCenters, centers, center) {
         (*center)->toProgressStream(outStream);
     }
-
 }
