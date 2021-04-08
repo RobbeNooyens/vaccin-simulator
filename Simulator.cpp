@@ -29,7 +29,8 @@ void Simulator::exportSimulation(const std::string& fileName) const {
     std::ofstream file;
     file.open(fileName.c_str());
     assert(file.is_open());
-    hub.toStream(file);
+    hub.toSummaryStream(file);
+    hub.toProgressStream(file);
     file.close();
     ENSURE(!file.is_open(), "File wasn't closed properly!");
 }

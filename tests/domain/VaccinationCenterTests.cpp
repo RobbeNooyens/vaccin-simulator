@@ -21,8 +21,8 @@ TEST_F(VaccinationCenterTests, DefaultConstructor) {
     EXPECT_TRUE(center.properlyInitialized());
     // Check initial values
     // These fields should be 0 after initialization.
-    EXPECT_FALSE(center.vaccins || center.inhabitants || center.vaccinated || center.capacity);
-    EXPECT_TRUE(center.name == "" && center.address == "");
+    EXPECT_FALSE(center.getVaccins() || center.getInhabitants() || center.getVaccinationsDone() || center.getCapacity());
+    EXPECT_TRUE(center.getName().empty() && center.getAddress().empty());
 }
 
 /**
@@ -45,7 +45,7 @@ TEST_F(VaccinationCenterTests, HappyDay){
     const unsigned int transport = 150, inhabitants = 3000, capacity = 100, backupVaccins = 0;
     VaccinationCenter c = VaccinationCenter("TestCenter", "TestStreet", inhabitants, capacity);
     c.transportationArrived(transport);
-    EXPECT_TRUE(c.vaccins == backupVaccins + transport);
+    EXPECT_TRUE(c.getVaccins() == backupVaccins + transport);
     c.vaccinateInhabitants();
     EXPECT_TRUE(c.getVaccinationsDone() == std::min(transport, capacity));
     EXPECT_TRUE(c.getVaccinationsLeft() == (inhabitants - std::min(transport, capacity)));
@@ -60,7 +60,7 @@ TEST_F(VaccinationCenterTests, Transportation){
     for(int i = 0; i < 10; i++){
         vaccins += transport;
         c.transportationArrived(transport);
-        EXPECT_TRUE(c.vaccins == vaccins);
+        EXPECT_TRUE(c.getVaccins() == vaccins);
     }
 }
 
@@ -70,7 +70,7 @@ TEST_F(VaccinationCenterTests, Transportation){
 TEST_F(VaccinationCenterTests, vaccinations){
     unsigned int inhabitants = 3000, capacity = 200, vaccins = 3000;
     VaccinationCenter c = VaccinationCenter("TestCenter", "TestStreet", inhabitants, capacity);
-    c.vaccins = vaccins;
+    c.transportationArrived(vaccins);
     for(int i = 1; i <= 15; i++) {
         c.vaccinateInhabitants();
         vaccins -= capacity;

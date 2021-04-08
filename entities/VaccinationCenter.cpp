@@ -19,12 +19,39 @@ VaccinationCenter::VaccinationCenter(const std::string name, const std::string a
 
 // IO Streams
 
-void VaccinationCenter::toStream(std::ostream &outStream) const {
+void VaccinationCenter::fromJSON(JObject* json) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
-    REQUIRE(outStream.good(), "Output stream contains error flags!");
-    outStream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft() << " inwoners niet gevaccineerd" << std::endl;
-    ENSURE(outStream.good(), "Failed to write to output stream!");
+    REQUIRE(json != NULL, "Json can't be NULL!");
+    REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
+    REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
+    REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
+    REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
+    address = json->getValue("adres")->asString();
+    capacity = json->getValue("capaciteit")->asUnsignedint();
+    inhabitants = json->getValue("inwoners")->asUnsignedint();
+    name = json->getValue("naam")->asString();
+}
+
+void VaccinationCenter::toSummaryStream(std::ostream &stream) const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+    REQUIRE(stream.good(), "Output stream contains error flags!");
+    stream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft() << " inwoners niet gevaccineerd" << std::endl;
+    ENSURE(stream.good(), "Failed to write to output stream!");
+}
+
+void VaccinationCenter::toProgressStream(std::ostream &stream) const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+    REQUIRE(stream.good(), "Output stream contains error flags!");
+    double vaccinsProgress = std::min((double) 100, ((double) vaccins / capacity));
+    int vaccinsProgressBars = (int) (vaccinsProgress * 20);
+    double vaccinatedProgress = std::min((double) 100, ((double) vaccinated / inhabitants));
+    int vaccinatedProgressBars = (int) (vaccinatedProgress * 20);
+    stream << getName() << ":" << std::endl;
+    stream << "\t- vaccins \t\t[" << std::string(vaccinsProgressBars, '=') << std::string(20 - vaccinsProgressBars, ' ') << "] " << (int) (vaccinsProgress * 100) << '%' << std::endl;
+    stream << "\t- vaccinated \t[" << std::string(vaccinatedProgressBars, '=') << std::string(20 - vaccinatedProgressBars, ' ') << "] " << (int) (vaccinatedProgress * 100) << '%' << std::endl;
+    ENSURE(stream.good(), "Failed to write to output stream!");
 }
 
 // Getters
@@ -76,8 +103,8 @@ void VaccinationCenter::vaccinateInhabitants() {
     unsigned int vaccinsToUse = std::min(capacity, vaccins), oldVaccinated = vaccinated, oldVaccins = vaccins;
     vaccinated += vaccinsToUse;
     vaccins -= vaccinsToUse;
-    ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
-    ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
+    ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
+    ENSURE(vaccins == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
 }
 
 bool VaccinationCenter::properlyInitialized() const {
@@ -86,17 +113,4 @@ bool VaccinationCenter::properlyInitialized() const {
 
 VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-}
-
-void VaccinationCenter::fromJSON(JObject* json) {
-    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(json != NULL, "Json can't be NULL!");
-    REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
-    REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
-    REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
-    REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
-    address = json->getValue("adres")->asString();
-    capacity = json->getValue("capaciteit")->asUnsignedint();
-    inhabitants = json->getValue("inwoners")->asUnsignedint();
-    name = json->getValue("naam")->asString();
 }

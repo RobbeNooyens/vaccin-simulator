@@ -13,13 +13,12 @@ void JArray::insertValue(JValue * val) {
     items.push_back(val);
 }
 
-std::vector<JValue *> &JArray::getItems() {
+std::vector<JValue *> JArray::getItems() {
     REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
     return items;
 }
 
 JArray::~JArray() {
-    REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
     for(int i = 0; i < (int) items.size(); i++) {
         delete items[i];
         items[i] = NULL;
@@ -27,6 +26,7 @@ JArray::~JArray() {
 }
 
 JArray::JArray(): initCheck(this) {
+    items = std::vector<JValue*>();
     ENSURE(properlyInitialized(), "JArray object hasn't been initialized properly!");
 }
 

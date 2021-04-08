@@ -59,7 +59,6 @@ bool JObject::properlyInitialized() {
 }
 
 JObject::~JObject() {
-    REQUIRE(properlyInitialized(), "JObject object hasn't been initialized properly!");
     for(std::map<std::string, JValue*>::iterator it = values.begin(); it != values.end(); it++) {
         delete it->second;
         it->second = NULL;

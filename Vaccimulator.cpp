@@ -6,19 +6,17 @@
 // ╘============================================╛
 
 #include <iostream>
-#include <string>
 
 #include "Simulator.h"
 
 #include "json/JObject.h"
 #include "json/JArray.h"
 #include "json/JValue.h"
-#include "utils.h"
 
 int main() {
     Simulator simulator = Simulator();
     simulator.importSimulation("io/input.xml");
-    simulator.run(1);
+    simulator.run(20);
     simulator.exportSimulation("io/output.txt");
     return 0;
 }

@@ -43,7 +43,7 @@ public:
      * @return std::vector<JValue*>; vector of the JValues stored in the array
      * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
-    std::vector<JValue*>& getItems();
+    std::vector<JValue*> getItems();
 
 private:
     // Initialization

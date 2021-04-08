@@ -12,6 +12,8 @@
 #include "io/XMLParser.h"
 #include <string>
 
+typedef std::vector<Hub> Hubs;
+
 class Simulator {
 public:
     // Constructor
@@ -56,6 +58,7 @@ private:
 
     // Simulation
     Hub hub;
+    Hubs hubs;
     XMLParser xmlParser;
     unsigned int daycount;
 };
