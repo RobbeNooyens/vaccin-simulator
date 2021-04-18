@@ -10,8 +10,8 @@
 #include "../../json/JValue.h"
 #include "../../json/JObject.h"
 #include "../../utils.h"
+#include "../TestUtils.h"
 
-#include <fstream>
 #include <gtest/gtest.h>
 
 
@@ -23,39 +23,23 @@ protected:
 };
 
 /**
-Tests the output.
+Tests the simple output format.
 */
-TEST_F(HubOutTests, Output) {
+TEST_F(HubOutTests, SimpleOutput) {
     JObject* json = new JObject();
     // Initialize Hub
-    JObject* h = new JObject();
+    JObject* h = MockObjects::jHub(100, 6, 40);
     json->insertValue("hub", new JValue(h));
-    h->insertValue("levering", new JValue(100));
-    h->insertValue("interval", new JValue(6));
-    h->insertValue("transport", new JValue(40));
+
     // Initialize centra
     JArray* centra = new JArray();
     json->insertValue("centra", new JValue(centra));
 
-    JObject* center1 = new JObject();
-    center1->insertValue("adres", new JValue("Mainstreet"));
-    center1->insertValue("capaciteit", new JValue("200"));
-    center1->insertValue("inwoners", new JValue("5043"));
-    center1->insertValue("naam", new JValue("Center 1"));
+    JObject* center1 = MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200);
+    JObject* center2 = MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600);
+    JObject* center3 = MockObjects::jCenter("Center 3", "Route 66", 3021, 100);
     centra->insertValue(new JValue(center1));
-
-    JObject* center2 = new JObject();
-    center2->insertValue("adres", new JValue("Wallstreet"));
-    center2->insertValue("capaciteit", new JValue("600"));
-    center2->insertValue("inwoners", new JValue("8011"));
-    center2->insertValue("naam", new JValue("Center 2"));
     centra->insertValue(new JValue(center2));
-
-    JObject* center3 = new JObject();
-    center3->insertValue("adres", new JValue("Route 66"));
-    center3->insertValue("capaciteit", new JValue("100"));
-    center3->insertValue("inwoners", new JValue("3021"));
-    center3->insertValue("naam", new JValue("Center 3"));
     centra->insertValue(new JValue(center3));
 
     hub.fromJSON(json);
@@ -63,12 +47,45 @@ TEST_F(HubOutTests, Output) {
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
     std::ofstream file;
-    file.open("tests/presentation/out/hub_output.txt");
+    file.open("tests/presentation/out/simple_output.txt");
     ASSERT_TRUE(file.is_open());
     hub.toSummaryStream(file);
-//    hub.toSummaryStream(std::cout);
     file.close();
-//    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/hub_output.txt", "tests/presentation/expected/hub_output.txt"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output.txt", "tests/presentation/expected/simple_output.txt"));
+
+    delete json;
+}
+
+/**
+Tests the graphical output.
+*/
+TEST_F(HubOutTests, GraphicalProgress) {
+    JObject* json = new JObject();
+    // Initialize Hub
+    JObject* h = MockObjects::jHub(100, 6, 40);
+    json->insertValue("hub", new JValue(h));
+
+    // Initialize centra
+    JArray* centra = new JArray();
+    json->insertValue("centra", new JValue(centra));
+
+    JObject* center1 = MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200);
+    JObject* center2 = MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600);
+    JObject* center3 = MockObjects::jCenter("Center 3", "Route 66", 3021, 100);
+    centra->insertValue(new JValue(center1));
+    centra->insertValue(new JValue(center2));
+    centra->insertValue(new JValue(center3));
+
+    hub.fromJSON(json);
+
+    ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
+
+    std::ofstream file;
+    file.open("tests/presentation/out/graphical_progress.txt");
+    ASSERT_TRUE(file.is_open());
+    hub.toProgressStream(file);
+    file.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress.txt", "tests/presentation/expected/graphical_progress.txt"));
 
     delete json;
 }

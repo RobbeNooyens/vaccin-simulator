@@ -13,12 +13,16 @@
 
 class JObject;
 
-class Vaccin {
+class Vaccine {
 public:
     // Constructor
-    Vaccin();
+    Vaccine();
 
     // Initialization
+    /**
+     * Checks if the current object was initialized properly
+     * @return bool; true if the initCheck pointer points to the current instance
+     */
     bool properlyInitialized() const;
 
     // IO Mapping
@@ -35,7 +39,7 @@ public:
 
 private:
     // Initialization
-    const Vaccin* initCheck;
+    const Vaccine* initCheck;
 
     // Metadata
     std::string type;

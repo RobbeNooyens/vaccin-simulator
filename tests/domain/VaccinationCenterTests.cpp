@@ -1,10 +1,22 @@
-//
-// Created by robbe on 10/03/2021.
-//
+// ╒============================================╕
+// | Authors: Mohammed Shakleya, Robbe Nooyens  |
+// | Project: Vaccimulator                      |
+// | Version: 2.0                               |
+// |             UAntwerpen 2021                |
+// ╘============================================╛
 
 #include <gtest/gtest.h>
 #include "../../entities/VaccinationCenter.h"
 #include "../../entities/Hub.h"
+#include "../../json/JObject.h"
+#include "../../json/JValue.h"
+#include "../TestUtils.h"
+
+#define INHABITANTS (unsigned int) 3000
+#define CAPACITY (unsigned int) 200
+#define NAME "TestCenter"
+#define ADDRESS "TestStreet"
+#define TRANSPORT (unsigned int) 150
 
 class VaccinationCenterTests: public ::testing::Test {
 protected:
@@ -18,6 +30,7 @@ protected:
 Tests the default constructor.
 */
 TEST_F(VaccinationCenterTests, DefaultConstructor) {
+    center = VaccinationCenter();
     EXPECT_TRUE(center.properlyInitialized());
     // Check initial values
     // These fields should be 0 after initialization.
@@ -29,12 +42,10 @@ TEST_F(VaccinationCenterTests, DefaultConstructor) {
 Tests constructors with parameter fields.
 */
 TEST_F(VaccinationCenterTests, ParameterConstructors) {
-    std::string name = "TestCenter", address = "TestStreet";
-    unsigned int inhabitants = 1000, capacity = 200;
-    VaccinationCenter c = VaccinationCenter(name, address, inhabitants, capacity);
+    VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     EXPECT_TRUE(c.properlyInitialized());
-    EXPECT_TRUE(c.getName() == name && c.getAddress() == address);
-    EXPECT_TRUE(c.getInhabitants() == inhabitants && c.getCapacity() == capacity);
+    EXPECT_TRUE(c.getName() == NAME && c.getAddress() == ADDRESS);
+    EXPECT_TRUE(c.getInhabitants() == INHABITANTS && c.getCapacity() == CAPACITY);
     EXPECT_TRUE(c.getVaccins() == 0);
 }
 
@@ -42,24 +53,24 @@ TEST_F(VaccinationCenterTests, ParameterConstructors) {
 Tests the happy day scenario.
 */
 TEST_F(VaccinationCenterTests, HappyDay){
-    const unsigned int transport = 150, inhabitants = 3000, capacity = 100, backupVaccins = 0;
-    VaccinationCenter c = VaccinationCenter("TestCenter", "TestStreet", inhabitants, capacity);
-    c.transportationArrived(transport);
-    EXPECT_TRUE(c.getVaccins() == backupVaccins + transport);
+    VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
+    unsigned int backupVaccins = c.getVaccins();
+    c.transportationArrived(TRANSPORT);
+    EXPECT_TRUE(c.getVaccins() == backupVaccins + TRANSPORT);
     c.vaccinateInhabitants();
-    EXPECT_TRUE(c.getVaccinationsDone() == std::min(transport, capacity));
-    EXPECT_TRUE(c.getVaccinationsLeft() == (inhabitants - std::min(transport, capacity)));
+    EXPECT_TRUE(c.getVaccinationsDone() == std::min(TRANSPORT, CAPACITY));
+    EXPECT_TRUE(c.getVaccinationsLeft() == (INHABITANTS - std::min(TRANSPORT, CAPACITY)));
 }
 
 /**
  * Tests transportation
  */
 TEST_F(VaccinationCenterTests, Transportation){
-    unsigned int transport = 10, inhabitants = 3000, capacity = 20, vaccins = 0;
-    VaccinationCenter c = VaccinationCenter("TestCenter", "TestStreet", inhabitants, capacity);
+    unsigned int vaccins = 0;
+    VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     for(int i = 0; i < 10; i++){
-        vaccins += transport;
-        c.transportationArrived(transport);
+        vaccins += TRANSPORT;
+        c.transportationArrived(TRANSPORT);
         EXPECT_TRUE(c.getVaccins() == vaccins);
     }
 }
@@ -67,14 +78,41 @@ TEST_F(VaccinationCenterTests, Transportation){
 /**
  * Tests vaccinations
  */
-TEST_F(VaccinationCenterTests, vaccinations){
-    unsigned int inhabitants = 3000, capacity = 200, vaccins = 3000;
-    VaccinationCenter c = VaccinationCenter("TestCenter", "TestStreet", inhabitants, capacity);
+TEST_F(VaccinationCenterTests, Vaccinations){
+    unsigned int vaccins = 3000;
+    VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     c.transportationArrived(vaccins);
     for(int i = 1; i <= 15; i++) {
         c.vaccinateInhabitants();
-        vaccins -= capacity;
+        vaccins -= CAPACITY;
         EXPECT_TRUE(c.getVaccins() == vaccins);
-        EXPECT_TRUE(c.getVaccinationsDone() == i*capacity);
+        EXPECT_TRUE(c.getVaccinationsDone() == i*CAPACITY);
     }
+}
+
+TEST_F(VaccinationCenterTests, FromJSON) {
+    JObject* centerObject = MockObjects::jCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
+    VaccinationCenter c = VaccinationCenter();
+    c.fromJSON(centerObject);
+    EXPECT_TRUE(c.getAddress() == ADDRESS);
+    EXPECT_TRUE(c.getName() == NAME);
+    EXPECT_TRUE(c.getCapacity() == CAPACITY);
+    EXPECT_TRUE(c.getInhabitants() == INHABITANTS);
+    delete centerObject;
+
+}
+
+TEST_F(VaccinationCenterTests, FailFromJSON) {
+    VaccinationCenter c = VaccinationCenter();
+    EXPECT_DEATH(c.fromJSON(NULL), "Center cannot be loaded from nullpointer!");
+    JObject* centerObject = NULL;
+    EXPECT_DEATH(c.fromJSON(centerObject), "Missing address!");
+    centerObject->insertValue("adres", NULL);
+    EXPECT_DEATH(c.fromJSON(centerObject), "Missing name!");
+    centerObject->insertValue("name", NULL);
+    EXPECT_DEATH(c.fromJSON(centerObject), "Missing inhabitants!");
+    centerObject->insertValue("inhabitants", NULL);
+    EXPECT_DEATH(c.fromJSON(centerObject), "Missing capacity!");
+    centerObject->insertValue("capacity", NULL);
+    EXPECT_NO_FATAL_FAILURE(c.fromJSON(centerObject));
 }
