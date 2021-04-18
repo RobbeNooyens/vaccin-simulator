@@ -72,6 +72,11 @@ CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
@@ -98,6 +103,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o
  gtest/include/gtest/internal/gtest-type-util.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/XMLParserTests.cpp
@@ -146,6 +152,9 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp
  gtest/include/gtest/gtest-death-test.h
  gtest/include/gtest/gtest-message.h
@@ -166,12 +175,15 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
  gtest/include/gtest/internal/gtest-string.h
  gtest/include/gtest/internal/gtest-tuple.h
  gtest/include/gtest/internal/gtest-type-util.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutTests.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
  gtest/include/gtest/gtest-death-test.h

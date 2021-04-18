@@ -12,14 +12,14 @@
 #include <istream>
 #include <ostream>
 #include <iostream>
+#include <map>
 
 class TiXmlElement;
 class VaccinationCenter;
 class JObject;
-class Vaccin;
+class Vaccine;
 
 typedef std::vector<VaccinationCenter*> VaccinationCenters;
-typedef std::vector<Vaccin*> Vaccins;
 
 class Hub {
 public:
@@ -32,6 +32,10 @@ public:
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
 	~Hub();
+    /**
+     * Checks if the current object was initialized properly
+     * @return bool; true if the initCheck pointer points to the current instance
+     */
     bool properlyInitialized() const;
 
     // Getters
@@ -97,8 +101,8 @@ private:
     // Connected vaccinationcenters
     VaccinationCenters centers;
 
-    // Vaccins
-    Vaccins vaccins;
+    // Amount of vaccines per type
+    std::map<Vaccine*, int> vaccinCount;
 
     // Simulation
     /**

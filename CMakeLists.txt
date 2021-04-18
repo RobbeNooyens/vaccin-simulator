@@ -25,7 +25,7 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
         DesignByContract.h
-        utils.cpp utils.h entities/Vaccin.cpp entities/Vaccin.h)
+        utils.cpp utils.h entities/Vaccine.cpp entities/Vaccine.h)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
@@ -46,7 +46,7 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         json/JValue.cpp json/JValue.h
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
-        DesignByContract.h)
+        DesignByContract.h tests/TestUtils.cpp tests/TestUtils.h tests/domain/VaccineTests.cpp)
 
 # Create RELEASE target
 add_executable(Vaccimulator ${RELEASE_SOURCE_FILES})

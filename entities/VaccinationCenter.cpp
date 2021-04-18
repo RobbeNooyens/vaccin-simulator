@@ -22,10 +22,10 @@ VaccinationCenter::VaccinationCenter(const std::string name, const std::string a
 void VaccinationCenter::fromJSON(JObject* json) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(json != NULL, "Json can't be NULL!");
-    REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
-    REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
-    REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
     REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
+    REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
+    REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
+    REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
     address = json->getValue("adres")->asString();
     capacity = json->getValue("capaciteit")->asUnsignedint();
     inhabitants = json->getValue("inwoners")->asUnsignedint();

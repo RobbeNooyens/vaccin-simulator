@@ -250,33 +250,6 @@ entities/Hub.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.s
 .PHONY : entities/Hub.cpp.s
 
-entities/Vaccin.o: entities/Vaccin.cpp.o
-
-.PHONY : entities/Vaccin.o
-
-# target to build an object file
-entities/Vaccin.cpp.o:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.o
-.PHONY : entities/Vaccin.cpp.o
-
-entities/Vaccin.i: entities/Vaccin.cpp.i
-
-.PHONY : entities/Vaccin.i
-
-# target to preprocess a source file
-entities/Vaccin.cpp.i:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.i
-.PHONY : entities/Vaccin.cpp.i
-
-entities/Vaccin.s: entities/Vaccin.cpp.s
-
-.PHONY : entities/Vaccin.s
-
-# target to generate assembly for a file
-entities/Vaccin.cpp.s:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.s
-.PHONY : entities/Vaccin.cpp.s
-
 entities/VaccinationCenter.o: entities/VaccinationCenter.cpp.o
 
 .PHONY : entities/VaccinationCenter.o
@@ -306,6 +279,33 @@ entities/VaccinationCenter.cpp.s:
 	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.s
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.s
 .PHONY : entities/VaccinationCenter.cpp.s
+
+entities/Vaccine.o: entities/Vaccine.cpp.o
+
+.PHONY : entities/Vaccine.o
+
+# target to build an object file
+entities/Vaccine.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o
+.PHONY : entities/Vaccine.cpp.o
+
+entities/Vaccine.i: entities/Vaccine.cpp.i
+
+.PHONY : entities/Vaccine.i
+
+# target to preprocess a source file
+entities/Vaccine.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.i
+.PHONY : entities/Vaccine.cpp.i
+
+entities/Vaccine.s: entities/Vaccine.cpp.s
+
+.PHONY : entities/Vaccine.s
+
+# target to generate assembly for a file
+entities/Vaccine.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.s
+.PHONY : entities/Vaccine.cpp.s
 
 io/XMLParser.o: io/XMLParser.cpp.o
 
@@ -427,6 +427,33 @@ json/JValue.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.s
 .PHONY : json/JValue.cpp.s
 
+tests/TestUtils.o: tests/TestUtils.cpp.o
+
+.PHONY : tests/TestUtils.o
+
+# target to build an object file
+tests/TestUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
+.PHONY : tests/TestUtils.cpp.o
+
+tests/TestUtils.i: tests/TestUtils.cpp.i
+
+.PHONY : tests/TestUtils.i
+
+# target to preprocess a source file
+tests/TestUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i
+.PHONY : tests/TestUtils.cpp.i
+
+tests/TestUtils.s: tests/TestUtils.cpp.s
+
+.PHONY : tests/TestUtils.s
+
+# target to generate assembly for a file
+tests/TestUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s
+.PHONY : tests/TestUtils.cpp.s
+
 tests/data/JsonTests.o: tests/data/JsonTests.cpp.o
 
 .PHONY : tests/data/JsonTests.o
@@ -534,6 +561,33 @@ tests/domain/VaccinationCenterTests.s: tests/domain/VaccinationCenterTests.cpp.s
 tests/domain/VaccinationCenterTests.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.s
 .PHONY : tests/domain/VaccinationCenterTests.cpp.s
+
+tests/domain/VaccineTests.o: tests/domain/VaccineTests.cpp.o
+
+.PHONY : tests/domain/VaccineTests.o
+
+# target to build an object file
+tests/domain/VaccineTests.cpp.o:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o
+.PHONY : tests/domain/VaccineTests.cpp.o
+
+tests/domain/VaccineTests.i: tests/domain/VaccineTests.cpp.i
+
+.PHONY : tests/domain/VaccineTests.i
+
+# target to preprocess a source file
+tests/domain/VaccineTests.cpp.i:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i
+.PHONY : tests/domain/VaccineTests.cpp.i
+
+tests/domain/VaccineTests.s: tests/domain/VaccineTests.cpp.s
+
+.PHONY : tests/domain/VaccineTests.s
+
+# target to generate assembly for a file
+tests/domain/VaccineTests.cpp.s:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s
+.PHONY : tests/domain/VaccineTests.cpp.s
 
 tests/presentation/HubOutTests.o: tests/presentation/HubOutTests.cpp.o
 
@@ -734,12 +788,12 @@ help:
 	@echo "... entities/Hub.o"
 	@echo "... entities/Hub.i"
 	@echo "... entities/Hub.s"
-	@echo "... entities/Vaccin.o"
-	@echo "... entities/Vaccin.i"
-	@echo "... entities/Vaccin.s"
 	@echo "... entities/VaccinationCenter.o"
 	@echo "... entities/VaccinationCenter.i"
 	@echo "... entities/VaccinationCenter.s"
+	@echo "... entities/Vaccine.o"
+	@echo "... entities/Vaccine.i"
+	@echo "... entities/Vaccine.s"
 	@echo "... io/XMLParser.o"
 	@echo "... io/XMLParser.i"
 	@echo "... io/XMLParser.s"
@@ -752,6 +806,9 @@ help:
 	@echo "... json/JValue.o"
 	@echo "... json/JValue.i"
 	@echo "... json/JValue.s"
+	@echo "... tests/TestUtils.o"
+	@echo "... tests/TestUtils.i"
+	@echo "... tests/TestUtils.s"
 	@echo "... tests/data/JsonTests.o"
 	@echo "... tests/data/JsonTests.i"
 	@echo "... tests/data/JsonTests.s"
@@ -764,6 +821,9 @@ help:
 	@echo "... tests/domain/VaccinationCenterTests.o"
 	@echo "... tests/domain/VaccinationCenterTests.i"
 	@echo "... tests/domain/VaccinationCenterTests.s"
+	@echo "... tests/domain/VaccineTests.o"
+	@echo "... tests/domain/VaccineTests.i"
+	@echo "... tests/domain/VaccineTests.s"
 	@echo "... tests/presentation/HubOutTests.o"
 	@echo "... tests/presentation/HubOutTests.i"
 	@echo "... tests/presentation/HubOutTests.s"

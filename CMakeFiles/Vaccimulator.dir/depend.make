@@ -16,7 +16,6 @@ CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: io/XMLParser.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JArray.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JValue.h
-CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: utils.h
 
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/Hub.cpp
@@ -28,16 +27,17 @@ CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: json/JValue.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: tinyxml/tinystr.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: tinyxml/tinyxml.h
 
-CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.o: DesignByContract.h
-CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.o: entities/Vaccin.cpp
-CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.o: entities/Vaccin.h
-CMakeFiles/Vaccimulator.dir/entities/Vaccin.cpp.o: json/JObject.h
-
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: entities/VaccinationCenter.cpp
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: entities/VaccinationCenter.h
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/entities/VaccinationCenter.cpp.o: json/JValue.h
+
+CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o: DesignByContract.h
+CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o: entities/Vaccine.cpp
+CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o: entities/Vaccine.h
+CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o: json/JObject.h
+CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o: json/JValue.h
 
 CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/io/XMLParser.cpp.o: entities/Hub.h

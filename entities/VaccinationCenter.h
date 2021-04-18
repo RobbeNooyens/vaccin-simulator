@@ -30,6 +30,10 @@ public:
      * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
+    /**
+     * Checks if the current object was initialized properly
+     * @return bool; true if the initCheck pointer points to the current instance
+     */
     bool properlyInitialized() const;
 
     // Simulation

@@ -72,6 +72,11 @@ CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: json/JValue.cpp
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: json/JValue.h
 
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: json/JObject.h
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: json/JValue.h
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: tests/TestUtils.cpp
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: tests/TestUtils.h
+
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: json/JArray.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: json/JValue.h
@@ -97,6 +102,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: gtest/include/gtest
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: gtest/include/gtest/internal/gtest-type-util.h
 
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: io/XMLParser.h
+CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JArray.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JValue.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: tests/data/XMLParserTests.cpp
@@ -145,6 +151,9 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: gtest/include/gtes
 
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: entities/VaccinationCenter.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: json/JObject.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: json/JValue.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: tests/TestUtils.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: tests/domain/VaccinationCenterTests.cpp
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-death-test.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-message.h
@@ -166,11 +175,14 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtes
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/internal/gtest-tuple.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/internal/gtest-type-util.h
 
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o: tests/domain/VaccineTests.cpp
+
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: entities/VaccinationCenter.h
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: json/JArray.h
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: json/JValue.h
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: tests/TestUtils.h
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: tests/presentation/HubOutTests.cpp
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: utils.h
 CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: gtest/include/gtest/gtest-death-test.h
