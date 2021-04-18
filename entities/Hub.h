@@ -12,6 +12,7 @@
 #include <istream>
 #include <ostream>
 #include <iostream>
+#include <map>
 
 class TiXmlElement;
 class VaccinationCenter;

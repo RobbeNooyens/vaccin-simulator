@@ -25,7 +25,7 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
         DesignByContract.h
-        utils.cpp utils.h entities/Vaccine.cpp entities/Vaccine.h entities/Cargo.cpp entities/Cargo.h)
+        utils.cpp utils.h entities/Vaccine.cpp entities/Vaccine.h)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp

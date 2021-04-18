@@ -22,7 +22,7 @@ class VaccinationCenterTests: public ::testing::Test {
 protected:
     // You should make the members protected s.t. they can be
     // accessed from sub-classes.
-    VaccinationCenter center;
+//    VaccinationCenter center;
 
 };
 
@@ -30,7 +30,7 @@ protected:
 Tests the default constructor.
 */
 TEST_F(VaccinationCenterTests, DefaultConstructor) {
-    center = VaccinationCenter();
+    VaccinationCenter center = VaccinationCenter();
     EXPECT_TRUE(center.properlyInitialized());
     // Check initial values
     // These fields should be 0 after initialization.
@@ -44,9 +44,11 @@ Tests constructors with parameter fields.
 TEST_F(VaccinationCenterTests, ParameterConstructors) {
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     EXPECT_TRUE(c.properlyInitialized());
-    EXPECT_TRUE(c.getName() == NAME && c.getAddress() == ADDRESS);
-    EXPECT_TRUE(c.getInhabitants() == INHABITANTS && c.getCapacity() == CAPACITY);
-    EXPECT_TRUE(c.getVaccins() == 0);
+    EXPECT_EQ(NAME, c.getName());
+    EXPECT_EQ(ADDRESS, c.getAddress());
+    EXPECT_EQ(INHABITANTS, c.getInhabitants());
+    EXPECT_EQ(CAPACITY, c.getCapacity());
+    EXPECT_EQ((unsigned int) 0, c.getVaccins());
 }
 
 /**
@@ -56,10 +58,10 @@ TEST_F(VaccinationCenterTests, HappyDay){
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     unsigned int backupVaccins = c.getVaccins();
     c.transportationArrived(TRANSPORT);
-    EXPECT_TRUE(c.getVaccins() == backupVaccins + TRANSPORT);
+    EXPECT_EQ(backupVaccins + TRANSPORT, c.getVaccins());
     c.vaccinateInhabitants();
-    EXPECT_TRUE(c.getVaccinationsDone() == std::min(TRANSPORT, CAPACITY));
-    EXPECT_TRUE(c.getVaccinationsLeft() == (INHABITANTS - std::min(TRANSPORT, CAPACITY)));
+    EXPECT_EQ(std::min(TRANSPORT, CAPACITY), c.getVaccinationsDone());
+    EXPECT_EQ(INHABITANTS - std::min(TRANSPORT, CAPACITY), c.getVaccinationsLeft());
 }
 
 /**
@@ -71,7 +73,7 @@ TEST_F(VaccinationCenterTests, Transportation){
     for(int i = 0; i < 10; i++){
         vaccins += TRANSPORT;
         c.transportationArrived(TRANSPORT);
-        EXPECT_TRUE(c.getVaccins() == vaccins);
+        EXPECT_EQ(vaccins, c.getVaccins());
     }
 }
 
@@ -85,8 +87,8 @@ TEST_F(VaccinationCenterTests, Vaccinations){
     for(int i = 1; i <= 15; i++) {
         c.vaccinateInhabitants();
         vaccins -= CAPACITY;
-        EXPECT_TRUE(c.getVaccins() == vaccins);
-        EXPECT_TRUE(c.getVaccinationsDone() == i*CAPACITY);
+        EXPECT_EQ(vaccins, c.getVaccins());
+        EXPECT_EQ(i*CAPACITY, c.getVaccinationsDone());
     }
 }
 
@@ -94,25 +96,27 @@ TEST_F(VaccinationCenterTests, FromJSON) {
     JObject* centerObject = MockObjects::jCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     VaccinationCenter c = VaccinationCenter();
     c.fromJSON(centerObject);
-    EXPECT_TRUE(c.getAddress() == ADDRESS);
-    EXPECT_TRUE(c.getName() == NAME);
-    EXPECT_TRUE(c.getCapacity() == CAPACITY);
-    EXPECT_TRUE(c.getInhabitants() == INHABITANTS);
+    EXPECT_EQ(ADDRESS, c.getAddress());
+    EXPECT_EQ(NAME,c.getName());
+    EXPECT_EQ(CAPACITY, c.getCapacity());
+    EXPECT_EQ(INHABITANTS, c.getInhabitants());
     delete centerObject;
 
 }
 
 TEST_F(VaccinationCenterTests, FailFromJSON) {
     VaccinationCenter c = VaccinationCenter();
-    EXPECT_DEATH(c.fromJSON(NULL), "Center cannot be loaded from nullpointer!");
-    JObject* centerObject = NULL;
-    EXPECT_DEATH(c.fromJSON(centerObject), "Missing address!");
-    centerObject->insertValue("adres", NULL);
-    EXPECT_DEATH(c.fromJSON(centerObject), "Missing name!");
-    centerObject->insertValue("name", NULL);
-    EXPECT_DEATH(c.fromJSON(centerObject), "Missing inhabitants!");
-    centerObject->insertValue("inhabitants", NULL);
-    EXPECT_DEATH(c.fromJSON(centerObject), "Missing capacity!");
-    centerObject->insertValue("capacity", NULL);
+    EXPECT_DEATH(c.fromJSON(NULL), ".*Json can't be NULL.*");
+    JObject* centerObject = new JObject();
+    EXPECT_DEATH(c.fromJSON(centerObject), ".*VaccinationCenter JSON should contain field 'naam'.*");
+    centerObject->insertValue("naam", new JValue("Test"));
+    EXPECT_DEATH(c.fromJSON(centerObject), ".*VaccinationCenter JSON should contain field 'adres'.*");
+    centerObject->insertValue("adres", new JValue("Street"));
+    EXPECT_DEATH(c.fromJSON(centerObject), ".*VaccinationCenter JSON should contain field 'inwoners'.*");
+    centerObject->insertValue("inwoners", new JValue((unsigned int) 1000));
+    EXPECT_DEATH(c.fromJSON(centerObject), ".*VaccinationCenter JSON should contain field 'capaciteit'.*");
+    centerObject->insertValue("capaciteit", new JValue((unsigned int) 100));
     EXPECT_NO_FATAL_FAILURE(c.fromJSON(centerObject));
+    // TODO: delete centerObject without segmentation fault
+//    delete centerObject;
 }

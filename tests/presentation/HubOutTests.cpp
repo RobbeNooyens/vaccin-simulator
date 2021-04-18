@@ -52,8 +52,8 @@ TEST_F(HubOutTests, SimpleOutput) {
     hub.toSummaryStream(file);
     file.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output.txt", "tests/presentation/expected/simple_output.txt"));
-
-    delete json;
+    // TODO: delete json causes segmentation fault
+    // delete json;
 }
 
 /**
@@ -86,6 +86,6 @@ TEST_F(HubOutTests, GraphicalProgress) {
     hub.toProgressStream(file);
     file.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress.txt", "tests/presentation/expected/graphical_progress.txt"));
-
-    delete json;
+    // TODO: delete json causes segmentation fault
+    // delete json;
 }
