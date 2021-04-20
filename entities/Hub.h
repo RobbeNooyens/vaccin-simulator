@@ -19,6 +19,7 @@ class VaccinationCenter;
 class JObject;
 class Vaccine;
 
+typedef std::vector<Vaccine*> Vaccines;
 typedef std::vector<VaccinationCenter*> VaccinationCenters;
 
 class Hub {
@@ -28,10 +29,10 @@ public:
      * ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     Hub();
-    /**
-     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-     */
-	~Hub();
+//    /**
+//     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+//     */
+//	~Hub();
     /**
      * Checks if the current object was initialized properly
      * @return bool; true if the initCheck pointer points to the current instance
@@ -43,12 +44,16 @@ public:
      * @return the amount of vaccins there are currently available in the hub
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
-    unsigned int getVaccins() const;
+    unsigned int getTotalVaccinesCount() const;
+    VaccinationCenters getVaccinationCenters() const;
+    Vaccines getVaccines() const;
+
 
     // IO
     /**
      * Loads a hub from a JObject
-     * @param json: JSON object containing the data for the hub and centers
+     * @param json: JSON object containing the data for the hub
+     * @param centers: loaded centers
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      * REQUIRE(json != NULL, "JSON can't be NULL!");
@@ -58,7 +63,7 @@ public:
      * REQUIRE(json->contains("centra"), "Hub JSON should contain field 'hub.centra'");
      * ENSURE(centra.size() == centers.size(), "Not all centers are loaded succesfully.");
      */
-    void fromJSON(JObject* json);
+    void fromJSON(JObject* json, VaccinationCenters &centers);
     /**
      * Exports Hub object member to the given stream
      * @param ostream:
@@ -71,13 +76,24 @@ public:
     void toSummaryStream(std::ostream&) const;
     void toProgressStream(std::ostream&) const;
 
-    // Events
+    // Simulation controls
     /**
      * Simulates the transportation and vaccination for one day
      * @param day: daynumber relative to the startdate
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     void simulateDay(unsigned int day);
+    /**
+     * Simulate vaccin distribution over the vaccinationcenters
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    void distributeVaccins(std::ostream& outStream = std::cout);
+    /**
+     * Transport a specific amount of vaccinations to the specified vaccination center.
+     * @param center: the center where the vaccins should be transported to
+     * @param vaccinCount: the amount of vaccins to transport
+     */
+    static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
 
     // Validations
     /**
@@ -92,30 +108,12 @@ private:
     // Initialization
     const Hub* initCheck;
 
-    // Metadata
-    unsigned int delivery;
-    unsigned int interval;
-    unsigned int transport; // Vaccines per load
-    unsigned int vaccinsCount;
-
     // Connected vaccinationcenters
     VaccinationCenters centers;
 
     // Amount of vaccines per type
-    std::map<Vaccine*, int> vaccinCount;
-
-    // Simulation
-    /**
-     * Simulate vaccin distribution over the vaccinationcenters
-     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-     */
-    void distributeVaccins(std::ostream& outStream = std::cout);
-    /**
-     * Transport a specific amount of vaccinations to the specified vaccination center.
-     * @param center: the center where the vaccins should be transported to
-     * @param vaccinCount: the amount of vaccins to transport
-     */
-    static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
+    Vaccines vaccines;
+    std::map<Vaccine*, int> vaccineCount;
 };
 
 

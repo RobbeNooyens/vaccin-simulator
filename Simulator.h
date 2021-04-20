@@ -8,11 +8,16 @@
 #ifndef VACCIN_SIMULATOR_SIMULATOR_H
 #define VACCIN_SIMULATOR_SIMULATOR_H
 
-#include "entities/Hub.h"
 #include "io/XMLParser.h"
 #include <string>
+#include <vector>
+
+class Hub;
+class VaccinationCenter;
+class JObject;
 
 typedef std::vector<Hub> Hubs;
+typedef std::vector<VaccinationCenter> VaccinationCenters;
 
 class Simulator {
 public:
@@ -41,8 +46,9 @@ public:
      * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
     void exportSimulation(const std::string& fileName) const;
+    void fromJSON(JObject* json);
 
-    // Run
+    // Controls
     /**
      * Runs the simulation for a specific amount of times
      * @param cycles: the amount of times the simulation should run
@@ -51,14 +57,17 @@ public:
      * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
     void run(unsigned int cycles);
+    // TODO: implement restart and clear functions
+//    void reset();
+//    void clear();
 
 private:
     // Initialization
     const Simulator* initCheck;
 
     // Simulation
-    Hub hub;
     Hubs hubs;
+    VaccinationCenters centers;
     XMLParser xmlParser;
     unsigned int daycount;
 };

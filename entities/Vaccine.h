@@ -17,6 +17,7 @@ class Vaccine {
 public:
     // Constructor
     Vaccine();
+    Vaccine(std::string type, unsigned int delivery, unsigned int interval, unsigned int transportation, unsigned int renewing = 0, double temperature = 0);
 
     // Initialization
     /**
@@ -27,6 +28,7 @@ public:
 
     // IO Mapping
     void fromJSON(JObject* json);
+    JObject* toJSON() const;
 
     // Getters
     std::string getType() const;

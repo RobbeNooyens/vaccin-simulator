@@ -14,36 +14,54 @@
 
 #include <gtest/gtest.h>
 
+#define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
-class HubOutTests: public ::testing::Test {
+class MockVaccinationCenter: public VaccinationCenter {
+
+};
+
+
+class SimulationOutputTests: public ::testing::Test {
 protected:
     // You should make the members protected s.t. they can be
     // accessed from sub-classes.
     Hub hub;
+
+    void SetUp() {
+        // Create JSON structure
+        JObject* json = new JObject();
+        // Create centers
+        JArray* jCenters = new JArray();
+        json->insertValue("jCenters", new JValue(jCenters));
+        JObject* center1 = MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200);
+        JObject* center2 = MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600);
+        JObject* center3 = MockObjects::jCenter("Center 3", "Route 66", 3021, 100);
+        jCenters->insertValue(new JValue(center1));
+        jCenters->insertValue(new JValue(center2));
+        jCenters->insertValue(new JValue(center3));
+        VaccinationCenters centers;
+        ITERATE(JValues, jCenters->getItems(), center) {
+
+        }
+        // Initialize Hubs
+        JArray* hubs = new JArray();
+        JObject* h = MockObjects::jHub(100, 6, 40);
+        hubs->insertValue(new JValue(h));
+
+        // Initialize jCenters
+
+
+
+        hub.fromJSON(json);
+    }
+
+
 };
 
 /**
 Tests the simple output format.
 */
-TEST_F(HubOutTests, SimpleOutput) {
-    JObject* json = new JObject();
-    // Initialize Hub
-    JObject* h = MockObjects::jHub(100, 6, 40);
-    json->insertValue("hub", new JValue(h));
-
-    // Initialize centra
-    JArray* centra = new JArray();
-    json->insertValue("centra", new JValue(centra));
-
-    JObject* center1 = MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200);
-    JObject* center2 = MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600);
-    JObject* center3 = MockObjects::jCenter("Center 3", "Route 66", 3021, 100);
-    centra->insertValue(new JValue(center1));
-    centra->insertValue(new JValue(center2));
-    centra->insertValue(new JValue(center3));
-
-    hub.fromJSON(json);
-
+TEST_F(SimulationOutputTests, SimpleOutput) {
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
     std::ofstream file;
@@ -59,7 +77,7 @@ TEST_F(HubOutTests, SimpleOutput) {
 /**
 Tests the graphical output.
 */
-TEST_F(HubOutTests, GraphicalProgress) {
+TEST_F(SimulationOutputTests, GraphicalProgress) {
     JObject* json = new JObject();
     // Initialize Hub
     JObject* h = MockObjects::jHub(100, 6, 40);

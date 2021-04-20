@@ -12,9 +12,19 @@
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 
+// Constructors
+
+VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
+    ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+}
+
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
                                      unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+}
+
+bool VaccinationCenter::properlyInitialized() const {
+    return initCheck == this;
 }
 
 // IO Streams
@@ -26,10 +36,10 @@ void VaccinationCenter::fromJSON(JObject* json) {
     REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
     REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
     REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
-    address = json->getValue("adres")->asString();
-    capacity = json->getValue("capaciteit")->asUnsignedint();
-    inhabitants = json->getValue("inwoners")->asUnsignedint();
     name = json->getValue("naam")->asString();
+    address = json->getValue("adres")->asString();
+    inhabitants = json->getValue("inwoners")->asUnsignedint();
+    capacity = json->getValue("capaciteit")->asUnsignedint();
 }
 
 void VaccinationCenter::toSummaryStream(std::ostream &stream) const {
@@ -91,6 +101,8 @@ unsigned int VaccinationCenter::getVaccinationsLeft() const {
     return inhabitants - vaccinated;
 }
 
+// Simulation controls
+
 void VaccinationCenter::transportationArrived(unsigned int vaccinCount) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     unsigned int oldVaccins = vaccins;
@@ -105,12 +117,4 @@ void VaccinationCenter::vaccinateInhabitants() {
     vaccins -= vaccinsToUse;
     ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
     ENSURE(vaccins == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
-}
-
-bool VaccinationCenter::properlyInitialized() const {
-    return initCheck == this;
-}
-
-VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
-    ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }

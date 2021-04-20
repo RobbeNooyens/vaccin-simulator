@@ -589,32 +589,32 @@ tests/domain/VaccineTests.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s
 .PHONY : tests/domain/VaccineTests.cpp.s
 
-tests/presentation/HubOutTests.o: tests/presentation/HubOutTests.cpp.o
+tests/presentation/SimulationOutputTests.o: tests/presentation/SimulationOutputTests.cpp.o
 
-.PHONY : tests/presentation/HubOutTests.o
+.PHONY : tests/presentation/SimulationOutputTests.o
 
 # target to build an object file
-tests/presentation/HubOutTests.cpp.o:
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o
-.PHONY : tests/presentation/HubOutTests.cpp.o
+tests/presentation/SimulationOutputTests.cpp.o:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o
+.PHONY : tests/presentation/SimulationOutputTests.cpp.o
 
-tests/presentation/HubOutTests.i: tests/presentation/HubOutTests.cpp.i
+tests/presentation/SimulationOutputTests.i: tests/presentation/SimulationOutputTests.cpp.i
 
-.PHONY : tests/presentation/HubOutTests.i
+.PHONY : tests/presentation/SimulationOutputTests.i
 
 # target to preprocess a source file
-tests/presentation/HubOutTests.cpp.i:
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.i
-.PHONY : tests/presentation/HubOutTests.cpp.i
+tests/presentation/SimulationOutputTests.cpp.i:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.i
+.PHONY : tests/presentation/SimulationOutputTests.cpp.i
 
-tests/presentation/HubOutTests.s: tests/presentation/HubOutTests.cpp.s
+tests/presentation/SimulationOutputTests.s: tests/presentation/SimulationOutputTests.cpp.s
 
-.PHONY : tests/presentation/HubOutTests.s
+.PHONY : tests/presentation/SimulationOutputTests.s
 
 # target to generate assembly for a file
-tests/presentation/HubOutTests.cpp.s:
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.s
-.PHONY : tests/presentation/HubOutTests.cpp.s
+tests/presentation/SimulationOutputTests.cpp.s:
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.s
+.PHONY : tests/presentation/SimulationOutputTests.cpp.s
 
 tinyxml/tinystr.o: tinyxml/tinystr.cpp.o
 
@@ -824,9 +824,9 @@ help:
 	@echo "... tests/domain/VaccineTests.o"
 	@echo "... tests/domain/VaccineTests.i"
 	@echo "... tests/domain/VaccineTests.s"
-	@echo "... tests/presentation/HubOutTests.o"
-	@echo "... tests/presentation/HubOutTests.i"
-	@echo "... tests/presentation/HubOutTests.s"
+	@echo "... tests/presentation/SimulationOutputTests.o"
+	@echo "... tests/presentation/SimulationOutputTests.i"
+	@echo "... tests/presentation/SimulationOutputTests.s"
 	@echo "... tinyxml/tinystr.o"
 	@echo "... tinyxml/tinystr.i"
 	@echo "... tinyxml/tinystr.s"
