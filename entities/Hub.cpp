@@ -8,11 +8,14 @@
 #include <vector>
 #include <iostream>
 #include <map>
+#include <string>
 #include "../tinyxml/tinyxml.h"
 #include "../DesignByContract.h"
 #include "../json/JArray.h"
 #include "../json/JObject.h"
 #include "../json/JValue.h"
+#include "../json/JKeys.h"
+#include "../utils.h"
 
 #include "Hub.h"
 #include "VaccinationCenter.h"
@@ -28,15 +31,6 @@ Hub::Hub() : initCheck(this) {
     ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
 }
 
-// TODO: decide wether or not this is necessary
-//Hub::~Hub() {
-//    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-//    ITERATE(VaccinationCenters, centers, center) {
-//        delete *center;
-//        *center = NULL;
-//    }
-//}
-
 bool Hub::properlyInitialized() const {
     return initCheck == this;
 }
@@ -50,17 +44,17 @@ void Hub::toSummaryStream(std::ostream & outStream) const {
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     outStream << "Hub (" << getTotalVaccinesCount() << "): " << std::endl;
     C_ITERATE(VaccinationCenters, centers, center)
-        outStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
+        outStream << "  -> " << (*center).getName() << " (" << (*center).getVaccins() << " vaccins)" << std::endl;
     outStream << std::endl;
     C_ITERATE(VaccinationCenters, centers, center)
-        (*center)->toSummaryStream(outStream);
+        ((*center).toSummaryStream(outStream);
     ENSURE(outStream.good(), "Failed to write to output stream!");
 }
 
 void Hub::toProgressStream(std::ostream &outStream) const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     C_ITERATE(VaccinationCenters, centers, center) {
-        (*center)->toProgressStream(outStream);
+        (*center).toProgressStream(outStream);
     }
 }
 
@@ -68,19 +62,20 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     REQUIRE(json != NULL, "JSON can't be NULL!");
-    REQUIRE(json->contains("centra"), "Hub JSON should contain field 'hub.centra'");
-    if(!json->contains("hub.vaccins")) {
-        REQUIRE(json->contains("hub.levering"), "Hub JSON should contain field 'hub.levering'");
-        REQUIRE(json->contains("hub.interval"), "Hub JSON should contain field 'hub.interval'");
-        REQUIRE(json->contains("hub.transport"), "Hub JSON should contain field 'hub.transport'");
-        unsigned int delivery = json->getValue("hub.levering")->asUnsignedint();
-        unsigned int interval = json->getValue("hub.interval")->asUnsignedint();
-        unsigned int transport = json->getValue("hub.transport")->asUnsignedint();
-        Vaccine* vaccine = new Vaccine("Standaard", delivery, interval, transport);
+    REQUIRE(json->contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
+    if(!json->contains(HUB_VACCINES)) {
+        REQUIRE(json->contains(HUB_DELIVERY), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
+        REQUIRE(json->contains(HUB_INTERVAL), StringUtil::concat("Hub JSON should contain field ", HUB_INTERVAL).c_str());
+        REQUIRE(json->contains(HUB_TRANSPORTATION), StringUtil::concat("Hub JSON should contain field ", HUB_TRANSPORTATION).c_str());
+        // TODO: error catching
+        unsigned int delivery = json->getValue(HUB_DELIVERY)->asUnsignedint();
+        unsigned int interval = json->getValue(HUB_INTERVAL)->asUnsignedint();
+        unsigned int transport = json->getValue(HUB_TRANSPORTATION)->asUnsignedint();
+        Vaccine* vaccine = new Vaccine(DEFAULT_VACCINE, delivery, interval, transport);
         vaccines.push_back(vaccine);
         vaccineCount.insert(std::pair<Vaccine*, int>(vaccine, delivery));
     } else {
-        JValues vaccins = json->getValue("vaccins")->asJArray()->getItems();
+        JValues vaccins = json->getValue(HUB_VACCINES)->asJArray()->getItems();
         ITERATE(JValues, vaccins, vaccin) {
             // TODO: replace string fields with macros or static variables
             Vaccine* vaccine = new Vaccine();
@@ -89,11 +84,11 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
             vaccineCount.insert(std::pair<Vaccine*, int>(vaccine, vaccine->getDelivery()));
         }
     }
-    std::vector<JValue*> centerNames = json->getValue("centra")->asJArray()->getItems();
+    std::vector<JValue*> centerNames = json->getValue(HUB_CENTERS)->asJArray()->getItems();
     ITERATE(std::vector<JValue*>, centerNames, name) {
         std::string centerName = (*name)->asString();
         ITERATE(VaccinationCenters, centerList, center) {
-            if((*center)->getName() == centerName) {
+            if((*center).getName() == centerName) {
                 centers.push_back(*center);
             }
         }
@@ -115,7 +110,7 @@ void Hub::simulateDay(unsigned int day) {
     distributeVaccins();
     // Vaccinate inhabitants
     ITERATE(VaccinationCenters, centers, center)
-        (*center)->vaccinateInhabitants();
+        (*center).vaccinateInhabitants();
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount) {
@@ -159,10 +154,7 @@ bool Hub::containsInvalidCenter() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(&centers != NULL, "Centers can't be NULL!");
     for(unsigned int i = 0; i < (unsigned int) centers.size(); i++) {
-        VaccinationCenter* center = centers[i];
-        if(center == NULL)
-            return true;
-        if(!center->properlyInitialized())
+        if(!centers[i].properlyInitialized())
             return true;
     }
     return false;

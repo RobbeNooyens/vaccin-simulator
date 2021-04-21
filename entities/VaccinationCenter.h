@@ -110,6 +110,14 @@ public:
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toSummaryStream(std::ostream& stream) const;
+    /**
+     * Sends the center progress bars as strings to the given stream
+     * @param stream: ostream; stream to push the output strings to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+     * REQUIRE(stream.good(), "Output stream contains error flags!");
+     * ENSURE(stream.good(), "Failed to write to output stream!");
+     */
     void toProgressStream(std::ostream& stream) const;
 
 private:

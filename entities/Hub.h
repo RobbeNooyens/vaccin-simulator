@@ -20,19 +20,17 @@ class JObject;
 class Vaccine;
 
 typedef std::vector<Vaccine*> Vaccines;
-typedef std::vector<VaccinationCenter*> VaccinationCenters;
+typedef std::vector<VaccinationCenter> VaccinationCenters;
 
 class Hub {
 public:
     // Constructor
     /**
+     * Default Hub constructor
      * ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     Hub();
-//    /**
-//     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-//     */
-//	~Hub();
+
     /**
      * Checks if the current object was initialized properly
      * @return bool; true if the initCheck pointer points to the current instance
@@ -41,11 +39,19 @@ public:
 
     // Getters
     /**
-     * @return the amount of vaccins there are currently available in the hub
+     * @return unsigned int; the amount of vaccins there are currently available in the hub
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     unsigned int getTotalVaccinesCount() const;
+    /**
+     * @return vector<VaccinationCenter>; the vaccinationcenters connected with this hub
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
     VaccinationCenters getVaccinationCenters() const;
+    /**
+     * @return vector<Vaccine*>; vaccines that are delivered to this hub
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
     Vaccines getVaccines() const;
 
 
@@ -65,16 +71,21 @@ public:
      */
     void fromJSON(JObject* json, VaccinationCenters &centers);
     /**
-     * Exports Hub object member to the given stream
-     * @param ostream:
+     * Exports Hub object summary to the given stream
+     * @param stream: ostream; stream to push output strings to
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
      * REQUIRE(outStream.good(), "Output stream contains error flags!");
      * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
-    void toSummaryStream(std::ostream&) const;
-    void toProgressStream(std::ostream&) const;
+    void toSummaryStream(std::ostream &stream) const;
+    /**
+     * Exports Hub progress to the given stream
+     * @param stream: ostream; stream to push output strings to
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    void toProgressStream(std::ostream &stream) const;
 
     // Simulation controls
     /**
@@ -111,7 +122,7 @@ private:
     // Connected vaccinationcenters
     VaccinationCenters centers;
 
-    // Amount of vaccines per type
+    // Vaccines
     Vaccines vaccines;
     std::map<Vaccine*, int> vaccineCount;
 };

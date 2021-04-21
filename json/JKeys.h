@@ -6,6 +6,9 @@
 #define VACCIMULATOR_JKEYS_H
 
 // TODO: refactor in other files
+#define SIMULATION_HUBS "hubs"
+#define SIMULATION_CENTERS "centra"
+
 #define HUB_VACCINES "vaccins"
 #define HUB_CENTERS "centra"
 #define HUB_DELIVERY "levering"

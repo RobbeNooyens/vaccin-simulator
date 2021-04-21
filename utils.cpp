@@ -17,6 +17,12 @@ void StringUtil::concat(const std::string &s1, const std::string &s2, std::strin
     result = ss.str();
 }
 
+std::string StringUtil::concat(const std::string &s1, const std::string &s2) {
+    std::stringstream ss;
+    ss << s1 << s2;
+    return ss.str();
+}
+
 void IntUtil::toString(int num, std::string &target) {
     std::ostringstream convert;   // stream used for the conversion
     convert << num;      // insert the textual representation of 'Number' in the characters in the stream

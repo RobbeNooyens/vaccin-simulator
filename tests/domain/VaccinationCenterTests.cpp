@@ -18,13 +18,7 @@
 #define ADDRESS "TestStreet"
 #define TRANSPORT (unsigned int) 150
 
-class VaccinationCenterTests: public ::testing::Test {
-protected:
-    // You should make the members protected s.t. they can be
-    // accessed from sub-classes.
-//    VaccinationCenter center;
-
-};
+class VaccinationCenterTests: public ::testing::Test {};
 
 /**
 Tests the default constructor.
@@ -34,8 +28,12 @@ TEST_F(VaccinationCenterTests, DefaultConstructor) {
     EXPECT_TRUE(center.properlyInitialized());
     // Check initial values
     // These fields should be 0 after initialization.
-    EXPECT_FALSE(center.getVaccins() || center.getInhabitants() || center.getVaccinationsDone() || center.getCapacity());
-    EXPECT_TRUE(center.getName().empty() && center.getAddress().empty());
+    EXPECT_EQ(0, center.getVaccins());
+    EXPECT_EQ(0, center.getInhabitants());
+    EXPECT_EQ(0, center.getVaccinationsDone());
+    EXPECT_EQ(0, center.getCapacity());
+    EXPECT_TRUE(center.getName().empty());
+    EXPECT_TRUE(center.getAddress().empty());
 }
 
 /**

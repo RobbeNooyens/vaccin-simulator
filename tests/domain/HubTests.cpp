@@ -12,10 +12,6 @@
 #include "../../json/JValue.h"
 #include "../../json/JObject.h"
 
-#define DELIVERY 1
-#define INTERVAL 2
-#define TRANSPORTATION 3
-
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
 class MockVaccine: public Vaccine {
@@ -54,8 +50,8 @@ protected:
         vaccinationCenters.push_back(center3);
 
         // Setup JSON Vaccines
-        Vaccine vaccine1 = Vaccine("Vaccin 1", DELIVERY, INTERVAL, TRANSPORTATION);
-        Vaccine vaccine2 = Vaccine("Vaccin 2", 2*DELIVERY, 2*INTERVAL, 2*TRANSPORTATION);
+        Vaccine vaccine1 = Vaccine("Vaccin 1", 0, 1, 2);
+        Vaccine vaccine2 = Vaccine("Vaccin 2", 3, 4, 5);
         vaccines.push_back(new JValue(vaccine1.toJSON()));
         vaccines.push_back(new JValue(vaccine2.toJSON()));
     }
@@ -83,14 +79,14 @@ TEST_F(HubTests, DefaultConstructor) {
 
 TEST_F(HubTests, LoadFromJSON) {
     Hub jsonHub = Hub();
-    jsonHub.fromJSON(MockObjects::jHub(DELIVERY, INTERVAL, TRANSPORTATION, centerNames), vaccinationCenters);
+    jsonHub.fromJSON(MockObjects::jHub(1, 2, 3, centerNames), vaccinationCenters);
     EXPECT_TRUE(jsonHub.properlyInitialized());
     EXPECT_EQ(centerNames.size(), jsonHub.getVaccinationCenters().size());
     EXPECT_EQ(1, jsonHub.getVaccines().size());
     Vaccine* vaccine = jsonHub.getVaccines().front();
-    EXPECT_EQ(DELIVERY, vaccine->getDelivery());
-    EXPECT_EQ(INTERVAL, vaccine->getInterval());
-    EXPECT_EQ(TRANSPORTATION, vaccine->getTransportation());
+    EXPECT_EQ(1, vaccine->getDelivery());
+    EXPECT_EQ(2, vaccine->getInterval());
+    EXPECT_EQ(3, vaccine->getTransportation());
 }
 
 TEST_F(HubTests, LoadFromJSONVaccineTypes) {
@@ -99,12 +95,19 @@ TEST_F(HubTests, LoadFromJSONVaccineTypes) {
     EXPECT_TRUE(jsonHub.properlyInitialized());
     EXPECT_EQ(centerNames.size(), jsonHub.getVaccinationCenters().size());
     EXPECT_EQ(2, jsonHub.getVaccines().size());
+    std::vector<Vaccine*> vaccines = jsonHub.getVaccines();
+    ITERATE(std::vector<Vaccine*>, vaccines, vaccine) {
+        EXPECT_EQ(0, (*vaccine)->getDelivery()%3);
+        EXPECT_EQ(1, (*vaccine)->getInterval()%3);
+        EXPECT_EQ(2, (*vaccine)->getTransportation()%3);
+    }
 }
 
 TEST_F(HubTests, LoadFromJSONFail) {
-    JObject* emptyJObject = new JObject();
+    JObject* jObject = new JObject();
     Hub failHub = Hub();
-    EXPECT_DEATH(failHub.fromJSON(emptyJObject, vaccinationCenters), ".*should contain field.*");
+    EXPECT_DEATH(failHub.fromJSON(jObject, vaccinationCenters), ".*should contain field.*");
+    jObject->insertValue("centra", NULL);
     centerNames.push_back("RandomNameThatDoesntExist");
     EXPECT_DEATH(failHub.fromJSON(MockObjects::jHub(vaccines, centerNames), vaccinationCenters), ".*invalid name.*");
     centerNames.pop_back();

@@ -11,6 +11,8 @@
 #include "VaccinationCenter.h"
 #include "../json/JObject.h"
 #include "../json/JValue.h"
+#include "../json/JKeys.h"
+#include "../utils.h"
 
 // Constructors
 
@@ -32,14 +34,14 @@ bool VaccinationCenter::properlyInitialized() const {
 void VaccinationCenter::fromJSON(JObject* json) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(json != NULL, "Json can't be NULL!");
-    REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
-    REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
-    REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
-    REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
-    name = json->getValue("naam")->asString();
-    address = json->getValue("adres")->asString();
-    inhabitants = json->getValue("inwoners")->asUnsignedint();
-    capacity = json->getValue("capaciteit")->asUnsignedint();
+    REQUIRE(json->contains(CENTER_NAME), StringUtil::concat("VaccinationCenter JSON should contain field ", CENTER_NAME).c_str());
+    REQUIRE(json->contains(CENTER_ADDRESS), StringUtil::concat("VaccinationCenter JSON should contain field ", CENTER_ADDRESS).c_str());
+    REQUIRE(json->contains(CENTER_INHABITANTS), StringUtil::concat("VaccinationCenter JSON should contain field ", CENTER_INHABITANTS).c_str());
+    REQUIRE(json->contains(CENTER_CAPACITY), StringUtil::concat("VaccinationCenter JSON should contain field ", CENTER_CAPACITY).c_str());
+    name = json->getValue(CENTER_NAME)->asString();
+    address = json->getValue(CENTER_ADDRESS)->asString();
+    inhabitants = json->getValue(CENTER_INHABITANTS)->asUnsignedint();
+    capacity = json->getValue(CENTER_CAPACITY)->asUnsignedint();
 }
 
 void VaccinationCenter::toSummaryStream(std::ostream &stream) const {
@@ -105,6 +107,7 @@ unsigned int VaccinationCenter::getVaccinationsLeft() const {
 
 void VaccinationCenter::transportationArrived(unsigned int vaccinCount) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    REQUIRE(vaccins + vaccinCount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
     unsigned int oldVaccins = vaccins;
     vaccins += vaccinCount;
     ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");

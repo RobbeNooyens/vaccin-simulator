@@ -32,6 +32,14 @@ namespace StringUtil {
      */
     void concat(const std::string &s1, const std::string &s2, std::string &result);
 
+    /**
+     * Concatenates s1 and s2
+     * @param s1 the left side of the concatenated string
+     * @param s2 the right side of the concatenated string
+     * @return s1 and s2 concatenated
+     */
+    std::string concat(const std::string &s1, const std::string &s2);
+
 }
 
 namespace IntUtil {
@@ -45,14 +53,14 @@ namespace IntUtil {
 }
 
 namespace FileUtil {
-    //============================================================================
-    // Name        : TicTacToeUtils.cpp
-    // Author      : Serge Demeyer
-    // Version     :
-    // Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
-    // Description : TicTactToe in C++, Ansi-style
-    // Source      : https://github.com/sergedemeyer/TicTacToe_Git/blob/master/TicTacToeUtils.cpp
-    //============================================================================
+    /** ============================================================================
+    * Name        : TicTacToeUtils.cpp
+    * Author      : Serge Demeyer
+    * Version     :
+    * Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
+    * Description : TicTactToe in C++, Ansi-style
+    * Source      : https://github.com/sergedemeyer/TicTacToe_Git/blob/master/TicTacToeUtils.cpp
+    * ============================================================================*/
     bool DirectoryExists(const std::string dirname);
 
     bool FileExists(const std::string filename);

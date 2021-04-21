@@ -23,11 +23,16 @@ class Simulator {
 public:
     // Constructor
     /**
+     * Simulator default constructor
      * ENSURE(properlyInitialized(), "Object hasn't been initialized properly!");
      */
     Simulator();
 
     // Initialization
+    /**
+     * Checks if the current object was initialized properly
+     * @return bool; true if the initCheck pointer points to the current instance
+     */
     bool properlyInitialized() const;
 
     // IO
@@ -46,6 +51,15 @@ public:
      * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
     void exportSimulation(const std::string& fileName) const;
+    /**
+     *
+     * @param json
+     * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+     * REQUIRE(json->contains("centra"), "Can't load Simulator from JSON with missing field 'centra'");
+     * REQUIRE(json->contains("hubs"), "Can't load Simulator from JSON with missing field 'hubs'");
+     * ENSURE(!hubs.empty(), "Couldn't load hubs properly!");
+     * ENSURE(!centers.empty(), "Couldn't load centers properly!");
+     */
     void fromJSON(JObject* json);
 
     // Controls

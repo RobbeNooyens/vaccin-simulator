@@ -12,6 +12,7 @@
 #include "json/JObject.h"
 #include "json/JValue.h"
 #include "json/JArray.h"
+#include "json/JKeys.h"
 #include "entities/VaccinationCenter.h"
 #include "entities/Hub.h"
 
@@ -54,15 +55,15 @@ void Simulator::exportSimulation(const std::string& fileName) const {
 
 void Simulator::fromJSON(JObject *json) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    REQUIRE(json->contains("centra"), "Can't load Simulator from JSON with missing field 'centra'");
-    REQUIRE(json->contains("hubs"), "Can't load Simulator from JSON with missing field 'hubs'");
-    JValues centersJSON = json->getValue("centra")->asJArray()->getItems();
+    REQUIRE(json->contains(SIMULATION_CENTERS), StringUtil::concat("Can't load Simulator from JSON with missing field ", SIMULATION_CENTERS).c_str());
+    REQUIRE(json->contains(SIMULATION_HUBS), StringUtil::concat("Can't load Simulator from JSON with missing field ", SIMULATION_HUBS).c_str());
+    JValues centersJSON = json->getValue(SIMULATION_CENTERS)->asJArray()->getItems();
     ITERATE(JValues, centersJSON, center) {
         VaccinationCenter c;
         c.fromJSON((*center)->asJObject());
         centers.push_back(c);
     }
-    JValues hubsJSON = json->getValue("hubs")->asJArray()->getItems();
+    JValues hubsJSON = json->getValue(SIMULATION_HUBS)->asJArray()->getItems();
     ITERATE(JValues, hubsJSON, hub) {
         Hub h;
         h.fromJSON((*hub)->asJObject(), centers);
