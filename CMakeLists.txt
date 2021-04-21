@@ -20,7 +20,7 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         io/XMLParser.cpp io/XMLParser.h
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        Simulator.cpp Simulator.h
+        entities/Simulator.cpp entities/Simulator.h
         json/JValue.cpp json/JValue.h
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
@@ -42,7 +42,7 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         io/XMLParser.cpp io/XMLParser.h
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        Simulator.cpp Simulator.h tests/domain/HubTests.cpp
+        entities/Simulator.cpp entities/Simulator.h tests/domain/HubTests.cpp
         json/JValue.cpp json/JValue.h
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h

@@ -20,7 +20,7 @@ class JObject;
 class Vaccine;
 
 typedef std::vector<Vaccine*> Vaccines;
-typedef std::vector<VaccinationCenter> VaccinationCenters;
+typedef std::vector<VaccinationCenter*> VaccinationCenters;
 
 class Hub {
 public:
@@ -105,6 +105,8 @@ public:
      * @param vaccinCount: the amount of vaccins to transport
      */
     static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
+
+    bool isConsistent() const;
 
     // Validations
     /**

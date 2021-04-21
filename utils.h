@@ -14,6 +14,8 @@
 #include <iostream>
 #include <sstream>
 
+class TiXmlElement;
+
 namespace StringUtil {
 
     /**
@@ -68,6 +70,12 @@ namespace FileUtil {
     bool FileIsEmpty(const std::string filename);
 
     bool FileCompare(const std::string leftFileName, const std::string rightFileName);
+}
+
+namespace XMLUtil {
+
+    unsigned int elementToUnsignedInt(TiXmlElement* element, std::string elementName);
+
 }
 
 #endif //VACCIMULATOR_UTILS_H

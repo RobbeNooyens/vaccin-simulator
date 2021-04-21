@@ -8,16 +8,13 @@
 #ifndef VACCIN_SIMULATOR_SIMULATOR_H
 #define VACCIN_SIMULATOR_SIMULATOR_H
 
-#include "io/XMLParser.h"
+#include "../io/XMLParser.h"
+#include "VaccinationCenter.h"
+#include "Hub.h"
 #include <string>
 #include <vector>
 
-class Hub;
-class VaccinationCenter;
 class JObject;
-
-typedef std::vector<Hub> Hubs;
-typedef std::vector<VaccinationCenter> VaccinationCenters;
 
 class Simulator {
 public:
@@ -44,13 +41,21 @@ public:
      */
     void importSimulation(const std::string& fileName);
     /**
-     * Exports the simulation to a text file
+     * Exports the simulation summary to a text file
      * @param fileName: name of the text file to write to
      * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
      * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
-    void exportSimulation(const std::string& fileName) const;
+    void exportSimulationSummary(const std::string& fileName) const;
+    /**
+     * Exports the simulation progress to a text file
+     * @param fileName: name of the text file to write to
+     * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
+     * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
+     * ENSURE(!file.is_open(), "File wasn't closed properly!");
+     */
+    void exportSimulationProgress(const std::string& fileName) const;
     /**
      *
      * @param json
@@ -71,6 +76,8 @@ public:
      * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
     void run(unsigned int cycles);
+
+    bool isConsistent() const;
     // TODO: implement restart and clear functions
 //    void reset();
 //    void clear();
@@ -80,8 +87,8 @@ private:
     const Simulator* initCheck;
 
     // Simulation
-    Hubs hubs;
-    VaccinationCenters centers;
+    std::vector<Hub*> hubs;
+    std::vector<VaccinationCenter*> centers;
     XMLParser xmlParser;
     unsigned int daycount;
 };

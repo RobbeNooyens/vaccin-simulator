@@ -1,0 +1,12 @@
+Park Spoor Oost:
+	- vaccins 		[                    ] 0%
+	- vaccinated 	[=                   ] 7%
+AED Studios:
+	- vaccins 		[                    ] 0%
+	- vaccinated 	[=====               ] 25%
+De Zoerla:
+	- vaccins 		[                    ] 0%
+	- vaccinated 	[========            ] 40%
+Flanders Expo:
+	- vaccins 		[                    ] 0%
+	- vaccinated 	[=                   ] 7%

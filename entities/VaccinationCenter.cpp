@@ -16,12 +16,12 @@
 
 // Constructors
 
-VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
+VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0), connectedToHub(false) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
-                                     unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity) {
+                                     unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity), connectedToHub(false) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -56,9 +56,9 @@ void VaccinationCenter::toProgressStream(std::ostream &stream) const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(stream != NULL, "Output stream cannot be NULL!");
     REQUIRE(stream.good(), "Output stream contains error flags!");
-    double vaccinsProgress = std::min((double) 100, ((double) vaccins / capacity));
+    double vaccinsProgress = getPercentageVaccines();
     int vaccinsProgressBars = (int) (vaccinsProgress * 20);
-    double vaccinatedProgress = std::min((double) 100, ((double) vaccinated / inhabitants));
+    double vaccinatedProgress = getPercentageVaccinated();
     int vaccinatedProgressBars = (int) (vaccinatedProgress * 20);
     stream << getName() << ":" << std::endl;
     stream << "\t- vaccins \t\t[" << std::string(vaccinsProgressBars, '=') << std::string(20 - vaccinsProgressBars, ' ') << "] " << (int) (vaccinsProgress * 100) << '%' << std::endl;
@@ -120,4 +120,26 @@ void VaccinationCenter::vaccinateInhabitants() {
     vaccins -= vaccinsToUse;
     ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
     ENSURE(vaccins == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
+}
+
+double VaccinationCenter::getPercentageVaccines() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    REQUIRE(vaccins <= 2*capacity, "Can't have more vaccines than twice the capacity");
+    return ((double) vaccins / (double) 2*capacity);
+}
+
+double VaccinationCenter::getPercentageVaccinated() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
+    return ((double) vaccinated / (double) inhabitants);
+}
+
+void VaccinationCenter::setConnectedToHub(bool connected) {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    connectedToHub = connected;
+}
+
+bool VaccinationCenter::isConnectedToHub() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    return connectedToHub;
 }

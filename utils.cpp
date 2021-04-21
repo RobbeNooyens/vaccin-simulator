@@ -6,6 +6,7 @@
 // ╘============================================╛
 
 #include "utils.h"
+#include "tinyxml/tinyxml.h"
 
 bool StringUtil::contains(const std::string &source, const std::string &target) {
     return source.find(target) != std::string::npos;
@@ -83,4 +84,18 @@ bool FileUtil::FileCompare(const std::string leftFileName, const std::string rig
     leftFile.close();
     rightFile.close();
     return result;
+}
+
+unsigned int XMLUtil::elementToUnsignedInt(TiXmlElement *element, std::string elementName) {
+    TiXmlText* e_text = element->FirstChild()->ToText();
+    if (e_text == NULL) {
+        throw std::runtime_error("waarde niet gevonden in element '" + elementName + "'");
+    }
+    char *ptr;
+    std::string value = e_text->Value();
+    unsigned int k = strtoul(value.c_str(), &ptr, 10);
+    if (value.c_str() == ptr) {
+        throw std::runtime_error("waarde kon niet ingelezen worden van element '" + elementName + "'");
+    }
+    return k;
 }

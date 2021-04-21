@@ -52,6 +52,10 @@ public:
      */
     void vaccinateInhabitants();
 
+    // Setters
+
+    void setConnectedToHub(bool connected);
+
     // Getters
     /**
      * @return string; name of the vaccinationcenter
@@ -88,6 +92,9 @@ public:
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccinationsLeft() const;
+    double getPercentageVaccines() const;
+    double getPercentageVaccinated() const;
+    bool isConnectedToHub() const;
 
     // IO
     /**
@@ -131,6 +138,8 @@ private:
     unsigned int inhabitants;
     unsigned int vaccinated;
     unsigned int capacity;
+
+    bool connectedToHub;
 };
 
 

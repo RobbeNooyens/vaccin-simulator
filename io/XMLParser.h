@@ -10,9 +10,13 @@
 
 #include <streambuf>
 #include <string>
+#include <vector>
 
 class Hub;
 class JObject;
+class JArray;
+
+class TiXmlElement;
 
 class XMLParser {
 public:
@@ -29,10 +33,18 @@ public:
      * REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
      */
     JObject* parse(const std::string& fileName);
+    JObject* parseHub(TiXmlElement* hubXML);
+    JObject* parseVaccin(TiXmlElement* vaccinXML);
+    JArray* parseHubCenters(TiXmlElement* centraXML);
+    JObject* parseCenter(TiXmlElement* vaccinationCenterXML);
 
 private:
     // Initialization
     const XMLParser *initCheck;
+
+    // Parsing objects
+    std::vector<std::string> elements_centra;
+    std::vector<std::string> elements_vaccin;
 };
 
 

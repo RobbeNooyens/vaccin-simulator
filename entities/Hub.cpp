@@ -44,17 +44,17 @@ void Hub::toSummaryStream(std::ostream & outStream) const {
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     outStream << "Hub (" << getTotalVaccinesCount() << "): " << std::endl;
     C_ITERATE(VaccinationCenters, centers, center)
-        outStream << "  -> " << (*center).getName() << " (" << (*center).getVaccins() << " vaccins)" << std::endl;
-    outStream << std::endl;
-    C_ITERATE(VaccinationCenters, centers, center)
-        ((*center).toSummaryStream(outStream);
+        outStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
+//    outStream << std::endl;
+//    C_ITERATE(VaccinationCenters, centers, center)
+//        (*center)->toSummaryStream(outStream);
     ENSURE(outStream.good(), "Failed to write to output stream!");
 }
 
 void Hub::toProgressStream(std::ostream &outStream) const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     C_ITERATE(VaccinationCenters, centers, center) {
-        (*center).toProgressStream(outStream);
+        (*center)->toProgressStream(outStream);
     }
 }
 
@@ -63,33 +63,23 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     REQUIRE(json != NULL, "JSON can't be NULL!");
     REQUIRE(json->contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
-    if(!json->contains(HUB_VACCINES)) {
-        REQUIRE(json->contains(HUB_DELIVERY), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
-        REQUIRE(json->contains(HUB_INTERVAL), StringUtil::concat("Hub JSON should contain field ", HUB_INTERVAL).c_str());
-        REQUIRE(json->contains(HUB_TRANSPORTATION), StringUtil::concat("Hub JSON should contain field ", HUB_TRANSPORTATION).c_str());
-        // TODO: error catching
-        unsigned int delivery = json->getValue(HUB_DELIVERY)->asUnsignedint();
-        unsigned int interval = json->getValue(HUB_INTERVAL)->asUnsignedint();
-        unsigned int transport = json->getValue(HUB_TRANSPORTATION)->asUnsignedint();
-        Vaccine* vaccine = new Vaccine(DEFAULT_VACCINE, delivery, interval, transport);
+    REQUIRE(json->contains(HUB_VACCINES), StringUtil::concat("Hub JSON should contain field ", HUB_VACCINES).c_str());
+    JValues vaccins = json->getValue(HUB_VACCINES)->asJArray()->getItems();
+    ITERATE(JValues, vaccins, vaccin) {
+        // TODO: replace string fields with macros or static variables
+        Vaccine* vaccine = new Vaccine();
+        vaccine->fromJSON((*vaccin)->asJObject());
         vaccines.push_back(vaccine);
-        vaccineCount.insert(std::pair<Vaccine*, int>(vaccine, delivery));
-    } else {
-        JValues vaccins = json->getValue(HUB_VACCINES)->asJArray()->getItems();
-        ITERATE(JValues, vaccins, vaccin) {
-            // TODO: replace string fields with macros or static variables
-            Vaccine* vaccine = new Vaccine();
-            vaccine->fromJSON((*vaccin)->asJObject());
-            vaccines.push_back(vaccine);
-            vaccineCount.insert(std::pair<Vaccine*, int>(vaccine, vaccine->getDelivery()));
-        }
+        vaccineCount.insert(std::pair<Vaccine*, int>(vaccine, vaccine->getDelivery()));
     }
     std::vector<JValue*> centerNames = json->getValue(HUB_CENTERS)->asJArray()->getItems();
     ITERATE(std::vector<JValue*>, centerNames, name) {
         std::string centerName = (*name)->asString();
         ITERATE(VaccinationCenters, centerList, center) {
-            if((*center).getName() == centerName) {
+            if((*center)->getName() == centerName) {
                 centers.push_back(*center);
+                (*center)->setConnectedToHub(true);
+                continue;
             }
         }
     }
@@ -110,7 +100,7 @@ void Hub::simulateDay(unsigned int day) {
     distributeVaccins();
     // Vaccinate inhabitants
     ITERATE(VaccinationCenters, centers, center)
-        (*center).vaccinateInhabitants();
+        (*center)->vaccinateInhabitants();
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, unsigned int vaccinCount) {
@@ -122,6 +112,10 @@ void Hub::distributeVaccins(std::ostream& outStream) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     std::map<VaccinationCenter*, int> vaccinsPerCenter;
+    ITERATE(VaccinationCenters, centers, center) {
+        vaccinsPerCenter.insert(std::pair<VaccinationCenter*, int>(*center, 1000));
+        Hub::transportVaccinsTo(*center, 1000);
+    }
     // Distribution algorithm
     // Give each center the maximum amount of vaccins it can store.
     // TODO: replace with vaccines fields
@@ -154,7 +148,7 @@ bool Hub::containsInvalidCenter() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(&centers != NULL, "Centers can't be NULL!");
     for(unsigned int i = 0; i < (unsigned int) centers.size(); i++) {
-        if(!centers[i].properlyInitialized())
+        if(!centers[i]->properlyInitialized())
             return true;
     }
     return false;
@@ -179,4 +173,16 @@ VaccinationCenters Hub::getVaccinationCenters() const {
 Vaccines Hub::getVaccines() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return vaccines;
+}
+
+bool Hub::isConsistent() const {
+    bool consistent = true;
+    C_ITERATE(Vaccines, vaccines, vaccin) {
+        consistent = consistent && (*vaccin)->getDelivery() > 0 && (*vaccin)->getTransportation() > 0;
+    }
+    consistent = consistent && centers.size() > 0;
+    C_ITERATE(VaccinationCenters, centers, center) {
+        consistent = consistent && *center && (*center)->properlyInitialized();
+    }
+    return consistent;
 }

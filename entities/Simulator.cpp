@@ -7,14 +7,12 @@
 
 #include <fstream>
 #include "Simulator.h"
-#include "utils.h"
-#include "DesignByContract.h"
-#include "json/JObject.h"
-#include "json/JValue.h"
-#include "json/JArray.h"
-#include "json/JKeys.h"
-#include "entities/VaccinationCenter.h"
-#include "entities/Hub.h"
+#include "../utils.h"
+#include "../DesignByContract.h"
+#include "../json/JObject.h"
+#include "../json/JValue.h"
+#include "../json/JArray.h"
+#include "../json/JKeys.h"
 
 #define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
@@ -39,15 +37,31 @@ void Simulator::importSimulation(const std::string& fileName) {
     // TODO: delete json
 }
 
-void Simulator::exportSimulation(const std::string& fileName) const {
+void Simulator::exportSimulationSummary(const std::string& fileName) const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
     std::ofstream file;
     file.open(fileName.c_str());
     assert(file.is_open());
-    C_ITERATE(Hubs, hubs, hub) {
-        (*hub).toSummaryStream(file);
-        (*hub).toProgressStream(file);
+    C_ITERATE(std::vector<Hub*>, hubs, hub) {
+        (*hub)->toSummaryStream(file);
+    }
+    file << std::endl;
+    C_ITERATE(std::vector<VaccinationCenter*>, centers, center) {
+        (*center)->toSummaryStream(file);
+    }
+    file.close();
+    ENSURE(!file.is_open(), "File wasn't closed properly!");
+}
+
+void Simulator::exportSimulationProgress(const std::string &fileName) const {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    REQUIRE(!fileName.empty(), "Filename cannot be empty!");
+    std::ofstream file;
+    file.open(fileName.c_str());
+    assert(file.is_open());
+    C_ITERATE(std::vector<VaccinationCenter*>, centers, center) {
+        (*center)->toProgressStream(file);
     }
     file.close();
     ENSURE(!file.is_open(), "File wasn't closed properly!");
@@ -59,14 +73,14 @@ void Simulator::fromJSON(JObject *json) {
     REQUIRE(json->contains(SIMULATION_HUBS), StringUtil::concat("Can't load Simulator from JSON with missing field ", SIMULATION_HUBS).c_str());
     JValues centersJSON = json->getValue(SIMULATION_CENTERS)->asJArray()->getItems();
     ITERATE(JValues, centersJSON, center) {
-        VaccinationCenter c;
-        c.fromJSON((*center)->asJObject());
+        VaccinationCenter* c = new VaccinationCenter();
+        c->fromJSON((*center)->asJObject());
         centers.push_back(c);
     }
     JValues hubsJSON = json->getValue(SIMULATION_HUBS)->asJArray()->getItems();
     ITERATE(JValues, hubsJSON, hub) {
-        Hub h;
-        h.fromJSON((*hub)->asJObject(), centers);
+        Hub* h = new Hub();
+        h->fromJSON((*hub)->asJObject(), centers);
         hubs.push_back(h);
     }
     ENSURE(!hubs.empty(), "Couldn't load hubs properly!");
@@ -80,9 +94,27 @@ void Simulator::run(const unsigned int cycles) {
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
     for(; daycount < lastDay; daycount++){
-        ITERATE(Hubs, hubs, hub) {
-            (*hub).simulateDay(daycount);
+        ITERATE(std::vector<Hub*>, hubs, hub) {
+            (*hub)->simulateDay(daycount);
         }
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
+}
+
+bool Simulator::isConsistent() const {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    bool consistent = true;
+    // There's at least 1 hub
+    if(hubs.size() < 1)
+        consistent = false;
+    // There's at least 1 center
+    if(centers.size() < 1)
+        consistent = false;
+    // All hubs are consistent
+    C_ITERATE(std::vector<Hub*>, hubs, hub)
+        consistent = consistent && (*hub)->isConsistent();
+    // All centers are connected to at least one hub
+    C_ITERATE(std::vector<VaccinationCenter*>, centers, center)
+        consistent = consistent && (*center)->isConnectedToHub();
+    return consistent;
 }
