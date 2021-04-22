@@ -55,7 +55,7 @@ Tests the happy day scenario.
 TEST_F(VaccinationCenterTests, HappyDay){
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     unsigned int backupVaccins = c.getVaccins();
-    c.transportationArrived(TRANSPORT);
+    c.transportationArrived(NULL, 0);
     EXPECT_EQ(backupVaccins + TRANSPORT, c.getVaccins());
     c.vaccinateInhabitants();
     EXPECT_EQ(std::min(TRANSPORT, CAPACITY), c.getVaccinationsDone());
@@ -70,7 +70,7 @@ TEST_F(VaccinationCenterTests, Transportation){
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     for(int i = 0; i < 10; i++){
         vaccins += TRANSPORT;
-        c.transportationArrived(TRANSPORT);
+        c.transportationArrived(NULL, 0);
         EXPECT_EQ(vaccins, c.getVaccins());
     }
 }
@@ -81,7 +81,7 @@ TEST_F(VaccinationCenterTests, Transportation){
 TEST_F(VaccinationCenterTests, Vaccinations){
     unsigned int vaccins = 3000;
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
-    c.transportationArrived(vaccins);
+    c.transportationArrived(NULL, 0);
     for(int i = 1; i <= 15; i++) {
         c.vaccinateInhabitants();
         vaccins -= CAPACITY;

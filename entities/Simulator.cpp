@@ -19,7 +19,7 @@
 
 // Constructors
 
-Simulator::Simulator(): initCheck(this), daycount(0) {
+Simulator::Simulator(): initCheck(this), initialState(NULL), daycount(0) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
 }
 
@@ -32,9 +32,11 @@ bool Simulator::properlyInitialized() const {
 void Simulator::importSimulation(const std::string& fileName) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-    JObject* json = xmlParser.parse(fileName);
-    fromJSON(json);
-    // TODO: delete json
+    delete initialState;
+    initialState = xmlParser.parse(fileName);
+    fromJSON(initialState);
+    if(!isConsistent())
+        throw std::runtime_error("Inconsistent simulation!");
 }
 
 void Simulator::exportSimulationSummary(const std::string& fileName) const {
@@ -92,24 +94,25 @@ void Simulator::fromJSON(JObject *json) {
 void Simulator::run(const unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
+    REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
     for(; daycount < lastDay; daycount++){
-        ITERATE(std::vector<Hub*>, hubs, hub) {
+        // Deliver vaccines to the hub if expected and transport vaccines to the centers
+        ITERATE(std::vector<Hub*>, hubs, hub)
             (*hub)->simulateDay(daycount);
-        }
+        // Vaccinate inhabitants (should happen here to prevent double vaccinations)
+        ITERATE(VaccinationCenters, centers, center)
+            (*center)->vaccinateInhabitants();
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
 }
 
 bool Simulator::isConsistent() const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    bool consistent = true;
     // There's at least 1 hub
-    if(hubs.size() < 1)
-        consistent = false;
+    bool consistent = hubs.size() >= 1;
     // There's at least 1 center
-    if(centers.size() < 1)
-        consistent = false;
+    consistent = consistent && centers.size() >= 1;
     // All hubs are consistent
     C_ITERATE(std::vector<Hub*>, hubs, hub)
         consistent = consistent && (*hub)->isConsistent();
@@ -117,4 +120,19 @@ bool Simulator::isConsistent() const {
     C_ITERATE(std::vector<VaccinationCenter*>, centers, center)
         consistent = consistent && (*center)->isConnectedToHub();
     return consistent;
+}
+
+void Simulator::reset() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    ITERATE(std::vector<Hub*>, hubs, hub)
+        delete *hub;
+    ITERATE(std::vector<VaccinationCenter*>, centers, center)
+        delete *center;
+    fromJSON(initialState);
+    daycount = 0;
+}
+
+Simulator::~Simulator() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    delete initialState;
 }

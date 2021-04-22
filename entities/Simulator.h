@@ -24,6 +24,7 @@ public:
      * ENSURE(properlyInitialized(), "Object hasn't been initialized properly!");
      */
     Simulator();
+    ~Simulator();
 
     // Initialization
     /**
@@ -79,7 +80,7 @@ public:
 
     bool isConsistent() const;
     // TODO: implement restart and clear functions
-//    void reset();
+    void reset();
 //    void clear();
 
 private:
@@ -87,6 +88,7 @@ private:
     const Simulator* initCheck;
 
     // Simulation
+    JObject* initialState;
     std::vector<Hub*> hubs;
     std::vector<VaccinationCenter*> centers;
     XMLParser xmlParser;

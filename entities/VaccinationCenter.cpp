@@ -13,15 +13,20 @@
 #include "../json/JValue.h"
 #include "../json/JKeys.h"
 #include "../utils.h"
+#include "Vaccine.h"
+
+#define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
+#define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
+#define COMMA ,
 
 // Constructors
 
-VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0), connectedToHub(false) {
+VaccinationCenter::VaccinationCenter(): initCheck(this), inhabitants(0), vaccinated(0), capacity(0), connectedToHub(false), outStream(&std::cout) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
-                                     unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity), connectedToHub(false) {
+                                     unsigned int capacity) : initCheck(this), name(name), address(address), inhabitants(inhabitants), vaccinated(0), capacity(capacity), connectedToHub(false) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -90,7 +95,10 @@ unsigned int VaccinationCenter::getCapacity() const {
 
 unsigned int VaccinationCenter::getVaccins() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    return vaccins;
+    unsigned int sum = 0;
+    C_ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccines, vaccinePair)
+        sum += vaccinePair->second;
+    return sum;
 }
 
 unsigned int VaccinationCenter::getVaccinationsDone() const {
@@ -105,27 +113,33 @@ unsigned int VaccinationCenter::getVaccinationsLeft() const {
 
 // Simulation controls
 
-void VaccinationCenter::transportationArrived(unsigned int vaccinCount) {
+void VaccinationCenter::transportationArrived(Vaccine *vaccine, unsigned int amount) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(vaccins + vaccinCount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
-    unsigned int oldVaccins = vaccins;
-    vaccins += vaccinCount;
-    ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
+    REQUIRE(getVaccins() + amount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
+    unsigned int oldVaccins = getVaccins();
+    vaccines[vaccine] += amount;
+    ENSURE(getVaccins() == oldVaccins + amount, "Vaccines aren't added succesfully!");
 }
 
 void VaccinationCenter::vaccinateInhabitants() {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    unsigned int vaccinsToUse = std::min(capacity, vaccins), oldVaccinated = vaccinated, oldVaccins = vaccins;
-    vaccinated += vaccinsToUse;
-    vaccins -= vaccinsToUse;
-    ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
-    ENSURE(vaccins == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
+    unsigned int totalVaccinationsDone = 0;
+    ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccines, vaccinePair) {
+        unsigned int vaccinsToUse = std::min(getVaccinationsLeft(), vaccinePair->second), oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
+        vaccinated += vaccinsToUse;
+        vaccines[vaccinePair->first] -= vaccinsToUse;
+        totalVaccinationsDone += vaccinsToUse;
+        ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
+        ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
+
+    }
+    *outStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd in " << getName() << std::endl;
 }
 
 double VaccinationCenter::getPercentageVaccines() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(vaccins <= 2*capacity, "Can't have more vaccines than twice the capacity");
-    return ((double) vaccins / (double) 2*capacity);
+    REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
+    return ((double) getVaccins() / (double) 2*capacity);
 }
 
 double VaccinationCenter::getPercentageVaccinated() const {
@@ -142,4 +156,9 @@ void VaccinationCenter::setConnectedToHub(bool connected) {
 bool VaccinationCenter::isConnectedToHub() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     return connectedToHub;
+}
+
+void VaccinationCenter::setOutputStream(std::ostream &outputStream) {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    outStream = &outputStream;
 }

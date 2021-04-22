@@ -98,15 +98,17 @@ public:
      * Simulate vaccin distribution over the vaccinationcenters
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
-    void distributeVaccins(std::ostream& outStream = std::cout);
+    void distributeVaccins();
     /**
      * Transport a specific amount of vaccinations to the specified vaccination center.
      * @param center: the center where the vaccins should be transported to
      * @param vaccinCount: the amount of vaccins to transport
      */
-    static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
+    void transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine*, unsigned int> doses) const;
 
     bool isConsistent() const;
+
+    void setOutputStream(std::ostream &outputStream);
 
     // Validations
     /**
@@ -126,7 +128,10 @@ private:
 
     // Vaccines
     Vaccines vaccines;
-    std::map<Vaccine*, int> vaccineCount;
+    std::map<Vaccine*, unsigned int> vaccineCount;
+
+    // Simulation
+    std::ostream* outStream;
 };
 
 

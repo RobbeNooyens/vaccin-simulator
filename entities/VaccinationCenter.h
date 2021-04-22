@@ -9,6 +9,8 @@
 #define VACCIN_SIMULATOR_VACCINATIONCENTER_H
 
 #include <string>
+#include <map>
+#include "Vaccine.h"
 
 class TiXmlElement;
 class JObject;
@@ -43,7 +45,7 @@ public:
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      * ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
      */
-    void transportationArrived(unsigned int vaccinCount);
+    void transportationArrived(Vaccine *vaccine, unsigned int amount);
     /**
      * Simulate the situation where the highest possible amount of inhabitants are being vaccinated
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
@@ -55,6 +57,8 @@ public:
     // Setters
 
     void setConnectedToHub(bool connected);
+
+    void setOutputStream(std::ostream& outputStream);
 
     // Getters
     /**
@@ -134,12 +138,14 @@ private:
     // Metadata
     std::string name;
     std::string address;
-    unsigned int vaccins;
     unsigned int inhabitants;
     unsigned int vaccinated;
     unsigned int capacity;
+    std::map<Vaccine*, unsigned int> vaccines;
 
+    // Simulation
     bool connectedToHub;
+    std::ostream* outStream;
 };
 
 
