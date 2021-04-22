@@ -43,7 +43,7 @@ public:
      * @return the amount of vaccins there are currently available in the hub
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
-    unsigned int getVaccins() const;
+    std::vector<Vaccine*>& getVaccins() const;
 
     // IO
     /**
@@ -77,7 +77,7 @@ public:
      * @param day: daynumber relative to the startdate
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
-    void simulateDay(unsigned int day);
+    // void simulateDay(unsigned int day);
 
     // Validations
     /**
@@ -86,36 +86,40 @@ public:
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * REQUIRE(&centers != NULL, "Centers can't be NULL!");
      */
-    bool containsInvalidCenter() const;
+    // bool containsInvalidCenter() const;
+
+    bool is_connected(const std::string name) const;
 
 private:
+    std::vector<Vaccine*> vaccins;
+    unordered_map<std::string, bool> centers;
     // Initialization
     const Hub* initCheck;
 
     // Metadata
-    unsigned int delivery;
-    unsigned int interval;
-    unsigned int transport; // Vaccines per load
-    unsigned int vaccinsCount;
+    //unsigned int delivery;
+    //unsigned int interval;
+    //unsigned int transport; // Vaccines per load
+    //unsigned int vaccinsCount;
 
     // Connected vaccinationcenters
-    VaccinationCenters centers;
+    //VaccinationCenters centers;
 
     // Amount of vaccines per type
-    std::map<Vaccine*, int> vaccinCount;
+    //std::map<Vaccine*, int> vaccinCount;
 
     // Simulation
     /**
      * Simulate vaccin distribution over the vaccinationcenters
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
-    void distributeVaccins(std::ostream& outStream = std::cout);
+    // void distributeVaccins(std::ostream& outStream = std::cout);
     /**
      * Transport a specific amount of vaccinations to the specified vaccination center.
      * @param center: the center where the vaccins should be transported to
      * @param vaccinCount: the amount of vaccins to transport
      */
-    static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
+    // static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
 };
 
 

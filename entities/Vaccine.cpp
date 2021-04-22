@@ -10,7 +10,7 @@
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 
-Vaccine::Vaccine(): initCheck(this) {
+Vaccine::Vaccine(): initCheck(this), {
     ENSURE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
 }
 
@@ -59,4 +59,20 @@ unsigned int Vaccine::getRenewing() const {
 double Vaccine::getTemperature() const {
     REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
     return temperature;
+}
+
+bool Vaccine::operator<(const Vaccine& s) const {
+    return transportation < s.getTransportation();
+}
+
+Hub* Vaccine::getHub() const {
+    return hub;
+}
+
+void Vaccine::setHub(Hub* h) {
+    hub = h;
+}
+
+vector<unsigned int>& Vaccine::getDays() const {
+    return days;
 }

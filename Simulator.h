@@ -13,6 +13,7 @@
 #include <string>
 
 typedef std::vector<Hub> Hubs;
+typedef std::vector<VaccinationCenter> Centers;
 
 class Simulator {
 public:
@@ -50,15 +51,23 @@ public:
      * REQUIRE(cycles != 0, "Cycles cannot be 0!");
      * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
-    void run(unsigned int cycles);
+    void run();
+
+    void make_calender();
+
+    bool is_valid(unsigned int k, int z, int i);
+
+    void simulateDay(unsigned int day);
 
 private:
     // Initialization
     const Simulator* initCheck;
 
     // Simulation
-    Hub hub;
-    Hubs hubs;
+    unsigned int cycles;
+    std::vector<Hub*> hubs;
+    std::vector<VaccinationCenter*> centers;
+    std::vector<Vaccine*> vaccins;
     XMLParser xmlParser;
     unsigned int daycount;
 };

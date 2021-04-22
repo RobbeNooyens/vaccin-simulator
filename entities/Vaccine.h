@@ -36,12 +36,21 @@ public:
     unsigned int getRenewing() const;
     double getTemperature() const;
 
+    bool operator<(const Vaccine& s) const;
+
+    Hub* getHub() const;
+
+    void setHub(Hub* h);
+
+    vector<unsigned int>& getDays() const;
 
 private:
+    vector<unsigned int> days;
     // Initialization
     const Vaccine* initCheck;
 
     // Metadata
+    Hub* hub;
     std::string type;
     unsigned int delivery;
     unsigned int interval;
