@@ -21,20 +21,24 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
         entities/Simulator.cpp entities/Simulator.h
+        entities/Vaccine.cpp entities/Vaccine.h
         json/JValue.cpp json/JValue.h
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
+        json/JKeys.h
         DesignByContract.h
-        utils.cpp utils.h entities/Vaccine.cpp entities/Vaccine.h json/JKeys.h)
+        utils.cpp utils.h)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         utils.h utils.cpp
         tests/domain/VaccinationCenterTests.cpp
         tests/domain/HubTests.cpp
+        tests/domain/VaccineTests.cpp
         tests/presentation/SimulationOutputTests.cpp
         tests/data/XMLParserTests.cpp
         tests/data/JsonTests.cpp
+        tests/TestUtils.cpp tests/TestUtils.h
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
@@ -42,11 +46,13 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         io/XMLParser.cpp io/XMLParser.h
         entities/Hub.cpp entities/Hub.h
         entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        entities/Simulator.cpp entities/Simulator.h tests/domain/HubTests.cpp
+        entities/Simulator.cpp entities/Simulator.h
+        entities/Vaccine.cpp entities/Vaccine.h
         json/JValue.cpp json/JValue.h
         json/JObject.cpp json/JObject.h
         json/JArray.cpp json/JArray.h
-        DesignByContract.h tests/TestUtils.cpp tests/TestUtils.h tests/domain/VaccineTests.cpp)
+        json/JKeys.h
+        DesignByContract.h)
 
 # Create RELEASE target
 add_executable(Vaccimulator ${RELEASE_SOURCE_FILES})
