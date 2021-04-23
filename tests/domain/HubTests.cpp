@@ -74,7 +74,7 @@ TEST_F(HubTests, DefaultConstructor) {
     EXPECT_TRUE(defaultConstructor.properlyInitialized());
     EXPECT_TRUE(defaultConstructor.getVaccines().empty());
     EXPECT_TRUE(defaultConstructor.getVaccinationCenters().empty());
-    EXPECT_EQ(0, defaultConstructor.getTotalVaccinesCount());
+    EXPECT_EQ((unsigned int) 0, defaultConstructor.getTotalVaccinesCount());
 }
 
 TEST_F(HubTests, LoadFromJSON) {
@@ -82,11 +82,11 @@ TEST_F(HubTests, LoadFromJSON) {
     jsonHub.fromJSON(MockObjects::jHub(1, 2, 3, centerNames), vaccinationCenters);
     EXPECT_TRUE(jsonHub.properlyInitialized());
     EXPECT_EQ(centerNames.size(), jsonHub.getVaccinationCenters().size());
-    EXPECT_EQ(1, jsonHub.getVaccines().size());
+    EXPECT_EQ((unsigned int) 1, jsonHub.getVaccines().size());
     Vaccine* vaccine = jsonHub.getVaccines().front();
-    EXPECT_EQ(1, vaccine->getDelivery());
-    EXPECT_EQ(2, vaccine->getInterval());
-    EXPECT_EQ(3, vaccine->getTransportation());
+    EXPECT_EQ((unsigned int) 1, vaccine->getDelivery());
+    EXPECT_EQ((unsigned int) 2, vaccine->getInterval());
+    EXPECT_EQ((unsigned int) 3, vaccine->getTransportation());
 }
 
 TEST_F(HubTests, LoadFromJSONVaccineTypes) {
@@ -94,12 +94,12 @@ TEST_F(HubTests, LoadFromJSONVaccineTypes) {
     jsonHub.fromJSON(MockObjects::jHub(vaccines, centerNames), vaccinationCenters);
     EXPECT_TRUE(jsonHub.properlyInitialized());
     EXPECT_EQ(centerNames.size(), jsonHub.getVaccinationCenters().size());
-    EXPECT_EQ(2, jsonHub.getVaccines().size());
+    EXPECT_EQ((unsigned int) 2, jsonHub.getVaccines().size());
     std::vector<Vaccine*> vaccines = jsonHub.getVaccines();
     ITERATE(std::vector<Vaccine*>, vaccines, vaccine) {
-        EXPECT_EQ(0, (*vaccine)->getDelivery()%3);
-        EXPECT_EQ(1, (*vaccine)->getInterval()%3);
-        EXPECT_EQ(2, (*vaccine)->getTransportation()%3);
+        EXPECT_EQ((unsigned int) 0, (*vaccine)->getDelivery()%3);
+        EXPECT_EQ((unsigned int) 1, (*vaccine)->getInterval()%3);
+        EXPECT_EQ((unsigned int) 2, (*vaccine)->getTransportation()%3);
     }
 }
 

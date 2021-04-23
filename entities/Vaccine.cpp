@@ -13,7 +13,7 @@
 
 // Constructors
 
-Vaccine::Vaccine() : initCheck(this) {
+Vaccine::Vaccine() : initCheck(this), type(DEFAULT_VACCINE), delivery(0), interval(0), transportation(0), renewing(0), temperature(0) {
     ENSURE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
 }
 

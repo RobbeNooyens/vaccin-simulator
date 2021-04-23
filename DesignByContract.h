@@ -10,14 +10,16 @@
 #include <assert.h>
 #include <iostream>
 
-// WSL:
-// =====================================================================================
-//#define REQUIRE(assertion, what) if (!(assertion)) __assert (what, __FILE__, __LINE__)
-//#define ENSURE(assertion, what) if (!(assertion)) __assert (what, __FILE__, __LINE__)
-// =====================================================================================
-
+#ifdef _WIN32
 // Windows:
 // =====================================================================================
 #define REQUIRE(assertion, what) if (!(assertion)) _assert (what, __FILE__, __LINE__)
 #define ENSURE(assertion, what) if (!(assertion)) _assert (what, __FILE__, __LINE__)
 // =====================================================================================
+#else
+// WSL:
+// =====================================================================================
+#define REQUIRE(assertion, what) if (!(assertion)) __assert (what, __FILE__, __LINE__)
+#define ENSURE(assertion, what) if (!(assertion)) __assert (what, __FILE__, __LINE__)
+// =====================================================================================
+#endif

@@ -136,36 +136,6 @@ VaccimulatorTests/fast:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/build
 .PHONY : VaccimulatorTests/fast
 
-Simulator.o: Simulator.cpp.o
-
-.PHONY : Simulator.o
-
-# target to build an object file
-Simulator.cpp.o:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/Simulator.cpp.o
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o
-.PHONY : Simulator.cpp.o
-
-Simulator.i: Simulator.cpp.i
-
-.PHONY : Simulator.i
-
-# target to preprocess a source file
-Simulator.cpp.i:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/Simulator.cpp.i
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.i
-.PHONY : Simulator.cpp.i
-
-Simulator.s: Simulator.cpp.s
-
-.PHONY : Simulator.s
-
-# target to generate assembly for a file
-Simulator.cpp.s:
-	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/Simulator.cpp.s
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.s
-.PHONY : Simulator.cpp.s
-
 Vaccimulator.o: Vaccimulator.cpp.o
 
 .PHONY : Vaccimulator.o
@@ -250,6 +220,36 @@ entities/Hub.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.s
 .PHONY : entities/Hub.cpp.s
 
+entities/Simulator.o: entities/Simulator.cpp.o
+
+.PHONY : entities/Simulator.o
+
+# target to build an object file
+entities/Simulator.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o
+.PHONY : entities/Simulator.cpp.o
+
+entities/Simulator.i: entities/Simulator.cpp.i
+
+.PHONY : entities/Simulator.i
+
+# target to preprocess a source file
+entities/Simulator.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.i
+.PHONY : entities/Simulator.cpp.i
+
+entities/Simulator.s: entities/Simulator.cpp.s
+
+.PHONY : entities/Simulator.s
+
+# target to generate assembly for a file
+entities/Simulator.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.s
+.PHONY : entities/Simulator.cpp.s
+
 entities/VaccinationCenter.o: entities/VaccinationCenter.cpp.o
 
 .PHONY : entities/VaccinationCenter.o
@@ -287,6 +287,7 @@ entities/Vaccine.o: entities/Vaccine.cpp.o
 # target to build an object file
 entities/Vaccine.cpp.o:
 	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o
 .PHONY : entities/Vaccine.cpp.o
 
 entities/Vaccine.i: entities/Vaccine.cpp.i
@@ -296,6 +297,7 @@ entities/Vaccine.i: entities/Vaccine.cpp.i
 # target to preprocess a source file
 entities/Vaccine.cpp.i:
 	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.i
 .PHONY : entities/Vaccine.cpp.i
 
 entities/Vaccine.s: entities/Vaccine.cpp.s
@@ -305,6 +307,7 @@ entities/Vaccine.s: entities/Vaccine.cpp.s
 # target to generate assembly for a file
 entities/Vaccine.cpp.s:
 	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Vaccine.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.s
 .PHONY : entities/Vaccine.cpp.s
 
 io/XMLParser.o: io/XMLParser.cpp.o
@@ -776,9 +779,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... Vaccimulator"
 	@echo "... VaccimulatorTests"
-	@echo "... Simulator.o"
-	@echo "... Simulator.i"
-	@echo "... Simulator.s"
 	@echo "... Vaccimulator.o"
 	@echo "... Vaccimulator.i"
 	@echo "... Vaccimulator.s"
@@ -788,6 +788,9 @@ help:
 	@echo "... entities/Hub.o"
 	@echo "... entities/Hub.i"
 	@echo "... entities/Hub.s"
+	@echo "... entities/Simulator.o"
+	@echo "... entities/Simulator.i"
+	@echo "... entities/Simulator.s"
 	@echo "... entities/VaccinationCenter.o"
 	@echo "... entities/VaccinationCenter.i"
 	@echo "... entities/VaccinationCenter.s"

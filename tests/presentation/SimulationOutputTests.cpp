@@ -36,10 +36,10 @@ protected:
         std::vector<std::string> centerNames;
         JValues jValueCenters = jCenters->getItems();
         ITERATE(JValues, jValueCenters, center) {
-            VaccinationCenter c = VaccinationCenter();
-            c.fromJSON((*center)->asJObject());
+            VaccinationCenter* c = new VaccinationCenter();
+            c->fromJSON((*center)->asJObject());
             centers.push_back(c);
-            centerNames.push_back(c.getName());
+            centerNames.push_back(c->getName());
         }
         // Initialize Hubs
         JArray* hubs = new JArray();
@@ -47,6 +47,8 @@ protected:
         hubs->insertValue(new JValue(h));
         // Load hub
         hub.fromJSON(json, centers);
+        ITERATE(VaccinationCenters, centers, center)
+            delete *center;
         // TODO: delete json without segmentation fault
         // delete json;
     }

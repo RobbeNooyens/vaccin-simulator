@@ -28,10 +28,10 @@ TEST_F(VaccinationCenterTests, DefaultConstructor) {
     EXPECT_TRUE(center.properlyInitialized());
     // Check initial values
     // These fields should be 0 after initialization.
-    EXPECT_EQ(0, center.getVaccins());
-    EXPECT_EQ(0, center.getInhabitants());
-    EXPECT_EQ(0, center.getVaccinationsDone());
-    EXPECT_EQ(0, center.getCapacity());
+    EXPECT_EQ((unsigned int) 0, center.getVaccins());
+    EXPECT_EQ((unsigned int) 0, center.getInhabitants());
+    EXPECT_EQ((unsigned int) 0, center.getVaccinationsDone());
+    EXPECT_EQ((unsigned int) 0, center.getCapacity());
     EXPECT_TRUE(center.getName().empty());
     EXPECT_TRUE(center.getAddress().empty());
 }
@@ -57,7 +57,7 @@ TEST_F(VaccinationCenterTests, HappyDay){
     unsigned int backupVaccins = c.getVaccins();
     c.transportationArrived(NULL, 0);
     EXPECT_EQ(backupVaccins + TRANSPORT, c.getVaccins());
-    c.vaccinateInhabitants();
+    c.vaccinateInhabitants(0);
     EXPECT_EQ(std::min(TRANSPORT, CAPACITY), c.getVaccinationsDone());
     EXPECT_EQ(INHABITANTS - std::min(TRANSPORT, CAPACITY), c.getVaccinationsLeft());
 }
@@ -83,7 +83,7 @@ TEST_F(VaccinationCenterTests, Vaccinations){
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     c.transportationArrived(NULL, 0);
     for(int i = 1; i <= 15; i++) {
-        c.vaccinateInhabitants();
+        c.vaccinateInhabitants(i);
         vaccins -= CAPACITY;
         EXPECT_EQ(vaccins, c.getVaccins());
         EXPECT_EQ(i*CAPACITY, c.getVaccinationsDone());

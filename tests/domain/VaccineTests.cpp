@@ -11,11 +11,11 @@
 #include "../TestUtils.h"
 
 #define TYPE "Pfizer"
-#define DELIVERY 1
-#define INTERVAL 2
-#define TRANSPORTATION 3
-#define RENEWING 4
-#define TEMPERATURE 5.0
+#define DELIVERY (unsigned int) 1
+#define INTERVAL (unsigned int) 2
+#define TRANSPORTATION (unsigned int) 3
+#define RENEWING (unsigned int) 4
+#define TEMPERATURE (double) 5.0
 
 class VaccineTests: public ::testing::Test {};
 
@@ -23,12 +23,12 @@ class VaccineTests: public ::testing::Test {};
 TEST_F(VaccineTests, DefaultConstructors) {
     Vaccine defaultConstructor = Vaccine();
     EXPECT_TRUE(defaultConstructor.properlyInitialized());
-    EXPECT_EQ(0, defaultConstructor.getType());
-    EXPECT_EQ(0, defaultConstructor.getDelivery());
-    EXPECT_EQ(0, defaultConstructor.getInterval());
-    EXPECT_EQ(0, defaultConstructor.getTransportation());
-    EXPECT_EQ(0, defaultConstructor.getRenewing());
-    EXPECT_EQ(0.0, defaultConstructor.getTemperature());
+    EXPECT_EQ("", defaultConstructor.getType());
+    EXPECT_EQ((unsigned int) 0, defaultConstructor.getDelivery());
+    EXPECT_EQ((unsigned int) 0, defaultConstructor.getInterval());
+    EXPECT_EQ((unsigned int) 0, defaultConstructor.getTransportation());
+    EXPECT_EQ((unsigned int) 0, defaultConstructor.getRenewing());
+    EXPECT_EQ((double) 0.0, defaultConstructor.getTemperature());
 }
 
 TEST_F(VaccineTests, ParameterConstructors) {
