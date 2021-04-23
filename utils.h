@@ -78,4 +78,18 @@ namespace XMLUtil {
 
 }
 
+namespace TimeUtil {
+
+    /**
+     * Copied from https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+     * Gets current date and time as a string
+     * @param format: string; string format
+     * @return current date time as a string
+     * @return current date time as a string
+     * @return current date time as a string
+     */
+    std::string getCurrentDateTime(std::string format = "%Y-%m-%d.%X");
+
+}
+
 #endif //VACCIMULATOR_UTILS_H

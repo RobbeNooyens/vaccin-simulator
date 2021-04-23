@@ -52,7 +52,9 @@ public:
      * ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
      * ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
      */
-    void vaccinateInhabitants();
+    void vaccinateInhabitants(unsigned int day);
+
+    void removeExpiredVaccines();
 
     // Setters
 
@@ -142,6 +144,7 @@ private:
     unsigned int vaccinated;
     unsigned int capacity;
     std::map<Vaccine*, unsigned int> vaccines;
+    std::map<Vaccine*, std::map<unsigned int, unsigned int> > renewing;
 
     // Simulation
     bool connectedToHub;

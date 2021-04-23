@@ -7,6 +7,7 @@
 
 #include "utils.h"
 #include "tinyxml/tinyxml.h"
+#include <time.h>
 
 bool StringUtil::contains(const std::string &source, const std::string &target) {
     return source.find(target) != std::string::npos;
@@ -98,4 +99,15 @@ unsigned int XMLUtil::elementToUnsignedInt(TiXmlElement *element, std::string el
         throw std::runtime_error("waarde kon niet ingelezen worden van element '" + elementName + "'");
     }
     return k;
+}
+
+std::string TimeUtil::getCurrentDateTime(std::string format) {
+    time_t     now = time(0);
+    struct tm  tstruct = {};
+    char       buf[80];
+    tstruct = *localtime(&now);
+    // Visit http://en.cppreference.com/w/cpp/chrono/c/strftime
+    // for more information about date/time format
+    strftime(buf, sizeof(buf), format.c_str(), &tstruct);
+    return buf;
 }

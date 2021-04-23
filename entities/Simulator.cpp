@@ -102,7 +102,7 @@ void Simulator::run(const unsigned int cycles) {
             (*hub)->simulateDay(daycount);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
         ITERATE(VaccinationCenters, centers, center)
-            (*center)->vaccinateInhabitants();
+            (*center)->vaccinateInhabitants(daycount);
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
 }

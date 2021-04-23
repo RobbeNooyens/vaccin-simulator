@@ -121,25 +121,47 @@ void VaccinationCenter::transportationArrived(Vaccine *vaccine, unsigned int amo
     ENSURE(getVaccins() == oldVaccins + amount, "Vaccines aren't added succesfully!");
 }
 
-void VaccinationCenter::vaccinateInhabitants() {
+void VaccinationCenter::vaccinateInhabitants(unsigned int day) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     unsigned int totalVaccinationsDone = 0;
+    ITERATE(std::map<Vaccine* COMMA std::map<unsigned int COMMA unsigned int> >, renewing, renew) {
+        Vaccine* vaccine = renew->first;
+        if(renewing[vaccine].find(day) != renewing[vaccine].end()) {
+            unsigned int toVaccinate = renewing[vaccine][day];
+            unsigned int vaccinesInStock = vaccines[vaccine];
+            unsigned int vaccinsToUse = std::min(getCapacity(), toVaccinate), oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
+            vaccinsToUse = std::min(vaccinsToUse, vaccinesInStock);
+            vaccinated += vaccinsToUse;
+            vaccines[vaccine] -= vaccinsToUse;
+            totalVaccinationsDone += vaccinsToUse;
+            ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
+            ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
+        }
+    }
     ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccines, vaccinePair) {
+        if(vaccinePair->first->getRenewing() > 0) {
+            unsigned int vaccinsToUse = std::min(getVaccinationsLeft(), vaccinePair->second);
+            vaccinsToUse = std::min(vaccinsToUse, getCapacity());
+            renewing[vaccinePair->first].insert(std::pair<unsigned int, unsigned int>(day + vaccinePair->first->getRenewing(), vaccinsToUse));
+            totalVaccinationsDone += vaccinsToUse;
+            continue;
+        }
         unsigned int vaccinsToUse = std::min(getVaccinationsLeft(), vaccinePair->second), oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
+        vaccinsToUse = std::min(vaccinsToUse, getCapacity());
         vaccinated += vaccinsToUse;
         vaccines[vaccinePair->first] -= vaccinsToUse;
         totalVaccinationsDone += vaccinsToUse;
         ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
         ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
-
     }
     *outStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd in " << getName() << std::endl;
+    removeExpiredVaccines();
 }
 
 double VaccinationCenter::getPercentageVaccines() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
-    return ((double) getVaccins() / (double) 2*capacity);
+    return ((double) getVaccins() / ((double) 2*capacity));
 }
 
 double VaccinationCenter::getPercentageVaccinated() const {
@@ -161,4 +183,14 @@ bool VaccinationCenter::isConnectedToHub() const {
 void VaccinationCenter::setOutputStream(std::ostream &outputStream) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     outStream = &outputStream;
+}
+
+void VaccinationCenter::removeExpiredVaccines() {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccines, vaccinePair) {
+        if(vaccinePair->first->getTemperature() < 0) {
+            vaccines[vaccinePair->first] = 0;
+        }
+    }
+
 }

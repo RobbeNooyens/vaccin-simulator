@@ -1,6 +1,6 @@
 Park Spoor Oost:
-	- vaccins 		[=                   ] 6%
-	- vaccinated 	[===============     ] 76%
+	- vaccins 		[                    ] 0%
+	- vaccinated 	[===============     ] 79%
 AED Studios:
 	- vaccins 		[=================   ] 89%
 	- vaccinated 	[====================] 100%
