@@ -29,7 +29,7 @@ public:
      * @param capacity: the max amount of people that can be vaccinated here daily
      * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
-    VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
+
     /**
      * Checks if the current object was initialized properly
      * @return bool; true if the initCheck pointer points to the current instance
@@ -126,6 +126,7 @@ private:
     std::string address;
     unsigned int vaccins;
     unsigned int inhabitants;
+    unsigned int totalInhabitants;
     unsigned int vaccinated;
     unsigned int capacity;
 };

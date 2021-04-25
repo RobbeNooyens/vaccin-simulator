@@ -12,8 +12,7 @@
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 
-VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
-                                     unsigned int capacity) : initCheck(this), name(name), address(address), vaccins(0), inhabitants(inhabitants), vaccinated(0), capacity(capacity) {
+VaccinationCenter::VaccinationCenter() : initCheck(this) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -30,6 +29,7 @@ void VaccinationCenter::fromJSON(JObject* json) {
     capacity = json->getValue("capaciteit")->asUnsignedint();
     inhabitants = json->getValue("inwoners")->asUnsignedint();
     name = json->getValue("naam")->asString();
+    totalInhabitants = inhabitants;
 }
 
 void VaccinationCenter::toSummaryStream(std::ostream &stream) const {

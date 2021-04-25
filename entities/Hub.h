@@ -91,8 +91,9 @@ public:
     bool is_connected(const std::string name) const;
 
 private:
+    unsigned int connections;
     std::vector<Vaccine*> vaccins;
-    unordered_map<std::string, bool> centers;
+    map<std::string, bool> centers;
     // Initialization
     const Hub* initCheck;
 

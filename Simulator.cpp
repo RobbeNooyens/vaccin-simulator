@@ -30,6 +30,9 @@ void Simulator::importSimulation(const std::string& fileName) {
         }
     }
     sort(centers.begin(), centers.end());
+    for (int i = 0; i < (int) centers.size(); i++) {
+        center2idx[centers[i]->getName()] = i;
+    }
     for (int i = 0; i < (int) hubs_json.size(); i++) {
         hubs.push_back(new Hub());
         hubs[i]->fromJSON(hubs_json[i]->asJObject());
@@ -164,4 +167,41 @@ void Simulator::make_calender() {
             }
         }
     }
+}
+
+//zet verhouding tussen R en r waarbij R > r;
+
+void Simulator::generate_animation() const {
+    double width_hub, width_center, hub_space, center_space;
+    if ((int) hubs.size() < 4) {
+        double width_hub = 0.5;
+        double hub_space = (2.0 - ((double) hubs.size() * 0.5))/((double) hubs.size() + 1.0);
+    } else {
+        double width_hub = 4.0/(3.0*((double) hubs.size()) + 1.0);
+        double hub_space = width_hub/2.0;
+    }
+    if ((int) centers.size() < 4) {
+        double width_center = 0.5;
+        double center_space = (2.0 - ((double) centers.size() * 0.5))/((double) centers.size() + 1.0);
+    } else {
+        double width_center = 4.0/(3.0*((double) centers.size()) + 1.0);
+        double center_space = width_center/2.0;
+    }
+    //2*scale = width_hub;
+    //2*scale = width_center;
+    int nrFigures = (int) hubs.size() + (int) centers.size() + 1; //vermenigvuldig nog factoren met bv aantal objecten waaruit een vacinatiecentrum bestaat.
+    // for (int i = 0; i < (int) hubs.size(); i++) {
+    //     nrFigures += hubs[i]->get_connections();
+    // }
+    ofstream myfile; //verander de [Figure0] bij de eerste cube
+    myfile.open("frame" + std::to_string(daycount) + ".ini"); //"animation" is hetzelfde als "ZBuffering" maar het genereert per dag meerdere fotos;
+    myfile << "[GENERAL]\ntype = \"animation\"\nsize = 1024\neye = (x,y,z)\nbackgroundcolor = (0.0, 0.0, 0.0)\nnrFigures = " + std::to_string(nrFigures) + "\n";
+    for (int i = 0; i < (int) centers.size(); i++) {
+        myfile << "\n[Figure" + std::to_string(i) + "]\ntype = \"Cube\"\nscale = " + std::to_string(width_center/2.0) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + std::to_string(width_center/2.0 + center_space) + ", " + std::to_string(width_center/2.0) + ", 0)\ncolor = (1, 0, 0)\n"; //verander color naargelang de aantal gevacineerde inwoners;
+    }
+    for (int i = (int) centers.size(); i < ((int) hubs.size() + (int) centers.size()); i++) {
+        myfile << "\n[Figure" + std::to_string(i) + "]\ntype = \"Cube\"\nscale = " + std::to_string(hub_center/2.0) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + std::to_string(width_hub/2.0 + hub_space) + ", " + std::to_string(width_hub/2.0) + ", 0)\ncolor = (0, 1, 0)\n";
+    }
+    myfile << "\n[Figure" + std::to_string(nrFigures-1) + "]\ntype = \"Cube\"\nscale = 1\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (1, 1, -1)\ncolor = (0, 0, 1)\n";
+    myfile.close() //zet nog in ini file welke hub me welke centra connected is om autos te generere.
 }

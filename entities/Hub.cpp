@@ -20,7 +20,7 @@
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 #define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
-Hub::Hub() : initCheck(this), delivery(0), interval(0), transport(0), vaccinsCount(0) {
+Hub::Hub() : initCheck(this), delivery(0), interval(0), transport(0), vaccinsCount(0), connections(0) {
     ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
 }
 
@@ -113,6 +113,7 @@ void Hub::fromJSON(JObject* json){
     }
     for (int i = 0; i < (int) centra_names.size(); i++) {
         centers[centra_names[i]->asString()] = true;
+        connections++;
     }
     ENSURE(centra.size() == centers.size(), "Not all centers are loaded succesfully.");
 }
@@ -142,4 +143,8 @@ void Hub::toProgressStream(std::ostream &outStream) const {
 
 bool Hub::is_connected(const std::string name) const {
     return centers[name];
+}
+
+int Hub::get_connections() const {
+    return connections;
 }
