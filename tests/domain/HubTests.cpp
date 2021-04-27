@@ -14,17 +14,6 @@
 
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
-class MockVaccine: public Vaccine {
-
-};
-
-class MockVaccinationCenter: public VaccinationCenter {
-public:
-    explicit MockVaccinationCenter(): VaccinationCenter("", "", 0, 0) {}
-
-    explicit MockVaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity): VaccinationCenter(name, address, inhabitants, capacity) {}
-
-};
 
 class HubTests: public ::testing::Test {
 protected:
@@ -36,17 +25,17 @@ protected:
         // Setup VaccinationCenters
         std::string name1 = "Test 1", address1 = "Teststreet 1";
         unsigned int capacity1 = 100, inhabitants1 = 1000;
-        VaccinationCenter* center1 = new MockVaccinationCenter(name1, address1, inhabitants1, capacity1);
+        VaccinationCenter* center1 = new VaccinationCenter(name1, address1, inhabitants1, capacity1);
         vaccinationCenters.push_back(center1);
         centerNames.push_back(name1);
         std::string name2 = "Test 2", address2 = "Teststreet 2";
         unsigned int capacity2 = 200, inhabitants2 = 2000;
-        VaccinationCenter* center2 = new MockVaccinationCenter(name2, address2, inhabitants2, capacity2);
+        VaccinationCenter* center2 = new VaccinationCenter(name2, address2, inhabitants2, capacity2);
         vaccinationCenters.push_back(center2);
         centerNames.push_back(name2);
         std::string name3 = "Test 3", address3 = "Teststreet 3";
         unsigned int capacity3 = 300, inhabitants3 = 3000;
-        VaccinationCenter* center3 = new MockVaccinationCenter(name3, address3, inhabitants3, capacity3);
+        VaccinationCenter* center3 = new VaccinationCenter(name3, address3, inhabitants3, capacity3);
         vaccinationCenters.push_back(center3);
 
         // Setup JSON Vaccines
@@ -54,22 +43,25 @@ protected:
         Vaccine vaccine2 = Vaccine("Vaccin 2", 3, 4, 5);
         vaccines.push_back(new JValue(vaccine1.toJSON()));
         vaccines.push_back(new JValue(vaccine2.toJSON()));
+
     }
 
-    virtual void TearDown() {
-        ITERATE(VaccinationCenters, vaccinationCenters, center) {
-            delete *center;
-        }
-        ITERATE(JValues, vaccines, vaccine) {
-            delete *vaccine;
-        }
-    }
+    // TODO: uncommenting this causes segmentation fault
+//    virtual void TearDown() {
+//        ITERATE(VaccinationCenters, vaccinationCenters, center) {
+//            delete *center;
+//        }
+//        ITERATE(JValues, vaccines, vaccine) {
+//            delete *vaccine;
+//        }
+//    }
 };
 
 /**
 Tests the default constructor.
 */
 TEST_F(HubTests, DefaultConstructor) {
+//    EXPECT_EQ(1, 1);
     Hub defaultConstructor = Hub();
     EXPECT_TRUE(defaultConstructor.properlyInitialized());
     EXPECT_TRUE(defaultConstructor.getVaccines().empty());

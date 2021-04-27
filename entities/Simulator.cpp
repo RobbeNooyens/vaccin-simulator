@@ -96,13 +96,14 @@ void Simulator::run(const unsigned int cycles) {
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
-    for(; daycount < lastDay; daycount++){
+    while(daycount < lastDay){
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
         ITERATE(std::vector<Hub*>, hubs, hub)
             (*hub)->simulateDay(daycount);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
         ITERATE(VaccinationCenters, centers, center)
             (*center)->vaccinateInhabitants(daycount);
+        daycount++;
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
 }

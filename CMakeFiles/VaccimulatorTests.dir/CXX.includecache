@@ -277,6 +277,8 @@ gtest/gtest.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../TestUtils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
+../../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp
 gtest/gtest.h

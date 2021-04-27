@@ -14,6 +14,10 @@
 #include <iostream>
 #include <sstream>
 
+#define VECTOR_CONTAINS(vector, element) vector.find(element) != vector.end()
+#define CLOSE_COUT std::cout.setstate(std::ios_base::badbit)
+#define OPEN_COUT std::cout.setstate(std::ios_base::goodbit)
+
 class TiXmlElement;
 
 namespace StringUtil {

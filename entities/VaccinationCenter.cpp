@@ -26,7 +26,7 @@ VaccinationCenter::VaccinationCenter(): initCheck(this), inhabitants(0), vaccina
 }
 
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
-                                     unsigned int capacity) : initCheck(this), name(name), address(address), inhabitants(inhabitants), vaccinated(0), capacity(capacity), connectedToHub(false) {
+                                     unsigned int capacity) : initCheck(this), name(name), address(address), inhabitants(inhabitants), vaccinated(0), capacity(capacity), connectedToHub(false), outStream(&std::cout) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -126,7 +126,7 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day) {
     unsigned int totalVaccinationsDone = 0;
     ITERATE(std::map<Vaccine* COMMA std::map<unsigned int COMMA unsigned int> >, renewing, renew) {
         Vaccine* vaccine = renew->first;
-        if(renewing[vaccine].find(day) != renewing[vaccine].end()) {
+        if(VECTOR_CONTAINS(renewing, vaccine) && VECTOR_CONTAINS(renewing[vaccine], day)) {
             unsigned int toVaccinate = renewing[vaccine][day];
             unsigned int vaccinesInStock = vaccines[vaccine];
             unsigned int vaccinsToUse = std::min(getCapacity(), toVaccinate), oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
@@ -193,4 +193,8 @@ void VaccinationCenter::removeExpiredVaccines() {
         }
     }
 
+}
+
+std::ostream *VaccinationCenter::getOutputstream() const {
+    return outStream;
 }

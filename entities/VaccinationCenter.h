@@ -98,6 +98,7 @@ public:
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccinationsLeft() const;
+    std::ostream* getOutputstream() const;
     double getPercentageVaccines() const;
     double getPercentageVaccinated() const;
     bool isConnectedToHub() const;

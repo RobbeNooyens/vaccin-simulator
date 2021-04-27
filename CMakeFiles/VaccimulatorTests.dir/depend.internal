@@ -183,6 +183,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
  gtest/include/gtest/gtest-death-test.h
  gtest/include/gtest/gtest-message.h
  gtest/include/gtest/gtest-param-test.h

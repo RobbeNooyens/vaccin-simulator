@@ -18,6 +18,12 @@
 using namespace StringUtil;
 using namespace TimeUtil;
 
+#define INHABITANTS (unsigned int) 6000
+#define CAPACITY (unsigned int) 200
+#define NAME "TestCenter"
+#define ADDRESS "TestStreet"
+#define TRANSPORT (unsigned int) 150
+
 int main() {
     Simulator simulator = Simulator();
     simulator.importSimulation("io/input2.xml");

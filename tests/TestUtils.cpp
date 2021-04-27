@@ -14,7 +14,7 @@
 JObject *MockObjects::jCenter(std::string name, std::string address, unsigned int inhabitants,
                                             unsigned int capacity) {
     JObject* center = new JObject();
-    center->insertValue(CENTER_INHABITANTS, new JValue(name));
+    center->insertValue(CENTER_NAME, new JValue(name));
     center->insertValue(CENTER_ADDRESS, new JValue(address));
     center->insertValue(CENTER_INHABITANTS, new JValue(inhabitants));
     center->insertValue(CENTER_CAPACITY, new JValue(capacity));
@@ -31,6 +31,15 @@ JObject *MockObjects::jHub(unsigned int delivery, unsigned int interval, unsigne
     ITERATE(std::vector<std::string>, centers, center)
         centersArray->insertValue(new JValue(*center));
     hub->insertValue(HUB_CENTERS, new JValue(centersArray));
+
+    JArray* vaccins = new JArray();
+    JObject* vaccine = new JObject();
+    vaccine->insertValue(VACCINE_TYPE, new JValue("Standaard"));
+    vaccine->insertValue(VACCINE_DELIVERY, new JValue(delivery));
+    vaccine->insertValue(VACCINE_INTERVAL, new JValue(interval));
+    vaccine->insertValue(VACCINE_TRANSPORTATION, new JValue(transportation));
+    vaccins->insertValue(new JValue(vaccine));
+    hub->insertValue(HUB_VACCINES, new JValue(vaccins));
 
     return hub;
 }

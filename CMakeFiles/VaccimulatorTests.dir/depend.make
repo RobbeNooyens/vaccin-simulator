@@ -182,6 +182,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: json
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: json/JValue.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: tests/TestUtils.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: tests/domain/VaccinationCenterTests.cpp
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: utils.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-death-test.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-message.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o: gtest/include/gtest/gtest-param-test.h
