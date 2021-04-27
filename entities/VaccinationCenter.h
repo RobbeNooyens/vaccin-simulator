@@ -126,7 +126,6 @@ private:
     std::string address;
     unsigned int vaccins;
     unsigned int inhabitants;
-    unsigned int totalInhabitants;
     unsigned int vaccinated;
     unsigned int capacity;
 };

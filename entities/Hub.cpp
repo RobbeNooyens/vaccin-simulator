@@ -110,9 +110,11 @@ void Hub::fromJSON(JObject* json){
         vaccins.push_back(new Vaccine());
         vaccins[i]->fromJSON(vaccs[i]->asJObject());
         vaccins[i]->setHub(this);
+        totalvaccins += vaccins[i]->getDelivery();
     }
     for (int i = 0; i < (int) centra_names.size(); i++) {
         centers[centra_names[i]->asString()] = true;
+        centerNames.push_back(centra_names[i]->asString());
         connections++;
     }
     ENSURE(centra.size() == centers.size(), "Not all centers are loaded succesfully.");
@@ -147,4 +149,8 @@ bool Hub::is_connected(const std::string name) const {
 
 int Hub::get_connections() const {
     return connections;
+}
+
+int Hub::getTotalvaccins() const {
+    return totalvaccins;
 }

@@ -66,8 +66,10 @@ private:
     // Simulation
     unsigned int cycles;
     std::vector<Hub*> hubs;
+    map<std::string, int> center2idx;
     std::vector<VaccinationCenter*> centers;
     std::vector<Vaccine*> vaccins;
+    std::vector<map<Hub*, std::set<unsigned int>>> planned_hubs;
     XMLParser xmlParser;
     unsigned int daycount;
 };

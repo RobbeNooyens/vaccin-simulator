@@ -90,10 +90,15 @@ public:
 
     bool is_connected(const std::string name) const;
 
+    int get_connections() const;
+
+    unsigned int getTotalvaccins() const;
+
 private:
-    unsigned int connections;
+    int connections;
     std::vector<Vaccine*> vaccins;
     map<std::string, bool> centers;
+    unsigned int totalvaccins;
     // Initialization
     const Hub* initCheck;
 
