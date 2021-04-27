@@ -11,6 +11,7 @@
 #include "../TestUtils.h"
 #include "../../json/JValue.h"
 #include "../../json/JObject.h"
+#include "../../json/JArray.h"
 
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
@@ -39,10 +40,8 @@ protected:
         vaccinationCenters.push_back(center3);
 
         // Setup JSON Vaccines
-        Vaccine vaccine1 = Vaccine("Vaccin 1", 0, 1, 2);
-        Vaccine vaccine2 = Vaccine("Vaccin 2", 3, 4, 5);
-        vaccines.push_back(new JValue(vaccine1.toJSON()));
-        vaccines.push_back(new JValue(vaccine2.toJSON()));
+        vaccines.push_back(new JValue(MockObjects::jVaccine("Vaccin 1", 0, 1, 2, 0, 0)));
+        vaccines.push_back(new JValue(MockObjects::jVaccine("Vaccin 2", 3, 4, 5, 0, 0)));
 
     }
 
@@ -83,7 +82,8 @@ TEST_F(HubTests, LoadFromJSON) {
 
 TEST_F(HubTests, LoadFromJSONVaccineTypes) {
     Hub jsonHub = Hub();
-    jsonHub.fromJSON(MockObjects::jHub(vaccines, centerNames), vaccinationCenters);
+    JObject* jHub = MockObjects::jHub(vaccines, centerNames);
+    jsonHub.fromJSON(jHub, vaccinationCenters);
     EXPECT_TRUE(jsonHub.properlyInitialized());
     EXPECT_EQ(centerNames.size(), jsonHub.getVaccinationCenters().size());
     EXPECT_EQ((unsigned int) 2, jsonHub.getVaccines().size());
@@ -99,31 +99,10 @@ TEST_F(HubTests, LoadFromJSONFail) {
     JObject* jObject = new JObject();
     Hub failHub = Hub();
     EXPECT_DEATH(failHub.fromJSON(jObject, vaccinationCenters), ".*should contain field.*");
-    jObject->insertValue("centra", NULL);
+    jObject->insertValue("centra", new JValue(new JArray()));
     centerNames.push_back("RandomNameThatDoesntExist");
     EXPECT_DEATH(failHub.fromJSON(MockObjects::jHub(vaccines, centerNames), vaccinationCenters), ".*invalid name.*");
     centerNames.pop_back();
-}
-
-
-/**
- * Test the Happy Day scenario
- */
-TEST_F(HubTests, HappyDay){
-//    unsigned int initialVaccins = 20000, transport = 50;
-//    unsigned int days = 10, centers = 3;
-//    hub. = 300;
-//    hub.interval = 7;
-//    hub.transport = transport;
-//    hub.vaccinsCount = initialVaccins;
-//    unsigned int capacity = 100;
-//    for(unsigned int i = 0; i < centers; i++) {
-//        VaccinationCenter* center = new MockVaccinationCenter(capacity);
-//        hub.centers.push_back(center);
-//    }
-//    for(unsigned int day = 0; day < days; day++)
-//        hub.simulateDay(day);
-//    unsigned int expectedLoss = (2*centers*capacity) + (centers*capacity*(days-1));
-//    unsigned int expectedGain = hub.delivery*((days/hub.interval)+1);
-//    EXPECT_TRUE(hub.vaccinsCount == initialVaccins - expectedLoss + expectedGain);
+    // TODO: make deletion possible
+    // delete jObject;
 }

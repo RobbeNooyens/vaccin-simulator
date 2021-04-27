@@ -11,6 +11,7 @@ CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
@@ -76,12 +77,20 @@ CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.h

@@ -181,6 +181,8 @@ JValue.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../DesignByContract.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 string
 -
 
@@ -247,6 +249,8 @@ gtest/gtest.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../../json/JArray.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/HubTests.cpp
 gtest/gtest.h
@@ -263,6 +267,8 @@ gtest/gtest.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../../json/JObject.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp
 gtest/gtest.h

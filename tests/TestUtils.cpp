@@ -54,8 +54,8 @@ JObject *MockObjects::jHub(JValues vaccines, std::vector<std::string> centers) {
 
     JArray* vaccinesArray = new JArray();
     ITERATE(JValues, vaccines, vaccine)
-        vaccinesArray->insertValue(new JValue(*vaccine));
-    hub->insertValue(HUB_VACCINES, new JValue(centersArray));
+        vaccinesArray->insertValue(new JValue((*vaccine)->asJObject()));
+    hub->insertValue(HUB_VACCINES, new JValue(vaccinesArray));
 
     return hub;
 }

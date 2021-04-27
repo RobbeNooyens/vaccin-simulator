@@ -6,6 +6,7 @@
 // ╘============================================╛
 
 #include <iostream>
+#include <cassert>
 
 #include "entities/Simulator.h"
 
@@ -13,16 +14,14 @@
 #include "json/JArray.h"
 #include "json/JValue.h"
 
+#include "tests/TestUtils.h"
 #include "utils.h"
 
-using namespace StringUtil;
-using namespace TimeUtil;
+#define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
+#define ASSERT(lhs, rhs) assert(lhs == rhs)
 
-#define INHABITANTS (unsigned int) 6000
-#define CAPACITY (unsigned int) 200
-#define NAME "TestCenter"
-#define ADDRESS "TestStreet"
-#define TRANSPORT (unsigned int) 150
+using namespace TimeUtil;
+using namespace StringUtil;
 
 int main() {
     Simulator simulator = Simulator();

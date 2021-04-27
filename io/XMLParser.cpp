@@ -35,6 +35,7 @@
 #define XML_CENTER_INHABITANTS "inwoners"
 #define XML_CENTER_CAPACITY "capaciteit"
 
+
 XMLParser::XMLParser() : initCheck(this) {
     elements_centra.push_back(XML_CENTER_NAME);
     elements_centra.push_back(XML_CENTER_ADDRESS);
@@ -96,7 +97,7 @@ JObject *XMLParser::parseHub(TiXmlElement *hubXML) {
 
     TiXmlElement* delivery = hubXML->FirstChildElement(XML_HUB_DELIVERY);
     TiXmlElement* interval = hubXML->FirstChildElement(XML_HUB_INTERVAL);
-    TiXmlElement* transportation = hubXML->FirstChildElement(XML_HUB_DELIVERY);
+    TiXmlElement* transportation = hubXML->FirstChildElement(XML_HUB_TRANSPORTATION);
 
     if (delivery || interval || transportation) {
         if(!(delivery && interval && transportation)) {
@@ -142,11 +143,19 @@ JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML) {
         }
         std::string value = e_text->Value();
         if (vaccineElement == XML_VACCINE_TYPE) {
-            vaccine->insertValue(vaccineElement, new JValue((std::string) value));
+            vaccine->insertValue(VACCINE_TYPE, new JValue((std::string) value));
             continue;
         }
         char *ptr;
         // TODO: double for temperature
+        if (vaccineElement == XML_VACCINE_TEMPERATURE) {
+            double temperature = std::strtod(value.c_str(), &ptr);
+            if (value.c_str() == ptr) {
+                throw std::runtime_error("waarde kon niet ingelezen worden van element '" + vaccineElement + "'");
+            }
+            vaccine->insertValue(VACCINE_TEMPERATURE, new JValue(temperature));
+            continue;
+        }
         unsigned int k = strtoul(value.c_str(), &ptr, 10);
         if (value.c_str() == ptr) {
             throw std::runtime_error("waarde kon niet ingelezen worden van element '" + vaccineElement + "'");

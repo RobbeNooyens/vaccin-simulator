@@ -72,7 +72,7 @@ public:
 
 private:
     // Initialization
-    JObject* initCheck;
+    const JObject* initCheck;
 
     // Map of values the JObject stores
     std::map<std::string, JValue*> values;

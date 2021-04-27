@@ -45,9 +45,6 @@ void Hub::toSummaryStream(std::ostream & outputStream) const {
     outputStream << "Hub (" << getTotalVaccinesCount() << "): " << std::endl;
     C_ITERATE(VaccinationCenters, centers, center)
         outputStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
-//    outStream << std::endl;
-//    C_ITERATE(VaccinationCenters, centers, center)
-//        (*center)->toSummaryStream(outStream);
     ENSURE(outputStream.good(), "Failed to write to output stream!");
 }
 

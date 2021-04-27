@@ -27,7 +27,8 @@ set(RELEASE_SOURCE_FILES Vaccimulator.cpp
         json/JArray.cpp json/JArray.h
         json/JKeys.h
         DesignByContract.h
-        utils.cpp utils.h)
+        utils.cpp utils.h
+        tests/TestUtils.h tests/TestUtils.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp

@@ -46,10 +46,10 @@ protected:
         JObject* h = MockObjects::jHub(100, 6, 40, centerNames);
         hubs->insertValue(new JValue(h));
         // Load hub
-        hub.fromJSON(json, centers);
-        ITERATE(VaccinationCenters, centers, center)
-            delete *center;
+        hub.fromJSON(h, centers);
         // TODO: delete json without segmentation fault
+//        ITERATE(VaccinationCenters, centers, center)
+//            delete *center;
         // delete json;
     }
 
@@ -65,6 +65,10 @@ TEST_F(SimulationOutputTests, SimpleOutput) {
     file.open("tests/presentation/out/simple_output.txt");
     ASSERT_TRUE(file.is_open());
     hub.toSummaryStream(file);
+    file << std::endl;
+    VaccinationCenters centers = hub.getVaccinationCenters();
+    ITERATE(VaccinationCenters, centers, center)
+        (*center)->toSummaryStream(file);
     file.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output.txt", "tests/presentation/expected/simple_output.txt"));
 
@@ -96,6 +100,10 @@ TEST_F(SimulationOutputTests, HappyDay) {
     summaryFile.open("tests/presentation/out/simple_output_after_simulation.txt");
     ASSERT_TRUE(summaryFile.is_open());
     hub.toSummaryStream(summaryFile);
+    summaryFile << std::endl;
+    VaccinationCenters centers = hub.getVaccinationCenters();
+    ITERATE(VaccinationCenters, centers, center)
+        (*center)->toSummaryStream(summaryFile);
     summaryFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output_after_simulation.txt", "tests/presentation/expected/simple_output_after_simulation.txt"));
 

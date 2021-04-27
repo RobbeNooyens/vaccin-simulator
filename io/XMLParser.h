@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 
+// TODO: Refactor to namespace
+
 class Hub;
 class JObject;
 class JArray;

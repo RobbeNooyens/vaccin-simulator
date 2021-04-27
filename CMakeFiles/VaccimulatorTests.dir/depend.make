@@ -85,6 +85,7 @@ CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: DesignByContract.h
 CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: json/JObject.cpp
 CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: json/JValue.h
+CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: utils.h
 
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: DesignByContract.h
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: json/JArray.h
@@ -125,6 +126,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: gtest/include/gtest
 
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: io/XMLParser.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JArray.h
+CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JKeys.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: json/JValue.h
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: tests/data/XMLParserTests.cpp
@@ -151,6 +153,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: gtest/include/
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/Hub.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/VaccinationCenter.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: entities/Vaccine.h
+CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: json/JArray.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: json/JObject.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: json/JValue.h
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o: tests/TestUtils.h

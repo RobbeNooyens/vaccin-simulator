@@ -23,7 +23,7 @@ class VaccineTests: public ::testing::Test {};
 TEST_F(VaccineTests, DefaultConstructors) {
     Vaccine defaultConstructor = Vaccine();
     EXPECT_TRUE(defaultConstructor.properlyInitialized());
-    EXPECT_EQ("", defaultConstructor.getType());
+    EXPECT_EQ("Standaard", defaultConstructor.getType());
     EXPECT_EQ((unsigned int) 0, defaultConstructor.getDelivery());
     EXPECT_EQ((unsigned int) 0, defaultConstructor.getInterval());
     EXPECT_EQ((unsigned int) 0, defaultConstructor.getTransportation());

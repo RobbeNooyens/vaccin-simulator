@@ -86,6 +86,7 @@ CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
@@ -126,6 +127,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/XMLParserTests.cpp
@@ -152,6 +154,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
+ /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
  /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h

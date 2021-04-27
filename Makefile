@@ -436,6 +436,7 @@ tests/TestUtils.o: tests/TestUtils.cpp.o
 
 # target to build an object file
 tests/TestUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
 .PHONY : tests/TestUtils.cpp.o
 
@@ -445,6 +446,7 @@ tests/TestUtils.i: tests/TestUtils.cpp.i
 
 # target to preprocess a source file
 tests/TestUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.i
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i
 .PHONY : tests/TestUtils.cpp.i
 
@@ -454,6 +456,7 @@ tests/TestUtils.s: tests/TestUtils.cpp.s
 
 # target to generate assembly for a file
 tests/TestUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.s
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s
 .PHONY : tests/TestUtils.cpp.s
 

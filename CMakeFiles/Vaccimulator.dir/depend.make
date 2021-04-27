@@ -10,6 +10,7 @@ CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: io/XMLParser.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JArray.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: json/JValue.h
+CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: tests/TestUtils.h
 CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: utils.h
 
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: DesignByContract.h
@@ -75,12 +76,20 @@ CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: json/JObject.cpp
 CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: json/JValue.h
+CMakeFiles/Vaccimulator.dir/json/JObject.cpp.o: utils.h
 
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JArray.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JObject.h
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.cpp
 CMakeFiles/Vaccimulator.dir/json/JValue.cpp.o: json/JValue.h
+
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o: json/JArray.h
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o: json/JKeys.h
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o: json/JObject.h
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o: json/JValue.h
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o: tests/TestUtils.cpp
+CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o: tests/TestUtils.h
 
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.cpp
 CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.h
