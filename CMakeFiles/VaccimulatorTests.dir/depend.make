@@ -25,6 +25,7 @@ CMakeFiles/VaccimulatorTests.dir/VaccimulatorTests.cpp.o: gtest/include/gtest/in
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: DesignByContract.h
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: entities/Hub.cpp
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: entities/Hub.h
+CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: entities/Planning.h
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: entities/VaccinationCenter.h
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: entities/Vaccine.h
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: json/JArray.h
@@ -35,8 +36,14 @@ CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: tinyxml/tinystr.h
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: utils.h
 
+CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.o: DesignByContract.h
+CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.o: entities/Hub.h
+CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.o: entities/Planning.cpp
+CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.o: entities/Planning.h
+
 CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: DesignByContract.h
 CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: entities/Hub.h
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: entities/Planning.h
 CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: entities/Simulator.cpp
 CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: entities/Simulator.h
 CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: entities/VaccinationCenter.h
@@ -273,6 +280,7 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinystr.h
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxmlparser.cpp
 
+CMakeFiles/VaccimulatorTests.dir/utils.cpp.o: DesignByContract.h
 CMakeFiles/VaccimulatorTests.dir/utils.cpp.o: tinyxml/tinystr.h
 CMakeFiles/VaccimulatorTests.dir/utils.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/VaccimulatorTests.dir/utils.cpp.o: utils.cpp

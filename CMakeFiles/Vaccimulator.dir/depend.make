@@ -16,6 +16,7 @@ CMakeFiles/Vaccimulator.dir/Vaccimulator.cpp.o: utils.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/Hub.cpp
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/Hub.h
+CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/Planning.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/VaccinationCenter.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: entities/Vaccine.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: json/JArray.h
@@ -26,8 +27,14 @@ CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: tinyxml/tinystr.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/Vaccimulator.dir/entities/Hub.cpp.o: utils.h
 
+CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.o: DesignByContract.h
+CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.o: entities/Hub.h
+CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.o: entities/Planning.cpp
+CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.o: entities/Planning.h
+
 CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o: entities/Hub.h
+CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o: entities/Planning.h
 CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o: entities/Simulator.cpp
 CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o: entities/Simulator.h
 CMakeFiles/Vaccimulator.dir/entities/Simulator.cpp.o: entities/VaccinationCenter.h
@@ -106,6 +113,7 @@ CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinystr.h
 CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxmlparser.cpp
 
+CMakeFiles/Vaccimulator.dir/utils.cpp.o: DesignByContract.h
 CMakeFiles/Vaccimulator.dir/utils.cpp.o: tinyxml/tinystr.h
 CMakeFiles/Vaccimulator.dir/utils.cpp.o: tinyxml/tinyxml.h
 CMakeFiles/Vaccimulator.dir/utils.cpp.o: utils.cpp

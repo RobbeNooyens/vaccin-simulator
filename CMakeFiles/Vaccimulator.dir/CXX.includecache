@@ -53,12 +53,12 @@ string
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
 ../utils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+../entities/Planning.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Planning.h
 Hub.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
 VaccinationCenter.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
-Vaccine.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
 vector
@@ -69,6 +69,20 @@ ostream
 -
 iostream
 -
+map
+-
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Planning.cpp
+vector
+-
+Planning.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Planning.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Planning.h
 map
 -
 
@@ -89,6 +103,8 @@ Simulator.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
 ../json/JKeys.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+Planning.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Planning.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.h
 ../io/XMLParser.h
@@ -301,6 +317,8 @@ utils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 tinyxml/tinyxml.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
 time.h
 -
 

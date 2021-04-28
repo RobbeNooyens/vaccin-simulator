@@ -16,11 +16,11 @@ public:
     // Constructors and destructors
     /**
      * JArray default constructor
-     * ENSURE(properlyInitialized(), "JArray object hasn't been initialized properly!");
+     * * ENSURE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
     JArray();
     /**
-     * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
     ~JArray();
 
@@ -35,13 +35,13 @@ public:
     /**
      * Inserts a JValue in the array
      * @param value: JValue*; value to insert
-     * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
     void insertValue(JValue* value);
     /**
      * Retrieves all values saved in this array
      * @return std::vector<JValue*>; vector of the JValues stored in the array
-     * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
     std::vector<JValue*> getItems();
 

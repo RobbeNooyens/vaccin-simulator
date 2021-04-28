@@ -20,7 +20,7 @@ public:
     // Constructor
     /**
      * Default constructor
-     * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     VaccinationCenter();
     /**
@@ -29,7 +29,7 @@ public:
      * @param address: the address where the center is located
      * @param inhabitants: the amount of inhabitants that should be vaccinated in this center
      * @param capacity: the max amount of people that can be vaccinated here daily
-     * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
     /**
@@ -42,22 +42,22 @@ public:
     /**
      * Simulates the event of an arriving truck with vaccines.
      * @param vaccinCount: unsigned int; the amount of vaccines that are being delivered
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * REQUIRE(getVaccins() + amount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
-     * ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(getVaccins() + amount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
+     * * ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
      */
     void transportationArrived(Vaccine *vaccine, unsigned int amount);
     /**
      * Simulate the situation where the highest possible amount of inhabitants are being vaccinated
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
-     * ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
+     * * ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
      */
     void vaccinateInhabitants(unsigned int day);
 
     /**
      * Throws away the vaccins that actually should have been used during the day because of its temperature
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     void removeExpiredVaccines();
 
@@ -66,75 +66,75 @@ public:
     /**
      * Used to verify whether the simulation is consistent or not
      * @param connected: bool; true if the center is connected to a hub
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     void setConnectedToHub(bool connected);
 
     /**
      * Sets the centers output stream to the given outstream
      * @param outputStream: output stream to stream data to
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     void setOutputStream(std::ostream& outputStream);
 
     // Getters
     /**
      * @return string; name of the vaccinationcenter
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     std::string getName() const;
     /**
      * @return string; address of the vaccinationcenter
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     std::string getAddress() const;
     /**
      * @return unsigned int; total amount of people that should be vaccinated in this center
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getInhabitants() const;
     /**
      * @return unsigned int; the maximum amount of people that can be vaccinated during one day in this center
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getCapacity() const;
     /**
      * @return unsigned int; the amount of vaccines in stock
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccins() const;
     /**
      * @return unsigned int; amount of inhabitants who are already vaccinated
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccinationsDone() const;
     /**
      * @return unsigned int; the amount of non-vaccinated inhabitants
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccinationsLeft() const;
     /**
      * @return ostream; the output stream
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     std::ostream* getOutputstream() const;
     /**
      * @return the percentage vaccines stored in the center
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
-     * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
+     * * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
      */
     double getPercentageVaccines() const;
     /**
      * @return the percentage of vaccinated people
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
-     * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
+     * * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
      */
     double getPercentageVaccinated() const;
     /**
      * @return bool; true if the center is connected to a hub
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     bool isConnectedToHub() const;
 
@@ -142,30 +142,30 @@ public:
     /**
      * Load a VaccinationCenter from a Json object
      * @param json: the Json object representing a VaccinationCenter
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * REQUIRE(json != NULL, "Json can't be NULL!");
-     * REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
-     * REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
-     * REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
-     * REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(json != NULL, "Json can't be NULL!");
+     * * REQUIRE(json->contains("adres"), "VaccinationCenter JSON should contain field 'adres'");
+     * * REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
+     * * REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
+     * * REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
      */
     void fromJSON(JObject* json);
     /**
      * Sends the center represented as a string to the given stream
      * @param stream: The stream that should be used
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
-     * REQUIRE(outStream.good(), "Output stream contains error flags!");
-     * ENSURE(outStream.good(), "Failed to write to output stream!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
+     * * REQUIRE(outStream.good(), "Output stream contains error flags!");
+     * * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toSummaryStream(std::ostream& stream) const;
     /**
      * Sends the center progress bars as strings to the given stream
      * @param stream: ostream; stream to push the output strings to
-     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-     * REQUIRE(stream != NULL, "Output stream cannot be NULL!");
-     * REQUIRE(stream.good(), "Output stream contains error flags!");
-     * ENSURE(stream.good(), "Failed to write to output stream!");
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+     * * REQUIRE(stream.good(), "Output stream contains error flags!");
+     * * ENSURE(stream.good(), "Failed to write to output stream!");
      */
     void toProgressStream(std::ostream& stream) const;
 
