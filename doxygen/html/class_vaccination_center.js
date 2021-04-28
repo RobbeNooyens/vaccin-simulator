@@ -1,0 +1,25 @@
+var class_vaccination_center =
+[
+    [ "VaccinationCenter", "class_vaccination_center.html#a922d14621d82c327637941e9bf103e51", null ],
+    [ "VaccinationCenter", "class_vaccination_center.html#a5edfdac379d61fd133febfa001de6957", null ],
+    [ "fromJSON", "class_vaccination_center.html#aac6b089ac7ef55d9b4a37c0818388ec6", null ],
+    [ "getAddress", "class_vaccination_center.html#abe223f8873747250384fc7a81e35218e", null ],
+    [ "getCapacity", "class_vaccination_center.html#a675b2a7d54211ab6b30c69a0a711ca07", null ],
+    [ "getInhabitants", "class_vaccination_center.html#a04a59f9582edb22b6c40a20e5e19c08d", null ],
+    [ "getName", "class_vaccination_center.html#a504ab4d864b12c65fc1edc9405cba55e", null ],
+    [ "getOutputstream", "class_vaccination_center.html#ab0851c1bd015e46fea7d2d56347cebad", null ],
+    [ "getPercentageVaccinated", "class_vaccination_center.html#a1e8c8ffd45f385ec66f22de344adee56", null ],
+    [ "getPercentageVaccines", "class_vaccination_center.html#a9936e1eda43ac5964483486e2b43bcea", null ],
+    [ "getVaccinationsDone", "class_vaccination_center.html#a0d73bfbcc746dda3cd4b5d8c681ab534", null ],
+    [ "getVaccinationsLeft", "class_vaccination_center.html#a91bd6a01dd405a1c5062a71d40f1a05d", null ],
+    [ "getVaccins", "class_vaccination_center.html#a35da53cbc19736684f6eab987306e1f7", null ],
+    [ "isConnectedToHub", "class_vaccination_center.html#a7e57a94f02f7aae029525bd9fd0ad1a4", null ],
+    [ "properlyInitialized", "class_vaccination_center.html#a673bb61ee66254080abbd7ef279dc343", null ],
+    [ "removeExpiredVaccines", "class_vaccination_center.html#aae1553095356fc74d79cf5d7f15870be", null ],
+    [ "setConnectedToHub", "class_vaccination_center.html#ab9519b3de0bc60c6b2f2c262efa3e700", null ],
+    [ "setOutputStream", "class_vaccination_center.html#afd086ecd1c4189f701c16aa748be8cac", null ],
+    [ "toProgressStream", "class_vaccination_center.html#a058c1173aba1ad0d71233859a898e754", null ],
+    [ "toSummaryStream", "class_vaccination_center.html#ae2eb139528517f7256a1458047c3d474", null ],
+    [ "transportationArrived", "class_vaccination_center.html#a4b2c5f7f7a4b4ab484e3ff09c88bfbd4", null ],
+    [ "vaccinateInhabitants", "class_vaccination_center.html#a4875890f83a5aa5696d9f1d3726a04f6", null ]
+];
