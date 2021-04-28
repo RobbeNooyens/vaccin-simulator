@@ -13,6 +13,7 @@
 #include "../json/JValue.h"
 #include "../json/JArray.h"
 #include "../json/JKeys.h"
+#include "Planning.h"
 
 #define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
@@ -21,6 +22,11 @@
 
 Simulator::Simulator(): initCheck(this), initialState(NULL), daycount(0) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+}
+
+Simulator::~Simulator() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    delete initialState;
 }
 
 bool Simulator::properlyInitialized() const {
@@ -69,6 +75,19 @@ void Simulator::exportSimulationProgress(const std::string &fileName) const {
     ENSURE(!file.is_open(), "File wasn't closed properly!");
 }
 
+void Simulator::exportSimulationIniFile(const std::string &fileName) const {
+    REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
+    REQUIRE(!fileName.empty(), "Filename cannot be empty!");
+    REQUIRE(StringUtil::contains(fileName, ".ini"), "File should be an ini file!");
+    std::ofstream file;
+    file.open(fileName.c_str());
+    assert(file.is_open());
+
+    // TODO: ini file generation
+
+    ENSURE(!file.is_open(), "File wasn't closed properly!");
+}
+
 void Simulator::fromJSON(JObject *json) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(json->contains(SIMULATION_CENTERS), StringUtil::concat("Can't load Simulator from JSON with missing field ", SIMULATION_CENTERS).c_str());
@@ -108,6 +127,27 @@ void Simulator::run(const unsigned int cycles) {
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
 }
 
+void Simulator::runEfficient(unsigned int cycles) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    REQUIRE(cycles != 0, "Cycles cannot be 0!");
+    REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
+    Planning planning = Planning();
+    planning.generatePlanning(cycles, hubs, centers, daycount);
+
+    unsigned int lastDay = daycount + cycles;
+    while(daycount < lastDay) {
+        // Deliver vaccines to the hub if expected and transport vaccines to the centers
+        ITERATE(std::vector<Hub*>, hubs, hub) {
+            (*hub)->simulateDelivery(daycount);
+            (*hub)->distributeEfficient(daycount, planning);
+        }
+        // Vaccinate inhabitants (should happen here to prevent double vaccinations)
+        ITERATE(VaccinationCenters, centers, center)
+            (*center)->vaccinateInhabitants(daycount);
+        daycount++;
+    }
+}
+
 bool Simulator::isConsistent() const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     // There's at least 1 hub
@@ -131,9 +171,4 @@ void Simulator::reset() {
         delete *center;
     daycount = 0;
     fromJSON(initialState);
-}
-
-Simulator::~Simulator() {
-    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    delete initialState;
 }

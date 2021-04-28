@@ -26,9 +26,11 @@ using namespace StringUtil;
 int main() {
     Simulator simulator = Simulator();
     simulator.importSimulation("io/input2.xml");
-    simulator.run(30);
+    simulator.runEfficient(30);
+    simulator.run(5);
     std::string file = concat("io/output/Simulation_", concat(getCurrentDateTime("%Y-%m-%d_%H-%M-%S"), ".txt"));
     simulator.exportSimulationSummary(file);
     simulator.exportSimulationProgress(file);
+    simulator.exportSimulationIniFile("io/ini_files/generated.ini");
     return 0;
 }

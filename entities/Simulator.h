@@ -62,6 +62,15 @@ public:
      */
     void exportSimulationProgress(const std::string& fileName) const;
     /**
+     * Writes contents of the objects in the simulation to an ini file
+     * @param fileName: string; name of the file to write to
+     * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
+     * REQUIRE(StringUtil::contains(fileName, ".ini"), "File should be an ini file!");
+     * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
+     * ENSURE(!file.is_open(), "File wasn't closed properly!");
+     */
+    void exportSimulationIniFile(const std::string& fileName) const;
+    /**
      *
      * @param json
      * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
@@ -82,6 +91,14 @@ public:
      * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
     void run(unsigned int cycles);
+    /**
+     * Runs the simulation for a specific amount of times with smart distribution
+     * @param startFromDay: int; the day to start from
+     * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
+     * REQUIRE(cycles != 0, "Cycles cannot be 0!");
+     * REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
+     */
+    void runEfficient(unsigned int cycles);
 
     /**
      * Checks if the data in the simulation is valid

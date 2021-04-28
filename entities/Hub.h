@@ -18,6 +18,7 @@ class TiXmlElement;
 class VaccinationCenter;
 class JObject;
 class Vaccine;
+class Planning;
 
 typedef std::vector<Vaccine*> Vaccines;
 typedef std::vector<VaccinationCenter*> VaccinationCenters;
@@ -99,16 +100,34 @@ public:
     /**
      * Simulate vaccin distribution over the vaccinationcenters
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      */
     void distributeVaccins();
+    /**
+     * Simulate smart vaccin distribution over the vaccinationcenters
+     * @param day: unsigned int; daycount
+     * @param planning: Planning; calendar
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
+     * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     */
+    void distributeEfficient(unsigned int day, Planning& planning);
     /**
      * Transport a specific amount of vaccinations to the specified vaccination center.
      * @param center: the center where the vaccins should be transported to
      * @param vaccinCount: the amount of vaccins to transport
      */
     void transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine*, unsigned int> doses) const;
+    /**
+     * Adds vaccines in case cargo is being delivered
+     * @param day: unsigned int; current day
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
+     */
+    void simulateDelivery(unsigned int day);
 
+    // Validations
     /**
      * Checks if the Hub object has consistent data for a simulation
      * @return bool; true if the hub has consistent data
@@ -124,7 +143,6 @@ public:
      */
     void setOutputStream(std::ostream &outputStream);
 
-    // Validations
     /**
      * Checks if any of the saved centers is invalid
      * @return bool: true if this hub contains an invalid center
@@ -132,16 +150,16 @@ public:
      * REQUIRE(&centers != NULL, "Centers can't be NULL!");
      */
     bool containsInvalidCenter() const;
-
 private:
+
     // Initialization
     const Hub* initCheck;
 
     // Connected vaccinationcenters
     VaccinationCenters centers;
-
     // Vaccines
     Vaccines vaccines;
+
     std::map<Vaccine*, unsigned int> vaccineCount;
 
     // Simulation
