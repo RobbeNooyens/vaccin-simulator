@@ -9,6 +9,7 @@
 #define VACCIN_SIMULATOR_JVALUE_H
 
 #include <string>
+#include <vector>
 
 class JObject;
 class JArray;
@@ -158,5 +159,6 @@ private:
     JArray* valJArray;
 };
 
+typedef std::vector<JValue*> JValues;
 
 #endif //VACCIN_SIMULATOR_JVALUE_H

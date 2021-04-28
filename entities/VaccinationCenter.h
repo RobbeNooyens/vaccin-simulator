@@ -9,6 +9,8 @@
 #define VACCIN_SIMULATOR_VACCINATIONCENTER_H
 
 #include <string>
+#include <map>
+#include "Vaccine.h"
 
 class TiXmlElement;
 class JObject;
@@ -41,16 +43,39 @@ public:
      * Simulates the event of an arriving truck with vaccines.
      * @param vaccinCount: unsigned int; the amount of vaccines that are being delivered
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(getVaccins() + amount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
      * ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
      */
-    void transportationArrived(unsigned int vaccinCount);
+    void transportationArrived(Vaccine *vaccine, unsigned int amount);
     /**
      * Simulate the situation where the highest possible amount of inhabitants are being vaccinated
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      * ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
      * ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
      */
-    void vaccinateInhabitants();
+    void vaccinateInhabitants(unsigned int day);
+
+    /**
+     * Throws away the vaccins that actually should have been used during the day because of its temperature
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    void removeExpiredVaccines();
+
+    // Setters
+
+    /**
+     * Used to verify whether the simulation is consistent or not
+     * @param connected: bool; true if the center is connected to a hub
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    void setConnectedToHub(bool connected);
+
+    /**
+     * Sets the centers output stream to the given outstream
+     * @param outputStream: output stream to stream data to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    void setOutputStream(std::ostream& outputStream);
 
     // Getters
     /**
@@ -88,6 +113,30 @@ public:
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccinationsLeft() const;
+    /**
+     * @return ostream; the output stream
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    std::ostream* getOutputstream() const;
+    /**
+     * @return the percentage vaccines stored in the center
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
+     * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     */
+    double getPercentageVaccines() const;
+    /**
+     * @return the percentage of vaccinated people
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
+     * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     */
+    double getPercentageVaccinated() const;
+    /**
+     * @return bool; true if the center is connected to a hub
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    bool isConnectedToHub() const;
 
     // IO
     /**
@@ -110,6 +159,14 @@ public:
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toSummaryStream(std::ostream& stream) const;
+    /**
+     * Sends the center progress bars as strings to the given stream
+     * @param stream: ostream; stream to push the output strings to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+     * REQUIRE(stream.good(), "Output stream contains error flags!");
+     * ENSURE(stream.good(), "Failed to write to output stream!");
+     */
     void toProgressStream(std::ostream& stream) const;
 
 private:
@@ -119,10 +176,15 @@ private:
     // Metadata
     std::string name;
     std::string address;
-    unsigned int vaccins;
     unsigned int inhabitants;
     unsigned int vaccinated;
     unsigned int capacity;
+    std::map<Vaccine*, unsigned int> vaccines;
+    std::map<Vaccine*, std::map<unsigned int, unsigned int> > renewing;
+
+    // Simulation
+    bool connectedToHub;
+    std::ostream* outStream;
 };
 
 

@@ -10,34 +10,34 @@
 #include "JArray.h"
 #include "../DesignByContract.h"
 
-JValue::JValue(): initCheck(this) {
+JValue::JValue(): initCheck(this), valJObject(NULL), valJArray(NULL) {
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(int val): initCheck(this), valInt(val){
+JValue::JValue(int val): initCheck(this), valInt(val), valJObject(NULL), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(float val): initCheck(this), valFloat(val){
+JValue::JValue(float val): initCheck(this), valFloat(val), valJObject(NULL), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(double val): initCheck(this), valDouble(val){
+JValue::JValue(double val): initCheck(this), valDouble(val), valJObject(NULL), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(char val): initCheck(this), valChar(val){
+JValue::JValue(char val): initCheck(this), valChar(val), valJObject(NULL), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(bool val): initCheck(this), valBool(val){
+JValue::JValue(bool val): initCheck(this), valBool(val), valJObject(NULL), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(std::string val): initCheck(this), valString(val){
+JValue::JValue(std::string val): initCheck(this), valString(val), valJObject(NULL), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(JObject* val): initCheck(this), valJObject(val){
+JValue::JValue(JObject* val): initCheck(this), valJObject(val), valJArray(NULL){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(JArray* val): initCheck(this), valJArray(val){
+JValue::JValue(JArray* val): initCheck(this), valJObject(NULL), valJArray(val){
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
-JValue::JValue(unsigned int val): initCheck(this), valUnsignedint(val) {
+JValue::JValue(unsigned int val): initCheck(this), valUnsignedint(val), valJObject(NULL), valJArray(NULL) {
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
 }
 
@@ -84,6 +84,7 @@ bool JValue::properlyInitialized() const {
 }
 
 JValue::~JValue() {
+    // TODO: decide whether or not to keep this
     delete valJArray;
     delete valJObject;
     valJArray = NULL;

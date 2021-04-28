@@ -12,26 +12,6 @@ assert.h
 iostream
 -
 
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.cpp
-fstream
--
-Simulator.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
-utils.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
-DesignByContract.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
-json/JObject.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
-
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.h
-entities/Hub.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
-io/XMLParser.h
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
-string
--
-
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/VaccimulatorTests.cpp
 gtest/gtest.h
 -
@@ -43,6 +23,8 @@ iostream
 -
 map
 -
+string
+-
 ../tinyxml/tinyxml.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
 ../DesignByContract.h
@@ -53,10 +35,16 @@ map
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
 ../json/JValue.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 Hub.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
 VaccinationCenter.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+Vaccine.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
 vector
@@ -70,6 +58,36 @@ iostream
 map
 -
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.cpp
+fstream
+-
+Simulator.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.h
+../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.h
+../io/XMLParser.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
+VaccinationCenter.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+Hub.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+string
+-
+vector
+-
+
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.cpp
 ostream
 -
@@ -81,8 +99,34 @@ VaccinationCenter.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
 ../json/JValue.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+Vaccine.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
+string
+-
+map
+-
+Vaccine.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.cpp
+Vaccine.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
+../DesignByContract.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
 string
 -
 
@@ -101,13 +145,19 @@ XMLParser.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../json/JArray.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
 ../DesignByContract.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.h
 streambuf
 -
 string
+-
+vector
 -
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp
@@ -122,6 +172,8 @@ JValue.h
 vector
 -
 
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
+
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp
 JObject.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
@@ -129,6 +181,8 @@ JValue.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../DesignByContract.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/DesignByContract.h
+../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 string
 -
 
@@ -153,6 +207,8 @@ JArray.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 string
 -
+vector
+-
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp
 TestUtils.h
@@ -161,9 +217,15 @@ TestUtils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
 ../json/JValue.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
 string
+-
+vector
 -
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/JsonTests.cpp
@@ -187,6 +249,8 @@ gtest/gtest.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../../json/JArray.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
+../../json/JKeys.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JKeys.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/HubTests.cpp
 gtest/gtest.h
@@ -195,6 +259,16 @@ gtest/gtest.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
 ../../entities/Hub.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.h
+../../entities/Vaccine.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
+../TestUtils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
+../../json/JValue.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
+../../json/JObject.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.h
+../../json/JArray.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccinationCenterTests.cpp
 gtest/gtest.h
@@ -209,10 +283,18 @@ gtest/gtest.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.h
 ../TestUtils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
+../../utils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp
+gtest/gtest.h
+-
+../../entities/Vaccine.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.h
+../TestUtils.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.h
 
-/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutTests.cpp
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/SimulationOutputTests.cpp
 ../../entities/VaccinationCenter.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.h
 ../../entities/Hub.h
@@ -287,6 +369,10 @@ windows.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.cpp
 utils.h
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
+tinyxml/tinyxml.h
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.h
+time.h
+-
 
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/utils.h
 fstream

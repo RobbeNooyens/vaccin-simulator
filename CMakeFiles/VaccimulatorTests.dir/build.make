@@ -153,33 +153,57 @@ CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o.provides: CMakeFile
 CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
 
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o: tests/presentation/HubOutTests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutTests.cpp"
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o: tests/domain/VaccineTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp"
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutTests.cpp" > CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.i
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp" > CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/HubOutTests.cpp" -o CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.s
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp" -o CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.requires:
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires:
 
-.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.requires
+.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.provides.build
-.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.provides
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides.build
+.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides
 
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o
+CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o
+
+
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o: tests/presentation/SimulationOutputTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/SimulationOutputTests.cpp"
+
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/SimulationOutputTests.cpp" > CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.i
+
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/presentation/SimulationOutputTests.cpp" -o CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.s
+
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.requires:
+
+.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.requires
+
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.provides.build
+.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.provides
+
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o
 
 
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o: tests/data/XMLParserTests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/XMLParserTests.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o.provides.build:
 
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o: tests/data/JsonTests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/data/JsonTests.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.i: cmake_force
@@ -225,9 +249,33 @@ CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o.provides: CMakeFiles
 CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o
 
 
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: tests/TestUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp"
+
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp" > CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i
+
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp" -o CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s
+
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires:
+
+.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires
+
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides.build
+.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides
+
+CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
+
+
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o: tinyxml/tinyxmlparser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxmlparser.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.i: cmake_force
@@ -251,7 +299,7 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o.provides.build: CMa
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o: tinyxml/tinyxmlerror.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxmlerror.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.i: cmake_force
@@ -275,7 +323,7 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o.provides.build: CMak
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o: tinyxml/tinyxml.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinyxml.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.i: cmake_force
@@ -299,7 +347,7 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o: tinyxml/tinystr.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tinyxml/tinystr.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.i: cmake_force
@@ -323,7 +371,7 @@ CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o: io/XMLParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/io/XMLParser.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.i: cmake_force
@@ -347,7 +395,7 @@ CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o.provides.build: CMakeFiles/V
 
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o: entities/Hub.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Hub.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.i: cmake_force
@@ -371,7 +419,7 @@ CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o.provides.build: CMakeFiles/V
 
 CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o: entities/VaccinationCenter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/VaccinationCenter.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.i: cmake_force
@@ -393,33 +441,57 @@ CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o.provides: CMak
 CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o
 
 
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o: Simulator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.cpp"
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o: entities/Simulator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.cpp"
 
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.cpp" > CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.i
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.cpp" > CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.i
 
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/Simulator.cpp" -o CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.s
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Simulator.cpp" -o CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.s
 
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.requires:
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.requires:
 
-.PHONY : CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.requires
+.PHONY : CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.requires
 
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.provides.build
-.PHONY : CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.provides
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.provides.build
+.PHONY : CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.provides
 
-CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o
+CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o
+
+
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o: entities/Vaccine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.cpp"
+
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.cpp" > CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.i
+
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/entities/Vaccine.cpp" -o CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.s
+
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.requires:
+
+.PHONY : CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.requires
+
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.provides.build
+.PHONY : CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.provides
+
+CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o
 
 
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o: json/JValue.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JValue.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.i: cmake_force
@@ -443,7 +515,7 @@ CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o.provides.build: CMakeFiles/Va
 
 CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o: json/JObject.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JObject.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.i: cmake_force
@@ -467,7 +539,7 @@ CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o.provides.build: CMakeFiles/V
 
 CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
 CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o: json/JArray.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/json/JArray.cpp"
 
 CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.i: cmake_force
@@ -489,63 +561,17 @@ CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o.provides: CMakeFiles/Vaccimul
 CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o
 
 
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o: tests/TestUtils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp"
-
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp" > CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i
-
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/TestUtils.cpp" -o CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s
-
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires:
-
-.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires
-
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides.build
-.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides
-
-CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
-
-
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o: CMakeFiles/VaccimulatorTests.dir/flags.make
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o: tests/domain/VaccineTests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o -c "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp"
-
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp" > CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.i
-
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/domain/VaccineTests.cpp" -o CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s
-
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires:
-
-.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires
-
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides.build
-.PHONY : CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides
-
-CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.provides.build: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o
-
-
 # Object files for target VaccimulatorTests
 VaccimulatorTests_OBJECTS = \
 "CMakeFiles/VaccimulatorTests.dir/VaccimulatorTests.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/utils.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o" \
-"CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o" \
+"CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o" \
+"CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o" \
+"CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o" \
@@ -553,12 +579,11 @@ VaccimulatorTests_OBJECTS = \
 "CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o" \
-"CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o" \
+"CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o" \
+"CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o" \
 "CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o" \
-"CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o" \
-"CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o" \
-"CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o"
+"CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o"
 
 # External object files for target VaccimulatorTests
 VaccimulatorTests_EXTERNAL_OBJECTS =
@@ -567,9 +592,11 @@ VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/VaccimulatorTests.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/utils.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o
-VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o
+VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o
+VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o
+VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o
@@ -577,15 +604,14 @@ VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o
-VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o
+VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o
+VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o
-VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
-VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/build.make
 VaccimulatorTests: CMakeFiles/VaccimulatorTests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable VaccimulatorTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable VaccimulatorTests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VaccimulatorTests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -597,9 +623,11 @@ CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/Vacc
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/utils.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o.requires
-CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/presentation/HubOutTests.cpp.o.requires
+CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires
+CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/data/JsonTests.cpp.o.requires
+CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o.requires
@@ -607,12 +635,11 @@ CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tiny
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/io/XMLParser.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/entities/VaccinationCenter.cpp.o.requires
-CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/Simulator.cpp.o.requires
+CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/entities/Simulator.cpp.o.requires
+CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/entities/Vaccine.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/json/JValue.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/json/JObject.cpp.o.requires
 CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/json/JArray.cpp.o.requires
-CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o.requires
-CMakeFiles/VaccimulatorTests.dir/requires: CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.requires
 
 .PHONY : CMakeFiles/VaccimulatorTests.dir/requires
 

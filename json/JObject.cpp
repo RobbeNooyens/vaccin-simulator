@@ -8,6 +8,7 @@
 #include "JObject.h"
 #include "JValue.h"
 #include "../DesignByContract.h"
+#include "../utils.h"
 #include <string>
 
 JValue* JObject::getValue(const std::string& key) {
@@ -20,13 +21,13 @@ JValue* JObject::getValue(const std::string& key) {
         JObject* parent = values[first]->asJObject();
         return parent->getValue(second);
     }
-    if(values.find(key) == values.end())
+    if(!(VECTOR_CONTAINS(values, key)))
         return NULL;
-    JValue* val = values[key];
-    return val;
+    return values[key];
 }
 
 JObject::JObject(): initCheck(this) {
+    values = std::map<std::string, JValue*>();
     ENSURE(properlyInitialized(), "JObject object hasn't been initialized properly!");
 }
 
@@ -59,9 +60,12 @@ bool JObject::properlyInitialized() {
 }
 
 JObject::~JObject() {
-    for(std::map<std::string, JValue*>::iterator it = values.begin(); it != values.end(); it++) {
-        delete it->second;
-        it->second = NULL;
+    REQUIRE(properlyInitialized(), "JObject object hasn't been initialized properly!");
+    if(!values.empty()){
+        for(std::map<std::string, JValue*>::iterator it = values.begin(); it != values.end(); it++) {
+            delete it->second;
+            it->second = NULL;
+        }
     }
     values.clear();
     ENSURE(values.empty(), "JObject values weren't deleted properly!");
