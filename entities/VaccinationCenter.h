@@ -43,6 +43,7 @@ public:
      * Simulates the event of an arriving truck with vaccines.
      * @param vaccinCount: unsigned int; the amount of vaccines that are being delivered
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(getVaccins() + amount <= 2*capacity, "The maximum capacity of vaccines has been exceeded!");
      * ENSURE(vaccins = oldVaccins + vaccinCount, "Vaccins aren't added succesfully!");
      */
     void transportationArrived(Vaccine *vaccine, unsigned int amount);
@@ -54,12 +55,26 @@ public:
      */
     void vaccinateInhabitants(unsigned int day);
 
+    /**
+     * Throws away the vaccins that actually should have been used during the day because of its temperature
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     void removeExpiredVaccines();
 
     // Setters
 
+    /**
+     * Used to verify whether the simulation is consistent or not
+     * @param connected: bool; true if the center is connected to a hub
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     void setConnectedToHub(bool connected);
 
+    /**
+     * Sets the centers output stream to the given outstream
+     * @param outputStream: output stream to stream data to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     void setOutputStream(std::ostream& outputStream);
 
     // Getters
@@ -98,9 +113,29 @@ public:
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccinationsLeft() const;
+    /**
+     * @return ostream; the output stream
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     std::ostream* getOutputstream() const;
+    /**
+     * @return the percentage vaccines stored in the center
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
+     * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     */
     double getPercentageVaccines() const;
+    /**
+     * @return the percentage of vaccinated people
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
+     * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     */
     double getPercentageVaccinated() const;
+    /**
+     * @return bool; true if the center is connected to a hub
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     bool isConnectedToHub() const;
 
     // IO

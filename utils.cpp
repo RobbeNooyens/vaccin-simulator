@@ -7,6 +7,7 @@
 
 #include "utils.h"
 #include "tinyxml/tinyxml.h"
+#include "DesignByContract.h"
 #include <time.h>
 
 bool StringUtil::contains(const std::string &source, const std::string &target) {
@@ -87,7 +88,9 @@ bool FileUtil::FileCompare(const std::string leftFileName, const std::string rig
     return result;
 }
 
-unsigned int XMLUtil::elementToUnsignedInt(TiXmlElement *element, std::string elementName) {
+unsigned int XMLUtil::elementToUnsignedInt(TiXmlElement *element, const std::string& elementName) {
+    REQUIRE(element != NULL, "Element can't be NULL!");
+    REQUIRE(!elementName.empty(), "Element name cannot be empty!");
     TiXmlText* e_text = element->FirstChild()->ToText();
     if (e_text == NULL) {
         throw std::runtime_error("waarde niet gevonden in element '" + elementName + "'");

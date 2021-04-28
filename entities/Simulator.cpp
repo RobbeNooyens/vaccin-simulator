@@ -129,8 +129,8 @@ void Simulator::reset() {
         delete *hub;
     ITERATE(std::vector<VaccinationCenter*>, centers, center)
         delete *center;
-    fromJSON(initialState);
     daycount = 0;
+    fromJSON(initialState);
 }
 
 Simulator::~Simulator() {

@@ -24,6 +24,10 @@ public:
      * ENSURE(properlyInitialized(), "Object hasn't been initialized properly!");
      */
     Simulator();
+    /**
+     * Simulator destructor
+     * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+     */
     ~Simulator();
 
     // Initialization
@@ -74,14 +78,26 @@ public:
      * @param cycles: the amount of times the simulation should run
      * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * REQUIRE(cycles != 0, "Cycles cannot be 0!");
+     * REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
      * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
     void run(unsigned int cycles);
 
+    /**
+     * Checks if the data in the simulation is valid
+     * @return bool; true if the data is consistent
+     * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+     */
     bool isConsistent() const;
-    // TODO: implement restart and clear functions
+
+    /**
+     * Resets the simulator to its startsstate
+     * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+     */
     void reset();
-//    void clear();
+
+    // TODO: implement restart and clear functions
+    // void clear();
 
 private:
     // Initialization

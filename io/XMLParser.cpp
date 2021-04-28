@@ -57,6 +57,7 @@ bool XMLParser::properlyInitialized() const {
 
 JObject* XMLParser::parse(const std::string& fileName) {
     REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
+    REQUIRE(!fileName.empty(), "Filename can't be empty!");
     TiXmlDocument xml_document = TiXmlDocument();
     if (!xml_document.LoadFile(fileName.c_str())) {
         std::cerr << xml_document.ErrorDesc() << std::endl;
@@ -88,6 +89,7 @@ JObject* XMLParser::parse(const std::string& fileName) {
 
 JObject *XMLParser::parseHub(TiXmlElement *hubXML) {
     REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
+    REQUIRE(hubXML != NULL, "XML element corrupted");
     JObject* hub = new JObject;
 
     JArray* vaccines = new JArray();
@@ -121,6 +123,7 @@ JObject *XMLParser::parseHub(TiXmlElement *hubXML) {
 JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML) {
     REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
     REQUIRE(!elements_vaccin.empty(), "Vaccine elements can't be empty!");
+    REQUIRE(vaccinXML != NULL, "XML element corrupted");
     JObject* vaccine = new JObject;
     TiXmlElement* nested_elem;
     TiXmlText* e_text;

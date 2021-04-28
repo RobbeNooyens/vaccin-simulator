@@ -92,11 +92,14 @@ public:
      * Simulates the transportation and vaccination for one day
      * @param day: daynumber relative to the startdate
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
+     * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      */
     void simulateDay(unsigned int day);
     /**
      * Simulate vaccin distribution over the vaccinationcenters
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      */
     void distributeVaccins();
     /**
@@ -106,8 +109,19 @@ public:
      */
     void transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine*, unsigned int> doses) const;
 
+    /**
+     * Checks if the Hub object has consistent data for a simulation
+     * @return bool; true if the hub has consistent data
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center while it's consistent!");
+     */
     bool isConsistent() const;
 
+    /**
+     * Sets the output stream to the given stream
+     * @param outputStream: ostream; stream to output events to
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
     void setOutputStream(std::ostream &outputStream);
 
     // Validations

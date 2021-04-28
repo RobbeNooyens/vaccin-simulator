@@ -161,13 +161,17 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day) {
 double VaccinationCenter::getPercentageVaccines() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
-    return ((double) getVaccins() / ((double) 2*capacity));
+    double percentage = ((double) getVaccins() / ((double) 2*capacity));
+    ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+    return percentage;
 }
 
 double VaccinationCenter::getPercentageVaccinated() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
-    return ((double) vaccinated / (double) inhabitants);
+    double percentage = ((double) vaccinated / (double) inhabitants);
+    ENSURE(percentage >= 0 && percentage <=1, "Percentage should be in range [0,1]");
+    return percentage;
 }
 
 void VaccinationCenter::setConnectedToHub(bool connected) {
@@ -192,9 +196,9 @@ void VaccinationCenter::removeExpiredVaccines() {
             vaccines[vaccinePair->first] = 0;
         }
     }
-
 }
 
 std::ostream *VaccinationCenter::getOutputstream() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     return outStream;
 }

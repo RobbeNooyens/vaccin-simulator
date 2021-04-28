@@ -19,7 +19,6 @@
 
 #include "Hub.h"
 #include "VaccinationCenter.h"
-#include "Vaccine.h"
 
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 #define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
@@ -173,11 +172,12 @@ bool Hub::isConsistent() const {
     C_ITERATE(Vaccines, vaccines, vaccin) {
         consistent = consistent && (*vaccin)->getDelivery() > 0 && (*vaccin)->getTransportation() > 0;
     }
-    consistent = consistent && centers.size() > 0;
+    consistent = consistent && !centers.empty();
     C_ITERATE(VaccinationCenters, centers, center) {
         consistent = consistent && *center && (*center)->properlyInitialized();
     }
     return consistent;
+    ENSURE(!containsInvalidCenter(), "Hub contains an invalid center while it's consistent!");
 }
 
 void Hub::setOutputStream(std::ostream &outputStream) {
