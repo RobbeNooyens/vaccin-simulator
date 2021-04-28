@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['getaddress_519',['getAddress',['../class_vaccination_center.html#abe223f8873747250384fc7a81e35218e',1,'VaccinationCenter']]],
+  ['getcapacity_520',['getCapacity',['../class_vaccination_center.html#a675b2a7d54211ab6b30c69a0a711ca07',1,'VaccinationCenter']]],
+  ['getdelivery_521',['getDelivery',['../class_vaccine.html#a2a1a33352d03fded09b77ad0a26bf83a',1,'Vaccine']]],
+  ['getdocument_522',['GetDocument',['../class_ti_xml_node.html#adcb070acefcbaedaa0673d82e530538b',1,'TiXmlNode']]],
+  ['getinhabitants_523',['getInhabitants',['../class_vaccination_center.html#a04a59f9582edb22b6c40a20e5e19c08d',1,'VaccinationCenter']]],
+  ['getinterval_524',['getInterval',['../class_vaccine.html#af597109a1a44a5eaa2ea515ecb452c2d',1,'Vaccine']]],
+  ['getitems_525',['getItems',['../class_j_array.html#a16facf5a33f98ac642d7ba3f01bba081',1,'JArray']]],
+  ['getname_526',['getName',['../class_vaccination_center.html#a504ab4d864b12c65fc1edc9405cba55e',1,'VaccinationCenter']]],
+  ['getoutputstream_527',['getOutputstream',['../class_vaccination_center.html#ab0851c1bd015e46fea7d2d56347cebad',1,'VaccinationCenter']]],
+  ['getpercentagevaccinated_528',['getPercentageVaccinated',['../class_vaccination_center.html#a1e8c8ffd45f385ec66f22de344adee56',1,'VaccinationCenter']]],
+  ['getpercentagevaccines_529',['getPercentageVaccines',['../class_vaccination_center.html#a9936e1eda43ac5964483486e2b43bcea',1,'VaccinationCenter']]],
+  ['getrenewing_530',['getRenewing',['../class_vaccine.html#ad2e5e5d9fbb14936e3660ea92b75b32d',1,'Vaccine']]],
+  ['gettemperature_531',['getTemperature',['../class_vaccine.html#a5d6ecb9e07b1d68f7fcca8e9cef4ad89',1,'Vaccine']]],
+  ['gettext_532',['GetText',['../class_ti_xml_element.html#af0f814ecbd43d50d4cdbdf4354d3da39',1,'TiXmlElement']]],
+  ['gettotalvaccinescount_533',['getTotalVaccinesCount',['../class_hub.html#ac8761562596292316deb787327293a8a',1,'Hub']]],
+  ['gettransportation_534',['getTransportation',['../class_vaccine.html#a00e9f50a44b56bdb22cb134822dc21f4',1,'Vaccine']]],
+  ['gettype_535',['getType',['../class_vaccine.html#a1bad4aacf404365e6c4d32178e38b1df',1,'Vaccine']]],
+  ['getuserdata_536',['GetUserData',['../class_ti_xml_base.html#a6559a530ca6763fc301a14d77ed28c17',1,'TiXmlBase::GetUserData()'],['../class_ti_xml_base.html#aaaaefcef8c0e6e32f8920f4982b2daf3',1,'TiXmlBase::GetUserData() const']]],
+  ['getvaccinationcenters_537',['getVaccinationCenters',['../class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27',1,'Hub']]],
+  ['getvaccinationsdone_538',['getVaccinationsDone',['../class_vaccination_center.html#a0d73bfbcc746dda3cd4b5d8c681ab534',1,'VaccinationCenter']]],
+  ['getvaccinationsleft_539',['getVaccinationsLeft',['../class_vaccination_center.html#a91bd6a01dd405a1c5062a71d40f1a05d',1,'VaccinationCenter']]],
+  ['getvaccines_540',['getVaccines',['../class_hub.html#af8986291510968c2d5746e57de7b20df',1,'Hub']]],
+  ['getvaccins_541',['getVaccins',['../class_vaccination_center.html#a35da53cbc19736684f6eab987306e1f7',1,'VaccinationCenter']]],
+  ['getvalue_542',['getValue',['../class_j_object.html#aaaf142738ca48052bb79df5ee1872c67',1,'JObject']]]
+];
