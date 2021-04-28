@@ -16,6 +16,7 @@
 #include "../json/JValue.h"
 #include "../json/JKeys.h"
 #include "../utils.h"
+#include "../entities/Planning.h"
 
 #include "Hub.h"
 #include "VaccinationCenter.h"
@@ -90,14 +91,20 @@ void Hub::simulateDay(unsigned int day) {
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     // Check if the cargo will be delivered today
+    simulateDelivery(day);
+    // Distribute the vaccins over the centra
+    distributeVaccins();
+}
+
+void Hub::simulateDelivery(unsigned int day) {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccineCount, vaccinePair) {
         Vaccine* vaccine = vaccinePair->first;
         if(day % (vaccine->getInterval() + 1) == 0) {
             vaccineCount[vaccine] += vaccine->getDelivery();
         }
     }
-    // Distribute the vaccins over the centra
-    distributeVaccins();
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine*, unsigned int> doses) const {
@@ -115,6 +122,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine*, unsig
 
 void Hub::distributeVaccins() {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     ITERATE(VaccinationCenters, centers, c) {
         VaccinationCenter* center = *c;
@@ -133,6 +141,17 @@ void Hub::distributeVaccins() {
         }
         Hub::transportVaccinsTo(center, vaccinePerCenter);
     }
+}
+
+void Hub::distributeEfficient(unsigned int day, Planning &planning) {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
+    REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+
+    ITERATE(VaccinationCenters, centers, c) {
+        Hub::transportVaccinsTo(*c, planning.getDistribution(day, *c));
+    }
+
 }
 
 bool Hub::containsInvalidCenter() const {
