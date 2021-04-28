@@ -83,8 +83,8 @@ namespace XMLUtil {
      * @param element: TiXmlElement*; element to convert
      * @param elementName: string; element name to print errormessage
      * @return unsigned int; int representatino of the xml element value
-     * REQUIRE(element != NULL, "Element can't be NULL!");
-     * REQUIRE(!elementName.empty(), "Element name cannot be empty!");
+     * * REQUIRE(element != NULL, "Element can't be NULL!");
+     * * REQUIRE(!elementName.empty(), "Element name cannot be empty!");
      */
     unsigned int elementToUnsignedInt(TiXmlElement* element, const std::string& elementName);
 

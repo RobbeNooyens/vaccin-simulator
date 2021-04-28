@@ -220,6 +220,36 @@ entities/Hub.cpp.s:
 	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Hub.cpp.s
 .PHONY : entities/Hub.cpp.s
 
+entities/Planning.o: entities/Planning.cpp.o
+
+.PHONY : entities/Planning.o
+
+# target to build an object file
+entities/Planning.cpp.o:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.o
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.o
+.PHONY : entities/Planning.cpp.o
+
+entities/Planning.i: entities/Planning.cpp.i
+
+.PHONY : entities/Planning.i
+
+# target to preprocess a source file
+entities/Planning.cpp.i:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.i
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.i
+.PHONY : entities/Planning.cpp.i
+
+entities/Planning.s: entities/Planning.cpp.s
+
+.PHONY : entities/Planning.s
+
+# target to generate assembly for a file
+entities/Planning.cpp.s:
+	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/entities/Planning.cpp.s
+	$(MAKE) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/entities/Planning.cpp.s
+.PHONY : entities/Planning.cpp.s
+
 entities/Simulator.o: entities/Simulator.cpp.o
 
 .PHONY : entities/Simulator.o
@@ -791,6 +821,9 @@ help:
 	@echo "... entities/Hub.o"
 	@echo "... entities/Hub.i"
 	@echo "... entities/Hub.s"
+	@echo "... entities/Planning.o"
+	@echo "... entities/Planning.i"
+	@echo "... entities/Planning.s"
 	@echo "... entities/Simulator.o"
 	@echo "... entities/Simulator.i"
 	@echo "... entities/Simulator.s"
