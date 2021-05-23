@@ -12,28 +12,28 @@ include_directories(gtest/include)
 link_directories(gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES Vaccimulator.cpp
+set(RELEASE_SOURCE_FILES src/Vaccimulator.cpp
         tinyxml/tinyxmlparser.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
         tinyxml/tinystr.h tinyxml/tinystr.cpp
-        io/XMLParser.cpp io/XMLParser.h
-        entities/Hub.cpp entities/Hub.h
-        entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        entities/Simulator.cpp entities/Simulator.h
-        entities/Vaccine.cpp entities/Vaccine.h
-        json/JValue.cpp json/JValue.h
-        json/JObject.cpp json/JObject.h
-        json/JArray.cpp json/JArray.h
-        json/JKeys.h
+        src/parsing/XMLParser.cpp src/parsing/XMLParser.h
+        src/entities/Hub.cpp src/entities/Hub.h
+        src/entities/VaccinationCenter.cpp src/entities/VaccinationCenter.h
+        src/entities/Simulator.cpp src/entities/Simulator.h
+        src/entities/Vaccine.cpp src/entities/Vaccine.h
+        src/json/JValue.cpp src/json/JValue.h
+        src/json/JObject.cpp src/json/JObject.h
+        src/json/JArray.cpp src/json/JArray.h
+        src/json/JKeys.h
         DesignByContract.h
-        utils.cpp utils.h
+        src/utilities/utils.cpp src/utilities/utils.h
         tests/TestUtils.h tests/TestUtils.cpp
-        entities/Planning.cpp entities/Planning.h)
+        src/entities/Planning.cpp src/entities/Planning.h src/entities/SimulationData.cpp src/entities/SimulationData.h)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
-        utils.h utils.cpp
+set(DEBUG_SOURCE_FILES tests/VaccimulatorTests.cpp
+        src/utilities/utils.h src/utilities/utils.cpp
         tests/domain/VaccinationCenterTests.cpp
         tests/domain/HubTests.cpp
         tests/domain/VaccineTests.cpp
@@ -45,16 +45,16 @@ set(DEBUG_SOURCE_FILES VaccimulatorTests.cpp
         tinyxml/tinyxmlerror.cpp
         tinyxml/tinyxml.h tinyxml/tinyxml.cpp
         tinyxml/tinystr.h tinyxml/tinystr.cpp
-        io/XMLParser.cpp io/XMLParser.h
-        entities/Hub.cpp entities/Hub.h
-        entities/VaccinationCenter.cpp entities/VaccinationCenter.h
-        entities/Simulator.cpp entities/Simulator.h
-        entities/Vaccine.cpp entities/Vaccine.h
-        entities/Planning.cpp entities/Planning.h
-        json/JValue.cpp json/JValue.h
-        json/JObject.cpp json/JObject.h
-        json/JArray.cpp json/JArray.h
-        json/JKeys.h
+        src/parsing/XMLParser.cpp src/parsing/XMLParser.h
+        src/entities/Hub.cpp src/entities/Hub.h
+        src/entities/VaccinationCenter.cpp src/entities/VaccinationCenter.h
+        src/entities/Simulator.cpp src/entities/Simulator.h
+        src/entities/Vaccine.cpp src/entities/Vaccine.h
+        src/entities/Planning.cpp src/entities/Planning.h
+        src/json/JValue.cpp src/json/JValue.h
+        src/json/JObject.cpp src/json/JObject.h
+        src/json/JArray.cpp src/json/JArray.h
+        src/json/JKeys.h
         DesignByContract.h)
 
 # Create RELEASE target

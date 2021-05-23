@@ -1,14 +1,14 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include <fstream>
 #include "Simulator.h"
-#include "../utils.h"
-#include "../DesignByContract.h"
+#include "../utilities/utils.h"
+#include "../../DesignByContract.h"
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 #include "../json/JArray.h"
@@ -110,18 +110,17 @@ void Simulator::fromJSON(JObject *json) {
 
 // Simulation controls
 
-void Simulator::run(const unsigned int cycles) {
+void Simulator::run(const unsigned int cycles, std::ostream &outputStream) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
     while(daycount < lastDay){
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
-        ITERATE(std::vector<Hub*>, hubs, hub)
-            (*hub)->simulateDay(daycount);
+        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, &statistics, &outputStream);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-        ITERATE(VaccinationCenters, centers, center)
-            (*center)->vaccinateInhabitants(daycount);
+        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, &statistics, &outputStream);
+        statistics.printStatistics(outputStream);
         daycount++;
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
@@ -142,8 +141,7 @@ void Simulator::runEfficient(unsigned int cycles) {
             (*hub)->distributeEfficient(daycount, planning);
         }
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-        ITERATE(VaccinationCenters, centers, center)
-            (*center)->vaccinateInhabitants(daycount);
+        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount);
         daycount++;
     }
 }

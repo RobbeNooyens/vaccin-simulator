@@ -1,9 +1,9 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 #include <gtest/gtest.h>
 #include "../../json/JObject.h"
 #include "../../json/JValue.h"

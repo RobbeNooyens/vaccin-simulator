@@ -1,12 +1,12 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 #include "JArray.h"
 #include "JValue.h"
-#include "../DesignByContract.h"
+#include "../../DesignByContract.h"
 
 void JArray::insertValue(JValue * val) {
     REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");

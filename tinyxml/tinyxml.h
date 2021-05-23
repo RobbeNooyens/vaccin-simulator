@@ -433,13 +433,13 @@ public:
 	    */
 	    friend std::istream& operator >> (std::istream& in, TiXmlNode& base);
 
-	    /** An output stream operator, for every class. Note that this outputs
+	    /** An parsing stream operator, for every class. Note that this outputs
 		    without any newlines or formatting, as opposed to Print(), which
 		    includes tabs and new lines.
 
 		    The operator<< and operator>> are not completely symmetric. Writing
 		    a node to a stream is very well defined. You'll get a nice stream
-		    of output, without any extra whitespace or newlines.
+		    of parsing, without any extra whitespace or newlines.
 		    
 		    But reading is not as well defined. (As it always is.) If you create
 		    a TiXmlElement (for example) and read that from an input stream,
@@ -1204,9 +1204,9 @@ private:
 };
 
 
-/** XML text. A text node can have 2 ways to output the next. "normal" output 
+/** XML text. A text node can have 2 ways to parsing the next. "normal" parsing
 	and CDATA. It will default to the mode it was parsed from the XML file and
-	you generally want to leave it alone, but you can change the output mode with 
+	you generally want to leave it alone, but you can change the parsing mode with
 	SetCDATA() and query it with CDATA().
 */
 class TiXmlText : public TiXmlNode
@@ -1214,7 +1214,7 @@ class TiXmlText : public TiXmlNode
 	friend class TiXmlElement;
 public:
 	/** Constructor for text element. By default, it is treated as 
-		normal, encoded text. If you want it be output as a CDATA text
+		normal, encoded text. If you want it be parsing as a CDATA text
 		element, set the parameter _cdata to 'true'
 	*/
 	TiXmlText (const char * initValue ) : TiXmlNode (TiXmlNode::TINYXML_TEXT)
@@ -1265,7 +1265,7 @@ protected :
 	#endif
 
 private:
-	bool cdata;			// true if this should be input and output as a CDATA style text element
+	bool cdata;			// true if this should be input and parsing as a CDATA style text element
 };
 
 
@@ -1478,7 +1478,7 @@ public:
 	int ErrorCol() const	{ return errorLocation.col+1; }	///< The column where the error occured. See ErrorRow()
 
 	/** SetTabSize() allows the error reporting functions (ErrorRow() and ErrorCol())
-		to report the correct values for row and column. It does not change the output
+		to report the correct values for row and column. It does not change the parsing
 		or input in any way.
 		
 		By calling this method, with a tab size

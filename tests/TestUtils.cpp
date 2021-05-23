@@ -4,10 +4,10 @@
 
 #include "TestUtils.h"
 
-#include "../json/JObject.h"
-#include "../json/JValue.h"
-#include "../json/JArray.h"
-#include "../json/JKeys.h"
+#include "../src/json/JObject.h"
+#include "../src/json/JValue.h"
+#include "../src/json/JArray.h"
+#include "../src/json/JKeys.h"
 
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 

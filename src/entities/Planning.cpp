@@ -1,13 +1,13 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include <vector>
 #include "Planning.h"
-#include "../DesignByContract.h"
+#include "../../DesignByContract.h"
 #include "Hub.h"
 
 Planning::Planning(): initCheck(this) {

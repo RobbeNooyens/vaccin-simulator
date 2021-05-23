@@ -10,7 +10,7 @@ default_target: all
 .NOTPARALLEL:
 
 
-#=============================================================================
+#════════════════════════════════════════════=================================
 # Special targets provided by cmake.
 
 # Disable implicit rules so canonical targets will work.
@@ -32,7 +32,7 @@ cmake_force:
 
 .PHONY : cmake_force
 
-#=============================================================================
+#════════════════════════════════════════════=================================
 # Set environment variables for the build.
 
 # The shell in which to execute make rules.
@@ -53,7 +53,7 @@ CMAKE_SOURCE_DIR = "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator"
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator"
 
-#=============================================================================
+#════════════════════════════════════════════=================================
 # Targets provided globally by CMake.
 
 # Special rule for the target rebuild_cache
@@ -110,7 +110,7 @@ depend:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
+#════════════════════════════════════════════=================================
 # Target rules for targets named Vaccimulator
 
 # Build rule for target.
@@ -123,7 +123,7 @@ Vaccimulator/fast:
 	$(MAKE) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/build
 .PHONY : Vaccimulator/fast
 
-#=============================================================================
+#════════════════════════════════════════════=================================
 # Target rules for targets named VaccimulatorTests
 
 # Build rule for target.
@@ -885,7 +885,7 @@ help:
 
 
 
-#=============================================================================
+#════════════════════════════════════════════=================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

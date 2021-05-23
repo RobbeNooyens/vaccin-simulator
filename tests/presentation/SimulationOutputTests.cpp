@@ -1,15 +1,15 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 #include "../../entities/VaccinationCenter.h"
 #include "../../entities/Hub.h"
 #include "../../json/JArray.h"
 #include "../../json/JValue.h"
 #include "../../json/JObject.h"
-#include "../../utils.h"
+#include "../../src/utilities/utils.h"
 #include "../TestUtils.h"
 
 #include <gtest/gtest.h>
@@ -57,7 +57,7 @@ protected:
 };
 
 /**
-Tests the simple output format.
+Tests the simple parsing format.
 */
 TEST_F(SimulationOutputTests, SimpleOutput) {
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
@@ -75,7 +75,7 @@ TEST_F(SimulationOutputTests, SimpleOutput) {
 }
 
 /**
-Tests the graphical output.
+Tests the graphical parsing.
 */
 TEST_F(SimulationOutputTests, GraphicalProgress) {
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
@@ -88,11 +88,11 @@ TEST_F(SimulationOutputTests, GraphicalProgress) {
 }
 
 /**
- * Test the output after the simulation ran for a specific amount of days
+ * Test the parsing after the simulation ran for a specific amount of days
  */
 TEST_F(SimulationOutputTests, HappyDay) {
     for(int day = 1; day <= 10; day++)
-        hub.simulateDay(day);
+        hub.simulateDay(day, NULLNULL);
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
     // Test Summary

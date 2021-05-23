@@ -1,20 +1,20 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include <iostream>
 #include "XMLParser.h"
 #include "../entities/Hub.h"
-#include "../tinyxml/tinyxml.h"
+#include "../../tinyxml/tinyxml.h"
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 #include "../json/JArray.h"
 #include "../json/JKeys.h"
-#include "../DesignByContract.h"
-#include "../utils.h"
+#include "../../DesignByContract.h"
+#include "../utilities/utils.h"
 
 #define XML_HUB "HUB"
 #define XML_HUB_CENTERS "CENTRA"

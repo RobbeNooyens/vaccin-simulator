@@ -1,14 +1,14 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include "JObject.h"
 #include "JValue.h"
-#include "../DesignByContract.h"
-#include "../utils.h"
+#include "../../DesignByContract.h"
+#include "../utilities/utils.h"
 #include <string>
 
 JValue* JObject::getValue(const std::string& key) {

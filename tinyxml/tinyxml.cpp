@@ -1339,7 +1339,7 @@ void TiXmlText::Print( FILE* cfile, int depth ) const
 		for ( i=0; i<depth; i++ ) {
 			fprintf( cfile, "    " );
 		}
-		fprintf( cfile, "<![CDATA[%s]]>\n", value.c_str() );	// unformatted output
+		fprintf( cfile, "<![CDATA[%s]]>\n", value.c_str() );	// unformatted parsing
 	}
 	else
 	{

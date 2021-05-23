@@ -1,9 +1,9 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include <gtest/gtest.h>
 #include "../../entities/VaccinationCenter.h"
@@ -11,7 +11,7 @@
 #include "../../json/JObject.h"
 #include "../../json/JValue.h"
 #include "../TestUtils.h"
-#include "../../utils.h"
+#include "../../src/utilities/utils.h"
 
 #define INHABITANTS (unsigned int) 6000
 #define CAPACITY (unsigned int) 200
@@ -73,7 +73,7 @@ TEST_F(VaccinationCenterTests, HappyDay){
     unsigned int backupVaccins = c.getVaccins();
     c.transportationArrived(vaccine, TRANSPORT);
     EXPECT_EQ(backupVaccins + TRANSPORT, c.getVaccins());
-    c.vaccinateInhabitants(0);
+    c.vaccinateInhabitants(0, NULLNULL);
     EXPECT_EQ(std::min(TRANSPORT, CAPACITY), c.getVaccinationsDone());
     EXPECT_EQ(INHABITANTS - std::min(TRANSPORT, CAPACITY), c.getVaccinationsLeft());
 }
@@ -99,7 +99,7 @@ TEST_F(VaccinationCenterTests, Vaccinations){
     VaccinationCenter c = VaccinationCenter(NAME, ADDRESS, INHABITANTS, CAPACITY);
     for(int i = 1; i <= 15; i++) {
         c.transportationArrived(vaccine, CAPACITY);
-        c.vaccinateInhabitants(i);
+        c.vaccinateInhabitants(i, NULLNULL);
         EXPECT_EQ(i*CAPACITY, c.getVaccinationsDone());
     }
 }

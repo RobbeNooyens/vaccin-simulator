@@ -1,13 +1,13 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include "utils.h"
-#include "tinyxml/tinyxml.h"
-#include "DesignByContract.h"
+#include "../../tinyxml/tinyxml.h"
+#include "../../DesignByContract.h"
 #include <time.h>
 
 bool StringUtil::contains(const std::string &source, const std::string &target) {

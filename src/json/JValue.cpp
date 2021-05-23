@@ -1,14 +1,14 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include "JValue.h"
 #include "JObject.h"
 #include "JArray.h"
-#include "../DesignByContract.h"
+#include "../../DesignByContract.h"
 
 JValue::JValue(): initCheck(this), valJObject(NULL), valJArray(NULL) {
     ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");

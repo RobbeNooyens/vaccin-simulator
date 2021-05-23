@@ -1,9 +1,9 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #ifndef VACCIMULATOR_UTILS_H
 #define VACCIMULATOR_UTILS_H
@@ -59,14 +59,14 @@ namespace IntUtil {
 }
 
 namespace FileUtil {
-    /** ============================================================================
+    /** ════════════════════════════════════════════================================
     * Name        : TicTacToeUtils.cpp
     * Author      : Serge Demeyer
     * Version     :
     * Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
     * Description : TicTactToe in C++, Ansi-style
     * Source      : https://github.com/sergedemeyer/TicTacToe_Git/blob/master/TicTacToeUtils.cpp
-    * ============================================================================*/
+    * ════════════════════════════════════════════================================*/
     bool DirectoryExists(const std::string dirname);
 
     bool FileExists(const std::string filename);

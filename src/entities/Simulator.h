@@ -1,16 +1,17 @@
-// ╒============================================╕
-// | Authors: Mohammed Shakleya, Robbe Nooyens  |
-// | Project: Vaccimulator                      |
-// | Version: 2.0                               |
-// |             UAntwerpen 2021                |
-// ╘============================================╛
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #ifndef VACCIN_SIMULATOR_SIMULATOR_H
 #define VACCIN_SIMULATOR_SIMULATOR_H
 
-#include "../io/XMLParser.h"
+#include "../parsing/XMLParser.h"
 #include "VaccinationCenter.h"
 #include "Hub.h"
+#include "SimulationData.h"
 #include <string>
 #include <vector>
 
@@ -85,12 +86,13 @@ public:
     /**
      * Runs the simulation for a specific amount of times
      * @param cycles: the amount of times the simulation should run
+     * @param outputStream: stream to send data to messages to sent during the simulation
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(cycles != 0, "Cycles cannot be 0!");
      * * REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
      * * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
-    void run(unsigned int cycles);
+    void run(unsigned int cycles, std::ostream &outputStream);
     /**
      * Runs the simulation for a specific amount of times with smart distribution
      * @param startFromDay: int; the day to start from
@@ -126,6 +128,7 @@ private:
     std::vector<VaccinationCenter*> centers;
     XMLParser xmlParser;
     unsigned int daycount;
+    SimulationData statistics;
 };
 
 
