@@ -45,7 +45,7 @@ public:
      * * REQUIRE(properlyInitialized(), "Object hasn't been properly initialized!");
      * * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
      */
-    void importSimulation(const std::string& fileName);
+    void importSimulation(const std::string &fileName, std::ostream &errorStream);
     /**
      * Exports the simulation summary to a text file
      * @param fileName: name of the text file to write to
@@ -63,7 +63,7 @@ public:
      */
     void exportSimulationProgress(const std::string& fileName) const;
     /**
-     * Writes contents of the objects in the simulation to an ini file
+     * Writes contents of the objects valid the simulation to an ini file
      * @param fileName: string; name of the file to write to
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(StringUtil::contains(fileName, ".ini"), "File should be an ini file!");
@@ -103,7 +103,7 @@ public:
     void runEfficient(unsigned int cycles);
 
     /**
-     * Checks if the data in the simulation is valid
+     * Checks if the data valid the simulation is valid
      * @return bool; true if the data is consistent
      * * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
      */
@@ -126,7 +126,6 @@ private:
     JObject* initialState;
     std::vector<Hub*> hubs;
     std::vector<VaccinationCenter*> centers;
-    XMLParser xmlParser;
     unsigned int daycount;
     SimulationData statistics;
 };

@@ -33,14 +33,14 @@ public:
 
     // Insertion and retrieval
     /**
-     * Inserts a JValue in the array
+     * Inserts a JValue valid the array
      * @param value: JValue*; value to insert
      * * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
     void insertValue(JValue* value);
     /**
-     * Retrieves all values saved in this array
-     * @return std::vector<JValue*>; vector of the JValues stored in the array
+     * Retrieves all values saved valid this array
+     * @return std::vector<JValue*>; vector of the JValues stored valid the array
      * * REQUIRE(properlyInitialized(), "JArray object hasn't been initialized properly!");
      */
     std::vector<JValue*> getItems();

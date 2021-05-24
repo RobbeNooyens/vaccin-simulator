@@ -35,7 +35,7 @@ cmake_force:
 #════════════════════════════════════════════=================================
 # Set environment variables for the build.
 
-# The shell in which to execute make rules.
+# The shell valid which to execute make rules.
 SHELL = /bin/sh
 
 # The CMake executable.

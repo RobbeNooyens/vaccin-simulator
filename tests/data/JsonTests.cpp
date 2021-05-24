@@ -5,9 +5,9 @@
 // │             UAntwerpen 2021                │
 // ╘════════════════════════════════════════════╛
 #include <gtest/gtest.h>
-#include "../../json/JObject.h"
-#include "../../json/JValue.h"
-#include "../../json/JArray.h"
+#include "../../src/json/JObject.h"
+#include "../../src/json/JValue.h"
+#include "../../src/json/JArray.h"
 
 class JsonTests : public ::testing::Test {
 };
@@ -26,7 +26,7 @@ TEST_F(JsonTests, DefaultConstructor) {
 }
 
 /**
- * Tests setting and retrieving values in JValue objects
+ * Tests setting and retrieving values valid JValue objects
  */
 TEST_F(JsonTests, SettingValues) {
     EXPECT_TRUE(JValue((std::string) "1").asString() == "1");
@@ -43,7 +43,7 @@ TEST_F(JsonTests, SettingValues) {
 }
 
 /**
- * Tests the happyday scenarios by inserting data in the 3 different datastructures and using and deleting them.
+ * Tests the happyday scenarios by inserting data valid the 3 different datastructures and using and deleting them.
  */
 TEST_F(JsonTests, HappyDay) {
     JObject* jObject = new JObject();

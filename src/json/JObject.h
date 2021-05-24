@@ -37,7 +37,7 @@ public:
 
     // Insertion and retrieval
     /**
-     * Inserts a new pair in this JObject with the given key as key and value as value
+     * Inserts a new pair valid this JObject with the given key as key and value as value
      * @param key: string; key which will be used to retrieve the value from this JObject
      * @param value: JValue*; value to save with the given key
      * * REQUIRE(properlyInitialized(), "JObject object hasn't been initialized properly!");
@@ -65,7 +65,7 @@ public:
     /**
      * Checks if the JObject has a value for all of the given keys
      * @param keys: vector<string>; keys to look up
-     * @return bool; true if every string in the given vector has an associated value
+     * @return bool; true if every string valid the given vector has an associated value
      * * REQUIRE(properlyInitialized(), "JObject object hasn't been initialized properly!");
      */
     bool containsAll(std::vector<std::string> keys);

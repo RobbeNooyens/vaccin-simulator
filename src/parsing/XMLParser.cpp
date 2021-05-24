@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include "XMLParser.h"
-#include "../entities/Hub.h"
 #include "../../tinyxml/tinyxml.h"
 #include "../json/JObject.h"
 #include "../json/JValue.h"
@@ -35,38 +34,19 @@
 #define XML_CENTER_INHABITANTS "inwoners"
 #define XML_CENTER_CAPACITY "capaciteit"
 
-
-XMLParser::XMLParser() : initCheck(this) {
-    elements_centra.push_back(XML_CENTER_NAME);
-    elements_centra.push_back(XML_CENTER_ADDRESS);
-    elements_centra.push_back(XML_CENTER_INHABITANTS);
-    elements_centra.push_back(XML_CENTER_CAPACITY);
-
-    elements_vaccin.push_back(XML_VACCINE_TYPE);
-    elements_vaccin.push_back(XML_VACCINE_DELIVERY);
-    elements_vaccin.push_back(XML_VACCINE_INTERVAL);
-    elements_vaccin.push_back(XML_VACCINE_TRANSPORTATION);
-    elements_vaccin.push_back(XML_VACCINE_RENEWING);
-    elements_vaccin.push_back(XML_VACCINE_TEMPERATURE);
-    ENSURE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
-}
-
-bool XMLParser::properlyInitialized() const {
-    return initCheck == this;
-}
-
-JObject* XMLParser::parse(const std::string& fileName) {
-    REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
+JObject* XMLParser::parse(const std::string& fileName, std::ostream &errorStream, std::vector<ParseError> &errors) {
     REQUIRE(!fileName.empty(), "Filename can't be empty!");
     TiXmlDocument xml_document = TiXmlDocument();
     if (!xml_document.LoadFile(fileName.c_str())) {
-        std::cerr << xml_document.ErrorDesc() << std::endl;
+        errorStream << xml_document.ErrorDesc() << std::endl;
         throw std::runtime_error(xml_document.ErrorDesc());
     }
     TiXmlElement* root = xml_document.FirstChildElement("ROOT");
     if (root == NULL) {
         xml_document.Clear();
-        throw std::runtime_error("Failed to load file: No root element.");
+        errorStream << "Failed to load file: No root element." << std::endl;
+        errors.push_back(NO_ROOT);
+        return NULL;
     }
 
     JObject* json = new JObject;
@@ -74,11 +54,11 @@ JObject* XMLParser::parse(const std::string& fileName) {
     JArray* centers = new JArray();
 
     for (TiXmlElement* hubXml = root->FirstChildElement(XML_HUB); hubXml != NULL; hubXml = hubXml->NextSiblingElement(XML_HUB)) {
-        JObject* parsedHub = parseHub(hubXml);
+        JObject* parsedHub = parseHub(hubXml, errorStream, errors);
         hubs->insertValue(new JValue(parsedHub));
     }
     for (TiXmlElement* centerXml = root->FirstChildElement(XML_CENTER); centerXml != NULL; centerXml = centerXml->NextSiblingElement(XML_CENTER)) {
-        centers->insertValue(new JValue(parseCenter(centerXml)));
+        centers->insertValue(new JValue(parseCenter(centerXml, errorStream, errors)));
     }
 
     json->insertValue(SIMULATION_HUBS, new JValue(hubs));
@@ -87,14 +67,13 @@ JObject* XMLParser::parse(const std::string& fileName) {
     return json;
 }
 
-JObject *XMLParser::parseHub(TiXmlElement *hubXML) {
-    REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
+JObject *XMLParser::parseHub(TiXmlElement *hubXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
     REQUIRE(hubXML != NULL, "XML element corrupted");
     JObject* hub = new JObject;
 
     JArray* vaccines = new JArray();
     for (TiXmlElement* element = hubXML->FirstChildElement(XML_VACCINE); element != NULL; element = element->NextSiblingElement(XML_VACCINE)) {
-        vaccines->insertValue(new JValue(parseVaccin(element)));
+        vaccines->insertValue(new JValue(parseVaccin(element, errorStream, errors)));
     }
 
     TiXmlElement* delivery = hubXML->FirstChildElement(XML_HUB_DELIVERY);
@@ -103,7 +82,9 @@ JObject *XMLParser::parseHub(TiXmlElement *hubXML) {
 
     if (delivery || interval || transportation) {
         if(!(delivery && interval && transportation)) {
-            throw std::runtime_error("Inconsistentie: Hub moet ofwel geen ofwel alledrie de velden van een standaarvaccin bevatten!");
+            errorStream << "Inconsistentie: Hub moet ofwel geen ofwel alledrie de velden van een standaarvaccin bevatten!" << std::endl;
+            errors.push_back(INCONSISTENT_SIMULATION);
+            return NULL;
         }
         JObject* vaccine = new JObject();
         vaccine->insertValue(VACCINE_DELIVERY, new JValue(XMLUtil::elementToUnsignedInt(delivery, XML_HUB_DELIVERY)));
@@ -113,17 +94,24 @@ JObject *XMLParser::parseHub(TiXmlElement *hubXML) {
         vaccines->insertValue(new JValue(vaccine));
     }
 
-    JArray* centers = parseHubCenters(hubXML->FirstChildElement(XML_HUB_CENTERS));
+    JArray* centers = parseHubCenters(hubXML->FirstChildElement(XML_HUB_CENTERS), errorStream, errors);
 
     hub->insertValue(HUB_VACCINES, new JValue(vaccines));
     hub->insertValue(HUB_CENTERS, new JValue(centers));
     return hub;
 }
 
-JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML) {
-    REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
-    REQUIRE(!elements_vaccin.empty(), "Vaccine elements can't be empty!");
+JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
     REQUIRE(vaccinXML != NULL, "XML element corrupted");
+
+    std::vector<std::string> elements_vaccin;
+    elements_vaccin.push_back(XML_VACCINE_TYPE);
+    elements_vaccin.push_back(XML_VACCINE_DELIVERY);
+    elements_vaccin.push_back(XML_VACCINE_INTERVAL);
+    elements_vaccin.push_back(XML_VACCINE_TRANSPORTATION);
+    elements_vaccin.push_back(XML_VACCINE_RENEWING);
+    elements_vaccin.push_back(XML_VACCINE_TEMPERATURE);
+
     JObject* vaccine = new JObject;
     TiXmlElement* nested_elem;
     TiXmlText* e_text;
@@ -136,13 +124,16 @@ JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML) {
             } else if(vaccineElement == XML_VACCINE_RENEWING){
                 vaccine->insertValue(VACCINE_RENEWING, new JValue((unsigned int) 0));
             } else {
-                throw std::runtime_error("'" + vaccineElement + "' niet gevonden");
+                errors.push_back(UNKOWN_ELEMENT);
+                errorStream << "'" << vaccineElement << "' niet gevonden" << std::endl;
             }
             continue;
         }
         e_text = nested_elem->FirstChild()->ToText();
         if (e_text == NULL) {
-            throw std::runtime_error("waarde niet gevonden in element '" + vaccineElement + "'");
+            errors.push_back(INVALID_TYPE);
+            errorStream << "waarde niet gevonden valid element '" << vaccineElement << "'" << std::endl;
+            continue;
         }
         std::string value = e_text->Value();
         if (vaccineElement == XML_VACCINE_TYPE) {
@@ -150,35 +141,37 @@ JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML) {
             continue;
         }
         char *ptr;
-        // TODO: double for temperature
         if (vaccineElement == XML_VACCINE_TEMPERATURE) {
             double temperature = std::strtod(value.c_str(), &ptr);
             if (value.c_str() == ptr) {
-                throw std::runtime_error("waarde kon niet ingelezen worden van element '" + vaccineElement + "'");
+                errors.push_back(INVALID_TYPE);
+                errorStream << "waarde kon niet ingelezen worden van element '" << vaccineElement << "'";
+                continue;
             }
             vaccine->insertValue(VACCINE_TEMPERATURE, new JValue(temperature));
             continue;
         }
         unsigned int k = strtoul(value.c_str(), &ptr, 10);
         if (value.c_str() == ptr) {
-            throw std::runtime_error("waarde kon niet ingelezen worden van element '" + vaccineElement + "'");
+            errors.push_back(INVALID_TYPE);
+            errorStream << "waarde kon niet ingelezen worden van element '" << vaccineElement << "'";
+            continue;
         }
         vaccine->insertValue(vaccineElement, new JValue(k));
     }
     return vaccine;
 }
 
-JArray *XMLParser::parseHubCenters(TiXmlElement *centraXML) {
-    REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
+JArray *XMLParser::parseHubCenters(TiXmlElement *centraXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
+    REQUIRE(centraXML != NULL, "XML element corrupted");
     JArray* centers = new JArray();
-    if (centraXML == NULL) {
-        throw std::runtime_error("centra niet gevonden");
-    }
     TiXmlText* centerName;
     for (TiXmlElement* element = centraXML->FirstChildElement(XML_HUB_CENTER); element != NULL; element = element->NextSiblingElement(XML_HUB_CENTER)) {
         centerName = element->FirstChild()->ToText();
         if (centerName == NULL) {
-            throw std::runtime_error("waarde niet gevonden in element 'centrum'");
+            errors.push_back(INVALID_TYPE);
+            errorStream << "waarde niet gevonden valid element 'centrum'" << std::endl;
+            continue;
         }
         std::string name = centerName->Value();
         centers->insertValue(new JValue(name));
@@ -186,9 +179,15 @@ JArray *XMLParser::parseHubCenters(TiXmlElement *centraXML) {
     return centers;
 }
 
-JObject *XMLParser::parseCenter(TiXmlElement *vaccinationCenterXML) {
-    REQUIRE(properlyInitialized(), "XMLParser object hasn't been initialized properly!");
-    REQUIRE(!elements_centra.empty(), "Center elements can't be empty!");
+JObject *XMLParser::parseCenter(TiXmlElement *vaccinationCenterXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
+    REQUIRE(vaccinationCenterXML != NULL, "XML element corrupted");
+
+    std::vector<std::string> elements_centra;
+    elements_centra.push_back(XML_CENTER_NAME);
+    elements_centra.push_back(XML_CENTER_ADDRESS);
+    elements_centra.push_back(XML_CENTER_INHABITANTS);
+    elements_centra.push_back(XML_CENTER_CAPACITY);
+
     JObject* center = new JObject();
     TiXmlElement* nested_elem;
     TiXmlText* e_text;
@@ -196,25 +195,30 @@ JObject *XMLParser::parseCenter(TiXmlElement *vaccinationCenterXML) {
         std::string centerElement = elements_centra[i];
         nested_elem = vaccinationCenterXML->FirstChildElement(centerElement.c_str());
         if (nested_elem == NULL) {
-            throw std::runtime_error("'" + centerElement + "' niet gevonden");
+            errors.push_back(INVALID_TYPE);
+            errorStream << "'" << centerElement << "' niet gevonden";
+            continue;
+        }
+        e_text = nested_elem->FirstChild()->ToText();
+        if (e_text == NULL) {
+            errors.push_back(INVALID_TYPE);
+            errorStream << "waarde niet gevonden valid element '" << centerElement << "'";
+            continue;
+        }
+        std::string value = e_text->Value();
+        if (centerElement == XML_CENTER_INHABITANTS || centerElement == XML_CENTER_CAPACITY) {
+            char *ptr;
+            unsigned int k = strtoul(value.c_str(), &ptr, 10);
+            if (value.c_str() == ptr) {
+                errors.push_back(INVALID_TYPE);
+                errorStream << "waarde kon niet ingelezen worden van element '" << centerElement << "'" << std::endl;
+            }
+            center->insertValue(centerElement, new JValue(k));
+        } else if(centerElement == XML_CENTER_NAME || centerElement == XML_CENTER_ADDRESS) {
+            center->insertValue(centerElement, new JValue(value));
         } else {
-            e_text = nested_elem->FirstChild()->ToText();
-            if (e_text == NULL) {
-                throw std::runtime_error("waarde niet gevonden in element '" + centerElement + "'");
-            }
-            std::string value = e_text->Value();
-            if (centerElement == XML_CENTER_INHABITANTS || centerElement == XML_CENTER_CAPACITY) {
-                char *ptr;
-                unsigned int k = strtoul(value.c_str(), &ptr, 10);
-                if (value.c_str() == ptr) {
-                    throw std::runtime_error("waarde kon niet ingelezen worden van element '" + centerElement + "'");
-                }
-                center->insertValue(centerElement, new JValue(k));
-            } else if(centerElement == XML_CENTER_NAME || centerElement == XML_CENTER_ADDRESS) {
-                center->insertValue(centerElement, new JValue(value));
-            } else {
-                throw std::runtime_error("'" + centerElement + "' niet gevonden");
-            }
+            errors.push_back(UNKOWN_ELEMENT);
+            errorStream << "'" << centerElement << "' niet gevonden" << std::endl;
         }
     }
     return center;

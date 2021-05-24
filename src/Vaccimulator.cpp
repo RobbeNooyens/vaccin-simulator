@@ -25,7 +25,7 @@ using namespace StringUtil;
 
 int main() {
     Simulator simulator = Simulator();
-    simulator.importSimulation("io/xml_files/input2.xml");
+    simulator.importSimulation("io/xml_files/input2.xml", std::cerr);
 //    simulator.runEfficient(30);
     simulator.run(5, std::cout);
     std::string file = concat("io/output/Simulation_", concat(getCurrentDateTime("%Y-%m-%d_%H-%M-%S"), ".txt"));

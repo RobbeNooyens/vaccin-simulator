@@ -9,6 +9,7 @@
             <centrum>AED Studios</centrum>
             <centrum>De Zoerla</centrum>
             <centrum>Flanders Expo</centrum>
+            <center>Onbekend</center>
         </CENTRA>
     </HUB>
     <VACCINATIECENTRUM>
@@ -27,6 +28,7 @@
     <VACCINATIECENTRUM>
         <naam>De Zoerla</naam>
         <adres>Gevaertlaan 1, Westerlo</adres>
+        <vaccin>Pfizer</vaccin>
         <inwoners>49451</inwoners>
         <capaciteit>1000</capaciteit>
     </VACCINATIECENTRUM>

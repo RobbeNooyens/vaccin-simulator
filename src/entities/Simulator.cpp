@@ -35,14 +35,15 @@ bool Simulator::properlyInitialized() const {
 
 // IO
 
-void Simulator::importSimulation(const std::string& fileName) {
+void Simulator::importSimulation(const std::string &fileName, std::ostream &errorStream) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
     delete initialState;
-    initialState = xmlParser.parse(fileName);
+    ParseErrors errors;
+    initialState = XMLParser::parse(fileName, errorStream, errors);
+    if(!errors.empty())
+        throw std::runtime_error("An error occured during parsing!");
     fromJSON(initialState);
-    if(!isConsistent())
-        throw std::runtime_error("Inconsistent simulation!");
 }
 
 void Simulator::exportSimulationSummary(const std::string& fileName) const {

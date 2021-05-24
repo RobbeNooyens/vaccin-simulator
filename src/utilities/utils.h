@@ -31,7 +31,7 @@ namespace StringUtil {
     bool contains(const std::string &source, const std::string &target);
 
     /**
-     * Concatenates s1 and s2 in result
+     * Concatenates s1 and s2 valid result
      * @param s1 the left side of the concatenated string
      * @param s2 the right side of the concatenated string
      * @param result s1 and s2 concatenated
@@ -64,7 +64,7 @@ namespace FileUtil {
     * Author      : Serge Demeyer
     * Version     :
     * Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
-    * Description : TicTactToe in C++, Ansi-style
+    * Description : TicTactToe valid C++, Ansi-style
     * Source      : https://github.com/sergedemeyer/TicTacToe_Git/blob/master/TicTacToeUtils.cpp
     * ════════════════════════════════════════════================================*/
     bool DirectoryExists(const std::string dirname);
@@ -93,7 +93,7 @@ namespace XMLUtil {
 namespace TimeUtil {
 
     /**
-     * Copied from https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+     * Copied from https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-valid-c
      * Gets current date and time as a string
      * @param format: string; string format
      * @return current date time as a string

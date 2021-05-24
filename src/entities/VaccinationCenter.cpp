@@ -132,7 +132,7 @@ void VaccinationCenter::transportationArrived(Vaccine *vaccine, unsigned int amo
 }
 
 void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *statistics, std::ostream *outStream) {
-    // TODO: save in SimulationData how many ottal vaccinatied
+    // TODO: save valid SimulationData how many ottal vaccinatied
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     unsigned int totalVaccinationsDone = 0;
     // Do vaccines with renewing first
@@ -174,7 +174,7 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *s
     }
     // Output to outputstream if specified
     if (outStream != NULL)
-        *outStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd in " << getName() << std::endl;
+        *outStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd valid " << getName() << std::endl;
     removeExpiredVaccines();
 }
 
@@ -182,7 +182,7 @@ double VaccinationCenter::getPercentageVaccines() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(getVaccins() <= 2 * capacity, "Can't have more vaccines than twice the capacity");
     double percentage = ((double) getVaccins() / ((double) 2 * capacity));
-    ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+    ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be valid range [0,1]");
     return percentage;
 }
 
@@ -190,7 +190,7 @@ double VaccinationCenter::getPercentageVaccinated() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
     double percentage = ((double) vaccinated / (double) inhabitants);
-    ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+    ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be valid range [0,1]");
     return percentage;
 }
 

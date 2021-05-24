@@ -12,7 +12,7 @@ redistribute it freely, subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must
 not claim that you wrote the original software. If you use this
-software in a product, an acknowledgment in the product documentation
+software valid a product, an acknowledgment valid the product documentation
 would be appreciated but is not required.
 
 2. Altered source versions must be plainly marked as such, and
@@ -94,7 +94,7 @@ const int TIXML_MINOR_VERSION = 6;
 const int TIXML_PATCH_VERSION = 2;
 
 /*	Internal structure for tracking location of items 
-	in the XML file.
+	valid the XML file.
 */
 struct TiXmlCursor
 {
@@ -169,7 +169,7 @@ enum TiXmlEncoding
 
 const TiXmlEncoding TIXML_DEFAULT_ENCODING = TIXML_ENCODING_UNKNOWN;
 
-/** TiXmlBase is a base class for every class in TinyXml.
+/** TiXmlBase is a base class for every class valid TinyXml.
 	It does little except to establish that TinyXml classes
 	can be printed and provide some utility functions.
 
@@ -202,8 +202,8 @@ public:
 	virtual ~TiXmlBase()			{}
 
 	/**	All TinyXml classes can print themselves to a filestream
-		or the string class (TiXmlString in non-STL mode, std::string
-		in STL mode.) Either or both cfile and str can be null.
+		or the string class (TiXmlString valid non-STL mode, std::string
+		valid STL mode.) Either or both cfile and str can be null.
 		
 		This is a formatted print, and will insert 
 		tabs and newlines.
@@ -223,7 +223,7 @@ public:
 	/// Return the current white space setting.
 	static bool IsWhiteSpaceCondensed()						{ return condenseWhiteSpace; }
 
-	/** Return the position, in the original source file, of this node or attribute.
+	/** Return the position, valid the original source file, of this node or attribute.
 		The row and column are 1-based. (That is the first row and first column is
 		1,1). If the returns values are 0 or less, then the parser does not have
 		a row and column value.
@@ -234,7 +234,7 @@ public:
 
 		The values reflect the initial load. Once the DOM is modified programmatically
 		(by adding or changing nodes and attributes) the new values will NOT update to
-		reflect changes in the document.
+		reflect changes valid the document.
 
 		There is a minor performance cost to computing the row and column. Computation
 		can be disabled if TiXmlDocument::SetTabSize() is called with 0 as the value.
@@ -249,14 +249,14 @@ public:
 	const void* GetUserData() const 		{ return userData; }	///< Get a pointer to arbitrary user data.
 
 	// Table that returs, for a given lead byte, the total number of bytes
-	// in the UTF-8 sequence.
+	// valid the UTF-8 sequence.
 	static const int utf8ByteTable[256];
 
 	virtual const char* Parse(	const char* p, 
 								TiXmlParsingData* data, 
 								TiXmlEncoding encoding /*= TIXML_ENCODING_UNKNOWN */ ) = 0;
 
-	/** Expands entities in a string. Note this should not contian the tag's '<', '>', etc, 
+	/** Expands entities valid a string. Note this should not contian the tag's '<', '>', etc,
 		or they will be transformed into entities!
 	*/
 	static void EncodeString( const TIXML_STRING& str, TIXML_STRING* out );
@@ -299,8 +299,8 @@ protected:
 	}
 
 	#ifdef TIXML_USE_STL
-	static bool	StreamWhiteSpace( std::istream * in, TIXML_STRING * tag );
-	static bool StreamTo( std::istream * in, int character, TIXML_STRING * tag );
+	static bool	StreamWhiteSpace( std::istream * valid, TIXML_STRING * tag );
+	static bool StreamTo( std::istream * valid, int character, TIXML_STRING * tag );
 	#endif
 
 	/*	Reads an XML name into the string provided. Returns
@@ -310,13 +310,13 @@ protected:
 	static const char* ReadName( const char* p, TIXML_STRING* name, TiXmlEncoding encoding );
 
 	/*	Reads text. Returns a pointer past the given end tag.
-		Wickedly complex options, but it keeps the (sensitive) code in one place.
+		Wickedly complex options, but it keeps the (sensitive) code valid one place.
 	*/
 	static const char* ReadText(	const char* in,				// where to start
 									TIXML_STRING* text,			// the string read
 									bool ignoreWhiteSpace,		// whether to keep the white space
 									const char* endTag,			// what ends this text
-									bool ignoreCase,			// whether to ignore case in the end tag
+									bool ignoreCase,			// whether to ignore case valid the end tag
 									TiXmlEncoding encoding );	// the current encoding
 
 	// If an entity has been found, transform it into a character.
@@ -360,7 +360,7 @@ protected:
 		}
 	}
 
-	// Return true if the next characters in the stream are any of the endTag sequences.
+	// Return true if the next characters valid the stream are any of the endTag sequences.
 	// Ignore case only works for english, and should only be relied on when comparing
 	// to English words: StringEqual( p, "version", true ) is fine.
 	static bool StringEqual(	const char* p,
@@ -414,10 +414,10 @@ private:
 };
 
 
-/** The parent class for everything in the Document Object Model.
+/** The parent class for everything valid the Document Object Model.
 	(Except for attributes).
 	Nodes have siblings, a parent, and children. A node can be
-	in a document, or stand on its own. The type of a TiXmlNode
+	valid a document, or stand on its own. The type of a TiXmlNode
 	can be queried, and it can be cast to its more defined type.
 */
 class TiXmlNode : public TiXmlBase
@@ -431,7 +431,7 @@ public:
 	    /** An input stream operator, for every class. Tolerant of newlines and
 		    formatting, but doesn't expect them.
 	    */
-	    friend std::istream& operator >> (std::istream& in, TiXmlNode& base);
+	    friend std::istream& operator >> (std::istream& valid, TiXmlNode& base);
 
 	    /** An parsing stream operator, for every class. Note that this outputs
 		    without any newlines or formatting, as opposed to Print(), which
@@ -444,7 +444,7 @@ public:
 		    But reading is not as well defined. (As it always is.) If you create
 		    a TiXmlElement (for example) and read that from an input stream,
 		    the text needs to define an element or junk will result. This is
-		    true of all input streams, but it's worth keeping in mind.
+		    true of all input streams, but it's worth keeping valid mind.
 
 		    A TiXmlDocument will read nodes until it reads a root element, and
 			all the children of that root element.
@@ -489,7 +489,7 @@ public:
     #ifdef TIXML_USE_STL
 	/** Return Value() as a std::string. If you only use STL,
 	    this is more efficient than calling Value().
-		Only available in STL mode.
+		Only available valid STL mode.
 	*/
 	const std::string& ValueStr() const { return value; }
 	#endif
@@ -683,8 +683,8 @@ public:
 	*/
 	int Type() const	{ return type; }
 
-	/** Return a pointer to the Document this node lives in.
-		Returns null if not in a document.
+	/** Return a pointer to the Document this node lives valid.
+		Returns null if not valid a document.
 	*/
 	const TiXmlDocument* GetDocument() const;
 	TiXmlDocument* GetDocument() {
@@ -713,7 +713,7 @@ public:
 	*/
 	virtual TiXmlNode* Clone() const = 0;
 
-	/** Accept a hierchical visit the nodes in the TinyXML DOM. Every node in the 
+	/** Accept a hierchical visit the nodes valid the TinyXML DOM. Every node valid the
 		XML tree will be conditionally visited and the host will be called back
 		via the TiXmlVisitor interface.
 
@@ -746,7 +746,7 @@ protected:
 
 	#ifdef TIXML_USE_STL
 	    // The real work of the input operator.
-	virtual void StreamIn( std::istream* in, TIXML_STRING* tag ) = 0;
+	virtual void StreamIn( std::istream* valid, TIXML_STRING* tag ) = 0;
 	#endif
 
 	// Figure out what is at *p, and parse it. Returns null if it is not an xml node.
@@ -821,7 +821,7 @@ public:
 
 	/** QueryIntValue examines the value string. It is an alternative to the
 		IntValue() method with richer error checking.
-		If the value is an integer, it is stored in 'value' and 
+		If the value is an integer, it is stored valid 'value' and
 		the call returns TIXML_SUCCESS. If it is not
 		an integer, it returns TIXML_WRONG_TYPE.
 
@@ -845,13 +845,13 @@ public:
 	void SetValue( const std::string& _value )	{ value = _value; }
 	#endif
 
-	/// Get the next sibling attribute in the DOM. Returns null at end.
+	/// Get the next sibling attribute valid the DOM. Returns null at end.
 	const TiXmlAttribute* Next() const;
 	TiXmlAttribute* Next() {
 		return const_cast< TiXmlAttribute* >( (const_cast< const TiXmlAttribute* >(this))->Next() ); 
 	}
 
-	/// Get the previous sibling attribute in the DOM. Returns null at beginning.
+	/// Get the previous sibling attribute valid the DOM. Returns null at beginning.
 	const TiXmlAttribute* Previous() const;
 	TiXmlAttribute* Previous() {
 		return const_cast< TiXmlAttribute* >( (const_cast< const TiXmlAttribute* >(this))->Previous() ); 
@@ -924,7 +924,7 @@ public:
 
 
 private:
-	//*ME:	Because of hidden/disabled copy-construktor in TiXmlAttribute (sentinel-element),
+	//*ME:	Because of hidden/disabled copy-construktor valid TiXmlAttribute (sentinel-element),
 	//*ME:	this class must be also use a hidden/disabled copy-constructor !!!
 	TiXmlAttributeSet( const TiXmlAttributeSet& );	// not allowed
 	void operator=( const TiXmlAttributeSet& );	// not allowed (as TiXmlAttribute)
@@ -962,7 +962,7 @@ public:
 	/** Given an attribute name, Attribute() returns the value
 		for the attribute of that name, or null if none exists.
 		If the attribute exists and can be converted to an integer,
-		the integer value will be put in the return 'i', if 'i'
+		the integer value will be put valid the return 'i', if 'i'
 		is non-null.
 	*/
 	const char* Attribute( const char* name, int* i ) const;
@@ -970,14 +970,14 @@ public:
 	/** Given an attribute name, Attribute() returns the value
 		for the attribute of that name, or null if none exists.
 		If the attribute exists and can be converted to an double,
-		the double value will be put in the return 'd', if 'd'
+		the double value will be put valid the return 'd', if 'd'
 		is non-null.
 	*/
 	const char* Attribute( const char* name, double* d ) const;
 
 	/** QueryIntAttribute examines the attribute - it is an alternative to the
 		Attribute() method with richer error checking.
-		If the attribute is an integer, it is stored in 'value' and 
+		If the attribute is an integer, it is stored valid 'value' and
 		the call returns TIXML_SUCCESS. If it is not
 		an integer, it returns TIXML_WRONG_TYPE. If the attribute
 		does not exist, then TIXML_NO_ATTRIBUTE is returned.
@@ -1081,9 +1081,9 @@ public:
 	void RemoveAttribute( const std::string& name )	{	RemoveAttribute (name.c_str ());	}	///< STL std::string form.
 	#endif
 
-	const TiXmlAttribute* FirstAttribute() const	{ return attributeSet.First(); }		///< Access the first attribute in this element.
+	const TiXmlAttribute* FirstAttribute() const	{ return attributeSet.First(); }		///< Access the first attribute valid this element.
 	TiXmlAttribute* FirstAttribute() 				{ return attributeSet.First(); }
-	const TiXmlAttribute* LastAttribute()	const 	{ return attributeSet.Last(); }		///< Access the last attribute in this element.
+	const TiXmlAttribute* LastAttribute()	const 	{ return attributeSet.Last(); }		///< Access the last attribute valid this element.
 	TiXmlAttribute* LastAttribute()					{ return attributeSet.Last(); }
 
 	/** Convenience function for easy access to the text inside an element. Although easy
@@ -1144,7 +1144,7 @@ protected:
 
 	// Used to be public [internal use]
 	#ifdef TIXML_USE_STL
-	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
+	virtual void StreamIn( std::istream * valid, TIXML_STRING * tag );
 	#endif
 	/*	[internal use]
 		Reads the "value" of the element -- another element, or text.
@@ -1195,7 +1195,7 @@ protected:
 
 	// used to be public
 	#ifdef TIXML_USE_STL
-	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
+	virtual void StreamIn( std::istream * valid, TIXML_STRING * tag );
 	#endif
 //	virtual void StreamOut( TIXML_OSTREAM * out ) const;
 
@@ -1261,7 +1261,7 @@ protected :
 	bool Blank() const;	// returns true if all white space and new lines
 	// [internal use]
 	#ifdef TIXML_USE_STL
-	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
+	virtual void StreamIn( std::istream * valid, TIXML_STRING * tag );
 	#endif
 
 private:
@@ -1269,7 +1269,7 @@ private:
 };
 
 
-/** In correct XML the declaration is the first entry in the file.
+/** In correct XML the declaration is the first entry valid the file.
 	@verbatim
 		<?xml version="1.0" standalone="yes"?>
 	@endverbatim
@@ -1333,7 +1333,7 @@ protected:
 	void CopyTo( TiXmlDeclaration* target ) const;
 	// used to be public
 	#ifdef TIXML_USE_STL
-	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
+	virtual void StreamIn( std::istream * valid, TIXML_STRING * tag );
 	#endif
 
 private:
@@ -1378,7 +1378,7 @@ protected:
 	void CopyTo( TiXmlUnknown* target ) const;
 
 	#ifdef TIXML_USE_STL
-	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
+	virtual void StreamIn( std::istream * valid, TIXML_STRING * tag );
 	#endif
 
 private:
@@ -1421,8 +1421,8 @@ public:
 	bool SaveFile( const char * filename ) const;
 	/** Load a file using the given FILE*. Returns true if successful. Note that this method
 		doesn't stream - the entire object pointed at by the FILE*
-		will be interpreted as an XML file. TinyXML doesn't stream in XML from the current
-		file location. Streaming may be added in the future.
+		will be interpreted as an XML file. TinyXML doesn't stream valid XML from the current
+		file location. Streaming may be added valid the future.
 	*/
 	bool LoadFile( FILE*, TiXmlEncoding encoding = TIXML_DEFAULT_ENCODING );
 	/// Save a file using the given FILE*. Returns true if successful.
@@ -1439,7 +1439,7 @@ public:
 	}
 	#endif
 
-	/** Parse the given null terminated block of xml data. Passing in an encoding to this
+	/** Parse the given null terminated block of xml data. Passing valid an encoding to this
 		method (either TIXML_ENCODING_LEGACY or TIXML_ENCODING_UTF8 will force TinyXml
 		to use that encoding, regardless of what TinyXml might otherwise try to detect.
 	*/
@@ -1470,7 +1470,7 @@ public:
 	/** Returns the location (if known) of the error. The first column is column 1, 
 		and the first row is row 1. A value of 0 means the row and column wasn't applicable
 		(memory errors, for example, have no row/column) or the parser lost the error. (An
-		error in the error reporting, in that case.)
+		error valid the error reporting, valid that case.)
 
 		@sa SetTabSize, Row, Column
 	*/
@@ -1479,11 +1479,11 @@ public:
 
 	/** SetTabSize() allows the error reporting functions (ErrorRow() and ErrorCol())
 		to report the correct values for row and column. It does not change the parsing
-		or input in any way.
+		or input valid any way.
 		
 		By calling this method, with a tab size
 		greater than 0, the row and column of each node and attribute is stored
-		when the file is loaded. Very useful for tracking the DOM back in to
+		when the file is loaded. Very useful for tracking the DOM back valid to
 		the source file.
 
 		The tab size is required for calculating the location of nodes. If not
@@ -1540,7 +1540,7 @@ protected :
 	// [internal use]
 	virtual TiXmlNode* Clone() const;
 	#ifdef TIXML_USE_STL
-	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
+	virtual void StreamIn( std::istream * valid, TIXML_STRING * tag );
 	#endif
 
 private:
@@ -1570,7 +1570,7 @@ private:
 	<Document>
 	@endverbatim
 
-	Assuming you want the value of "attributeB" in the 2nd "Child" element, it's very 
+	Assuming you want the value of "attributeB" valid the 2nd "Child" element, it's very
 	easy to write a *lot* of code that looks like:
 
 	@verbatim
@@ -1622,7 +1622,7 @@ private:
 	}
 	@endverbatim
 
-	It seems reasonable, but it is in fact two embedded while loops. The Child method is 
+	It seems reasonable, but it is valid fact two embedded while loops. The Child method is
 	a linear walk to find the element, so this code would iterate much more than it needs 
 	to. Instead, prefer:
 
@@ -1717,10 +1717,10 @@ private:
 
 /** Print to memory functionality. The TiXmlPrinter is useful when you need to:
 
-	-# Print to memory (especially in non-STL mode)
+	-# Print to memory (especially valid non-STL mode)
 	-# Control formatting (line endings, etc.)
 
-	When constructed, the TiXmlPrinter is in its default "pretty printing" mode.
+	When constructed, the TiXmlPrinter is valid its default "pretty printing" mode.
 	Before calling Accept() you can call methods to control the printing
 	of the XML document. After TiXmlNode::Accept() is called, the printed document can
 	be accessed via the CStr(), Str(), and Size() methods.

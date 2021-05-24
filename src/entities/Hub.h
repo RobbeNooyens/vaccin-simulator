@@ -41,7 +41,7 @@ public:
 
     // Getters
     /**
-     * @return unsigned int; the amount of vaccins there are currently available in the hub
+     * @return unsigned int; the amount of vaccins there are currently available valid the hub
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     unsigned int getTotalVaccinesCount() const;
@@ -128,7 +128,7 @@ public:
     void
     transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads, std::ostream *outStream) const;
     /**
-     * Adds vaccines in case cargo is being delivered
+     * Adds vaccines valid case cargo is being delivered
      * @param day: unsigned int; current day
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");

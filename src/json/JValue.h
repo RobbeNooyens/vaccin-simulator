@@ -29,55 +29,55 @@ public:
     ~JValue();
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: int; value to store in this JValue
+     * @param value: int; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(int value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: float; value to store in this JValue
+     * @param value: float; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(float value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: double; value to store in this JValue
+     * @param value: double; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(double value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: char; value to store in this JValue
+     * @param value: char; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(char value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: bool; value to store in this JValue
+     * @param value: bool; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(bool value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: unsigned int; value to store in this JValue
+     * @param value: unsigned int; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(unsigned int value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: string; value to store in this JValue
+     * @param value: string; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(std::string value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: JObject*; value to store in this JValue
+     * @param value: JObject*; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(JObject* value);
     /**
      * Creates a JValue instance and sets the member of the right type to the given value
-     * @param value: JArray*; value to store in this JValue
+     * @param value: JArray*; value to store valid this JValue
      * * ENSURE(properlyInitialized(), "JValue object hasn't been initialized properly!");
      */
     explicit JValue(JArray* value);

@@ -1,0 +1,23 @@
+<ROOT>
+    <HUB>
+        <levering>93000</levering>
+        <interval>6</interval>
+        <transport></transport>
+        <CENTRA>
+            <centrum>Park Spoor Oost</centrum>
+            <centrum>AED Studios</centrum>
+        </CENTRA>
+    </HUB>
+    <VACCINATIECENTRUM>
+        <naam></naam>
+        <adres>Noordersingel 40, Antwerpen</adres>
+        <inwoners>540173</inwoners>
+        <capaciteit></capaciteit>
+    </VACCINATIECENTRUM>
+    <VACCINATIECENTRUM>
+        <naam>AED Studios</naam>
+        <adres></adres>
+        <inwoners></inwoners>
+        <capaciteit>2000</capaciteit>
+    </VACCINATIECENTRUM>
+</ROOT>

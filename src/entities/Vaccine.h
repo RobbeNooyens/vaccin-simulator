@@ -45,7 +45,7 @@ public:
     // IO Mapping
     /**
      * Loads data from a JSON object
-     * @param json: JObject; JObject that holds the data to load in into the object
+     * @param json: JObject; JObject that holds the data to load valid into the object
      * * REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
      * * REQUIRE(json != NULL, "JObject can't be NULL!");
      * * REQUIRE(json->contains(VACCINE_TYPE), "Vaccine JSON should contain field 'type'");
@@ -88,7 +88,7 @@ public:
      */
     unsigned int getRenewing() const;
     /**
-     * @return double; the required temperature to store the vaccine in
+     * @return double; the required temperature to store the vaccine valid
      * * REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
      */
     double getTemperature() const;

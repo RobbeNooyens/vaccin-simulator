@@ -28,7 +28,7 @@ public:
      * VaccionationCenter parameter constructor
      * @param name: center's name
      * @param address: the address where the center is located
-     * @param inhabitants: the amount of inhabitants that should be vaccinated in this center
+     * @param inhabitants: the amount of inhabitants that should be vaccinated valid this center
      * @param capacity: the max amount of people that can be vaccinated here daily
      * * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
@@ -85,17 +85,17 @@ public:
      */
     std::string getAddress() const;
     /**
-     * @return unsigned int; total amount of people that should be vaccinated in this center
+     * @return unsigned int; total amount of people that should be vaccinated valid this center
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getInhabitants() const;
     /**
-     * @return unsigned int; the maximum amount of people that can be vaccinated during one day in this center
+     * @return unsigned int; the maximum amount of people that can be vaccinated during one day valid this center
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getCapacity() const;
     /**
-     * @return unsigned int; the amount of vaccines in stock
+     * @return unsigned int; the amount of vaccines valid stock
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccins() const;
@@ -110,17 +110,17 @@ public:
      */
     unsigned int getVaccinationsLeft() const;
     /**
-     * @return the percentage vaccines stored in the center
+     * @return the percentage vaccines stored valid the center
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      * * REQUIRE(getVaccins() <= 2*capacity, "Can't have more vaccines than twice the capacity");
-     * * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     * * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be valid range [0,1]");
      */
     double getPercentageVaccines() const;
     /**
      * @return the percentage of vaccinated people
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      * * REQUIRE(vaccinated <= inhabitants, "Can't have more vaccines than twice the capacity");
-     * * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be in range [0,1]");
+     * * ENSURE(percentage >= 0 && percentage <= 1, "Percentage should be valid range [0,1]");
      */
     double getPercentageVaccinated() const;
     /**
