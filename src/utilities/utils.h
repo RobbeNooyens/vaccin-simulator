@@ -46,6 +46,22 @@ namespace StringUtil {
      */
     std::string concat(const std::string &s1, const std::string &s2);
 
+    /**
+     * Converts a string to an unsigned int
+     * @param s the string to convert
+     * @param result variable in which to store the converted string
+     * @return true if the string is indeed an unsigned int
+     */
+     bool stringToUnsignedInt(const std::string &s, unsigned int &result);
+
+    /**
+    * Converts a string to an unsigned int
+    * @param s the string to convert
+    * @param result variable in which to store the converted string
+    * @return true if the string is indeed an unsigned int
+    */
+    bool stringToUnsignedInt(const std::string &s, unsigned int &result);
+
 }
 
 namespace IntUtil {
@@ -74,20 +90,6 @@ namespace FileUtil {
     bool FileIsEmpty(const std::string filename);
 
     bool FileCompare(const std::string leftFileName, const std::string rightFileName);
-}
-
-namespace XMLUtil {
-
-    /**
-     * Converts an XML element to an unsigned int
-     * @param element: TiXmlElement*; element to convert
-     * @param elementName: string; element name to print errormessage
-     * @return unsigned int; int representatino of the xml element value
-     * * REQUIRE(element != NULL, "Element can't be NULL!");
-     * * REQUIRE(!elementName.empty(), "Element name cannot be empty!");
-     */
-    unsigned int elementToUnsignedInt(TiXmlElement* element, const std::string& elementName);
-
 }
 
 namespace TimeUtil {

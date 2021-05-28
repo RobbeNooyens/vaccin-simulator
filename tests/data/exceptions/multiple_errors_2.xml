@@ -1,0 +1,19 @@
+<ROOT>
+    <HUB>
+        <levering>93000</levering>
+        <interval>6</interval>
+        <transport>2000</transport>
+        <CENTRA>
+            <centrum>Park Spoor Oost</centrum>
+            <centrum>AED Studios</centrum>
+            <centrum>Onbekend Centrum</centrum>
+        </CENTRA>
+    </HUB>
+    <VACCINATIECENTRUM></VACCINATIECENTRUM>
+    <VACCINATIECENTRUM>
+        <naam>AED Studios</naam>
+        <inwoners>Aantal</inwoners>
+        <capaciteit>5.8</capaciteit>
+        <bouwjaar>2005</bouwjaar>
+    </VACCINATIECENTRUM>
+</ROOT>

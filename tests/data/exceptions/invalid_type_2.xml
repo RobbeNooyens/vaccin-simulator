@@ -1,0 +1,23 @@
+<ROOT>
+    <HUB>
+        <levering>93000</levering>
+        <interval>6</interval>
+        <transport>Gemiddeld</transport>
+        <CENTRA>
+            <centrum>Park Spoor Oost</centrum>
+            <centrum>AED Studios</centrum>
+        </CENTRA>
+    </HUB>
+    <VACCINATIECENTRUM>
+        <naam>Park Spoor Oost</naam>
+        <adres>Noordersingel 40, Antwerpen</adres>
+        <inwoners>3.5</inwoners>
+        <capaciteit>7500</capaciteit>
+    </VACCINATIECENTRUM>
+    <VACCINATIECENTRUM>
+        <naam>AED Studios</naam>
+        <adres>Fabriekstraat 38, Lint</adres>
+        <inwoners>5.67</inwoners>
+        <capaciteit>Groot</capaciteit>
+    </VACCINATIECENTRUM>
+</ROOT>

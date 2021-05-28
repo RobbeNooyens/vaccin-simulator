@@ -233,106 +233,98 @@ TEST_F(XMLParserTests, ParseMultipleHubs) {
 // |        EXCEPTIONS AND ERRORS           |
 // +========================================+
 
-TEST_F(XMLParserTests, NoRootElement) {
-    const std::string filename = "tests/data/exceptions/no_root.xml";
+void expectErrors(const std::string &fileName, const ParseErrors &expectedErrors) {
     ParseErrors errors;
     std::cerr.flush();
     EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
+    JObject* parsed = XMLParser::parse(fileName, std::cerr, errors);
     EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(1, errors.size());
-    EXPECT_TRUE(errors.front() == NO_ROOT);
+    EXPECT_EQ(expectedErrors.size(), errors.size());
+    for(int i = 0; i < expectedErrors.size(); i++) {
+        EXPECT_EQ(expectedErrors[i], errors[i]);
+    }
     std::cerr.flush();
+    delete parsed;
+}
+
+TEST_F(XMLParserTests, NoRootElement) {
+    ParseErrors errors;
+    errors.push_back(NO_ROOT);
+    expectErrors("tests/data/exceptions/no_root_1.xml", errors);
+    expectErrors("tests/data/exceptions/no_root_2.xml", errors);
 }
 
 TEST_F(XMLParserTests, ParseUnknownElement) {
-    const std::string filename = "tests/data/exceptions/unknown_element.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(3, errors.size());
-    ITERATE(ParseErrors, errors, error) {
-        EXPECT_TRUE(*error == UNKOWN_ELEMENT);
-    }
+    errors.push_back(UNKNOWN_ELEMENT);
+    errors.push_back(UNKNOWN_ELEMENT);
+    errors.push_back(UNKNOWN_ELEMENT);
+    expectErrors("tests/data/exceptions/unknown_element_1.xml", errors);
+    expectErrors("tests/data/exceptions/unknown_element_2.xml", errors);
 }
 
-TEST_F(XMLParserTests, ParseInvalidInfo) {
-    const std::string filename = "tests/data/exceptions/invalid_type.xml";
+TEST_F(XMLParserTests, ParseInvalidType) {
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(3, errors.size());
-    ITERATE(ParseErrors, errors, error) {
-        EXPECT_TRUE(*error == INVALID_TYPE);
-    }
+    errors.push_back(INVALID_TYPE);
+    errors.push_back(INVALID_TYPE);
+    errors.push_back(INVALID_TYPE);
+    expectErrors("tests/data/exceptions/invalid_type_1.xml", errors);
+    errors.push_back(INVALID_TYPE);
+    expectErrors("tests/data/exceptions/invalid_type_2.xml", errors);
 }
 
 TEST_F(XMLParserTests, EmptyElements) {
-    const std::string filename = "tests/data/exceptions/empty_elements.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(5, errors.size());
-    ITERATE(ParseErrors, errors, error) {
-        EXPECT_TRUE(*error == EMPTY_ELEMENT);
-    }
+    errors.push_back(EMPTY_ELEMENT);
+    errors.push_back(EMPTY_ELEMENT);
+    errors.push_back(EMPTY_ELEMENT);
+    errors.push_back(EMPTY_ELEMENT);
+    errors.push_back(EMPTY_ELEMENT);
+    expectErrors("tests/data/exceptions/empty_elements_1.xml", errors);
+    expectErrors("tests/data/exceptions/empty_elements_2.xml", errors);
 }
 
 TEST_F(XMLParserTests, ParseIncosistentSimulation) {
-    const std::string filename = "tests/data/exceptions/inconsistent_simulation.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(1, errors.size());
-    ITERATE(ParseErrors, errors, error) {
-        EXPECT_TRUE(*error == INCONSISTENT_SIMULATION);
-    }
+    errors.push_back(INCONSISTENT_SIMULATION);
+    expectErrors("tests/data/exceptions/inconsistent_simulation_1.xml", errors);
+    expectErrors("tests/data/exceptions/inconsistent_simulation_2.xml", errors);
+    expectErrors("tests/data/exceptions/inconsistent_simulation_3.xml", errors);
 }
 
 TEST_F(XMLParserTests, DuplicatedElements) {
-    const std::string filename = "tests/data/exceptions/duplicated_elements.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(3, errors.size());
-    ITERATE(ParseErrors, errors, error) {
-        EXPECT_TRUE(*error == DUPLICATED_ELEMENT);
-    }
+    errors.push_back(DUPLICATED_ELEMENT);
+    errors.push_back(DUPLICATED_ELEMENT);
+    errors.push_back(DUPLICATED_ELEMENT);
+    expectErrors("tests/data/exceptions/duplicated_elements_1.xml", errors);
+    errors.push_back(DUPLICATED_ELEMENT);
+    expectErrors("tests/data/exceptions/duplicated_elements_2.xml", errors);
 }
 
 TEST_F(XMLParserTests, MissingElements) {
-    const std::string filename = "tests/data/exceptions/missing_elements.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(3, errors.size());
-    ITERATE(ParseErrors, errors, error) {
-        EXPECT_TRUE(*error == MISSING_ELEMENT);
-    }
+    errors.push_back(MISSING_ELEMENT);
+    errors.push_back(MISSING_ELEMENT);
+    errors.push_back(MISSING_ELEMENT);
+    expectErrors("tests/data/exceptions/missing_elements_1.xml", errors);
+    errors.push_back(MISSING_ELEMENT);
+    expectErrors("tests/data/exceptions/missing_elements_2.xml", errors);
 }
 
 TEST_F(XMLParserTests, MultipleErrors) {
-    const std::string filename = "tests/data/exceptions/multiple_errors.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
-    EXPECT_EQ(4, errors.size());
-    EXPECT_TRUE(errors[0] == EMPTY_ELEMENT);
-    EXPECT_TRUE(errors[1] == DUPLICATED_ELEMENT);
-    EXPECT_TRUE(errors[2] == INVALID_TYPE);
-    EXPECT_TRUE(errors[3] == UNKOWN_ELEMENT);
+    errors.push_back(EMPTY_ELEMENT);
+    errors.push_back(DUPLICATED_ELEMENT);
+    errors.push_back(INVALID_TYPE);
+    errors.push_back(UNKNOWN_ELEMENT);
+    expectErrors("tests/data/exceptions/multiple_errors_1.xml", errors);
+    ParseErrors errors2;
+    errors2.push_back(EMPTY_ELEMENT);
+    errors2.push_back(MISSING_ELEMENT);
+    errors2.push_back(INVALID_TYPE);
+    errors2.push_back(INVALID_TYPE);
+    errors2.push_back(UNKNOWN_ELEMENT);
+    errors2.push_back(INCONSISTENT_SIMULATION);
+    expectErrors("tests/data/exceptions/multiple_errors_2.xml", errors);
 }

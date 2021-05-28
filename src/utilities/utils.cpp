@@ -26,6 +26,12 @@ std::string StringUtil::concat(const std::string &s1, const std::string &s2) {
     return ss.str();
 }
 
+bool StringUtil::stringToUnsignedInt(const std::string &s, unsigned int &result) {
+    char *ptr;
+    result = strtoul(s.c_str(), &ptr, 10);
+    return s.c_str() != ptr;
+}
+
 void IntUtil::toString(int num, std::string &target) {
     std::ostringstream convert;   // stream used for the conversion
     convert << num;      // insert the textual representation of 'Number' valid the characters valid the stream
@@ -89,8 +95,9 @@ bool FileUtil::FileCompare(const std::string leftFileName, const std::string rig
 }
 
 unsigned int XMLUtil::elementToUnsignedInt(TiXmlElement *element, const std::string& elementName) {
-    REQUIRE(element != NULL, "Element can't be NULL!");
+    REQUIRE(element, "Element can't be NULL!");
     REQUIRE(!elementName.empty(), "Element name cannot be empty!");
+    REQUIRE(!element->NoChildren(), "Element cannot be empty!");
     TiXmlText* e_text = element->FirstChild()->ToText();
     if (e_text == NULL) {
         throw std::runtime_error("waarde niet gevonden valid element '" + elementName + "'");
