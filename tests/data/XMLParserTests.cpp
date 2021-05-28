@@ -50,6 +50,7 @@ class XMLParserTests : public ::testing::Test {
 TEST_F(XMLParserTests, ParseDefaultFile) {
     const std::string filename = "tests/data/valid/hub_centers.xml";
     ParseErrors errors;
+    // TODO: Compare values of tellp instead of flushing and check if stream has a goodbit
     std::cerr.flush();
     EXPECT_EQ(0, std::cerr.tellp());
     JObject *parsed = XMLParser::parse(filename, std::cerr, errors);
@@ -240,7 +241,7 @@ void expectErrors(const std::string &fileName, const ParseErrors &expectedErrors
     JObject* parsed = XMLParser::parse(fileName, std::cerr, errors);
     EXPECT_TRUE(std::cerr.tellp() > 0);
     EXPECT_EQ(expectedErrors.size(), errors.size());
-    for(int i = 0; i < expectedErrors.size(); i++) {
+    for(int i = 0; i < (int) expectedErrors.size(); i++) {
         EXPECT_EQ(expectedErrors[i], errors[i]);
     }
     std::cerr.flush();

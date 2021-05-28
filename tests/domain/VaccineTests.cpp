@@ -7,7 +7,7 @@
 
 
 #include <gtest/gtest.h>
-#include "../../entities/Vaccine.h"
+#include "../../src/entities/Vaccine.h"
 #include "../TestUtils.h"
 
 #define TYPE "Pfizer"

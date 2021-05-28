@@ -14,7 +14,7 @@
 #include <iostream>
 #include <sstream>
 
-#define VECTOR_CONTAINS(vector, element) vector.find(element) != vector.end()
+#define MAP_CONTAINS_KEY(vector, element) vector.find(element) != vector.end()
 #define CLOSE_COUT std::cout.setstate(std::ios_base::badbit)
 #define OPEN_COUT std::cout.setstate(std::ios_base::goodbit)
 
@@ -55,12 +55,12 @@ namespace StringUtil {
      bool stringToUnsignedInt(const std::string &s, unsigned int &result);
 
     /**
-    * Converts a string to an unsigned int
+    * Converts a string to a double
     * @param s the string to convert
     * @param result variable in which to store the converted string
-    * @return true if the string is indeed an unsigned int
+    * @return true if the string is indeed a double
     */
-    bool stringToUnsignedInt(const std::string &s, unsigned int &result);
+    bool stringToDouble(const std::string &s, double &result);
 
 }
 

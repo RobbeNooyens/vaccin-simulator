@@ -5,13 +5,12 @@
 // │             UAntwerpen 2021                │
 // ╘════════════════════════════════════════════╛
 #include <gtest/gtest.h>
-#include "../../entities/VaccinationCenter.h"
-#include "../../entities/Hub.h"
-#include "../../entities/Vaccine.h"
+#include "../../src/entities/VaccinationCenter.h"
+#include "../../src/entities/Hub.h"
 #include "../TestUtils.h"
-#include "../../json/JValue.h"
-#include "../../json/JObject.h"
-#include "../../json/JArray.h"
+#include "../../src/json/JValue.h"
+#include "../../src/json/JObject.h"
+#include "../../src/json/JArray.h"
 
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 

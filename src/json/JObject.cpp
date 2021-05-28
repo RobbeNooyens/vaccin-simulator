@@ -21,7 +21,7 @@ JValue* JObject::getValue(const std::string& key) {
         JObject* parent = values[first]->asJObject();
         return parent->getValue(second);
     }
-    if(!(VECTOR_CONTAINS(values, key)))
+    if(!(MAP_CONTAINS_KEY(values, key)))
         return NULL;
     return values[key];
 }

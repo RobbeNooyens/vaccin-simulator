@@ -15,6 +15,7 @@
 #include "../../DesignByContract.h"
 #include "../utilities/utils.h"
 #include <vector>
+#include <set>
 
 #define XML_HUB "HUB"
 #define XML_HUB_CENTERS "CENTRA"
@@ -190,10 +191,7 @@ JObject *XMLParser::parseHub(TiXmlElement *hubXML, std::ostream &errorStream, st
 
 JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
     REQUIRE(vaccinXML, "XML element corrupted");
-
-    std::string type;
-    unsigned int delivery = 0, interval = 0, transportation = 0, renewing = 0;
-    double temperature = 0;
+    REQUIRE(vaccinXML->NoChildren(), "VACCIN should have children!");
 
     std::map<std::string, bool> parsedElements;
     parsedElements.insert(std::pair<std::string, bool>(XML_VACCINE_TYPE, false));
@@ -219,7 +217,7 @@ JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML, std::ostream &errorStre
                 errorStream << "Found an empty element in VACCIN!" << std::endl;
                 continue;
             }
-            type = textElement->Value();
+            vaccine->insertValue(VACCINE_TYPE, new JValue(textElement->Value()));
             parsedElements[name] = true;
         } else if(name == XML_VACCINE_TEMPERATURE) {
             if(parsedElements[name]) {
@@ -233,31 +231,43 @@ JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML, std::ostream &errorStre
                 errorStream << "Found an empty element in VACCIN!" << std::endl;
                 continue;
             }
-            type = textElement->Value();
-            parsedElements[XML_VACCINE_TYPE] = true;
+            std::string sValue = textElement->Value();
+            double temperature;
+            if(!StringUtil::stringToDouble(sValue, temperature)) {
+                errors.push_back(INVALID_TYPE);
+                errorStream << "Invalid type!" << std::endl;
+                continue;
+            }
+            vaccine->insertValue(VACCINE_TEMPERATURE, new JValue(temperature));
+            parsedElements[name] = true;
         } else if(name == XML_VACCINE_DELIVERY || name == XML_VACCINE_INTERVAL || name == XML_VACCINE_TRANSPORTATION || name == XML_VACCINE_RENEWING) {
             if(parsedElements[name]) {
                 errors.push_back(DUPLICATED_ELEMENT);
                 errorStream << "Found a duplicated element in VACCIN!" << std::endl;
                 continue;
             }
-            TiXmlText* textElement = element->FirstChild()->ToText();
-            if(!textElement) {
+            if(element->NoChildren()) {
                 errors.push_back(EMPTY_ELEMENT);
                 errorStream << "Found an empty element in VACCIN!" << std::endl;
+                continue;
+            }
+            TiXmlText* textElement = element->FirstChild()->ToText();
+            if(!textElement) {
+                errors.push_back(INVALID_TYPE);
+                errorStream << "Element of wrong type found in VACCIN!" << std::endl;
                 continue;
             }
             std::string sValue = textElement->Value();
             unsigned int value;
             StringUtil::stringToUnsignedInt(sValue, value);
             if(name == XML_VACCINE_DELIVERY) {
-                delivery = value;
+                vaccine->insertValue(VACCINE_DELIVERY, new JValue(value));
             } else if(name == XML_VACCINE_INTERVAL) {
-                interval = value;
+                vaccine->insertValue(VACCINE_INTERVAL, new JValue(value));
             } else if(name == XML_VACCINE_TRANSPORTATION) {
-                transportation = value;
+                vaccine->insertValue(VACCINE_TRANSPORTATION, new JValue(value));
             } else if(name == XML_VACCINE_RENEWING) {
-                renewing = value;
+                vaccine->insertValue(VACCINE_RENEWING, new JValue(value));
             }
             parsedElements[name] = true;
         } else {
@@ -266,111 +276,128 @@ JObject *XMLParser::parseVaccin(TiXmlElement *vaccinXML, std::ostream &errorStre
         }
     }
 
-    for (int i = 0; i < (int) elements_vaccin.size(); i++) {
-        std::string vaccineElement = elements_vaccin[i];
-        nested_elem = vaccinXML->FirstChildElement(vaccineElement.c_str());
-        if (!nested_elem) {
-            if(vaccineElement == XML_VACCINE_TEMPERATURE) {
-                vaccine->insertValue(VACCINE_TEMPERATURE, new JValue((double) 0));
-            } else if(vaccineElement == XML_VACCINE_RENEWING){
-                vaccine->insertValue(VACCINE_RENEWING, new JValue((unsigned int) 0));
-            } else {
-                errors.push_back(UNKNOWN_ELEMENT);
-                errorStream << "'" << vaccineElement << "' niet gevonden" << std::endl;
-            }
-            continue;
-        }
-        e_text = nested_elem->FirstChild()->ToText();
-        if (e_text == NULL) {
-            errors.push_back(INVALID_TYPE);
-            errorStream << "waarde niet gevonden valid element '" << vaccineElement << "'" << std::endl;
-            continue;
-        }
-        std::string value = e_text->Value();
-        if (vaccineElement == XML_VACCINE_TYPE) {
-            vaccine->insertValue(VACCINE_TYPE, new JValue((std::string) value));
-            continue;
-        }
-        char *ptr;
-        if (vaccineElement == XML_VACCINE_TEMPERATURE) {
-            double temperature = std::strtod(value.c_str(), &ptr);
-            if (value.c_str() == ptr) {
-                errors.push_back(INVALID_TYPE);
-                errorStream << "waarde kon niet ingelezen worden van element '" << vaccineElement << "'";
-                continue;
-            }
-            vaccine->insertValue(VACCINE_TEMPERATURE, new JValue(temperature));
-            continue;
-        }
-        unsigned int k = strtoul(value.c_str(), &ptr, 10);
-        if (value.c_str() == ptr) {
-            errors.push_back(INVALID_TYPE);
-            errorStream << "waarde kon niet ingelezen worden van element '" << vaccineElement << "'";
-            continue;
-        }
-        vaccine->insertValue(vaccineElement, new JValue(k));
+    if(!parsedElements[XML_VACCINE_TYPE]) {
+        errors.push_back(MISSING_ELEMENT);
+        errorStream << "Element 'type' required for a VACCIN!" << std::endl;
+    } else if(!parsedElements[XML_VACCINE_DELIVERY]) {
+        errors.push_back(MISSING_ELEMENT);
+        errorStream << "Element 'levering' required for a VACCIN!" << std::endl;
+    } else if(!parsedElements[XML_VACCINE_INTERVAL]) {
+        errors.push_back(MISSING_ELEMENT);
+        errorStream << "Element 'interval' required for a VACCIN!" << std::endl;
+    } else if(!parsedElements[XML_VACCINE_TRANSPORTATION]) {
+        errors.push_back(MISSING_ELEMENT);
+        errorStream << "Element 'transport' required for a VACCIN!" << std::endl;
     }
+
     return vaccine;
 }
 
 JArray *XMLParser::parseHubCenters(TiXmlElement *centraXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
-    REQUIRE(centraXML != NULL, "XML element corrupted");
+    REQUIRE(centraXML, "XML element corrupted");
+    REQUIRE(centraXML->NoChildren(), "HUB should have centers!");
+
     JArray* centers = new JArray();
-    TiXmlText* centerName;
-    for (TiXmlElement* element = centraXML->FirstChildElement(XML_HUB_CENTER); element != NULL; element = element->NextSiblingElement(XML_HUB_CENTER)) {
-        centerName = element->FirstChild()->ToText();
-        if (centerName == NULL) {
-            errors.push_back(INVALID_TYPE);
-            errorStream << "waarde niet gevonden valid element 'centrum'" << std::endl;
+    std::set<std::string> centerNames;
+
+    ITERATE_ELEMENTS(centraXML, element) {
+        std::string elementName = element->Value();
+        if(elementName != XML_HUB_CENTER) {
+            errors.push_back(UNKNOWN_ELEMENT);
+            errorStream << "Unknown element in HUB's centra!" << std::endl;
             continue;
         }
-        std::string name = centerName->Value();
-        centers->insertValue(new JValue(name));
+        if(element->NoChildren()) {
+            errors.push_back(EMPTY_ELEMENT);
+            errorStream << "Empty element found in HUB's centra!" << std::endl;
+            continue;
+        }
+        TiXmlText* textElement = element->FirstChildElement()->ToText();
+        if(!textElement) {
+            errors.push_back(INVALID_TYPE);
+            errorStream << "Element of wrong type found in HUB's centra!" << std::endl;
+            continue;
+        }
+        std::string centerName = textElement->Value();
+        if(MAP_CONTAINS_KEY(centerNames, centerName)) {
+            errors.push_back(DUPLICATED_ELEMENT);
+            errorStream << "Duplicated element in HUB's centra!" << std::endl;
+            continue;
+        }
+        centers->insertValue(new JValue(centerName));
     }
+
     return centers;
 }
 
 JObject *XMLParser::parseCenter(TiXmlElement *vaccinationCenterXML, std::ostream &errorStream, std::vector<ParseError> &errors) {
-    REQUIRE(vaccinationCenterXML != NULL, "XML element corrupted");
+    REQUIRE(!vaccinationCenterXML, "XML element corrupted");
+    REQUIRE(vaccinationCenterXML->NoChildren(), "VACCINATIECENTRUM should have children!");
 
-    std::vector<std::string> elements_centra;
-    elements_centra.push_back(XML_CENTER_NAME);
-    elements_centra.push_back(XML_CENTER_ADDRESS);
-    elements_centra.push_back(XML_CENTER_INHABITANTS);
-    elements_centra.push_back(XML_CENTER_CAPACITY);
+    std::map<std::string, bool> parsedElements;
+    parsedElements.insert(std::pair<std::string, bool>(XML_CENTER_NAME, false));
+    parsedElements.insert(std::pair<std::string, bool>(XML_CENTER_ADDRESS, false));
+    parsedElements.insert(std::pair<std::string, bool>(XML_CENTER_INHABITANTS, false));
+    parsedElements.insert(std::pair<std::string, bool>(XML_CENTER_CAPACITY, false));
 
     JObject* center = new JObject();
-    TiXmlElement* nested_elem;
-    TiXmlText* e_text;
-    for (int i = 0; i < (int) elements_centra.size(); i++) {
-        std::string centerElement = elements_centra[i];
-        nested_elem = vaccinationCenterXML->FirstChildElement(centerElement.c_str());
-        if (nested_elem == NULL) {
-            errors.push_back(INVALID_TYPE);
-            errorStream << "'" << centerElement << "' niet gevonden";
-            continue;
-        }
-        e_text = nested_elem->FirstChild()->ToText();
-        if (e_text == NULL) {
-            errors.push_back(INVALID_TYPE);
-            errorStream << "waarde niet gevonden valid element '" << centerElement << "'";
-            continue;
-        }
-        std::string value = e_text->Value();
-        if (centerElement == XML_CENTER_INHABITANTS || centerElement == XML_CENTER_CAPACITY) {
-            char *ptr;
-            unsigned int k = strtoul(value.c_str(), &ptr, 10);
-            if (value.c_str() == ptr) {
-                errors.push_back(INVALID_TYPE);
-                errorStream << "waarde kon niet ingelezen worden van element '" << centerElement << "'" << std::endl;
+
+    ITERATE_ELEMENTS(vaccinationCenterXML, element) {
+        std::string elementName = element->Value();
+        if(elementName == XML_CENTER_NAME || elementName == XML_CENTER_ADDRESS) {
+            if(parsedElements[elementName]) {
+                errors.push_back(DUPLICATED_ELEMENT);
+                errorStream << "Duplicated element found in a VACCINATIECENTRUM!" << std::endl;
+                continue;
             }
-            center->insertValue(centerElement, new JValue(k));
-        } else if(centerElement == XML_CENTER_NAME || centerElement == XML_CENTER_ADDRESS) {
-            center->insertValue(centerElement, new JValue(value));
+            if(element->NoChildren()) {
+                errors.push_back(EMPTY_ELEMENT);
+                errorStream << "Empty element found in a VACCINATIECENTRUM!" << std::endl;
+                continue;
+            }
+            TiXmlText* textElement = element->FirstChild()->ToText();
+            if(!textElement) {
+                errors.push_back(INVALID_TYPE);
+                errorStream << "Element of wrong type found in a VACCINATIECENTRUM!" << std::endl;
+                continue;
+            }
+            std::string value = textElement->Value();
+            if(elementName == XML_CENTER_NAME) {
+                center->insertValue(CENTER_NAME, new JValue(value));
+            } else if(elementName == XML_CENTER_ADDRESS) {
+                center->insertValue(CENTER_ADDRESS, new JValue(value));
+            }
+            parsedElements[elementName] = true;
+        } else if(elementName == XML_CENTER_INHABITANTS || elementName == XML_CENTER_CAPACITY) {
+            if(parsedElements[elementName]) {
+                errors.push_back(DUPLICATED_ELEMENT);
+                errorStream << "Duplicated element found in a VACCINATIECENTRUM!" << std::endl;
+                continue;
+            }
+            if(element->NoChildren()) {
+                errors.push_back(EMPTY_ELEMENT);
+                errorStream << "Empty element found in a VACCINATIECENTRUM!" << std::endl;
+                continue;
+            }
+            TiXmlText* textElement = element->FirstChild()->ToText();
+            if(!textElement) {
+                errors.push_back(INVALID_TYPE);
+                errorStream << "Element of wrong type found in a VACCINATIECENTRUM!" << std::endl;
+                continue;
+            }
+            std::string sValue = textElement->Value();
+            unsigned int value = StringUtil::stringToUnsignedInt(sValue, value);
+            if(elementName == XML_CENTER_INHABITANTS) {
+                center->insertValue(CENTER_INHABITANTS, new JValue(value));
+            } else if(elementName == XML_CENTER_CAPACITY) {
+                center->insertValue(CENTER_CAPACITY, new JValue(value));
+            }
+            parsedElements[elementName] = true;
         } else {
             errors.push_back(UNKNOWN_ELEMENT);
-            errorStream << "'" << centerElement << "' niet gevonden" << std::endl;
+            errorStream << "Unknown element in VACCINATIECENTRUM detected!" << std::endl;
         }
     }
+
     return center;
 }

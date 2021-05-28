@@ -138,7 +138,7 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *s
     // Do vaccines with renewing first
     ITERATE(std::map<Vaccine * COMMA std::map<unsigned int COMMA unsigned int> >, renewing, renew) {
         Vaccine *vaccine = renew->first;
-        if (VECTOR_CONTAINS(renewing, vaccine) && VECTOR_CONTAINS(renewing[vaccine], day)) {
+        if (MAP_CONTAINS_KEY(renewing, vaccine) && MAP_CONTAINS_KEY(renewing[vaccine], day)) {
             unsigned int toVaccinate = renewing[vaccine][day];
             unsigned int vaccinesInStock = vaccines[vaccine];
             unsigned int vaccinsToUse = std::min(getCapacity(),

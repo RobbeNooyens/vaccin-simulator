@@ -4,11 +4,11 @@
 // │ Version: 2.1                               │
 // │             UAntwerpen 2021                │
 // ╘════════════════════════════════════════════╛
-#include "../../entities/VaccinationCenter.h"
-#include "../../entities/Hub.h"
-#include "../../json/JArray.h"
-#include "../../json/JValue.h"
-#include "../../json/JObject.h"
+#include "../../src/entities/VaccinationCenter.h"
+#include "../../src/entities/Hub.h"
+#include "../../src/json/JArray.h"
+#include "../../src/json/JValue.h"
+#include "../../src/json/JObject.h"
 #include "../../src/utilities/utils.h"
 #include "../TestUtils.h"
 
@@ -92,7 +92,7 @@ TEST_F(SimulationOutputTests, GraphicalProgress) {
  */
 TEST_F(SimulationOutputTests, HappyDay) {
     for(int day = 1; day <= 10; day++)
-        hub.simulateDay(day, NULLNULL);
+        hub.simulateDay(day, NULL, NULL);
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
     // Test Summary
