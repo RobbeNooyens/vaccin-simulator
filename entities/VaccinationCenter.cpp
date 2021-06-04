@@ -118,7 +118,3 @@ VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants
 bool VaccinationCenter::operator<(const VaccinationCenter& s) const {
     return capacity < s.getCapacity();
 }
-
-std::vector<std::pair<unsigned int, unordered_map<Vaccine*, unsigned int>>>& VaccinationCenter::getCalender() const {
-    return vaccine_calender;
-}

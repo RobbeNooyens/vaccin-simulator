@@ -110,14 +110,12 @@ public:
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toSummaryStream(std::ostream& stream) const;
+    
     void toProgressStream(std::ostream& stream) const;
 
     bool operator<(const VaccinationCenter& s) const;
 
-    std::vector<std::pair<unsigned int, unordered_map<Vaccine*, unsigned int>>>& getCalender() const;
-
 private:
-    std::vector<std::pair<unsigned int, unordered_map<Vaccine*, unsigned int>>> vaccine_calender;
     // Initialization
     const VaccinationCenter* initCheck;
 

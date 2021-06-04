@@ -25,9 +25,6 @@ void Simulator::importSimulation(const std::string& fileName) {
     for (int i = 0; i < (int) centers_json.size(); i++) {
         centers.push_back(new VaccinationCenter());
         centers[i]->fromJSON(centers_json[i]->asJObject());
-        for (unsigned int k = 0; k < cycles; k++) {
-            (centers[i]->getCalender()).push_back({0, {}});
-        }
     }
     sort(centers.begin(), centers.end());
     for (int i = 0; i < (int) centers.size(); i++) {
@@ -45,6 +42,15 @@ void Simulator::importSimulation(const std::string& fileName) {
         }
     }
     sort(vaccins.begin(), vaccins.end());
+    for (int i = 0; i < (int) centers.size(); i++) {
+        std::vector<std::pair<int,std::map<Vaccine*, int>>> elementt;
+        plan.planned.push_back(elementt);
+        for (int k = 0; k < cycles; k++) {
+            std::pair<int, std::map<Vaccine*>> pt;
+            plan.planned[i].push_back(pt);
+        }
+    }
+    generatePlanning(hubs, centers, vaccins, cycles);
 }
 
 void Simulator::exportSimulation(const std::string& fileName) const {
@@ -60,9 +66,7 @@ void Simulator::exportSimulation(const std::string& fileName) const {
 }
 
 void Simulator::simulateDay(unsigned int day) {
-    for (int i = 0; i < (int) centers.size(); i++) {
-        
-    }
+
 }
 
 void Simulator::run() {
@@ -77,100 +81,6 @@ void Simulator::run() {
 
 bool Simulator::properlyInitialized() const {
     return initCheck == this;
-}
-
-//vaccins met temperatuur < 0 gaan eerst
-//als temperatuur < 0 van een vaccin en het wordt bijgehouden in een centra => het moet weg
-
-//code houdt niet rekening met lading van vaccin > capacity om te  gebruiken voor volgende dag
-bool Simulator::is_valid(unsigned int k, int z, int i) {
-    if (((k+vaccins[z]->getRenewing() < cycles) && (centers[i]->getCalender()[k+vaccins[z]->getRenewing()].first == centers[i]->getCapacity()))) {
-        return false;
-    }
-    unsigned int c1 = vaccins[z]->getDays()[k/vaccins[z]->getInterval()] + vaccins[z]->getTransportation();
-    unsigned int c2 = 0;
-    if ((k+vaccins[z]->getRenewing() < cycles) && vaccins[z]->getRenewing()) {
-        c2 = vaccins[z]->getDays()[(k+vaccins[z]->getRenewing())/vaccins[z]->getInterval()];
-        c2 += ((k/vaccins[z]->getInterval()) != ((k+vaccins[z]->getRenewing())/vaccins[z]->getInterval())) ? 2*vaccins[z]->getTransportation() : vaccins[z]->getTransportation();
-    }
-    if ((c1 > (vaccins[z]->getDelivery() + (k/vaccins[z]->getInterval())*vaccins[z]->getDelivery())) || (c2 && (c2 > (vaccins[z]->getDelivery() + ((k+vaccins[z]->getRenewing())/vaccins[z]->getInterval())*vaccins[z]->getDelivery())))) {
-        return false;
-    }
-    unsigned int count = cycles/(hubs[i]->getVaccins()[k]->getRenewing()+1);
-    for (unsigned int vullen = (k/vaccins[z]->getInterval()); vullen <= count; vullen++) {
-        vaccins[z]->getDays()[vullen] += (vaccins[z]->getRenewing() && (vullen >= (k+vaccins[z]->getRenewing())/vaccins[z]->getInterval())) ? 2*vaccins[z]->getTransportation() : vaccins[z]->getTransportation();
-    }
-    return true;
-}
-
-void Simulator::make_calender() {
-    for (int i = 0; i < (int) centers.size(); i++) {
-        bool test = false;
-        unsigned int num = centers[i]->getInhabitants();
-        for (unsigned int k = 0; k < cycles; k++) {
-            if (num == 0) {
-                break;
-            }
-            if (centers[i]->getCalender()[k].first || test) { //let ook op de einde positie met renewing
-                continue;
-            }
-            for (int z = 0; z < (int) vaccins.size(); z++) {
-                if (!vaccins[z]->getHub()->is_connected(centers[i]->getName()) || !is_valid(k,z,i)) {
-                    continue;
-                }
-                unsigned int tt = std::min(centers[i]->getCapacity(), vaccins[z]->getTransportation());
-                if ((k+vaccins[z]->getRenewing() < cycles) && vaccins[z]->getRenewing()) {
-                    tt = std::min(tt, centers[i]->getCapacity()-centers[i]->getCalender()[k+vaccins[z]->getRenewing()].first);
-                }
-                centers[i]->getCalender()[k].second[vaccins[z]] += tt;
-                centers[i]->getCalender()[k].first += tt;
-                num -= std::min(num, tt);
-                planned_hubs[k][vaccins[z]->getHub()].insert(i);
-                if (num == 0) {
-                    break;
-                }
-                if ((k+vaccins[z]->getRenewing() < cycles) && vaccins[z]->getRenewing()) {
-                    centers[i]->getCalender()[k+vaccins[z]->getRenewing()].second[vaccins[z]] += tt;
-                    centers[i]->getCalender()[k+vaccins[z]->getRenewing()].first += tt;
-                    planned_hubs[k+vaccins[z]->getRenewing()][vaccins[z]->getHub()].insert(i);
-                    num -= std::min(num, tt);
-                }
-                break;
-            }
-        }
-    }
-    for (int i = 0; i < (int) centers.size(); i++) {
-        unsigned int num = centers[i]->getInhabitants();
-        for (unsigned int k = 0; k < cycles; k++) {
-            if (num == 0) {
-                break;
-            }
-            for (int z = 0; z < (int) vaccins.size(); z++) {
-                if (!vaccins[z]->getHub()->is_connected(centers[i]->getName())) {
-                    continue;
-                }
-                while ((num != 0) && (centers[i]->getCalender()[k].first < centers[i]->getCapacity()) && is_valid(k,z,i)) {
-                    unsigned int tt = std::min(centers[i]->getCapacity()-centers[i]->getCalender()[k].first, vaccins[z]->getTransportation());
-                    if ((k+vaccins[z]->getRenewing() < cycles) && vaccins[z]->getRenewing()) {
-                       tt = std::min(tt, centers[i]->getCapacity()-centers[i]->getCalender()[k+vaccins[z]->getRenewing()].first);
-                    }
-                    centers[i]->getCalender()[k].second[vaccins[z]] += tt;
-                    centers[i]->getCalender()[k].first += tt;
-                    planned_hubs[k][vaccins[z]->getHub()].insert(i);
-                    num -= std::min(num, tt);
-                    if (num == 0) {
-                        break;
-                    }
-                    if ((k+vaccins[z]->getRenewing() < cycles) && vaccins[z]->getRenewing()) {
-                        centers[i]->getCalender()[k+vaccins[z]->getRenewing()].second[vaccins[z]] += tt;
-                        centers[i]->getCalender()[k+vaccins[z]->getRenewing()].first += tt;
-                        planned_hubs[k+vaccins[z]->getRenewing()][vaccins[z]->getHub()].insert(i);
-                        num -= std::min(num, tt);
-                    }                
-                }
-            }
-        }
-    }
 }
 
 void Simulator::generate_animation() const {
