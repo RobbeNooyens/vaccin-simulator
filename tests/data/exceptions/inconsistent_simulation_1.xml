@@ -22,12 +22,6 @@
         <capaciteit>2000</capaciteit>
     </VACCINATIECENTRUM>
     <VACCINATIECENTRUM>
-        <naam>De Zoerla</naam>
-        <adres>Gevaertlaan 1, Westerlo</adres>
-        <inwoners>49451</inwoners>
-        <capaciteit>1000</capaciteit>
-    </VACCINATIECENTRUM>
-    <VACCINATIECENTRUM>
         <naam>Flanders Expo</naam>
         <adres>Maaltekouter 1, Sint-Denijs-Westrem</adres>
         <inwoners>257029</inwoners>

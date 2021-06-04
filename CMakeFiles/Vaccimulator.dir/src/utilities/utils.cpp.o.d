@@ -125,4 +125,16 @@ CMakeFiles/Vaccimulator.dir/src/utilities/utils.cpp.o: \
  /usr/include/c++/7/bits/std_abs.h /usr/include/string.h \
  /usr/include/strings.h /usr/include/assert.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../../tinyxml/tinystr.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../../DesignByContract.h
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../../DesignByContract.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../json/JValue.h \
+ /usr/include/c++/7/vector /usr/include/c++/7/bits/stl_construct.h \
+ /usr/include/c++/7/bits/stl_uninitialized.h \
+ /usr/include/c++/7/bits/stl_vector.h \
+ /usr/include/c++/7/bits/stl_bvector.h /usr/include/c++/7/bits/vector.tcc \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../json/JObject.h \
+ /usr/include/c++/7/map /usr/include/c++/7/bits/stl_tree.h \
+ /usr/include/c++/7/bits/stl_map.h /usr/include/c++/7/bits/stl_multimap.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../json/JArray.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/utilities/../json/JKeys.h \
+ /usr/include/c++/7/ctime /usr/include/c++/7/set \
+ /usr/include/c++/7/bits/stl_set.h /usr/include/c++/7/bits/stl_multiset.h

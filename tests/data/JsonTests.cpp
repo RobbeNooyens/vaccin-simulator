@@ -77,9 +77,9 @@ TEST_F(JsonTests, NestedDeletion) {
     // Test dot operator on nested JObjects
     JObject* inner = new JObject();
     JObject* middle = new JObject();
-    middle->insertValue("", new JValue(inner));
+    middle->insertValue("inner", new JValue(inner));
     JObject* outer = new JObject();
-    outer->insertValue("", new JValue(middle));
+    outer->insertValue("middle", new JValue(middle));
     JArray* deletionTest = new JArray();
     deletionTest->insertValue(new JValue(outer));
     EXPECT_NO_FATAL_FAILURE(delete deletionTest);

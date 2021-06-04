@@ -5,6 +5,7 @@
 // │             UAntwerpen 2021                │
 // ╘════════════════════════════════════════════╛
 #include <gtest/gtest.h>
+#include <fstream>
 #include "../../src/parsing/XMLParser.h"
 #include "../../src/json/JObject.h"
 #include "../../src/json/JValue.h"
@@ -38,6 +39,19 @@
  */
 
 class XMLParserTests : public ::testing::Test {
+private:
+    std::ofstream errorsFile;
+
+    void SetUp() {
+        errorsFile.open("tests/data/exceptions/errorstream.txt");
+    }
+
+    void TearDown() {
+        errorsFile.close();
+    }
+
+protected:
+    void expectErrors(const std::string &fileName, const ParseErrors &expectedErrors);
 };
 
 // +========================================+
@@ -50,14 +64,14 @@ class XMLParserTests : public ::testing::Test {
 TEST_F(XMLParserTests, ParseDefaultFile) {
     const std::string filename = "tests/data/valid/hub_centers.xml";
     ParseErrors errors;
-    // TODO: Compare values of tellp instead of flushing and check if stream has a goodbit
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    long currentPos = std::cerr.tellp();
     JObject *parsed = XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    EXPECT_EQ(currentPos, std::cerr.tellp());
     EXPECT_TRUE(errors.empty());
     EXPECT_TRUE(parsed->contains(SIMULATION_HUBS) && parsed->contains(SIMULATION_CENTERS));
-    // Test hub
+// Test hub
     std::vector<JValue*> hubs = parsed->getValue(SIMULATION_HUBS)->asJArray()->getItems();
     EXPECT_EQ((unsigned int)1, hubs.size());
     JObject* hub = hubs.front()->asJObject();
@@ -68,10 +82,11 @@ TEST_F(XMLParserTests, ParseDefaultFile) {
     EXPECT_EQ((unsigned int) 93000, vaccin->getValue(VACCINE_DELIVERY)->asUnsignedint());
     EXPECT_EQ((unsigned int) 6, vaccin->getValue(VACCINE_INTERVAL)->asUnsignedint());
     EXPECT_EQ((unsigned int) 2000,vaccin->getValue(VACCINE_TRANSPORTATION)->asUnsignedint());
-    std::vector<JValue*> centers = hub->getValue(HUB_CENTERS)->asJArray()->getItems();
-    ITERATE(std::vector<JValue*>, centers, center)
+    std::vector<JValue*> hubCenters = hub->getValue(HUB_CENTERS)->asJArray()->getItems();
+    ITERATE(std::vector<JValue*>, hubCenters, center)
         EXPECT_TRUE((*center)->asString() == "Park Spoor Oost" || (*center)->asString() == "AED Studios");
-    // Test centra
+// Test centra
+    std::vector<JValue*> centers = parsed->getValue(SIMULATION_CENTERS)->asJArray()->getItems();
     EXPECT_EQ((unsigned int) 2, centers.size());
     JObject* center1 = centers.front()->asJObject();
     JObject* center2 = centers.back()->asJObject();
@@ -96,10 +111,11 @@ TEST_F(XMLParserTests, ParseDefaultFile) {
 TEST_F(XMLParserTests, ParseVaccinTypes) {
     const std::string filename = "tests/data/valid/hub_vaccine_types.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    long currentPos = std::cerr.tellp();
     JObject *parsed = XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    EXPECT_EQ(currentPos, std::cerr.tellp());
     EXPECT_TRUE(errors.empty());
     EXPECT_TRUE(parsed->contains(SIMULATION_HUBS) && parsed->contains(SIMULATION_CENTERS));
     std::vector<JValue*> hubs = parsed->getValue(SIMULATION_HUBS)->asJArray()->getItems();
@@ -144,10 +160,11 @@ TEST_F(XMLParserTests, ParseVaccinTypes) {
 TEST_F(XMLParserTests, ParseVaccinRenewings) {
     const std::string filename = "tests/data/valid/hub_renewing.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    long currentPos = std::cerr.tellp();
     JObject *parsed = XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    EXPECT_EQ(currentPos, std::cerr.tellp());
     EXPECT_TRUE(errors.empty());
     EXPECT_TRUE(parsed->contains(SIMULATION_HUBS) && parsed->contains(SIMULATION_CENTERS));
     std::vector<JValue*> hubs = parsed->getValue(SIMULATION_HUBS)->asJArray()->getItems();
@@ -177,10 +194,11 @@ TEST_F(XMLParserTests, ParseVaccinRenewings) {
 TEST_F(XMLParserTests, ParseVaccinTemperatures) {
     const std::string filename = "tests/data/valid/hub_temperature.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    long currentPos = std::cerr.tellp();
     JObject *parsed = XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    EXPECT_EQ(currentPos, std::cerr.tellp());
     EXPECT_TRUE(errors.empty());
     EXPECT_TRUE(parsed->contains(SIMULATION_HUBS) && parsed->contains(SIMULATION_CENTERS));
     std::vector<JValue*> hubs = parsed->getValue(SIMULATION_HUBS)->asJArray()->getItems();
@@ -209,10 +227,11 @@ TEST_F(XMLParserTests, ParseVaccinTemperatures) {
 TEST_F(XMLParserTests, ParseMultipleHubs) {
     const std::string filename = "tests/data/valid/multiple_hubs.xml";
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    long currentPos = std::cerr.tellp();
     JObject *parsed = XMLParser::parse(filename, std::cerr, errors);
-    EXPECT_EQ(0, std::cerr.tellp());
+    EXPECT_TRUE(std::cerr.good());
+    EXPECT_EQ(currentPos, std::cerr.tellp());
     EXPECT_TRUE(errors.empty());
     EXPECT_TRUE(parsed->contains(SIMULATION_HUBS) && parsed->contains(SIMULATION_CENTERS));
     std::vector<JValue*> hubs = parsed->getValue(SIMULATION_HUBS)->asJArray()->getItems();
@@ -234,17 +253,15 @@ TEST_F(XMLParserTests, ParseMultipleHubs) {
 // |        EXCEPTIONS AND ERRORS           |
 // +========================================+
 
-void expectErrors(const std::string &fileName, const ParseErrors &expectedErrors) {
+void XMLParserTests::expectErrors(const std::string &fileName, const ParseErrors &expectedErrors) {
     ParseErrors errors;
-    std::cerr.flush();
-    EXPECT_EQ(0, std::cerr.tellp());
-    JObject* parsed = XMLParser::parse(fileName, std::cerr, errors);
-    EXPECT_TRUE(std::cerr.tellp() > 0);
+    EXPECT_TRUE(errorsFile.good());
+    JObject* parsed = XMLParser::parse(fileName, errorsFile, errors);
+    EXPECT_TRUE(errorsFile.good());
     EXPECT_EQ(expectedErrors.size(), errors.size());
     for(int i = 0; i < (int) expectedErrors.size(); i++) {
         EXPECT_EQ(expectedErrors[i], errors[i]);
     }
-    std::cerr.flush();
     delete parsed;
 }
 
@@ -257,6 +274,7 @@ TEST_F(XMLParserTests, NoRootElement) {
 
 TEST_F(XMLParserTests, ParseUnknownElement) {
     ParseErrors errors;
+    errors.push_back(UNKNOWN_ELEMENT);
     errors.push_back(UNKNOWN_ELEMENT);
     errors.push_back(UNKNOWN_ELEMENT);
     errors.push_back(UNKNOWN_ELEMENT);
@@ -281,6 +299,7 @@ TEST_F(XMLParserTests, EmptyElements) {
     errors.push_back(EMPTY_ELEMENT);
     errors.push_back(EMPTY_ELEMENT);
     errors.push_back(EMPTY_ELEMENT);
+    errors.push_back(INCONSISTENT_SIMULATION);
     expectErrors("tests/data/exceptions/empty_elements_1.xml", errors);
     expectErrors("tests/data/exceptions/empty_elements_2.xml", errors);
 }
@@ -308,9 +327,15 @@ TEST_F(XMLParserTests, MissingElements) {
     errors.push_back(MISSING_ELEMENT);
     errors.push_back(MISSING_ELEMENT);
     errors.push_back(MISSING_ELEMENT);
+    errors.push_back(INCONSISTENT_SIMULATION);
     expectErrors("tests/data/exceptions/missing_elements_1.xml", errors);
-    errors.push_back(MISSING_ELEMENT);
-    expectErrors("tests/data/exceptions/missing_elements_2.xml", errors);
+    ParseErrors errors2;
+    errors2.push_back(MISSING_ELEMENT);
+    errors2.push_back(MISSING_ELEMENT);
+    errors2.push_back(MISSING_ELEMENT);
+    errors2.push_back(MISSING_ELEMENT);
+    errors2.push_back(INCONSISTENT_SIMULATION);
+    expectErrors("tests/data/exceptions/missing_elements_2.xml", errors2);
 }
 
 TEST_F(XMLParserTests, MultipleErrors) {
@@ -322,10 +347,10 @@ TEST_F(XMLParserTests, MultipleErrors) {
     expectErrors("tests/data/exceptions/multiple_errors_1.xml", errors);
     ParseErrors errors2;
     errors2.push_back(EMPTY_ELEMENT);
-    errors2.push_back(MISSING_ELEMENT);
     errors2.push_back(INVALID_TYPE);
     errors2.push_back(INVALID_TYPE);
     errors2.push_back(UNKNOWN_ELEMENT);
+    errors2.push_back(MISSING_ELEMENT);
     errors2.push_back(INCONSISTENT_SIMULATION);
-    expectErrors("tests/data/exceptions/multiple_errors_2.xml", errors);
+    expectErrors("tests/data/exceptions/multiple_errors_2.xml", errors2);
 }

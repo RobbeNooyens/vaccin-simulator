@@ -59,11 +59,34 @@ set(DEBUG_SOURCE_FILES tests/VaccimulatorTests.cpp
         src/json/JKeys.h
         DesignByContract.h)
 
+# Set source files for single DEBUG target
+set(SINGLE_DEBUG_SOURCE_FILES tests/SingleTests.cpp
+        src/utilities/utils.h src/utilities/utils.cpp
+        tests/TestUtils.cpp tests/TestUtils.h
+        tinyxml/tinyxmlparser.cpp
+        tinyxml/tinyxmlerror.cpp
+        tinyxml/tinyxml.h tinyxml/tinyxml.cpp
+        tinyxml/tinystr.h tinyxml/tinystr.cpp
+        src/parsing/XMLParser.cpp src/parsing/XMLParser.h
+        src/entities/Hub.cpp src/entities/Hub.h
+        src/entities/VaccinationCenter.cpp src/entities/VaccinationCenter.h
+        src/entities/Simulator.cpp src/entities/Simulator.h
+        src/entities/Vaccine.cpp src/entities/Vaccine.h
+        src/entities/Planning.cpp src/entities/Planning.h
+        src/entities/SimulationData.cpp src/entities/SimulationData.h
+        src/json/JValue.cpp src/json/JValue.h
+        src/json/JObject.cpp src/json/JObject.h
+        src/json/JArray.cpp src/json/JArray.h
+        src/json/JKeys.h
+        DesignByContract.h)
+
+
 # Create RELEASE target
 add_executable(Vaccimulator ${RELEASE_SOURCE_FILES})
 
 # Create DEBUG target
 add_executable(VaccimulatorTests ${DEBUG_SOURCE_FILES})
+add_executable(SingleTests ${SINGLE_DEBUG_SOURCE_FILES})
 
 # Link library
 target_link_libraries(VaccimulatorTests gtest)

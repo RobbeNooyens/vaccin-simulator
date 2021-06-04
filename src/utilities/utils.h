@@ -19,6 +19,7 @@
 #define OPEN_COUT std::cout.setstate(std::ios_base::goodbit)
 
 class TiXmlElement;
+class JObject;
 
 namespace StringUtil {
 
@@ -83,13 +84,13 @@ namespace FileUtil {
     * Description : TicTactToe valid C++, Ansi-style
     * Source      : https://github.com/sergedemeyer/TicTacToe_Git/blob/master/TicTacToeUtils.cpp
     * ════════════════════════════════════════════================================*/
-    bool DirectoryExists(const std::string dirname);
+    bool DirectoryExists(const std::string& dirname);
 
-    bool FileExists(const std::string filename);
+    bool FileExists(const std::string &filename);
 
-    bool FileIsEmpty(const std::string filename);
+    bool FileIsEmpty(const std::string &filename);
 
-    bool FileCompare(const std::string leftFileName, const std::string rightFileName);
+    bool FileCompare(const std::string& leftFileName, const std::string& rightFileName);
 }
 
 namespace TimeUtil {
@@ -104,6 +105,11 @@ namespace TimeUtil {
      */
     std::string getCurrentDateTime(std::string format = "%Y-%m-%d.%X");
 
+}
+
+namespace ParseUtil {
+    // TODO: documentation
+    bool isConsistent(JObject* parsed);
 }
 
 #endif //VACCIMULATOR_UTILS_H

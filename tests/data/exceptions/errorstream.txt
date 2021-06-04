@@ -1,0 +1,10 @@
+Emtpy element found in HUB!
+Found a duplicated element in HUB!
+Invalid element type in HUB!
+Found an unknown element in HUB!
+Encountered an empty element in ROOT!
+Element of wrong type found in a VACCINATIECENTRUM!
+Element of wrong type found in a VACCINATIECENTRUM!
+Unknown element in VACCINATIECENTRUM detected!
+Missing element: VACCINATIECENTRUM > adres
+Loaded simulation is inconsistent!

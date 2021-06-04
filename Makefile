@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named SingleTests
+
+# Build rule for target.
+SingleTests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SingleTests
+.PHONY : SingleTests
+
+# fast build rule for target.
+SingleTests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/build
+.PHONY : SingleTests/fast
+
+#=============================================================================
 # Target rules for targets named Vaccimulator
 
 # Build rule for target.
@@ -171,6 +184,7 @@ src/entities/Hub.o: src/entities/Hub.cpp.o
 
 # target to build an object file
 src/entities/Hub.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Hub.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Hub.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Hub.cpp.o
 .PHONY : src/entities/Hub.cpp.o
@@ -180,6 +194,7 @@ src/entities/Hub.i: src/entities/Hub.cpp.i
 
 # target to preprocess a source file
 src/entities/Hub.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Hub.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Hub.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Hub.cpp.i
 .PHONY : src/entities/Hub.cpp.i
@@ -189,6 +204,7 @@ src/entities/Hub.s: src/entities/Hub.cpp.s
 
 # target to generate assembly for a file
 src/entities/Hub.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Hub.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Hub.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Hub.cpp.s
 .PHONY : src/entities/Hub.cpp.s
@@ -198,6 +214,7 @@ src/entities/Planning.o: src/entities/Planning.cpp.o
 
 # target to build an object file
 src/entities/Planning.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Planning.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Planning.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Planning.cpp.o
 .PHONY : src/entities/Planning.cpp.o
@@ -207,6 +224,7 @@ src/entities/Planning.i: src/entities/Planning.cpp.i
 
 # target to preprocess a source file
 src/entities/Planning.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Planning.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Planning.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Planning.cpp.i
 .PHONY : src/entities/Planning.cpp.i
@@ -216,6 +234,7 @@ src/entities/Planning.s: src/entities/Planning.cpp.s
 
 # target to generate assembly for a file
 src/entities/Planning.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Planning.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Planning.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Planning.cpp.s
 .PHONY : src/entities/Planning.cpp.s
@@ -225,6 +244,7 @@ src/entities/SimulationData.o: src/entities/SimulationData.cpp.o
 
 # target to build an object file
 src/entities/SimulationData.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/SimulationData.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/SimulationData.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/SimulationData.cpp.o
 .PHONY : src/entities/SimulationData.cpp.o
@@ -234,6 +254,7 @@ src/entities/SimulationData.i: src/entities/SimulationData.cpp.i
 
 # target to preprocess a source file
 src/entities/SimulationData.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/SimulationData.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/SimulationData.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/SimulationData.cpp.i
 .PHONY : src/entities/SimulationData.cpp.i
@@ -243,6 +264,7 @@ src/entities/SimulationData.s: src/entities/SimulationData.cpp.s
 
 # target to generate assembly for a file
 src/entities/SimulationData.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/SimulationData.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/SimulationData.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/SimulationData.cpp.s
 .PHONY : src/entities/SimulationData.cpp.s
@@ -252,6 +274,7 @@ src/entities/Simulator.o: src/entities/Simulator.cpp.o
 
 # target to build an object file
 src/entities/Simulator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Simulator.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Simulator.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Simulator.cpp.o
 .PHONY : src/entities/Simulator.cpp.o
@@ -261,6 +284,7 @@ src/entities/Simulator.i: src/entities/Simulator.cpp.i
 
 # target to preprocess a source file
 src/entities/Simulator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Simulator.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Simulator.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Simulator.cpp.i
 .PHONY : src/entities/Simulator.cpp.i
@@ -270,6 +294,7 @@ src/entities/Simulator.s: src/entities/Simulator.cpp.s
 
 # target to generate assembly for a file
 src/entities/Simulator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Simulator.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Simulator.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Simulator.cpp.s
 .PHONY : src/entities/Simulator.cpp.s
@@ -279,6 +304,7 @@ src/entities/VaccinationCenter.o: src/entities/VaccinationCenter.cpp.o
 
 # target to build an object file
 src/entities/VaccinationCenter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/VaccinationCenter.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/VaccinationCenter.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/VaccinationCenter.cpp.o
 .PHONY : src/entities/VaccinationCenter.cpp.o
@@ -288,6 +314,7 @@ src/entities/VaccinationCenter.i: src/entities/VaccinationCenter.cpp.i
 
 # target to preprocess a source file
 src/entities/VaccinationCenter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/VaccinationCenter.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/VaccinationCenter.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/VaccinationCenter.cpp.i
 .PHONY : src/entities/VaccinationCenter.cpp.i
@@ -297,6 +324,7 @@ src/entities/VaccinationCenter.s: src/entities/VaccinationCenter.cpp.s
 
 # target to generate assembly for a file
 src/entities/VaccinationCenter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/VaccinationCenter.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/VaccinationCenter.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/VaccinationCenter.cpp.s
 .PHONY : src/entities/VaccinationCenter.cpp.s
@@ -306,6 +334,7 @@ src/entities/Vaccine.o: src/entities/Vaccine.cpp.o
 
 # target to build an object file
 src/entities/Vaccine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Vaccine.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Vaccine.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Vaccine.cpp.o
 .PHONY : src/entities/Vaccine.cpp.o
@@ -315,6 +344,7 @@ src/entities/Vaccine.i: src/entities/Vaccine.cpp.i
 
 # target to preprocess a source file
 src/entities/Vaccine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Vaccine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Vaccine.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Vaccine.cpp.i
 .PHONY : src/entities/Vaccine.cpp.i
@@ -324,6 +354,7 @@ src/entities/Vaccine.s: src/entities/Vaccine.cpp.s
 
 # target to generate assembly for a file
 src/entities/Vaccine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/entities/Vaccine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/entities/Vaccine.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/entities/Vaccine.cpp.s
 .PHONY : src/entities/Vaccine.cpp.s
@@ -333,6 +364,7 @@ src/json/JArray.o: src/json/JArray.cpp.o
 
 # target to build an object file
 src/json/JArray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JArray.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JArray.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JArray.cpp.o
 .PHONY : src/json/JArray.cpp.o
@@ -342,6 +374,7 @@ src/json/JArray.i: src/json/JArray.cpp.i
 
 # target to preprocess a source file
 src/json/JArray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JArray.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JArray.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JArray.cpp.i
 .PHONY : src/json/JArray.cpp.i
@@ -351,6 +384,7 @@ src/json/JArray.s: src/json/JArray.cpp.s
 
 # target to generate assembly for a file
 src/json/JArray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JArray.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JArray.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JArray.cpp.s
 .PHONY : src/json/JArray.cpp.s
@@ -360,6 +394,7 @@ src/json/JObject.o: src/json/JObject.cpp.o
 
 # target to build an object file
 src/json/JObject.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JObject.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JObject.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JObject.cpp.o
 .PHONY : src/json/JObject.cpp.o
@@ -369,6 +404,7 @@ src/json/JObject.i: src/json/JObject.cpp.i
 
 # target to preprocess a source file
 src/json/JObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JObject.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JObject.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JObject.cpp.i
 .PHONY : src/json/JObject.cpp.i
@@ -378,6 +414,7 @@ src/json/JObject.s: src/json/JObject.cpp.s
 
 # target to generate assembly for a file
 src/json/JObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JObject.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JObject.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JObject.cpp.s
 .PHONY : src/json/JObject.cpp.s
@@ -387,6 +424,7 @@ src/json/JValue.o: src/json/JValue.cpp.o
 
 # target to build an object file
 src/json/JValue.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JValue.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JValue.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JValue.cpp.o
 .PHONY : src/json/JValue.cpp.o
@@ -396,6 +434,7 @@ src/json/JValue.i: src/json/JValue.cpp.i
 
 # target to preprocess a source file
 src/json/JValue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JValue.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JValue.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JValue.cpp.i
 .PHONY : src/json/JValue.cpp.i
@@ -405,6 +444,7 @@ src/json/JValue.s: src/json/JValue.cpp.s
 
 # target to generate assembly for a file
 src/json/JValue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/json/JValue.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/json/JValue.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JValue.cpp.s
 .PHONY : src/json/JValue.cpp.s
@@ -414,6 +454,7 @@ src/parsing/XMLParser.o: src/parsing/XMLParser.cpp.o
 
 # target to build an object file
 src/parsing/XMLParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/XMLParser.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/XMLParser.cpp.o
 .PHONY : src/parsing/XMLParser.cpp.o
@@ -423,6 +464,7 @@ src/parsing/XMLParser.i: src/parsing/XMLParser.cpp.i
 
 # target to preprocess a source file
 src/parsing/XMLParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/XMLParser.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/XMLParser.cpp.i
 .PHONY : src/parsing/XMLParser.cpp.i
@@ -432,6 +474,7 @@ src/parsing/XMLParser.s: src/parsing/XMLParser.cpp.s
 
 # target to generate assembly for a file
 src/parsing/XMLParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/XMLParser.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/XMLParser.cpp.s
 .PHONY : src/parsing/XMLParser.cpp.s
@@ -441,6 +484,7 @@ src/utilities/utils.o: src/utilities/utils.cpp.o
 
 # target to build an object file
 src/utilities/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/utilities/utils.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/utilities/utils.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/utilities/utils.cpp.o
 .PHONY : src/utilities/utils.cpp.o
@@ -450,6 +494,7 @@ src/utilities/utils.i: src/utilities/utils.cpp.i
 
 # target to preprocess a source file
 src/utilities/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/utilities/utils.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/utilities/utils.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/utilities/utils.cpp.i
 .PHONY : src/utilities/utils.cpp.i
@@ -459,15 +504,41 @@ src/utilities/utils.s: src/utilities/utils.cpp.s
 
 # target to generate assembly for a file
 src/utilities/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/utilities/utils.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/utilities/utils.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/utilities/utils.cpp.s
 .PHONY : src/utilities/utils.cpp.s
+
+tests/SingleTests.o: tests/SingleTests.cpp.o
+.PHONY : tests/SingleTests.o
+
+# target to build an object file
+tests/SingleTests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o
+.PHONY : tests/SingleTests.cpp.o
+
+tests/SingleTests.i: tests/SingleTests.cpp.i
+.PHONY : tests/SingleTests.i
+
+# target to preprocess a source file
+tests/SingleTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.i
+.PHONY : tests/SingleTests.cpp.i
+
+tests/SingleTests.s: tests/SingleTests.cpp.s
+.PHONY : tests/SingleTests.s
+
+# target to generate assembly for a file
+tests/SingleTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.s
+.PHONY : tests/SingleTests.cpp.s
 
 tests/TestUtils.o: tests/TestUtils.cpp.o
 .PHONY : tests/TestUtils.o
 
 # target to build an object file
 tests/TestUtils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tests/TestUtils.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.o
 .PHONY : tests/TestUtils.cpp.o
@@ -477,6 +548,7 @@ tests/TestUtils.i: tests/TestUtils.cpp.i
 
 # target to preprocess a source file
 tests/TestUtils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tests/TestUtils.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.i
 .PHONY : tests/TestUtils.cpp.i
@@ -486,6 +558,7 @@ tests/TestUtils.s: tests/TestUtils.cpp.s
 
 # target to generate assembly for a file
 tests/TestUtils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tests/TestUtils.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tests/TestUtils.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/TestUtils.cpp.s
 .PHONY : tests/TestUtils.cpp.s
@@ -663,6 +736,7 @@ tinyxml/tinystr.o: tinyxml/tinystr.cpp.o
 
 # target to build an object file
 tinyxml/tinystr.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinystr.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o
 .PHONY : tinyxml/tinystr.cpp.o
@@ -672,6 +746,7 @@ tinyxml/tinystr.i: tinyxml/tinystr.cpp.i
 
 # target to preprocess a source file
 tinyxml/tinystr.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinystr.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.i
 .PHONY : tinyxml/tinystr.cpp.i
@@ -681,6 +756,7 @@ tinyxml/tinystr.s: tinyxml/tinystr.cpp.s
 
 # target to generate assembly for a file
 tinyxml/tinystr.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinystr.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinystr.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.s
 .PHONY : tinyxml/tinystr.cpp.s
@@ -690,6 +766,7 @@ tinyxml/tinyxml.o: tinyxml/tinyxml.cpp.o
 
 # target to build an object file
 tinyxml/tinyxml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxml.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxml.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.o
 .PHONY : tinyxml/tinyxml.cpp.o
@@ -699,6 +776,7 @@ tinyxml/tinyxml.i: tinyxml/tinyxml.cpp.i
 
 # target to preprocess a source file
 tinyxml/tinyxml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxml.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxml.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.i
 .PHONY : tinyxml/tinyxml.cpp.i
@@ -708,6 +786,7 @@ tinyxml/tinyxml.s: tinyxml/tinyxml.cpp.s
 
 # target to generate assembly for a file
 tinyxml/tinyxml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxml.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxml.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxml.cpp.s
 .PHONY : tinyxml/tinyxml.cpp.s
@@ -717,6 +796,7 @@ tinyxml/tinyxmlerror.o: tinyxml/tinyxmlerror.cpp.o
 
 # target to build an object file
 tinyxml/tinyxmlerror.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxmlerror.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlerror.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.o
 .PHONY : tinyxml/tinyxmlerror.cpp.o
@@ -726,6 +806,7 @@ tinyxml/tinyxmlerror.i: tinyxml/tinyxmlerror.cpp.i
 
 # target to preprocess a source file
 tinyxml/tinyxmlerror.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxmlerror.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlerror.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.i
 .PHONY : tinyxml/tinyxmlerror.cpp.i
@@ -735,6 +816,7 @@ tinyxml/tinyxmlerror.s: tinyxml/tinyxmlerror.cpp.s
 
 # target to generate assembly for a file
 tinyxml/tinyxmlerror.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxmlerror.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlerror.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlerror.cpp.s
 .PHONY : tinyxml/tinyxmlerror.cpp.s
@@ -744,6 +826,7 @@ tinyxml/tinyxmlparser.o: tinyxml/tinyxmlparser.cpp.o
 
 # target to build an object file
 tinyxml/tinyxmlparser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxmlparser.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.o
 .PHONY : tinyxml/tinyxmlparser.cpp.o
@@ -753,6 +836,7 @@ tinyxml/tinyxmlparser.i: tinyxml/tinyxmlparser.cpp.i
 
 # target to preprocess a source file
 tinyxml/tinyxmlparser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxmlparser.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.i
 .PHONY : tinyxml/tinyxmlparser.cpp.i
@@ -762,6 +846,7 @@ tinyxml/tinyxmlparser.s: tinyxml/tinyxmlparser.cpp.s
 
 # target to generate assembly for a file
 tinyxml/tinyxmlparser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/tinyxml/tinyxmlparser.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/tinyxml/tinyxmlparser.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tinyxml/tinyxmlparser.cpp.s
 .PHONY : tinyxml/tinyxmlparser.cpp.s
@@ -774,6 +859,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... SingleTests"
 	@echo "... Vaccimulator"
 	@echo "... VaccimulatorTests"
 	@echo "... src/Vaccimulator.o"
@@ -812,6 +898,9 @@ help:
 	@echo "... src/utilities/utils.o"
 	@echo "... src/utilities/utils.i"
 	@echo "... src/utilities/utils.s"
+	@echo "... tests/SingleTests.o"
+	@echo "... tests/SingleTests.i"
+	@echo "... tests/SingleTests.s"
 	@echo "... tests/TestUtils.o"
 	@echo "... tests/TestUtils.i"
 	@echo "... tests/TestUtils.s"

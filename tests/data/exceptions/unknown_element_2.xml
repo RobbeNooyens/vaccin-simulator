@@ -24,5 +24,6 @@
         <adres>Fabriekstraat 38, Lint</adres>
         <inwoners>76935</inwoners>
         <capaciteit>2000</capaciteit>
+        <actief>true</actief>
     </VACCINATIECENTRUM>
 </ROOT>
