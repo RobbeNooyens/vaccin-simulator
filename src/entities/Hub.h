@@ -103,14 +103,14 @@ public:
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      */
      // TODO: documentation
-     void simulateDay(unsigned int day, SimulationData *statistics = NULL, std::ostream *oStream = NULL);
+     void simulateDay(unsigned int day, SimulationData &statistics);
     /**
      * Simulate vaccin distribution over the vaccinationcenters
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      */
-    void distributeVaccins(std::ostream *outStream = NULL);
+    void distributeVaccins();
     /**
      * Simulate smart vaccin distribution over the vaccinationcenters
      * @param day: unsigned int; daycount
@@ -126,7 +126,7 @@ public:
      * @param vaccinCount: the amount of vaccins to transport
      */
     void
-    transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads, std::ostream *outStream) const;
+    transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads) const;
     /**
      * Adds vaccines valid case cargo is being delivered
      * @param day: unsigned int; current day
@@ -134,7 +134,7 @@ public:
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      */
      // TODO: documentation
-    void simulateDelivery(unsigned int day, SimulationData *statistics = NULL);
+     void simulateDelivery(unsigned int day, SimulationData &statistics);
 
     // Validations
     /**
@@ -152,10 +152,18 @@ public:
      * * REQUIRE(&centers != NULL, "Centers can't be NULL!");
      */
     bool containsInvalidCenter() const;
+
+    // Setters
+    // TODO: documentation
+    void setOutputStream(std::ostream* outStream);
+
 private:
 
     // Initialization
     const Hub* initCheck;
+
+    // Output stream
+    std::ostream* outputStream;
 
     // Connected vaccinationcenters
     VaccinationCenters centers;

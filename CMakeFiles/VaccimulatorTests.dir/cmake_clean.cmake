@@ -35,6 +35,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o.d"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o.d"
+  "CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o.d"
   "CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o.d"
   "CMakeFiles/VaccimulatorTests.dir/tinyxml/tinystr.cpp.o"

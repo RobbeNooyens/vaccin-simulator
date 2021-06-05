@@ -16,6 +16,10 @@
 #include "../src/json/JValue.h"
 #include "../src/json/JArray.h"
 #include "../src/entities/VaccinationCenter.h"
+#include "TestUtils.h"
+#include "../src/entities/Hub.h"
+#include "../src/entities/SimulationData.h"
+#include "../src/utilities/utils.h"
 
 #define EXPECT_TRUE(expression) assert(expression)
 #define EXPECT_EQ(lhs, rhs) assert(lhs == rhs)
@@ -34,15 +38,38 @@ void expectErrors(const std::string &fileName, const ParseErrors &expectedErrors
 }
 
 int main() {
-    // Test dot operator on nested JObjects
-    JObject* inner = new JObject();
-    JObject* middle = new JObject();
-    middle->insertValue("middle", new JValue(inner));
-    JObject* outer = new JObject();
-    outer->insertValue("outer", new JValue(middle));
-    JArray* deletionTest = new JArray();
-    deletionTest->insertValue(new JValue(outer));
-    delete deletionTest;
+    // Create JSON structure
+    JObject* json = new JObject();
+    // Create centers
+    JArray* jCenters = new JArray();
+    json->insertValue("jCenters", new JValue(jCenters));
+    JObject* center1 = MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200);
+    JObject* center2 = MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600);
+    JObject* center3 = MockObjects::jCenter("Center 3", "Route 66", 3021, 100);
+    jCenters->insertValue(new JValue(center1));
+    jCenters->insertValue(new JValue(center2));
+    jCenters->insertValue(new JValue(center3));
+    VaccinationCenters centers;
+    std::vector<std::string> centerNames;
+    JValues jValueCenters = jCenters->getItems();
+    ITERATE(JValues, jValueCenters, center) {
+        VaccinationCenter* c = new VaccinationCenter();
+        c->fromJSON((*center)->asJObject());
+        centers.push_back(c);
+        centerNames.push_back(c->getName());
+    }
+    // Initialize Hubs
+    JArray* hubs = new JArray();
+    JObject* h = MockObjects::jHub(100, 6, 40, centerNames);
+    hubs->insertValue(new JValue(h));
+    // Load hub
+    Hub hub;
+    SimulationData statistics;
+    hub.fromJSON(h, centers);
+    delete json;
+    for(int day = 1; day <= 10; day++)
+        hub.simulateDay(day, statistics);
+    EXPECT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
     return 0;
 }
 

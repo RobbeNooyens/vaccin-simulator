@@ -112,4 +112,20 @@ CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o: \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/json/JValue.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/json/JArray.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/VaccinationCenter.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/Vaccine.h
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/Vaccine.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/TestUtils.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/Hub.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/SimulationData.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/utilities/utils.h \
+ /usr/include/c++/7/fstream /usr/include/c++/7/bits/codecvt.h \
+ /usr/include/c++/7/cstdio /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/libio.h \
+ /usr/include/x86_64-linux-gnu/bits/_G_config.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
+ /usr/include/c++/7/bits/fstream.tcc \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/sstream \
+ /usr/include/c++/7/bits/sstream.tcc

@@ -22,14 +22,14 @@
 // Constructors
 
 VaccinationCenter::VaccinationCenter() : initCheck(this), inhabitants(0), vaccinated(0), capacity(0),
-                                         connectedToHub(false) {
+                                         connectedToHub(false), outputStream(NULL) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
 VaccinationCenter::VaccinationCenter(const std::string name, const std::string address, unsigned int inhabitants,
                                      unsigned int capacity) : initCheck(this), name(name), address(address),
                                                               inhabitants(inhabitants), vaccinated(0),
-                                                              capacity(capacity), connectedToHub(false) {
+                                                              capacity(capacity), connectedToHub(false), outputStream(NULL) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -131,7 +131,7 @@ void VaccinationCenter::transportationArrived(Vaccine *vaccine, unsigned int amo
     ENSURE(getVaccins() == oldVaccins + amount, "Vaccines aren't added succesfully!");
 }
 
-void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *statistics, std::ostream *outStream) {
+void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData &statistics) {
     // TODO: save valid SimulationData how many ottal vaccinatied
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     unsigned int totalVaccinationsDone = 0;
@@ -155,8 +155,7 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *s
             vaccinated += vaccinsToUse;
             vaccines[vaccine] -= vaccinsToUse;
             totalVaccinationsDone += vaccinsToUse;
-            if (statistics)
-                statistics->addVaccinatedInhabitants(vaccinsToUse);
+            statistics.addVaccinatedInhabitants(vaccinsToUse);
             ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
             ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
         }
@@ -169,6 +168,7 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *s
             renewing[vaccinePair->first].insert(
                     std::pair<unsigned int, unsigned int>(day + vaccinePair->first->getRenewing(), vaccinsToUse));
             unvaccinatedLeft -= vaccinsToUse;
+            totalVaccinationsDone += vaccinsToUse;
             continue;
         }
         unsigned int vaccinsToUse = std::min(unvaccinatedLeft, vaccinePair->second);
@@ -178,14 +178,13 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *s
         vaccines[vaccinePair->first] -= vaccinsToUse;
         totalVaccinationsDone += vaccinsToUse;
         unvaccinatedLeft -= vaccinsToUse;
-        if (statistics)
-            statistics->addVaccinatedInhabitants(vaccinsToUse);
+        statistics.addVaccinatedInhabitants(vaccinsToUse);
         ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
         ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
     }
     // Output to outputstream if specified
-    if (outStream)
-        *outStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd valid " << getName() << std::endl;
+    if (outputStream)
+        *outputStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd valid " << getName() << std::endl;
     removeExpiredVaccines();
 }
 
@@ -222,4 +221,8 @@ void VaccinationCenter::removeExpiredVaccines() {
             vaccines[vaccinePair->first] = 0;
         }
     }
+}
+
+void VaccinationCenter::setOutputStream(std::ostream *outStream) {
+    this->outputStream = outStream;
 }

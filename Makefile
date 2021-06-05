@@ -707,6 +707,30 @@ tests/domain/VaccineTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.s
 .PHONY : tests/domain/VaccineTests.cpp.s
 
+tests/presentation/IniFileGenerationTests.o: tests/presentation/IniFileGenerationTests.cpp.o
+.PHONY : tests/presentation/IniFileGenerationTests.o
+
+# target to build an object file
+tests/presentation/IniFileGenerationTests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
+.PHONY : tests/presentation/IniFileGenerationTests.cpp.o
+
+tests/presentation/IniFileGenerationTests.i: tests/presentation/IniFileGenerationTests.cpp.i
+.PHONY : tests/presentation/IniFileGenerationTests.i
+
+# target to preprocess a source file
+tests/presentation/IniFileGenerationTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.i
+.PHONY : tests/presentation/IniFileGenerationTests.cpp.i
+
+tests/presentation/IniFileGenerationTests.s: tests/presentation/IniFileGenerationTests.cpp.s
+.PHONY : tests/presentation/IniFileGenerationTests.s
+
+# target to generate assembly for a file
+tests/presentation/IniFileGenerationTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.s
+.PHONY : tests/presentation/IniFileGenerationTests.cpp.s
+
 tests/presentation/SimulationOutputTests.o: tests/presentation/SimulationOutputTests.cpp.o
 .PHONY : tests/presentation/SimulationOutputTests.o
 
@@ -922,6 +946,9 @@ help:
 	@echo "... tests/domain/VaccineTests.o"
 	@echo "... tests/domain/VaccineTests.i"
 	@echo "... tests/domain/VaccineTests.s"
+	@echo "... tests/presentation/IniFileGenerationTests.o"
+	@echo "... tests/presentation/IniFileGenerationTests.i"
+	@echo "... tests/presentation/IniFileGenerationTests.s"
 	@echo "... tests/presentation/SimulationOutputTests.o"
 	@echo "... tests/presentation/SimulationOutputTests.i"
 	@echo "... tests/presentation/SimulationOutputTests.s"

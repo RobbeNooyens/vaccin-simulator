@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <fstream>
 
 #include "entities/Simulator.h"
 
@@ -24,14 +25,23 @@ using namespace TimeUtil;
 using namespace StringUtil;
 
 int main() {
+    std::string fileName = concat("io/output/Simulation_", concat(getCurrentDateTime("%Y-%m-%d_%H-%M-%S"), ".txt"));
+    std::ofstream file;
+    file.open(fileName.c_str());
+
     Simulator simulator = Simulator();
-    // TODO: program argument
+    simulator.setStatisticsStream(&file);
+    simulator.setTransportationStream(&file);
+    simulator.setVaccinationsStream(&file);
+
     simulator.importSimulation("io/xml_files/time_test.xml", std::cerr);
 //    simulator.runEfficient(30);
-    simulator.run(200);
-    std::string file = concat("io/output/Simulation_", concat(getCurrentDateTime("%Y-%m-%d_%H-%M-%S"), ".txt"));
+    simulator.run(30);
 //    simulator.exportSimulationSummary(file);
     simulator.exportSimulationProgress(file);
 //    simulator.exportSimulationIniFile("parsing/ini_files/generated.ini");
+    simulator.run(30);
+//    simulator.exportSimulationSummary(file);
+    simulator.exportSimulationProgress(file);
     return 0;
 }

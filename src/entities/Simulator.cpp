@@ -20,7 +20,7 @@
 
 // Constructors
 
-Simulator::Simulator(): initCheck(this), initialState(NULL), daycount(0) {
+Simulator::Simulator(): initCheck(this), initialState(NULL), daycount(0), statisticsOutputStream(NULL), transportationOutputStream(NULL), vaccinationOutputStream(NULL) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
 }
 
@@ -46,47 +46,35 @@ void Simulator::importSimulation(const std::string &fileName, std::ostream &erro
     fromJSON(initialState);
 }
 
-void Simulator::exportSimulationSummary(const std::string& fileName) const {
+void Simulator::exportSimulationSummary(std::ostream &out) const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-    std::ofstream file;
-    file.open(fileName.c_str());
-    assert(file.is_open());
+    REQUIRE(out.good(), "Output stream should be writeable!");
     C_ITERATE(std::vector<Hub*>, hubs, hub) {
-        (*hub)->toSummaryStream(file);
+        (*hub)->toSummaryStream(out);
     }
-    file << std::endl;
+    out << std::endl;
     C_ITERATE(std::vector<VaccinationCenter*>, centers, center) {
-        (*center)->toSummaryStream(file);
+        (*center)->toSummaryStream(out);
     }
-    file.close();
-    ENSURE(!file.is_open(), "File wasn't closed properly!");
+    ENSURE(out.good(), "Stream encountered an error during writing!");
 }
 
-void Simulator::exportSimulationProgress(const std::string &fileName) const {
+void Simulator::exportSimulationProgress(std::ostream &out) const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-    std::ofstream file;
-    file.open(fileName.c_str());
-    assert(file.is_open());
+    REQUIRE(out.good(), "Output stream should be writeable!");
     C_ITERATE(std::vector<VaccinationCenter*>, centers, center) {
-        (*center)->toProgressStream(file);
+        (*center)->toProgressStream(out);
     }
-    file.close();
-    ENSURE(!file.is_open(), "File wasn't closed properly!");
+    ENSURE(out.good(), "Stream encountered an error during writing!");
 }
 
-void Simulator::exportSimulationIniFile(const std::string &fileName) const {
+void Simulator::exportSimulationIniFile(std::ostream &out) const {
     REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
-    REQUIRE(!fileName.empty(), "Filename cannot be empty!");
-    REQUIRE(StringUtil::contains(fileName, ".ini"), "File should be an ini file!");
-    std::ofstream file;
-    file.open(fileName.c_str());
-    assert(file.is_open());
+    REQUIRE(out.good(), "Output stream should be writeable!");
 
     // TODO: ini file generation
 
-    ENSURE(!file.is_open(), "File wasn't closed properly!");
+    ENSURE(out.good(), "Stream encountered an error during writing!");
 }
 
 void Simulator::fromJSON(JObject *json) {
@@ -98,12 +86,14 @@ void Simulator::fromJSON(JObject *json) {
     ITERATE(JValues, centersJSON, center) {
         VaccinationCenter* c = new VaccinationCenter();
         c->fromJSON((*center)->asJObject());
+        c->setOutputStream(vaccinationOutputStream);
         centers.push_back(c);
     }
     JValues hubsJSON = json->getValue(SIMULATION_HUBS)->asJArray()->getItems();
     ITERATE(JValues, hubsJSON, hub) {
         Hub* h = new Hub();
         h->fromJSON((*hub)->asJObject(), centers);
+        h->setOutputStream(transportationOutputStream);
         hubs.push_back(h);
     }
     ENSURE(!hubs.empty(), "Couldn't load hubs properly!");
@@ -112,7 +102,7 @@ void Simulator::fromJSON(JObject *json) {
 
 // Simulation controls
 
-void Simulator::run(const unsigned int cycles, std::ostream *outputStream) {
+void Simulator::run(const unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
@@ -123,11 +113,11 @@ void Simulator::run(const unsigned int cycles, std::ostream *outputStream) {
     }
     while(daycount < lastDay){
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
-        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, &statistics, outputStream);
+        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, statistics);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, &statistics, outputStream);
-        if(outputStream)
-            statistics.printStatistics(*outputStream);
+        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
+        if(statisticsOutputStream)
+            statistics.printStatistics(*statisticsOutputStream);
         daycount++;
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
@@ -144,11 +134,11 @@ void Simulator::runEfficient(unsigned int cycles) {
     while(daycount < lastDay) {
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
         ITERATE(std::vector<Hub*>, hubs, hub) {
-            (*hub)->simulateDelivery(daycount);
+            (*hub)->simulateDelivery(daycount, statistics);
             (*hub)->distributeEfficient(daycount, planning);
         }
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount);
+        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
         daycount++;
     }
 }
@@ -176,4 +166,22 @@ void Simulator::reset() {
         delete *center;
     daycount = 0;
     fromJSON(initialState);
+}
+
+void Simulator::setStatisticsStream(std::ostream *stats) {
+    this->statisticsOutputStream = stats;
+}
+
+void Simulator::setTransportationStream(std::ostream* transport) {
+    this->transportationOutputStream = transport;
+    ITERATE(std::vector<Hub*>, hubs, hub) {
+        (*hub)->setOutputStream(transport);
+    }
+}
+
+void Simulator::setVaccinationsStream(std::ostream *vaccinations) {
+    this->vaccinationOutputStream = vaccinations;
+    ITERATE(VaccinationCenters, centers, center) {
+        (*center)->setOutputStream(vaccinations);
+    }
 }

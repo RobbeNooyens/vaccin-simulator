@@ -11,6 +11,7 @@
 #include "../../src/json/JObject.h"
 #include "../../src/utilities/utils.h"
 #include "../TestUtils.h"
+#include "../../src/entities/SimulationData.h"
 
 #include <gtest/gtest.h>
 
@@ -19,6 +20,7 @@
 class SimulationOutputTests: public ::testing::Test {
 protected:
     Hub hub;
+    SimulationData statistics;
 
     void SetUp() {
         // Create JSON structure
@@ -47,10 +49,7 @@ protected:
         hubs->insertValue(new JValue(h));
         // Load hub
         hub.fromJSON(h, centers);
-        // TODO: delete json without segmentation fault
-//        ITERATE(VaccinationCenters, centers, center)
-//            delete *center;
-        // delete json;
+        delete json;
     }
 
 
@@ -92,13 +91,13 @@ TEST_F(SimulationOutputTests, GraphicalProgress) {
  */
 TEST_F(SimulationOutputTests, HappyDay) {
     for(int day = 1; day <= 10; day++)
-        hub.simulateDay(day, NULL, NULL);
-    ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
+        hub.simulateDay(day, statistics);
+    EXPECT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
     // Test Summary
     std::ofstream summaryFile;
     summaryFile.open("tests/presentation/out/simple_output_after_simulation.txt");
-    ASSERT_TRUE(summaryFile.is_open());
+    EXPECT_TRUE(summaryFile.is_open());
     hub.toSummaryStream(summaryFile);
     summaryFile << std::endl;
     VaccinationCenters centers = hub.getVaccinationCenters();

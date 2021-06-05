@@ -28,7 +28,7 @@
 
 // Constructors, destructors and initialization
 
-Hub::Hub() : initCheck(this) {
+Hub::Hub() : initCheck(this), outputStream(NULL) {
     ENSURE(properlyInitialized(), "Hub object hasn't been initialized properly!");
 }
 
@@ -38,32 +38,32 @@ bool Hub::properlyInitialized() const {
 
 // IO
 
-void Hub::toSummaryStream(std::ostream & outputStream) const {
+void Hub::toSummaryStream(std::ostream & outStream) const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    REQUIRE(outputStream != NULL, "Output stream cannot be NULL!");
-    REQUIRE(outputStream.good(), "Output stream contains error flags!");
+    REQUIRE(outStream, "Output stream cannot be NULL!");
+    REQUIRE(outStream.good(), "Output stream contains error flags!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
-    outputStream << "Hub (" << getTotalVaccinesCount() << "): " << std::endl;
+    outStream << "Hub (" << getTotalVaccinesCount() << "): " << std::endl;
     C_ITERATE(VaccinationCenters, centers, center)
-        outputStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
-    ENSURE(outputStream.good(), "Failed to write to parsing stream!");
+        outStream << "  -> " << (*center)->getName() << " (" << (*center)->getVaccins() << " vaccins)" << std::endl;
+    ENSURE(outStream.good(), "Failed to write to parsing stream!");
 }
 
-void Hub::toProgressStream(std::ostream &outputStream) const {
+void Hub::toProgressStream(std::ostream &outStream) const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    REQUIRE(outputStream != NULL, "Output stream cannot be NULL!");
-    REQUIRE(outputStream.good(), "Output stream contains error flags!");
+    REQUIRE(outStream, "Output stream cannot be NULL!");
+    REQUIRE(outStream.good(), "Output stream contains error flags!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     C_ITERATE(VaccinationCenters, centers, center) {
-        (*center)->toProgressStream(outputStream);
+        (*center)->toProgressStream(outStream);
     }
-    ENSURE(outputStream.good(), "Failed to write to parsing stream!");
+    ENSURE(outStream.good(), "Failed to write to parsing stream!");
 }
 
 void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
-    REQUIRE(json != NULL, "JSON can't be NULL!");
+    REQUIRE(json, "JSON can't be NULL!");
     REQUIRE(json->contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
     REQUIRE(json->contains(HUB_VACCINES), StringUtil::concat("Hub JSON should contain field ", HUB_VACCINES).c_str());
     JValues vaccins = json->getValue(HUB_VACCINES)->asJArray()->getItems();
@@ -72,7 +72,7 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
         Vaccine* vaccine = new Vaccine();
         vaccine->fromJSON((*vaccin)->asJObject());
         vaccines.push_back(vaccine);
-        vaccineCount.insert(std::pair<Vaccine*, int>(vaccine, vaccine->getDelivery()));
+        vaccineCount.insert(std::pair<Vaccine*, unsigned int>(vaccine, vaccine->getDelivery()));
     }
     std::vector<JValue*> centerNames = json->getValue(HUB_CENTERS)->asJArray()->getItems();
     ITERATE(std::vector<JValue*>, centerNames, name) {
@@ -92,7 +92,7 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
 
 // Simulation controls
 
-void Hub::simulateDay(unsigned int day, SimulationData *statistics, std::ostream *oStream) {
+void Hub::simulateDay(unsigned int day, SimulationData &statistics) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
@@ -104,21 +104,21 @@ void Hub::simulateDay(unsigned int day, SimulationData *statistics, std::ostream
     ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!");
 }
 
-void Hub::simulateDelivery(unsigned int day, SimulationData *statistics) {
+void Hub::simulateDelivery(unsigned int day, SimulationData &statistics) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccineCount, vaccinePair) {
         Vaccine* vaccine = vaccinePair->first;
         if(day % (vaccine->getInterval() + 1) == 0) {
             vaccineCount[vaccine] += vaccine->getDelivery();
-            if(statistics != NULL)
-                statistics->addDelivery(vaccine, vaccine->getDelivery());
+            statistics.addDelivery(vaccine, vaccine->getDelivery());
         }
     }
     ENSURE(isConsistent(), "Hub needs to be consistent to run the simulation");
 }
 
-void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads, std::ostream *outStream = NULL) const {
+void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads) const {
+    // TODO: rewrite every REQUIRE and ENSURE to work with public methods instead of private vars
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(center, "VaccinationCenter can't be NULL!");
     unsigned int totalLoads = 0, totalVaccines = 0;
@@ -128,11 +128,11 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsi
         totalLoads += dose->second;
         totalVaccines += dose->second * vaccine->getTransportation();
     }
-    if(outStream)
-        *outStream << "Er werden " << totalLoads << " ladingen ( " << totalVaccines << " vaccins) getransporteerd naar " << center->getName() << "." << std::endl;
+    if(outputStream)
+        *outputStream << "Er werden " << totalLoads << " ladingen ( " << totalVaccines << " vaccins) getransporteerd naar " << center->getName() << "." << std::endl;
 }
 
-void Hub::distributeVaccins(std::ostream *outStream) {
+void Hub::distributeVaccins() {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
@@ -151,7 +151,7 @@ void Hub::distributeVaccins(std::ostream *outStream) {
             }
             vaccinePerCenter.insert(std::pair<Vaccine*, unsigned int>(vaccine, loadCount));
         }
-        Hub::transportVaccinsTo(center, vaccinePerCenter, outStream);
+        Hub::transportVaccinsTo(center, vaccinePerCenter);
     }
     ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");
     ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
@@ -216,4 +216,8 @@ bool Hub::isConsistent() const {
 std::map<Vaccine *, unsigned int> Hub::getVaccineCount() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return vaccineCount;
+}
+
+void Hub::setOutputStream(std::ostream* outStream) {
+    this->outputStream = outStream;
 }

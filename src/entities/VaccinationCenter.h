@@ -56,7 +56,7 @@ public:
      * * ENSURE(vaccinated = oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
      * * ENSURE(vaccins = oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
      */
-    void vaccinateInhabitants(unsigned int day, SimulationData *statistics = NULL, std::ostream *outStream = NULL);
+    void vaccinateInhabitants(unsigned int day, SimulationData &statistics);
 
     /**
      * Throws away the vaccins that actually should have been used during the day because of its temperature
@@ -72,6 +72,8 @@ public:
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     void setConnectedToHub(bool connected);
+    // TODO: documentation
+    void setOutputStream(std::ostream* outStream);
 
     // Getters
     /**
@@ -175,6 +177,7 @@ private:
 
     // Simulation
     bool connectedToHub;
+    std::ostream* outputStream;
 };
 
 

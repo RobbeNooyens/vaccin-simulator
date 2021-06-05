@@ -32,7 +32,7 @@ bool Vaccine::properlyInitialized() const {
 
 void Vaccine::fromJSON(JObject *json) {
     REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
-    REQUIRE(json != NULL, "JObject can't be NULL!");
+    REQUIRE(json, "JObject can't be NULL!");
     REQUIRE(json->contains(VACCINE_TYPE), "Vaccine JSON should contain field 'type'");
     REQUIRE(json->contains(VACCINE_DELIVERY), "Vaccine JSON should contain field 'levering'");
     REQUIRE(json->contains(VACCINE_INTERVAL), "Vaccine JSON should contain field 'interval'");

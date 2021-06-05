@@ -38,6 +38,14 @@ public:
      */
     bool properlyInitialized() const;
 
+    // Set output streams
+
+    void setStatisticsStream(std::ostream* stats);
+
+    void setTransportationStream(std::ostream* transport);
+
+    void setVaccinationsStream(std::ostream* vaccinations);
+
     // IO
     /**
      * Imports the simulation from an XML file
@@ -48,29 +56,29 @@ public:
     void importSimulation(const std::string &fileName, std::ostream &errorStream);
     /**
      * Exports the simulation summary to a text file
-     * @param fileName: name of the text file to write to
+     * @param out: name of the text file to write to
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
      * * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
-    void exportSimulationSummary(const std::string& fileName) const;
+    void exportSimulationSummary(std::ostream &out) const;
     /**
      * Exports the simulation progress to a text file
-     * @param fileName: name of the text file to write to
+     * @param out: name of the text file to write to
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
      * * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
-    void exportSimulationProgress(const std::string& fileName) const;
+    void exportSimulationProgress(std::ostream &out) const;
     /**
      * Writes contents of the objects valid the simulation to an ini file
-     * @param fileName: string; name of the file to write to
+     * @param out: string; name of the file to write to
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(StringUtil::contains(fileName, ".ini"), "File should be an ini file!");
      * * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
      * * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
-    void exportSimulationIniFile(const std::string& fileName) const;
+    void exportSimulationIniFile(std::ostream &out) const;
     /**
      *
      * @param json
@@ -87,13 +95,12 @@ public:
     /**
      * Runs the simulation for a specific amount of times
      * @param cycles: the amount of times the simulation should run
-     * @param outputStream: stream to send data to messages to sent during the simulation
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(cycles != 0, "Cycles cannot be 0!");
      * * REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
      * * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
-    void run(unsigned int cycles, std::ostream *outputStream = NULL);
+    void run(unsigned int cycles);
     /**
      * Runs the simulation for a specific amount of times with smart distribution
      * @param startFromDay: int; the day to start from
@@ -116,9 +123,6 @@ public:
      */
     void reset();
 
-    // TODO: implement restart and clear functions
-    // void clear();
-
 private:
     // Initialization
     const Simulator* initCheck;
@@ -129,6 +133,9 @@ private:
     std::vector<VaccinationCenter*> centers;
     unsigned int daycount;
     SimulationData statistics;
+    std::ostream* statisticsOutputStream;
+    std::ostream* transportationOutputStream;
+    std::ostream* vaccinationOutputStream;
 };
 
 

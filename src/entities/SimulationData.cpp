@@ -14,10 +14,10 @@ using namespace std;
 SimulationData::SimulationData(): initCheck(this), vaccinated(0) {}
 
 void SimulationData::addDelivery(Vaccine *vaccine, unsigned int amount) {
-    REQUIRE(vaccine != NULL, "Vaccine cannot be a nullpointer!");
+    REQUIRE(vaccine, "Vaccine cannot be a nullpointer!");
     REQUIRE(!vaccine->getType().empty(), "Vaccine type cannot be empty!");
     if(vaccinsDelivered.find(vaccine->getType()) != vaccinsDelivered.end()) {
-        vaccinsDelivered[vaccine->getType()] = amount;
+        vaccinsDelivered[vaccine->getType()] += amount;
     } else {
         vaccinsDelivered.insert(std::pair<std::string, unsigned int>(vaccine->getType(), amount));
     }
