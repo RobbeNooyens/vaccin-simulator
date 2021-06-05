@@ -107,10 +107,6 @@ void Simulator::run(const unsigned int cycles) {
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
-    unsigned int inhabitants = 0;
-    ITERATE(VaccinationCenters, centers, center) {
-        inhabitants += (*center)->getInhabitants();
-    }
     while(daycount < lastDay){
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
         ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, statistics);
@@ -164,6 +160,8 @@ void Simulator::reset() {
         delete *hub;
     ITERATE(std::vector<VaccinationCenter*>, centers, center)
         delete *center;
+    hubs.clear();
+    centers.clear();
     daycount = 0;
     fromJSON(initialState);
 }
@@ -184,4 +182,16 @@ void Simulator::setVaccinationsStream(std::ostream *vaccinations) {
     ITERATE(VaccinationCenters, centers, center) {
         (*center)->setOutputStream(vaccinations);
     }
+}
+
+void Simulator::setInitialState(JObject *json) {
+    initialState = json;
+}
+
+VaccinationCenters &Simulator::getCenters() {
+    return centers;
+}
+
+std::vector<Hub *> Simulator::getHubs() {
+    return hubs;
 }

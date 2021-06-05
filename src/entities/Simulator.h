@@ -40,6 +40,7 @@ public:
 
     // Set output streams
 
+    // TODO: documentation
     void setStatisticsStream(std::ostream* stats);
 
     void setTransportationStream(std::ostream* transport);
@@ -122,6 +123,13 @@ public:
      * * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
      */
     void reset();
+
+    // TODO: documentation
+    void setInitialState(JObject* json);
+
+    VaccinationCenters& getCenters();
+
+    std::vector<Hub*> getHubs();
 
 private:
     // Initialization

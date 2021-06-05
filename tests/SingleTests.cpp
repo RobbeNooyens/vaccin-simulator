@@ -20,10 +20,12 @@
 #include "../src/entities/Hub.h"
 #include "../src/entities/SimulationData.h"
 #include "../src/utilities/utils.h"
+#include "../src/entities/Simulator.h"
 
 #define EXPECT_TRUE(expression) assert(expression)
 #define EXPECT_EQ(lhs, rhs) assert(lhs == rhs)
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
+#define ASSERT_TRUE assert
 
 void expectErrors(const std::string &fileName, const ParseErrors &expectedErrors) {
     ParseErrors errors;
@@ -42,34 +44,87 @@ int main() {
     JObject* json = new JObject();
     // Create centers
     JArray* jCenters = new JArray();
-    json->insertValue("jCenters", new JValue(jCenters));
-    JObject* center1 = MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200);
-    JObject* center2 = MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600);
-    JObject* center3 = MockObjects::jCenter("Center 3", "Route 66", 3021, 100);
-    jCenters->insertValue(new JValue(center1));
-    jCenters->insertValue(new JValue(center2));
-    jCenters->insertValue(new JValue(center3));
-    VaccinationCenters centers;
+    jCenters->insertValue(new JValue(MockObjects::jCenter("Center 1", "Mainstreet", 5043, 200)));
+    jCenters->insertValue(new JValue(MockObjects::jCenter("Center 2", "Wallstreet", 8011, 600)));
+    jCenters->insertValue(new JValue(MockObjects::jCenter("Center 3", "Route 66", 3021, 100)));
     std::vector<std::string> centerNames;
     JValues jValueCenters = jCenters->getItems();
     ITERATE(JValues, jValueCenters, center) {
-        VaccinationCenter* c = new VaccinationCenter();
-        c->fromJSON((*center)->asJObject());
-        centers.push_back(c);
-        centerNames.push_back(c->getName());
+        centerNames.push_back((*center)->asJObject()->getValue(CENTER_NAME)->asString());
     }
+    // Initialize Vaccines
+    JArray* vaccines = new JArray();
+    vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 1", 1000, 3, 500, 0, 0)));
+    vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 2", 3000, 5, 600, 10, 0)));
+    vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 3", 7000, 7, 480, 5, -30)));
     // Initialize Hubs
     JArray* hubs = new JArray();
-    JObject* h = MockObjects::jHub(100, 6, 40, centerNames);
+    JObject* h = MockObjects::jHub(vaccines->getItems(), centerNames);
     hubs->insertValue(new JValue(h));
-    // Load hub
-    Hub hub;
-    SimulationData statistics;
-    hub.fromJSON(h, centers);
-    delete json;
-    for(int day = 1; day <= 10; day++)
-        hub.simulateDay(day, statistics);
-    EXPECT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
+    // Load simulator object
+    json->insertValue(SIMULATION_HUBS, new JValue(hubs));
+    json->insertValue(SIMULATION_CENTERS, new JValue(jCenters));
+    Simulator simulator;
+    simulator.fromJSON(json);
+    simulator.setInitialState(json);
+
+    simulator.reset();
+
+
+    // TEST START
+
+
+
+    simulator.run(100);
+
+    ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
+
+    // Test Summary
+    std::ofstream summaryFile;
+    summaryFile.open("tests/presentation/out/simple_output_happyday_1.txt");
+    ASSERT_TRUE(summaryFile.is_open());
+    simulator.exportSimulationSummary(summaryFile);
+    summaryFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output_happyday_1.txt", "tests/presentation/expected/simple_output_happyday_1.txt"));
+
+    // Test Progress
+    std::ofstream progressFile;
+    progressFile.open("tests/presentation/out/graphical_progress_happyday_1.txt");
+    ASSERT_TRUE(progressFile.is_open());
+    simulator.exportSimulationProgress(progressFile);
+    progressFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress_happyday_1.txt", "tests/presentation/expected/graphical_progress_happyday_1.txt"));
+
+    // Test Ini
+    std::ofstream iniFile;
+    iniFile.open("tests/presentation/out/ini_file_happyday_1.ini");
+    ASSERT_TRUE(iniFile.is_open());
+    simulator.exportSimulationIniFile(iniFile);
+    iniFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_happyday_1.ini", "tests/presentation/expected/ini_file_happyday_1.ini"));
+
+    simulator.run(50);
+
+    // Test Summary
+    summaryFile.open("tests/presentation/out/simple_output_happyday_2.txt");
+    ASSERT_TRUE(summaryFile.is_open());
+    simulator.exportSimulationSummary(summaryFile);
+    summaryFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output_happyday_2.txt", "tests/presentation/expected/simple_output_happyday_2.txt"));
+
+    // Test Progress
+    progressFile.open("tests/presentation/out/graphical_progress_happyday_2.txt");
+    ASSERT_TRUE(progressFile.is_open());
+    simulator.exportSimulationProgress(progressFile);
+    progressFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress_happyday_2.txt", "tests/presentation/expected/graphical_progress_happyday_2.txt"));
+
+    // Test Ini
+    iniFile.open("tests/presentation/out/ini_file_happyday_2.ini");
+    ASSERT_TRUE(iniFile.is_open());
+    simulator.exportSimulationIniFile(iniFile);
+    iniFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_happyday_2.ini", "tests/presentation/expected/ini_file_happyday_2.ini"));
     return 0;
 }
 

@@ -111,6 +111,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o:
  /usr/include/c++/7/iostream \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JArray.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JValue.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JKeys.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JObject.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/utilities/utils.h \
  /usr/include/c++/7/fstream /usr/include/c++/7/bits/codecvt.h \
@@ -126,6 +127,11 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulationOutputTests.cpp.o:
  /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/sstream \
  /usr/include/c++/7/bits/sstream.tcc \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../TestUtils.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/SimulationData.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Simulator.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/../parsing/XMLParser.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/VaccinationCenter.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Hub.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/SimulationData.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest.h \
  /usr/include/c++/7/limits \

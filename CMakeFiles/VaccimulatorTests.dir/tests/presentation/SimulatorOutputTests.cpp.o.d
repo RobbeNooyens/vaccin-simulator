@@ -1,8 +1,8 @@
-CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o: \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/IniFileGenerationTests.cpp \
+CMakeFiles/VaccimulatorTests.dir/tests/presentation/SimulatorOutputTests.cpp.o: \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/SimulatorOutputTests.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest.h \
- /usr/include/c++/7/limits \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/VaccinationCenter.h \
+ /usr/include/c++/7/string \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -11,24 +11,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/cpu_defines.h \
- /usr/include/c++/7/ostream /usr/include/c++/7/ios \
- /usr/include/c++/7/iosfwd /usr/include/c++/7/bits/stringfwd.h \
- /usr/include/c++/7/bits/memoryfwd.h /usr/include/c++/7/bits/postypes.h \
- /usr/include/c++/7/cwchar /usr/include/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
- /usr/include/x86_64-linux-gnu/bits/floatn.h \
- /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/c++/7/exception /usr/include/c++/7/bits/exception.h \
+ /usr/include/c++/7/bits/stringfwd.h /usr/include/c++/7/bits/memoryfwd.h \
  /usr/include/c++/7/bits/char_traits.h \
  /usr/include/c++/7/bits/stl_algobase.h \
  /usr/include/c++/7/bits/functexcept.h \
@@ -44,17 +27,43 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /usr/include/c++/7/bits/stl_iterator.h \
  /usr/include/c++/7/bits/ptr_traits.h /usr/include/c++/7/debug/debug.h \
  /usr/include/c++/7/bits/predefined_ops.h \
+ /usr/include/c++/7/bits/postypes.h /usr/include/c++/7/cwchar \
+ /usr/include/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/c++/7/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/c++allocator.h \
+ /usr/include/c++/7/ext/new_allocator.h /usr/include/c++/7/new \
+ /usr/include/c++/7/exception /usr/include/c++/7/bits/exception.h \
  /usr/include/c++/7/bits/localefwd.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++locale.h \
  /usr/include/c++/7/clocale /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/7/cctype \
- /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/7/iosfwd \
+ /usr/include/c++/7/cctype /usr/include/ctype.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
- /usr/include/c++/7/bits/ios_base.h /usr/include/c++/7/ext/atomicity.h \
+ /usr/include/c++/7/bits/ostream_insert.h \
+ /usr/include/c++/7/bits/cxxabi_forced.h \
+ /usr/include/c++/7/bits/stl_function.h \
+ /usr/include/c++/7/backward/binders.h \
+ /usr/include/c++/7/bits/range_access.h \
+ /usr/include/c++/7/bits/basic_string.h \
+ /usr/include/c++/7/ext/atomicity.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/gthr.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/gthr-default.h \
  /usr/include/pthread.h /usr/include/sched.h \
@@ -75,18 +84,19 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/atomic_word.h \
- /usr/include/c++/7/bits/locale_classes.h /usr/include/c++/7/string \
- /usr/include/c++/7/bits/allocator.h \
- /usr/include/x86_64-linux-gnu/c++/7/bits/c++allocator.h \
- /usr/include/c++/7/ext/new_allocator.h /usr/include/c++/7/new \
- /usr/include/c++/7/bits/ostream_insert.h \
- /usr/include/c++/7/bits/cxxabi_forced.h \
- /usr/include/c++/7/bits/stl_function.h \
- /usr/include/c++/7/backward/binders.h \
- /usr/include/c++/7/bits/range_access.h \
- /usr/include/c++/7/bits/basic_string.h \
  /usr/include/c++/7/ext/alloc_traits.h \
- /usr/include/c++/7/bits/basic_string.tcc \
+ /usr/include/c++/7/bits/basic_string.tcc /usr/include/c++/7/map \
+ /usr/include/c++/7/bits/stl_tree.h /usr/include/c++/7/bits/stl_map.h \
+ /usr/include/c++/7/bits/stl_multimap.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Vaccine.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Hub.h \
+ /usr/include/c++/7/vector /usr/include/c++/7/bits/stl_construct.h \
+ /usr/include/c++/7/bits/stl_uninitialized.h \
+ /usr/include/c++/7/bits/stl_vector.h \
+ /usr/include/c++/7/bits/stl_bvector.h /usr/include/c++/7/bits/vector.tcc \
+ /usr/include/c++/7/istream /usr/include/c++/7/ios \
+ /usr/include/c++/7/bits/ios_base.h \
+ /usr/include/c++/7/bits/locale_classes.h \
  /usr/include/c++/7/bits/locale_classes.tcc /usr/include/c++/7/stdexcept \
  /usr/include/c++/7/streambuf /usr/include/c++/7/bits/streambuf.tcc \
  /usr/include/c++/7/bits/basic_ios.h \
@@ -96,12 +106,35 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /usr/include/c++/7/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_inline.h \
  /usr/include/c++/7/bits/locale_facets.tcc \
- /usr/include/c++/7/bits/basic_ios.tcc \
- /usr/include/c++/7/bits/ostream.tcc /usr/include/c++/7/vector \
- /usr/include/c++/7/bits/stl_construct.h \
- /usr/include/c++/7/bits/stl_uninitialized.h \
- /usr/include/c++/7/bits/stl_vector.h \
- /usr/include/c++/7/bits/stl_bvector.h /usr/include/c++/7/bits/vector.tcc \
+ /usr/include/c++/7/bits/basic_ios.tcc /usr/include/c++/7/ostream \
+ /usr/include/c++/7/bits/ostream.tcc /usr/include/c++/7/bits/istream.tcc \
+ /usr/include/c++/7/iostream \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JArray.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JValue.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JKeys.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JObject.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/utilities/utils.h \
+ /usr/include/c++/7/fstream /usr/include/c++/7/bits/codecvt.h \
+ /usr/include/c++/7/cstdio /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/libio.h \
+ /usr/include/x86_64-linux-gnu/bits/_G_config.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
+ /usr/include/c++/7/bits/fstream.tcc \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/sstream \
+ /usr/include/c++/7/bits/sstream.tcc \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../TestUtils.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/SimulationData.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Simulator.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/../parsing/XMLParser.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/VaccinationCenter.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Hub.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/SimulationData.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest.h \
+ /usr/include/c++/7/limits \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/internal/gtest-internal.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/internal/gtest-port.h \
  /usr/include/c++/7/stdlib.h /usr/include/c++/7/cstdlib \
@@ -116,16 +149,9 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/sysmacros.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/c++/7/bits/std_abs.h /usr/include/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/libio.h \
- /usr/include/x86_64-linux-gnu/bits/_G_config.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/string.h \
- /usr/include/strings.h /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/iostream \
- /usr/include/c++/7/istream /usr/include/c++/7/bits/istream.tcc \
- /usr/include/c++/7/sstream /usr/include/c++/7/bits/sstream.tcc \
- /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/c++/7/bits/std_abs.h /usr/include/string.h \
+ /usr/include/strings.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
@@ -154,8 +180,7 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include/float.h \
  /usr/include/c++/7/iomanip /usr/include/c++/7/set \
- /usr/include/c++/7/bits/stl_tree.h /usr/include/c++/7/bits/stl_set.h \
- /usr/include/c++/7/bits/stl_multiset.h \
+ /usr/include/c++/7/bits/stl_set.h /usr/include/c++/7/bits/stl_multiset.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest-message.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/internal/gtest-string.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/internal/gtest-filepath.h \
@@ -175,16 +200,4 @@ CMakeFiles/VaccimulatorTests.dir/tests/presentation/IniFileGenerationTests.cpp.o
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest_prod.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest-test-part.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest-typed-test.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest_pred_impl.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JObject.h \
- /usr/include/c++/7/map /usr/include/c++/7/bits/stl_map.h \
- /usr/include/c++/7/bits/stl_multimap.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JArray.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Hub.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/json/JValue.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Simulator.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/../parsing/XMLParser.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/VaccinationCenter.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Vaccine.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/Hub.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/presentation/../../src/entities/SimulationData.h
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/gtest/include/gtest/gtest_pred_impl.h

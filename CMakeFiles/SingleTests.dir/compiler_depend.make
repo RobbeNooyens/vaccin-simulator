@@ -1820,7 +1820,31 @@ CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o: tests/SingleTests.cpp \
   src/json/JValue.h \
   src/json/JArray.h \
   src/entities/VaccinationCenter.h \
-  src/entities/Vaccine.h
+  src/entities/Vaccine.h \
+  tests/TestUtils.h \
+  src/entities/Hub.h \
+  src/entities/SimulationData.h \
+  src/utilities/utils.h \
+  /usr/include/c++/7/fstream \
+  /usr/include/c++/7/bits/codecvt.h \
+  /usr/include/c++/7/cstdio \
+  /usr/include/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/libio.h \
+  /usr/include/x86_64-linux-gnu/bits/_G_config.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
+  /usr/include/c++/7/bits/fstream.tcc \
+  /usr/include/x86_64-linux-gnu/sys/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/stat.h \
+  /usr/include/c++/7/sstream \
+  /usr/include/c++/7/bits/sstream.tcc \
+  src/entities/Simulator.h \
+  src/parsing/XMLParser.h \
+  src/entities/VaccinationCenter.h \
+  src/entities/Hub.h \
+  src/entities/SimulationData.h
 
 CMakeFiles/SingleTests.dir/tests/TestUtils.cpp.o: tests/TestUtils.cpp \
   /usr/include/stdc-predef.h \
@@ -2154,9 +2178,9 @@ tinyxml/tinyxmlparser.cpp:
 
 tinyxml/tinyxmlerror.cpp:
 
-tests/TestUtils.h:
-
 tests/TestUtils.cpp:
+
+tests/TestUtils.h:
 
 /usr/include/c++/7/cassert:
 

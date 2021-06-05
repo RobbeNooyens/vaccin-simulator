@@ -38,7 +38,7 @@ set(DEBUG_SOURCE_FILES tests/VaccimulatorTests.cpp
         tests/domain/VaccinationCenterTests.cpp
         tests/domain/HubTests.cpp
         tests/domain/VaccineTests.cpp
-        tests/presentation/SimulationOutputTests.cpp
+        tests/presentation/SimulatorOutputTests.cpp
         tests/data/XMLParserTests.cpp
         tests/data/JsonTests.cpp
         tests/TestUtils.cpp tests/TestUtils.h
@@ -57,7 +57,7 @@ set(DEBUG_SOURCE_FILES tests/VaccimulatorTests.cpp
         src/json/JObject.cpp src/json/JObject.h
         src/json/JArray.cpp src/json/JArray.h
         src/json/JKeys.h
-        DesignByContract.h tests/presentation/IniFileGenerationTests.cpp)
+        DesignByContract.h)
 
 # Set source files for single DEBUG target
 set(SINGLE_DEBUG_SOURCE_FILES tests/SingleTests.cpp

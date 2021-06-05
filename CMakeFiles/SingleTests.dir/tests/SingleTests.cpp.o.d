@@ -128,4 +128,9 @@ CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o: \
  /usr/include/c++/7/bits/fstream.tcc \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/sstream \
- /usr/include/c++/7/bits/sstream.tcc
+ /usr/include/c++/7/bits/sstream.tcc \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/Simulator.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/../parsing/XMLParser.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/VaccinationCenter.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/Hub.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/SimulationData.h
