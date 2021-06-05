@@ -135,45 +135,56 @@ void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData *s
     // TODO: save valid SimulationData how many ottal vaccinatied
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     unsigned int totalVaccinationsDone = 0;
+    unsigned int waitingOnSecondVaccine = 0;
+    ITERATE(std::map<Vaccine * COMMA std::map<unsigned int COMMA unsigned int> >, renewing, renew) {
+        ITERATE(std::map<unsigned int COMMA unsigned int >, renew->second, amount) {
+            if(amount->first > day) {
+                waitingOnSecondVaccine += amount->second;
+            }
+        }
+    }
     // Do vaccines with renewing first
     ITERATE(std::map<Vaccine * COMMA std::map<unsigned int COMMA unsigned int> >, renewing, renew) {
         Vaccine *vaccine = renew->first;
         if (MAP_CONTAINS_KEY(renewing, vaccine) && MAP_CONTAINS_KEY(renewing[vaccine], day)) {
             unsigned int toVaccinate = renewing[vaccine][day];
             unsigned int vaccinesInStock = vaccines[vaccine];
-            unsigned int vaccinsToUse = std::min(getCapacity(),
-                                                 toVaccinate), oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
+            unsigned int vaccinsToUse = std::min(getCapacity(), toVaccinate);
+            unsigned int oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
             vaccinsToUse = std::min(vaccinsToUse, vaccinesInStock);
             vaccinated += vaccinsToUse;
             vaccines[vaccine] -= vaccinsToUse;
             totalVaccinationsDone += vaccinsToUse;
-            if (statistics != NULL)
+            if (statistics)
                 statistics->addVaccinatedInhabitants(vaccinsToUse);
             ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
             ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
         }
     }
+    unsigned int unvaccinatedLeft = getVaccinationsLeft() - waitingOnSecondVaccine;
     ITERATE(std::map<Vaccine * COMMA unsigned int>, vaccines, vaccinePair) {
         if (vaccinePair->first->getRenewing() > 0) {
-            unsigned int vaccinsToUse = std::min(getVaccinationsLeft(), vaccinePair->second);
+            unsigned int vaccinsToUse = std::min(unvaccinatedLeft, vaccinePair->second);
             vaccinsToUse = std::min(vaccinsToUse, getCapacity());
             renewing[vaccinePair->first].insert(
                     std::pair<unsigned int, unsigned int>(day + vaccinePair->first->getRenewing(), vaccinsToUse));
+            unvaccinatedLeft -= vaccinsToUse;
             continue;
         }
-        unsigned int vaccinsToUse = std::min(getVaccinationsLeft(),
-                                             vaccinePair->second), oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
+        unsigned int vaccinsToUse = std::min(unvaccinatedLeft, vaccinePair->second);
+        unsigned int oldVaccinated = getVaccinationsDone(), oldVaccins = getVaccins();
         vaccinsToUse = std::min(vaccinsToUse, getCapacity());
         vaccinated += vaccinsToUse;
         vaccines[vaccinePair->first] -= vaccinsToUse;
         totalVaccinationsDone += vaccinsToUse;
-        if (statistics != NULL)
+        unvaccinatedLeft -= vaccinsToUse;
+        if (statistics)
             statistics->addVaccinatedInhabitants(vaccinsToUse);
         ENSURE(vaccinated == oldVaccinated + vaccinsToUse, "Vaccinated count didn't increase.");
         ENSURE(getVaccins() == oldVaccins - vaccinsToUse, "Vaccins count didn't decrease.");
     }
     // Output to outputstream if specified
-    if (outStream != NULL)
+    if (outStream)
         *outStream << "Er werden " << totalVaccinationsDone << " inwoners gevaccineerd valid " << getName() << std::endl;
     removeExpiredVaccines();
 }

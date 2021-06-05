@@ -93,6 +93,7 @@ void Simulator::fromJSON(JObject *json) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(json->contains(SIMULATION_CENTERS), StringUtil::concat("Can't load Simulator from JSON with missing field ", SIMULATION_CENTERS).c_str());
     REQUIRE(json->contains(SIMULATION_HUBS), StringUtil::concat("Can't load Simulator from JSON with missing field ", SIMULATION_HUBS).c_str());
+    REQUIRE(ParseUtil::isConsistent(json), "Simulation JSON should be consistent!");
     JValues centersJSON = json->getValue(SIMULATION_CENTERS)->asJArray()->getItems();
     ITERATE(JValues, centersJSON, center) {
         VaccinationCenter* c = new VaccinationCenter();
@@ -111,17 +112,22 @@ void Simulator::fromJSON(JObject *json) {
 
 // Simulation controls
 
-void Simulator::run(const unsigned int cycles, std::ostream &outputStream) {
+void Simulator::run(const unsigned int cycles, std::ostream *outputStream) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
+    unsigned int inhabitants = 0;
+    ITERATE(VaccinationCenters, centers, center) {
+        inhabitants += (*center)->getInhabitants();
+    }
     while(daycount < lastDay){
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
-        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, &statistics, &outputStream);
+        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, &statistics, outputStream);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, &statistics, &outputStream);
-        statistics.printStatistics(outputStream);
+        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, &statistics, outputStream);
+        if(outputStream)
+            statistics.printStatistics(*outputStream);
         daycount++;
     }
     ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");

@@ -28,7 +28,7 @@ int main() {
     // TODO: program argument
     simulator.importSimulation("io/xml_files/time_test.xml", std::cerr);
 //    simulator.runEfficient(30);
-    simulator.run(5, std::cout);
+    simulator.run(200);
     std::string file = concat("io/output/Simulation_", concat(getCurrentDateTime("%Y-%m-%d_%H-%M-%S"), ".txt"));
 //    simulator.exportSimulationSummary(file);
     simulator.exportSimulationProgress(file);

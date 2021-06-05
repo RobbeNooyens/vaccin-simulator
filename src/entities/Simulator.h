@@ -77,6 +77,7 @@ public:
      * * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
      * * REQUIRE(json->contains("centra"), "Can't load Simulator from JSON with missing field 'centra'");
      * * REQUIRE(json->contains("hubs"), "Can't load Simulator from JSON with missing field 'hubs'");
+     * * REQUIRE(ParseUtil::isConsistent(json), "Simulation JSON should be consistent!");
      * * ENSURE(!hubs.empty(), "Couldn't load hubs properly!");
      * * ENSURE(!centers.empty(), "Couldn't load centers properly!");
      */
@@ -92,7 +93,7 @@ public:
      * * REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
      * * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
-    void run(unsigned int cycles, std::ostream &outputStream);
+    void run(unsigned int cycles, std::ostream *outputStream = NULL);
     /**
      * Runs the simulation for a specific amount of times with smart distribution
      * @param startFromDay: int; the day to start from

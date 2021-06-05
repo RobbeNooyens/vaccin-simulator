@@ -41,3 +41,7 @@ void SimulationData::reset() {
     vaccinsDelivered.clear();
     vaccinated = 0;
 }
+
+unsigned int SimulationData::getAmountVaccinated() const {
+    return vaccinated;
+}

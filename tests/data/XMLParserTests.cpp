@@ -104,8 +104,7 @@ TEST_F(XMLParserTests, ParseDefaultFile) {
     EXPECT_EQ((unsigned int) 76935, center2->getValue(CENTER_INHABITANTS)->asUnsignedint());
     EXPECT_EQ((unsigned int) 7500, center1->getValue(CENTER_CAPACITY)->asUnsignedint());
     EXPECT_EQ((unsigned int) 2000, center2->getValue(CENTER_CAPACITY)->asUnsignedint());
-    // TODO: make parsed being able to be deleted
-//    delete parsed;
+    delete parsed;
 }
 
 TEST_F(XMLParserTests, ParseVaccinTypes) {
@@ -153,8 +152,7 @@ TEST_F(XMLParserTests, ParseVaccinTypes) {
             EXPECT_EQ((unsigned int) 1500, transport);
         }
     }
-    // TODO: deletion
-//    delete parsed;
+    delete parsed;
 }
 
 TEST_F(XMLParserTests, ParseVaccinRenewings) {
@@ -187,8 +185,7 @@ TEST_F(XMLParserTests, ParseVaccinRenewings) {
             EXPECT_EQ((unsigned int) 28, renewing);
         }
     }
-    // TODO: deletion
-//    delete parsed;
+    delete parsed;
 }
 
 TEST_F(XMLParserTests, ParseVaccinTemperatures) {
@@ -221,7 +218,7 @@ TEST_F(XMLParserTests, ParseVaccinTemperatures) {
             EXPECT_EQ((double) 5, temperatuur);
         }
     }
-//    delete parsed;
+    delete parsed;
 }
 
 TEST_F(XMLParserTests, ParseMultipleHubs) {
@@ -246,7 +243,7 @@ TEST_F(XMLParserTests, ParseMultipleHubs) {
     EXPECT_EQ((unsigned int) 2, hub2->getValue(HUB_VACCINES)->asJArray()->getItems().size());
     EXPECT_EQ((unsigned int) 2, hub1->getValue(SIMULATION_CENTERS)->asJArray()->getItems().size());
     EXPECT_EQ((unsigned int) 2, hub2->getValue(SIMULATION_CENTERS)->asJArray()->getItems().size());
-//    delete parsed;
+    delete parsed;
 }
 
 // +========================================+

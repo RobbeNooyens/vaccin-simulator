@@ -23,6 +23,8 @@ public:
 
     void printStatistics(std::ostream &stream) const;
 
+    unsigned int getAmountVaccinated() const;
+
     void reset();
 
 

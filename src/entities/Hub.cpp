@@ -115,12 +115,12 @@ void Hub::simulateDelivery(unsigned int day, SimulationData *statistics) {
                 statistics->addDelivery(vaccine, vaccine->getDelivery());
         }
     }
-    REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
+    ENSURE(isConsistent(), "Hub needs to be consistent to run the simulation");
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads, std::ostream *outStream = NULL) const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    REQUIRE(center != NULL, "VaccinationCenter can't be NULL!");
+    REQUIRE(center, "VaccinationCenter can't be NULL!");
     unsigned int totalLoads = 0, totalVaccines = 0;
     ITERATE(std::map<Vaccine* COMMA unsigned int>, loads, dose) {
         Vaccine* vaccine = dose->first;
@@ -128,7 +128,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsi
         totalLoads += dose->second;
         totalVaccines += dose->second * vaccine->getTransportation();
     }
-    if(outStream != NULL)
+    if(outStream)
         *outStream << "Er werden " << totalLoads << " ladingen ( " << totalVaccines << " vaccins) getransporteerd naar " << center->getName() << "." << std::endl;
 }
 
