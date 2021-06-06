@@ -6,4 +6,4 @@ Center 2:
 	- vaccinated 	[====================] 100%
 Center 3:
 	- vaccins 		[                    ] 0%
-	- vaccinated 	[====                ] 0%
+	- vaccinated 	[                    ] 0%

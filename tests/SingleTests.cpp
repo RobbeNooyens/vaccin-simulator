@@ -56,7 +56,7 @@ int main() {
     JArray* vaccines = new JArray();
     vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 1", 1000, 3, 500, 0, 0)));
     vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 2", 3000, 5, 600, 10, 0)));
-    vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 3", 7000, 7, 480, 5, -30)));
+    vaccines->insertValue(new JValue(MockObjects::jVaccine("Vaccine 3", 7000, 7, 50, 5, -30)));
     // Initialize Hubs
     JArray* hubs = new JArray();
     JObject* h = MockObjects::jHub(vaccines->getItems(), centerNames);
@@ -73,9 +73,27 @@ int main() {
 
     // TEST START
 
+//    simulator.run(100);
+//
+//    std::ofstream summaryFile;
+//    summaryFile.open("tests/presentation/out/simple_output_happyday_1.txt");
+//            ASSERT_TRUE(summaryFile.is_open());
+//    simulator.exportSimulationSummary(summaryFile);
+//    summaryFile.close();
+//
+//    simulator.run(50);
+//
+//    // Test Summary
+//    summaryFile.open("tests/presentation/out/simple_output_happyday_2.txt");
+//            ASSERT_TRUE(summaryFile.is_open());
+//    simulator.exportSimulationSummary(summaryFile);
+//    summaryFile.close();
 
 
-    simulator.run(100);
+
+
+
+    simulator.run(5);
 
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
@@ -103,7 +121,7 @@ int main() {
     iniFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_happyday_1.ini", "tests/presentation/expected/ini_file_happyday_1.ini"));
 
-    simulator.run(50);
+    simulator.run(5);
 
     // Test Summary
     summaryFile.open("tests/presentation/out/simple_output_happyday_2.txt");

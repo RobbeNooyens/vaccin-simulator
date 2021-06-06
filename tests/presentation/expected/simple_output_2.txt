@@ -1,6 +1,6 @@
 Hub (143000): 
-  -> Center 1 (1100 vaccins)
-  -> Center 2 (989 vaccins)
+  -> Center 1 (1557 vaccins)
+  -> Center 2 (1089 vaccins)
   -> Center 3 (0 vaccins)
 
 Center 1: 5043 gevaccineerd, nog 0 inwoners niet gevaccineerd

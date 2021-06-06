@@ -60,7 +60,7 @@ void Hub::toProgressStream(std::ostream &outStream) const {
     ENSURE(outStream.good(), "Failed to write to parsing stream!");
 }
 
-void Hub::fromJSON(JObject* json, VaccinationCenters &centerList){
+void Hub::fromJSON(JObject* json, VaccinationCenters &centerList) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     REQUIRE(json, "JSON can't be NULL!");
@@ -122,11 +122,12 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsi
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(center, "VaccinationCenter can't be NULL!");
     unsigned int totalLoads = 0, totalVaccines = 0;
-    ITERATE(std::map<Vaccine* COMMA unsigned int>, loads, dose) {
-        Vaccine* vaccine = dose->first;
-        (*center).transportationArrived(vaccine, dose->second * vaccine->getTransportation());
-        totalLoads += dose->second;
-        totalVaccines += dose->second * vaccine->getTransportation();
+    C_ITERATE(Vaccines, vaccines, v) {
+        Vaccine* vaccine = *v;
+        unsigned int dose = loads[vaccine];
+        (*center).transportationArrived(vaccine, dose * vaccine->getTransportation());
+        totalLoads += dose;
+        totalVaccines += dose * vaccine->getTransportation();
     }
     if(outputStream)
         *outputStream << "Er werden " << totalLoads << " ladingen ( " << totalVaccines << " vaccins) getransporteerd naar " << center->getName() << "." << std::endl;
@@ -140,11 +141,11 @@ void Hub::distributeVaccins() {
         VaccinationCenter* center = *c;
         std::map<Vaccine*, unsigned int> vaccinePerCenter;
         unsigned int totalVaccines = 0;
-        ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccineCount, vaccinePair) {
-            Vaccine* vaccine = vaccinePair->first;
+        ITERATE(Vaccines, vaccines, v) {
+            Vaccine* vaccine = *v;
             unsigned int nextVaccines = vaccine->getTransportation();
             unsigned int loadCount = 0;
-            while(nextVaccines <= vaccinePair->second && nextVaccines + center->getVaccins() <= 2 * center->getCapacity() - totalVaccines) {
+            while(nextVaccines <= vaccineCount[vaccine] && nextVaccines + center->getVaccins() <= 2 * center->getCapacity() - totalVaccines) {
                 loadCount++;
                 nextVaccines += vaccine->getTransportation();
                 totalVaccines += vaccine->getTransportation();
