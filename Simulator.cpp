@@ -127,6 +127,8 @@ bool Simulator::properlyInitialized() const {
 
 void Simulator::widthOfObjects(double& width_of_hub, double& width_of_vaccinationcenter) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     //define width of a hub in the animation
     if ((int) hubs.size() < HUB_SIZE) {
         width_of_hub = 0.5;
@@ -143,6 +145,8 @@ void Simulator::widthOfObjects(double& width_of_hub, double& width_of_vaccinatio
 }
 
 void Simulator::spaceBetweenObjects(double& space_between_vaccinationcenters, double& space_between_hubs, double width_of_hub, double width_of_vaccinationcenter) const {
+
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
 
     //define space between consecutive hubs on the ground in animation
     if ((int) hubs.size() < HUB_SIZE) {
@@ -163,6 +167,8 @@ void Simulator::spaceBetweenObjects(double& space_between_vaccinationcenters, do
 
 
 void Simulator::generateBodyOfVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
+    
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
 
     //specifications for body of VaccinationCenter, generated body for ini_file
     ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/2.0 <<
@@ -172,6 +178,8 @@ void Simulator::generateBodyOfVaccinationCenter(std::ofstream& ini_file, int pla
 }
 
 void Simulator::generateRoofOfVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
+
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
 
     //specifications for roof of VaccinationCenter, generated roof for ini_file
     ini_file << "\n[Figure" << nrFigures + 1 << "]\ntype = \"Cone\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/2.0 <<
@@ -184,6 +192,8 @@ void Simulator::generateRoofOfVaccinationCenter(std::ofstream& ini_file, int pla
 
 void Simulator::generateBodyOfHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     //specifications for body of Hub, generated body for ini_file
     ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub/2.0 <<
     "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 << ", "
@@ -191,6 +201,8 @@ void Simulator::generateBodyOfHub(std::ofstream& ini_file, int hub_idx, double c
 }
 
 void Simulator::generateBodyCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
+
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
 
     //specifications for body of the car, generated body for ini_file
     ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/2 <<
@@ -202,6 +214,8 @@ void Simulator::generateBodyCar(std::ofstream& ini_file, int nrFigures, int id, 
 
 
 void Simulator::generateVaccinBoxesInVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
+
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
 
     if (vaccin_boxes_in_center >= 1) {
         /*  ___________________ (boxes locations) 1 vaccine_box in the vaccinationcenter
@@ -277,6 +291,8 @@ void Simulator::generateVaccinBoxesInVaccinationCenter(std::ofstream& ini_file, 
 
 void Simulator::generateVaccinBoxesInHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     if (vaccin_boxes_in_hub >= 1) {
         /*  ___________________ (boxes locations) 1 vaccine_box in the hub
          *  |        |        |
@@ -346,6 +362,8 @@ void Simulator::generateVaccinBoxesInHub(std::ofstream& ini_file, int hub_idx, d
 
 void Simulator::generateVaccinBoxesInCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     //specifications for the vaccin_boxes in the car (that it transports) for the ini_file
 
     //box 1
@@ -376,6 +394,8 @@ void Simulator::generateVaccinBoxesInCar(std::ofstream& ini_file, int nrFigures,
 
 void Simulator::generateWheelsOfCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     //specifications for the wheels of the car for the ini_file
 
     //wheel 1
@@ -403,6 +423,8 @@ void Simulator::generateWheelsOfCar(std::ofstream& ini_file, int nrFigures, int 
 
 void Simulator::generateVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     //generate body of the vaccinationCenter
     generateBodyOfVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
 
@@ -415,6 +437,8 @@ void Simulator::generateVaccinationCenter(std::ofstream& ini_file, int plan_of_v
 
 void Simulator::generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
 
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
+
     //generate body of the Hub
     generateBodyOfHub(ini_file, hub_idx, center_position_of_hub, nrFigures, id, width_of_hub, space_between_hubs, vaccin_boxes_in_hub);
 
@@ -423,6 +447,8 @@ void Simulator::generateHub(std::ofstream& ini_file, int hub_idx, double center_
 }
 
 void Simulator::generateCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
+
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
 
     //generate body of the car
     generateBodyCar(ini_file, nrFigures, id, width_of_car, width_of_hub, width_of_wheel, center_position_of_hub, center_idx_iterator);
