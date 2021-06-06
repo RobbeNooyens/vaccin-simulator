@@ -10,6 +10,7 @@
 
 #include "entities/Hub.h"
 #include "io/XMLParser.h"
+#include "entities/Planning.h"
 #include <string>
 
 typedef std::vector<Hub> Hubs;
@@ -62,6 +63,11 @@ public:
      * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      */
     void simulateDay(const unsigned int day);
+
+    void spaceBetweenObjects(double& space_between_centers, double& space_between_hubs, double width_of_hub, double width_of_center) const;
+    void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_center, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
+    void generateHub(std::ofstream& ini_file, int plan_of_center, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const
+    void widthOfObjects(double& width_of_hub, double& width_of_center) const;
 
 private:
     // Initialization

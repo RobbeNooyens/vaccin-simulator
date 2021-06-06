@@ -115,7 +115,7 @@ private:
     // Metadata
     int connections;
     std::vector<Vaccine*> vaccins;
-    map<std::string, bool> centers;
+    std::map<std::string, bool> centers;
     unsigned int totalvaccins;
 };
 
