@@ -109,6 +109,7 @@ public:
     /**
      * @return unsigned int; the amount of non-vaccinated inhabitants
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * * REQUIRE(inhabitants >= vaccinated, "There can't be more vaccinated people than inhabitants!");
      */
     unsigned int getVaccinationsLeft() const;
     /**
@@ -141,6 +142,10 @@ public:
      * * REQUIRE(json->contains("capaciteit"), "VaccinationCenter JSON should contain field 'capaciteit'");
      * * REQUIRE(json->contains("inwoners"), "VaccinationCenter JSON should contain field 'inwoners'");
      * * REQUIRE(json->contains("naam"), "VaccinationCenter JSON should contain field 'naam'");
+     * * ENSURE(getName() == json->getValue(CENTER_NAME)->asString(), "Name wasn't set correctly!");
+     * * ENSURE(getAddress() == json->getValue(CENTER_ADDRESS)->asString(), "Address wasn't set correctly!");
+     * * ENSURE(getInhabitants() == json->getValue(CENTER_INHABITANTS)->asUnsignedint(), "Inhabitants wasn't set correctly!");
+     * * ENSURE(getCapacity() == json->getValue(CENTER_CAPACITY)->asUnsignedint(), "Capacity wasn't set correctly!");
      */
     void fromJSON(JObject* json);
     /**

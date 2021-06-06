@@ -41,7 +41,7 @@ bool VaccinationCenter::properlyInitialized() const {
 
 void VaccinationCenter::fromJSON(JObject *json) {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(json != NULL, "Json can't be NULL!");
+    REQUIRE(json, "Json can't be NULL!");
     REQUIRE(json->contains(CENTER_NAME),
             StringUtil::concat("VaccinationCenter JSON should contain field ", CENTER_NAME).c_str());
     REQUIRE(json->contains(CENTER_ADDRESS),
@@ -54,11 +54,15 @@ void VaccinationCenter::fromJSON(JObject *json) {
     address = json->getValue(CENTER_ADDRESS)->asString();
     inhabitants = json->getValue(CENTER_INHABITANTS)->asUnsignedint();
     capacity = json->getValue(CENTER_CAPACITY)->asUnsignedint();
+    ENSURE(getName() == json->getValue(CENTER_NAME)->asString(), "Name wasn't set correctly!");
+    ENSURE(getAddress() == json->getValue(CENTER_ADDRESS)->asString(), "Address wasn't set correctly!");
+    ENSURE(getInhabitants() == json->getValue(CENTER_INHABITANTS)->asUnsignedint(), "Inhabitants wasn't set correctly!");
+    ENSURE(getCapacity() == json->getValue(CENTER_CAPACITY)->asUnsignedint(), "Capacity wasn't set correctly!");
 }
 
 void VaccinationCenter::toSummaryStream(std::ostream &stream) const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+    REQUIRE(stream, "Output stream cannot be NULL!");
     REQUIRE(stream.good(), "Output stream contains error flags!");
     stream << getName() << ": " << getVaccinationsDone() << " gevaccineerd, nog " << getVaccinationsLeft()
            << " inwoners niet gevaccineerd" << std::endl;
@@ -67,7 +71,7 @@ void VaccinationCenter::toSummaryStream(std::ostream &stream) const {
 
 void VaccinationCenter::toProgressStream(std::ostream &stream) const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    REQUIRE(stream != NULL, "Output stream cannot be NULL!");
+    REQUIRE(stream, "Output stream cannot be NULL!");
     REQUIRE(stream.good(), "Output stream contains error flags!");
     double vaccinsProgress = getPercentageVaccines();
     int vaccinsProgressBars = (int) (vaccinsProgress * 20);
@@ -106,9 +110,9 @@ unsigned int VaccinationCenter::getCapacity() const {
 
 unsigned int VaccinationCenter::getVaccins() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-    unsigned int sum = 0;
-    C_ITERATE(std::map<Vaccine * COMMA unsigned int>, vaccines, vaccinePair)sum += vaccinePair->second;
-    return sum;
+    unsigned int result = 0;
+    C_ITERATE(std::map<Vaccine * COMMA unsigned int>, vaccines, vaccinePair)result += vaccinePair->second;
+    return result;
 }
 
 unsigned int VaccinationCenter::getVaccinationsDone() const {
@@ -118,6 +122,7 @@ unsigned int VaccinationCenter::getVaccinationsDone() const {
 
 unsigned int VaccinationCenter::getVaccinationsLeft() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    REQUIRE(inhabitants >= vaccinated, "There can't be more vaccinated people than inhabitants!");
     return inhabitants - vaccinated;
 }
 
@@ -132,7 +137,6 @@ void VaccinationCenter::transportationArrived(Vaccine *vaccine, unsigned int amo
 }
 
 void VaccinationCenter::vaccinateInhabitants(unsigned int day, SimulationData &statistics) {
-    // TODO: save valid SimulationData how many ottal vaccinatied
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     unsigned int totalVaccinationsDone = 0;
     unsigned int waitingOnSecondVaccine = 0;
@@ -224,6 +228,7 @@ void VaccinationCenter::removeExpiredVaccines() {
 }
 
 void VaccinationCenter::setOutputStream(std::ostream *outStream) {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     this->outputStream = outStream;
 }
 

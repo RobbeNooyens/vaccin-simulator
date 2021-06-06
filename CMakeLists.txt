@@ -79,7 +79,7 @@ set(SINGLE_DEBUG_SOURCE_FILES tests/SingleTests.cpp
         src/json/JObject.cpp src/json/JObject.h
         src/json/JArray.cpp src/json/JArray.h
         src/json/JKeys.h
-        DesignByContract.h)
+        DesignByContract.h src/parsing/IniExporter.cpp src/parsing/IniExporter.h)
 
 
 # Create RELEASE target

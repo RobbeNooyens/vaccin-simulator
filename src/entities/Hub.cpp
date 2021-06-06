@@ -86,9 +86,10 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList) {
             }
         }
     }
-    ENSURE(centerNames.size() == getVaccinationCenters().size(), "Hub's centers JSON contains an invalid name!");
-    ENSURE(getVaccines().size() == vaccineCount.size(), "Vaccines vector and vaccineCount map should have the same size!");
-    REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+    ENSURE(isConsistent(), "Hub isn't consistent after parsing!");
+    ENSURE(json->getValue(HUB_CENTERS)->asJArray()->getItems().size() == getVaccinationCenters().size(), "Hub's centers JSON contains an invalid name!");
+    ENSURE(getVaccines().size() == getVaccineCount().size(), "Vaccines vector and vaccineCount map should have the same size!");
+    ENSURE(!containsInvalidCenter(), "Hub contains an invalid center!");
 }
 
 // Simulation controls
@@ -122,6 +123,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsi
     // TODO: rewrite every REQUIRE and ENSURE to work with public methods instead of private vars
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(center, "VaccinationCenter can't be NULL!");
+    REQUIRE(!getOutputStream() || getOutputStream()->good(), "Output stream not available");
     unsigned int totalLoads = 0, totalVaccines = 0;
     C_ITERATE(Vaccines, vaccines, v) {
         Vaccine* vaccine = *v;
@@ -134,6 +136,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsi
     }
     if(outputStream)
         *outputStream << "Er werden " << totalLoads << " ladingen ( " << totalVaccines << " vaccins) getransporteerd naar " << center->getName() << "." << std::endl;
+    ENSURE(center, "Center became corrupted during transport!");
 }
 
 void Hub::distributeVaccins() {
@@ -170,11 +173,13 @@ void Hub::distributeEfficient(unsigned int day, Planning &planning) {
         Hub::transportVaccinsTo(*c, planning.getDistribution(day, *c));
     }
 
+    ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");
+    ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
 }
 
 bool Hub::containsInvalidCenter() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    REQUIRE(&centers != NULL, "Centers can't be NULL!");
+    REQUIRE(!getVaccinationCenters().empty(), "Centers can't be empty!");
     for(unsigned int i = 0; i < (unsigned int) centers.size(); i++) {
         if(!centers[i]->properlyInitialized())
             return true;
@@ -186,11 +191,11 @@ bool Hub::containsInvalidCenter() const {
 
 unsigned int Hub::getTotalVaccinesCount() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    unsigned int count = 0;
+    unsigned int result = 0;
     C_ITERATE(std::map<Vaccine* COMMA unsigned int>, vaccineCount, pair) {
-        count += pair->second;
+        result += pair->second;
     }
-    return count;
+    return result;
 }
 
 VaccinationCenters Hub::getVaccinationCenters() const {
@@ -205,16 +210,16 @@ Vaccines Hub::getVaccines() const {
 
 bool Hub::isConsistent() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    bool consistent = true;
+    bool result = true;
     C_ITERATE(Vaccines, vaccines, vaccin) {
-        consistent = consistent && (*vaccin)->getDelivery() > 0 && (*vaccin)->getTransportation() > 0;
+        result = result && (*vaccin)->getDelivery() > 0 && (*vaccin)->getTransportation() > 0;
     }
-    consistent = consistent && !centers.empty();
+    result = result && !centers.empty();
     C_ITERATE(VaccinationCenters, centers, center) {
-        consistent = consistent && *center && (*center)->properlyInitialized();
+        result = result && *center && (*center)->properlyInitialized();
     }
-    return consistent;
-    ENSURE(!containsInvalidCenter(), "Hub contains an invalid center while it's consistent!");
+    ENSURE(!containsInvalidCenter(), "Hub contains an invalid center while it's result!");
+    return result;
 }
 
 std::map<Vaccine *, unsigned int> Hub::getVaccineCount() const {
@@ -223,9 +228,9 @@ std::map<Vaccine *, unsigned int> Hub::getVaccineCount() const {
 }
 
 void Hub::setOutputStream(std::ostream* outStream) {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     this->outputStream = outStream;
 }
-
 
 // Smart simulation
 
@@ -242,4 +247,9 @@ int Hub::get_connections() const {
 unsigned int Hub::getTotalvaccins() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return totalvaccins;
+}
+
+std::ostream * Hub::getOutputStream() const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    return outputStream;
 }

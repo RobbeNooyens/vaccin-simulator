@@ -1,6 +1,9 @@
-//
-// Created by robbe on 23/05/2021.
-//
+// ╒════════════════════════════════════════════╕
+// │ Authors: Mohammed Shakleya, Robbe Nooyens  │
+// │ Project: Vaccimulator                      │
+// │ Version: 2.1                               │
+// │             UAntwerpen 2021                │
+// ╘════════════════════════════════════════════╛
 
 #include "SimulationData.h"
 #include "../../DesignByContract.h"
@@ -11,9 +14,12 @@
 
 using namespace std;
 
-SimulationData::SimulationData(): initCheck(this), vaccinated(0) {}
+SimulationData::SimulationData(): initCheck(this), vaccinated(0) {
+    ENSURE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+}
 
 void SimulationData::addDelivery(Vaccine *vaccine, unsigned int amount) {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
     REQUIRE(vaccine, "Vaccine cannot be a nullpointer!");
     REQUIRE(!vaccine->getType().empty(), "Vaccine type cannot be empty!");
     if(vaccinsDelivered.find(vaccine->getType()) != vaccinsDelivered.end()) {
@@ -21,27 +27,43 @@ void SimulationData::addDelivery(Vaccine *vaccine, unsigned int amount) {
     } else {
         vaccinsDelivered.insert(std::pair<std::string, unsigned int>(vaccine->getType(), amount));
     }
+    ENSURE(getVaccinsDelivered().at(vaccine->getType()) >= amount, "Didn't succesfully add the delivery to the simulationdata!");
 }
 
 void SimulationData::addVaccinatedInhabitants(unsigned int amount) {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
     vaccinated += amount;
+    ENSURE(getAmountVaccinated() >= amount, "Didn't succesfully add the new amount of vaccinated inhabitatns!");
 }
 
 void SimulationData::printStatistics(std::ostream &stream) const {
-    C_ITERATE(std::map<std::string COMMA unsigned int>, vaccinsDelivered, delivered)
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+    REQUIRE(stream.good(), "Stream to print statistics to is in an error state!");
+    C_ITERATE(std::map<std::string COMMA unsigned int>, vaccinsDelivered, delivered) {
         stream << delivered->first << ": " << delivered->second << endl;
+    }
     stream << "Total vaccinated inhabitants: " << vaccinated << endl;
+    REQUIRE(stream.good(), "Printing the statistics ended up in an error state!");
 }
 
-bool SimulationData::properlyInitialized() {
+bool SimulationData::properlyInitialized() const {
     return initCheck == this;
 }
 
 void SimulationData::reset() {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
     vaccinsDelivered.clear();
     vaccinated = 0;
+    ENSURE(getVaccinsDelivered().empty(), "SimulationData didn't reset well!");
+    ENSURE(getAmountVaccinated() == 0, "SimulationData didn't reset well!");
 }
 
 unsigned int SimulationData::getAmountVaccinated() const {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
     return vaccinated;
+}
+
+std::map<std::string, unsigned int> &SimulationData::getVaccinsDelivered() {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+    return vaccinsDelivered;
 }

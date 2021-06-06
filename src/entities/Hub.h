@@ -61,7 +61,6 @@ public:
      */
     std::map<Vaccine*, unsigned int> getVaccineCount() const;
 
-
     // IO
     /**
      * Loads a hub from a JObject
@@ -69,12 +68,13 @@ public:
      * @param centers: loaded centers
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
-     * * REQUIRE(json != NULL, "JSON can't be NULL!");
-     * * REQUIRE(json->contains("hub.levering"), "Hub JSON should contain field 'hub.levering'");
-     * * REQUIRE(json->contains("hub.interval"), "Hub JSON should contain field 'hub.interval'");
-     * * REQUIRE(json->contains("hub.transport"), "Hub JSON should contain field 'hub.transport'");
-     * * REQUIRE(json->contains("centra"), "Hub JSON should contain field 'hub.centra'");
-     * * ENSURE(centra.size() == centers.size(), "Not all centers are loaded succesfully.");
+     * * REQUIRE(json, "JSON can't be NULL!");
+     * * REQUIRE(json->contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
+     * * REQUIRE(json->contains(HUB_VACCINES), StringUtil::concat("Hub JSON should contain field ", HUB_VACCINES).c_str());
+     * * ENSURE(isConsistent(), "Hub isn't consistent after parsing!");
+     * * ENSURE(json->getValue(HUB_CENTERS)->asJArray()->getItems().size() == getVaccinationCenters().size(), "Hub's centers JSON contains an invalid name!");
+     * * ENSURE(getVaccines().size() == getVaccineCount().size(), "Vaccines vector and vaccineCount map should have the same size!");
+     * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center!");
      */
     void fromJSON(JObject* json, VaccinationCenters &centers);
     /**
@@ -91,8 +91,18 @@ public:
      * Exports Hub progress to the given stream
      * @param stream: ostream; stream to push parsing strings to
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * * REQUIRE(outStream, "Output stream cannot be NULL!");
+     * * REQUIRE(outStream.good(), "Output stream contains error flags!");
+     * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * * ENSURE(outStream.good(), "Failed to write to parsing stream!");
      */
     void toProgressStream(std::ostream &stream) const;
+    /**
+     * Sets the output stream to send output to during the simulation
+     * @param outStream: ostream*; output stream
+     */
+    void setOutputStream(std::ostream* outStream);
+    std::ostream * getOutputStream() const;
 
     // Simulation controls
     /**
@@ -101,6 +111,8 @@ public:
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation for a day!");
+     * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!");
      */
      // TODO: documentation
      void simulateDay(unsigned int day, SimulationData &statistics);
@@ -109,6 +121,8 @@ public:
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");
+     * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
      */
     void distributeVaccins();
     /**
@@ -118,20 +132,26 @@ public:
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");
+     * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
      */
     void distributeEfficient(unsigned int day, Planning& planning);
     /**
      * Transport a specific amount of vaccinations to the specified vaccination center.
      * @param center: the center where the vaccins should be transported to
      * @param vaccinCount: the amount of vaccins to transport
+     * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     * * REQUIRE(center, "VaccinationCenter can't be NULL!");
+     * * REQUIRE(!getOutputStream() || getOutputStream()->good(), "Output stream not available");
+     * * ENSURE(center, "Center became corrupted during transport!");
      */
-    void
-    transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> &loads) const;
+    void transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> &loads) const;
     /**
      * Adds vaccines valid case cargo is being delivered
      * @param day: unsigned int; current day
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
+     * * ENSURE(isConsistent(), "Hub needs to be consistent to run the simulation");
      */
      // TODO: documentation
      void simulateDelivery(unsigned int day, SimulationData &statistics);
@@ -153,16 +173,8 @@ public:
      */
     bool containsInvalidCenter() const;
 
-    // Setters
-    /**
-     * Sets the output stream to send output to during the simulation
-     * @param outStream: ostream*; output stream
-     */
-    void setOutputStream(std::ostream* outStream);
-
 
     // Smart distribution
-
     /**
      * Checks if center with the given name is connected to this hub
      * @return bool; true if this hub is connected to center with name "name"

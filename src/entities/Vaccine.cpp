@@ -37,13 +37,18 @@ void Vaccine::fromJSON(JObject *json) {
     REQUIRE(json->contains(VACCINE_DELIVERY), "Vaccine JSON should contain field 'levering'");
     REQUIRE(json->contains(VACCINE_INTERVAL), "Vaccine JSON should contain field 'interval'");
     REQUIRE(json->contains(VACCINE_TRANSPORTATION), "Vaccine JSON should contain field 'transport'");
-    // TODO: documentation
     type = json->getValue(VACCINE_TYPE)->asString();
     delivery = json->getValue(VACCINE_DELIVERY)->asUnsignedint();
     interval = json->getValue(VACCINE_INTERVAL)->asUnsignedint();
     transportation = json->getValue(VACCINE_TRANSPORTATION)->asUnsignedint();
     renewing = json->contains(VACCINE_RENEWING) ? json->getValue(VACCINE_RENEWING)->asUnsignedint() : 0;
     temperature = json->contains(VACCINE_TEMPERATURE) ? json->getValue(VACCINE_TEMPERATURE)->asDouble() : 0;
+    ENSURE(getType() == json->getValue(VACCINE_TYPE)->asString(), "Vaccine type didn't load properly!");
+    ENSURE(getDelivery() == json->getValue(VACCINE_DELIVERY)->asUnsignedint(), "Vaccine delivery didn't load properly!");
+    ENSURE(getInterval() == json->getValue(VACCINE_INTERVAL)->asUnsignedint(), "Vaccine interval didn't load properly!");
+    ENSURE(getTransportation() == json->getValue(VACCINE_TRANSPORTATION)->asUnsignedint(), "Vaccine transportation didn't load properly!");
+    ENSURE(getRenewing() == json->getValue(VACCINE_RENEWING)->asUnsignedint(), "Vaccine renewing didn't load properly!");
+    ENSURE(getTemperature() == json->getValue(VACCINE_TEMPERATURE)->asDouble(), "Vaccine temperature didn't load properly!");
 }
 
 // Getters
@@ -78,19 +83,6 @@ double Vaccine::getTemperature() const {
     return temperature;
 }
 
-JObject *Vaccine::toJSON() const {
-    REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
-    JObject* json = new JObject();
-    json->insertValue(VACCINE_TYPE, new JValue(type));
-    json->insertValue(VACCINE_DELIVERY, new JValue(delivery));
-    json->insertValue(VACCINE_INTERVAL, new JValue(interval));
-    json->insertValue(VACCINE_TRANSPORTATION, new JValue(transportation));
-    json->insertValue(VACCINE_RENEWING, new JValue(renewing));
-    json->insertValue(VACCINE_TEMPERATURE, new JValue(temperature));
-    return json;
-
-}
-
 // Smart distribution
 
 bool Vaccine::operator<(const Vaccine& s) const {
@@ -110,6 +102,7 @@ Hub* Vaccine::getHub() const {
 
 void Vaccine::setHub(Hub* h) {
     REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
+    REQUIRE(h, "Hub connected to the vaccine cannot be NULL!");
     hub = h;
 }
 

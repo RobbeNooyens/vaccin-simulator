@@ -39,17 +39,21 @@ bool Simulator::properlyInitialized() const {
 void Simulator::importSimulation(const std::string &fileName, std::ostream &errorStream) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been properly initialized!");
     REQUIRE(!fileName.empty(), "Filename cannot be empty!");
+    REQUIRE(errorStream.good(), "Errorstream is in an errorstate!");
     delete initialState;
     ParseErrors errors;
     initialState = XMLParser::parse(fileName, errorStream, errors);
     if(!errors.empty())
         throw std::runtime_error("An error occured during parsing!");
     fromJSON(initialState);
+    ENSURE(ParseUtil::isConsistent(getInitialState()), "Initialstate json should be consistent!");
+    ENSURE(isConsistent(), "Simulator should be valid!");
 }
 
 void Simulator::exportSimulationSummary(std::ostream &out) const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(out.good(), "Output stream should be writeable!");
+    REQUIRE(isConsistent(), "Simulator should be consistent!");
     C_ITERATE(std::vector<Hub*>, hubs, hub) {
         (*hub)->toSummaryStream(out);
     }
@@ -58,15 +62,18 @@ void Simulator::exportSimulationSummary(std::ostream &out) const {
         (*center)->toSummaryStream(out);
     }
     ENSURE(out.good(), "Stream encountered an error during writing!");
+    ENSURE(isConsistent(), "Simulator should be consistent after writing to output stream!");
 }
 
 void Simulator::exportSimulationProgress(std::ostream &out) const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(out.good(), "Output stream should be writeable!");
+    REQUIRE(isConsistent(), "Simulator should be consistent!");
     C_ITERATE(std::vector<VaccinationCenter*>, centers, center) {
         (*center)->toProgressStream(out);
     }
     ENSURE(out.good(), "Stream encountered an error during writing!");
+    ENSURE(isConsistent(), "Simulator should be consistent after writing to output stream!");
 }
 
 void Simulator::fromJSON(JObject *json) {
@@ -88,8 +95,9 @@ void Simulator::fromJSON(JObject *json) {
         h->setOutputStream(transportationOutputStream);
         hubs.push_back(h);
     }
-    ENSURE(!hubs.empty(), "Couldn't load hubs properly!");
-    ENSURE(!centers.empty(), "Couldn't load centers properly!");
+    ENSURE(!getHubs().empty(), "Couldn't load hubs properly!");
+    ENSURE(!getCenters().empty(), "Couldn't load centers properly!");
+    ENSURE(isConsistent(), "Simulation should be consistent after reading json!");
 }
 
 // Simulation controls
@@ -108,13 +116,15 @@ void Simulator::run(const unsigned int cycles) {
             statistics.printStatistics(*statisticsOutputStream);
         daycount++;
     }
-    ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
+    ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
+    ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
 }
 
 void Simulator::runEfficient(unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
+    unsigned int oldDaycount = daycount;
     Planning planning = Planning();
     Vaccines vaccines;
     ITERATE(std::vector<Hub*>, hubs, h) {
@@ -136,21 +146,24 @@ void Simulator::runEfficient(unsigned int cycles) {
         ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
         daycount++;
     }
+
+    ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
+    ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
 }
 
 bool Simulator::isConsistent() const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     // There's at least 1 hub
-    bool consistent = hubs.size() >= 1;
+    bool result = hubs.size() >= 1;
     // There's at least 1 center
-    consistent = consistent && centers.size() >= 1;
-    // All hubs are consistent
+    result = result && centers.size() >= 1;
+    // All hubs are result
     C_ITERATE(std::vector<Hub*>, hubs, hub)
-        consistent = consistent && (*hub)->isConsistent();
+        result = result && (*hub)->isConsistent();
     // All centers are connected to at least one hub
     C_ITERATE(std::vector<VaccinationCenter*>, centers, center)
-        consistent = consistent && (*center)->isConnectedToHub();
-    return consistent;
+        result = result && (*center)->isConnectedToHub();
+    return result;
 }
 
 void Simulator::reset() {
@@ -163,13 +176,16 @@ void Simulator::reset() {
     centers.clear();
     daycount = 0;
     fromJSON(initialState);
+    ENSURE(isConsistent(), "Simulator should be consistent after reset!");
 }
 
 void Simulator::setStatisticsStream(std::ostream *stats) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     this->statisticsOutputStream = stats;
 }
 
 void Simulator::setTransportationStream(std::ostream* transport) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     this->transportationOutputStream = transport;
     ITERATE(std::vector<Hub*>, hubs, hub) {
         (*hub)->setOutputStream(transport);
@@ -177,6 +193,7 @@ void Simulator::setTransportationStream(std::ostream* transport) {
 }
 
 void Simulator::setVaccinationsStream(std::ostream *vaccinations) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     this->vaccinationOutputStream = vaccinations;
     ITERATE(VaccinationCenters, centers, center) {
         (*center)->setOutputStream(vaccinations);
@@ -184,164 +201,93 @@ void Simulator::setVaccinationsStream(std::ostream *vaccinations) {
 }
 
 void Simulator::setInitialState(JObject *json) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     initialState = json;
 }
 
 VaccinationCenters &Simulator::getCenters() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     return centers;
 }
 
 std::vector<Hub *> Simulator::getHubs() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     return hubs;
 }
 
-void Simulator::exportSimulationIniFile(std::ostream &out) const {
-    REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
-    REQUIRE(out.good(), "Output stream should be writeable!");
-
+JObject *Simulator::getInitialState() {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    double width_hub, width_center, hub_space, center_space;
-    long long id = 0;
-    if ((int) hubs.size() < 4) {
-        width_hub = 0.5;
-        hub_space = (2.0 - ((double) hubs.size() * 0.5))/((double) hubs.size() +  1.0);
-    } else {
-        width_hub = 4.0/(3.0*((double) hubs.size()) +  1.0);
-        hub_space = width_hub/2.0;
-    }
-    if ((int) centers.size() < 4) {
-        width_center = 0.5;
-        center_space = (2.0 - (((double) centers.size()) * 0.5))/(((double) centers.size()) +  1.0);
-    } else {
-        width_center = 4.0/(3.0*((double) centers.size()) +  1.0);
-        center_space = width_center/2.0;
-    }
-    int nrFigures = 0;
-    //"animation" is hetzelfde als "ZBuffering" maar het genereert per dag meerdere fotos;
-    for (int i = 0; i < (int) centers.size(); i++) {
-        out << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_center / 2.0 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) << ", " << 2.0 - width_center / 2.0 << ", " << width_center / 2.0 + 0.1 * width_center << ")\ncolor = (1, 0, 0)\nobject = vaccinationcenter\n";
-        out << "\n[Figure" << nrFigures + 1 <<  "]\ntype = \"Cone\"\nid = " << id <<  "\nscale = " << width_center / 2.0 <<  "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) <<  ", " << 2.0 - width_center / 2.0 <<  ", " << width_center + 0.1 * width_center <<  ")\ncolor = (" << 1 - ((double) centers[i]->getVaccinationsDone() / (double) centers[i]->getInhabitants()) <<  ", " << (double) centers[i]->getVaccinationsDone() / (double) centers[i]->getInhabitants() <<  ", 0)\nn = 20\nheight = 10.0\nobject = vaccinationcenter\n";
-        // TODO: fix getCalendar
-        int vaccin_boxes = 5;//std::min(5,(centers[i]->getCalender()[daycount] + 999)/1000); //add total boxes to nrFigures
-        if (vaccin_boxes >= 1) {
-            out << "\n[Figure" << nrFigures + 2 <<  "]\ntype = \"Cube\"\nid = " << id <<  "\nscale = " << width_center / 6 <<  "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) +  width_center / 6 <<  ", " << 2.0 - width_center / 2.0 + width_center / 6 <<  ", " << width_center / 6 <<  ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
-        }
-        if (vaccin_boxes >= 2) {
-            out << "\n[Figure" << nrFigures + 3 <<  "]\ntype = \"Cube\"\nid = " << id <<  "\nscale = " << width_center / 6 <<  "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) +  width_center / 6 <<  ", " << 2.0 - width_center / 2.0 - width_center / 6 <<  ", " << width_center / 6 <<  ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
-        }
-        if (vaccin_boxes >= 3) {
-            out << "\n[Figure" << nrFigures + 4 <<  "]\ntype = \"Cube\"\nid = " << id <<  "\nscale = " << width_center / 6 <<  "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) - width_center / 6 <<  ", " << 2.0 - width_center / 2.0 + width_center / 6 <<  ", " << width_center / 6 <<  ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
-        }
-        if (vaccin_boxes >= 4) {
-            out << "\n[Figure" << nrFigures + 5 <<  "]\ntype = \"Cube\"\nid = " << id <<  "\nscale = " << width_center / 6 <<  "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) - width_center / 6 <<  ", " << 2.0 - width_center / 2.0 - width_center / 6 <<  ", " << width_center / 6 <<  ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
-        }
-        if (vaccin_boxes == 5) {
-            out << "\n[Figure" << nrFigures + 6 <<  "]\ntype = \"Cube\"\nid = " << id <<  "\nscale = " << width_center / 6 <<  "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_center / 2.0 + center_space + i * (width_center + center_space) <<  ", " << 2.0 - width_center / 2.0 <<  ", " << width_center / 3 + width_center / 6 <<  ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
-        }
-        nrFigures += 2 + vaccin_boxes;
+    return initialState;
+}
+
+unsigned int Simulator::getDayCount() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    return daycount;
+}
+
+void Simulator::exportSimulationIniFile(std::ostream &out) const {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+
+    IniExporter iniExporter;
+
+    //variabelen
+    double width_of_hub;
+    double width_of_vaccinationcenter;
+    double space_between_hubs;
+    double space_between_vaccinationcenters;
+    long long id = 0; //id per figure in ini file
+    int nrFigures = 0; //number of figures present in ini file
+    std::ofstream ini_file("frame" + std::to_string(daycount) + ".ini");
+
+    //define width of centers and hubs
+    widthOfObjects(width_of_hub, width_of_vaccinationcenter);
+
+    //define space between consecutive hubs and consecutive centers
+    spaceBetweenObjects(space_between_vaccinationcenters, space_between_hubs, width_of_hub, width_of_vaccinationcenter);
+
+    for (int plan_of_vaccinationcenter = 0; plan_of_vaccinationcenter < (int) centers.size(); plan_of_vaccinationcenter++) {
+
+        //define total number of vaccin_boxes in the centrum upon receiving from a hub
+        int vaccin_boxes_in_center = std::min(5,(plan.getPlanned()[plan_of_vaccinationcenter][daycount] + 999)/1000); //add total boxes to nrFigures
+
+        //generate a string representation of a vaccinationcenter for the iniFile
+        generateVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
+
+        // 2 is the number of figures that makes up a vaccinationCenter and vaccin_boxes_in_center are the number of figures representing the vaccin boxes in the center
+        nrFigures += 2 + vaccin_boxes_in_center;
         id++;
     }
     id = 0;
-    for (int i = 0; i < ((int) hubs.size()); i++) {
-        double center_position = width_hub / 2.0 + hub_space + i * (width_hub + hub_space);
-        out << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_hub / 2.0
-                << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position << ", " << width_hub / 2.0
-                << ", " << width_hub / 2.0 + 0.1 * width_hub << ")\ncolor = (0, 1, 0)\nobject = hub\n";
-        int vaccin_boxes = std::min(5, (int) (hubs[i]->getTotalvaccins() + 9999) / 10000);
-        if (vaccin_boxes >= 1) {
-            out << "\n[Figure" << nrFigures + 1 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-                    << width_hub / 6.0 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-                    << center_position + width_hub / 6.0 << ", " << width_hub / 2.0 + width_hub / 6.0 << ", "
-                    << width_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
-            if (vaccin_boxes >= 2) {
-                out << "\n[Figure" << nrFigures + 2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-                        << width_hub / 6.0 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-                        << center_position + width_hub / 6.0 << ", " << width_hub / 2.0 - width_hub / 6.0 << ", "
-                        << width_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
-            }
-            if (vaccin_boxes >= 3) {
-                out << "\n[Figure" << nrFigures + 3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-                        << width_hub / 6.0 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-                        << center_position - width_hub / 6.0 << ", " << width_hub / 2.0 + width_hub / 6.0 << ", "
-                        << width_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
-            }
-            if (vaccin_boxes >= 4) {
-                out << "\n[Figure" << nrFigures + 4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-                        << width_hub / 6.0 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-                        << center_position - width_hub / 6.0 << ", " << width_hub / 2.0 - width_hub / 6.0 << ", "
-                        << width_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
-            }
-            if (vaccin_boxes == 5) {
-                out << "\n[Figure" << nrFigures + 5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-                        << width_hub / 6.0 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position
-                        << ", " << width_hub / 2.0 << ", " << width_hub / 3 + width_hub / 6
-                        << ")\ncolor = (0, 0, 1)\nobject = hub\n";
-            }
-            nrFigures += 1 + vaccin_boxes;
+    for (int hub_idx = 0; hub_idx < ((int) hubs.size()); hub_idx++) {
+
+        //center x-coordinate position of the hub in 3d space
+        double center_position_of_hub = width_of_hub/2.0 + space_between_hubs + hub_idx*(width_of_hub + space_between_hubs);
+
+        //total vaccin boxes present in hub
+        int vaccin_boxes_in_hub = std::min(5,(hubs[hub_idx]->getTotalvaccins() + 9999)/10000);
+
+        nrFigures += 1 + vaccin_boxes_in_hub;
+        id++;
+        std::set<unsigned int> centers_connected = planned_hubs[daycount][hubs[hub_idx]];
+        for (auto it = centers_connected.begin(); it != centers_connected.end(); it++) {
+            double car_width = std::min(width_hub/2.0, width_center/2.0);
+            double wheel_width = std::min(width_hub/2.0, width_center/2.0)/4;
+            myfile << "\n[Figure" + to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position) + ", " + to_string(width_hub/2.0) + ", " + to_string(car_width/2.0 + wheel_width) + ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " + to_string(*it) + "\n"; //+ 0.1*wheel_width
+            myfile << "\n[Figure" + to_string(nrFigures+1) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position) + ", " + to_string(width_hub/2.0) + ", " + to_string(car_width/6 + car_width/3 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+2) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/6) + ", " + to_string(width_hub/2.0 + car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+3) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/6) + ", " + to_string(width_hub/2.0 - car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+4) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/6) + ", " + to_string(width_hub/2.0 + car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+5) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/6) + ", " + to_string(width_hub/2.0 - car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
+
+            myfile << "\n[Figure" + to_string(nrFigures+6) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/2 - wheel_width/2) + ", " + to_string(width_hub/2.0 + car_width/2 - wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+7) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/2 - wheel_width/2) + ", " + to_string(width_hub/2.0 - car_width/2 + wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+8) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/2 + wheel_width/2) + ", " + to_string(width_hub/2.0 + car_width/2 - wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
+            myfile << "\n[Figure" + to_string(nrFigures+9) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/2 + wheel_width/2) + ", " + to_string(width_hub/2.0 - car_width/2 + wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
+            nrFigures += 10;
             id++;
-            // TODO: connected centers
-//            std::set<unsigned int> centers_connected = planned_hubs[daycount][hubs[i]];
-//            ITERATE(std::set<unsigned int>, centers_connected, it) {
-//                double car_width = std::min(width_hub / 2.0, width_center / 2.0);
-//                double wheel_width = std::min(width_hub / 2.0, width_center / 2.0) / 4;
-//                iniFile << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-//                        << car_width / 2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position
-//                        << ", " << width_hub / 2.0 << ", " << car_width / 2.0 + wheel_width
-//                        << ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " << *it << "\n"; //+ 0.1*wheel_width
-//                iniFile << "\n[Figure" << nrFigures + 1 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-//                        << car_width / 6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position
-//                        << ", " << width_hub / 2.0 << ", " << car_width / 6 + car_width / 3 + wheel_width
-//                        << ")\ncolor = (1, 0.5, 0.2)\nvisit = " << *it << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-//                        << car_width / 6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position + car_width / 6 << ", " << width_hub / 2.0 + car_width / 6 << ", "
-//                        << car_width / 6 + wheel_width << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *it
-//                        << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-//                        << car_width / 6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position + car_width / 6 << ", " << width_hub / 2.0 - car_width / 6 << ", "
-//                        << car_width / 6 + wheel_width << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *it
-//                        << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-//                        << car_width / 6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position - car_width / 6 << ", " << width_hub / 2.0 + car_width / 6 << ", "
-//                        << car_width / 6 + wheel_width << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *it
-//                        << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = "
-//                        << car_width / 6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position - car_width / 6 << ", " << width_hub / 2.0 - car_width / 6 << ", "
-//                        << car_width / 6 + wheel_width << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *it
-//                        << "\n";
-//
-//                iniFile << "\n[Figure" << nrFigures + 6 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = "
-//                        << wheel_width / 2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position + car_width / 2 - wheel_width / 2 << ", "
-//                        << width_hub / 2.0 + car_width / 2 - wheel_width << ", " << wheel_width / 2
-//                        << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *it << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 7 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = "
-//                        << wheel_width / 2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position + car_width / 2 - wheel_width / 2 << ", "
-//                        << width_hub / 2.0 - car_width / 2 + wheel_width << ", " << wheel_width / 2
-//                        << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *it << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 8 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = "
-//                        << wheel_width / 2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position - car_width / 2 + wheel_width / 2 << ", "
-//                        << width_hub / 2.0 + car_width / 2 - wheel_width << ", " << wheel_width / 2
-//                        << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *it << "\n";
-//                iniFile << "\n[Figure" << nrFigures + 9 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = "
-//                        << wheel_width / 2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-//                        << center_position - car_width / 2 + wheel_width / 2 << ", "
-//                        << width_hub / 2.0 - car_width / 2 + wheel_width << ", " << wheel_width / 2
-//                        << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *it << "\n";
-//                nrFigures += 10;
-//                id++;
-//            }
         }
-        out << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id
-                << "\nscale = 1\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (1, 1, -1)\ncolor = (0, 0, 1)\nobject = ground\n";
-        out
-                << "[General]\ntype = \"Animation\"\nsize = 1024\neye = (20, 15, 50)\nbackgroundcolor = (0.0, 0.0, 0.0)\nnrFigures = "
-                << nrFigures << "\nnrVaccinationCenters = " << (int) centers.size() << "\n";
     }
-    ENSURE(out.good(), "Stream encountered an error during writing!");
+    myfile << "\n[Figure" + to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = 1\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (1, 1, -1)\ncolor = (0, 0, 1)\nobject = ground\n";
+    myfile << "[General]\ntype = \"Animation\"\nsize = 1024\neye = (20, 15, 50)\nbackgroundcolor = (0.0, 0.0, 0.0)\nnrFigures = " + to_string(nrFigures) + "\nnrVaccinationCenters = " + to_string((int) centers.size()) + "\n";
+    myfile.close();
 }

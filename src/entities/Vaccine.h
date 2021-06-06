@@ -54,14 +54,14 @@ public:
      * * REQUIRE(json->contains(VACCINE_DELIVERY), "Vaccine JSON should contain field 'levering'");
      * * REQUIRE(json->contains(VACCINE_INTERVAL), "Vaccine JSON should contain field 'interval'");
      * * REQUIRE(json->contains(VACCINE_TRANSPORTATION), "Vaccine JSON should contain field 'transport'");
+     * * ENSURE(getType() == json->getValue(VACCINE_TYPE)->asString(), "Vaccine type didn't load properly!");
+     * * ENSURE(getDelivery() == json->getValue(VACCINE_DELIVERY)->asUnsignedint(), "Vaccine delivery didn't load properly!");
+     * * ENSURE(getInterval() == json->getValue(VACCINE_INTERVAL)->asUnsignedint(), "Vaccine interval didn't load properly!");
+     * * ENSURE(getTransportation() == json->getValue(VACCINE_TRANSPORTATION)->asUnsignedint(), "Vaccine transportation didn't load properly!");
+     * * ENSURE(getRenewing() == json->getValue(VACCINE_RENEWING)->asUnsignedint(), "Vaccine renewing didn't load properly!");
+     * * ENSURE(getTemperature() == json->getValue(VACCINE_TEMPERATURE)->asDouble(), "Vaccine temperature didn't load properly!");
      */
     void fromJSON(JObject* json);
-    /**
-     * Creates a JObject that holds the current data
-     * @return JObject; JObject with the vaccine data
-     * * REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
-     */
-    JObject* toJSON() const;
 
     // Getters
     /**
