@@ -45,7 +45,7 @@ public:
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * @return bool; true if the triple is valid
      */
-    bool is_valid(unsigned int k, int z, int i, std::vector<Vaccine*>& vaccins, std::vector<VaccinationCenter*>& centers, std::vector<Hub*>& hubs, unsigned int cycles);
+    bool is_valid(unsigned int day, int vaccine_idx, int center_idx, std::vector<Vaccine*>& vaccins, std::vector<VaccinationCenter*>& centers, std::vector<Hub*>& hubs, unsigned int cycles);
 
 
     // Initialization
@@ -63,12 +63,18 @@ public:
      */
     std::vector<std::vector<std::pair<int,std::map<Vaccine*, int>>>> getPlanned() const;
 
+    std::map<Vaccine*, unsigned int>& getDistribution(unsigned int day, VaccinationCenter* center);
+
 private:
     // Initialization
     Planning* initCheck;
 
     // metadata
     std::vector<std::vector<std::pair<int,std::map<Vaccine*, int>>>> planned;
+
+    // map from center name to index in "centers" vector
+    map<Center*, int> center2idx;
+
 };
 
 

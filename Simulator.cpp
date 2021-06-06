@@ -12,7 +12,7 @@
 #include "json/JObject.h"
 
 
-Simulator::Simulator(const unsigned int cycles): initCheck(this), daycount(0), cycles(cycles), planned_hubs(cycles) {
+Simulator::Simulator(const unsigned int cycles): initCheck(this), daycount(0), cycles(cycles) {//, planned_hubs(cycles) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
 }
 
@@ -28,7 +28,7 @@ void Simulator::importSimulation(const std::string& fileName) {
     }
     sort(centers.begin(), centers.end());
     for (int i = 0; i < (int) centers.size(); i++) {
-        center2idx[centers[i]->getName()] = i;
+        plan.getCenter2idx()[centers[i]] = i;
     }
     for (int i = 0; i < (int) hubs_json.size(); i++) {
         hubs.push_back(new Hub());

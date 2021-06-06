@@ -18,6 +18,11 @@ Planning::~Planning() {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
 }
 
+std::map<Vaccine*, unsigned int> Planning::getDistribution(unsigned int day, VaccinationCenter* center) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    return planned[center2idx[center]][day].second;
+}
+
 bool Planning::properlyInitialized() {
     return initCheck == this;
 }
@@ -29,23 +34,23 @@ std::vector<std::vector<std::pair<int,std::map<Vaccine*, int>>>> Planning::getPl
 
 //als temperatuur < 0 van een vaccin en het wordt bijgehouden in een centra => het moet weg
 
-bool Simulator::is_valid(unsigned int day, int vaccine_idx, int center_idx, std::vector<Vaccine*>& vaccins, std::vector<VaccinationCenter*>& centers, std::vector<Hub*>& hubs, unsigned int cycles) {
+bool Simulator::is_valid(unsigned int day, Vaccine* vaccine, Center* center, std::vector<Vaccine*>& vaccins, std::vector<VaccinationCenter*>& centers, std::vector<Hub*>& hubs, unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    if (((day+vaccins[vaccine_idx]->getRenewing() < cycles) && (planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].first == centers[center_idx]->getCapacity()))) {
+    if (((day+vaccine->getRenewing() < cycles) && (planned[center2idx[center]][day+vaccine->getRenewing()].first == center->getCapacity()))) {
         return false;
     }
-    unsigned int c1 = vaccins[vaccine_idx]->getDays()[day/vaccins[vaccine_idx]->getInterval()] + vaccins[vaccine_idx]->getTransportation();
+    unsigned int c1 = vaccine->getDays()[day/vaccine->getInterval()] + vaccine->getTransportation();
     unsigned int c2 = 0;
-    if ((day+vaccins[vaccine_idx]->getRenewing() < cycles) && vaccins[vaccine_idx]->getRenewing()) {
-        c2 = vaccins[vaccine_idx]->getDays()[(day+vaccins[vaccine_idx]->getRenewing())/vaccins[vaccine_idx]->getInterval()];
-        c2 += ((day/vaccins[vaccine_idx]->getInterval()) != ((day+vaccins[vaccine_idx]->getRenewing())/vaccins[vaccine_idx]->getInterval())) ? 2*vaccins[vaccine_idx]->getTransportation() : vaccins[vaccine_idx]->getTransportation();
+    if ((day+vaccine->getRenewing() < cycles) && vaccine->getRenewing()) {
+        c2 = vaccine->getDays()[(day+vaccine->getRenewing())/vaccine->getInterval()];
+        c2 += ((day/vaccine->getInterval()) != ((day+vaccine->getRenewing())/vaccine->getInterval())) ? 2*vaccine->getTransportation() : vaccine->getTransportation();
     }
-    if ((c1 > (vaccins[vaccine_idx]->getDelivery() + (day/vaccins[vaccine_idx]->getInterval())*vaccins[vaccine_idx]->getDelivery())) || (c2 && (c2 > (vaccins[vaccine_idx]->getDelivery() + ((day+vaccins[vaccine_idx]->getRenewing())/vaccins[vaccine_idx]->getInterval())*vaccins[vaccine_idx]->getDelivery())))) {
+    if ((c1 > (vaccine->getDelivery() + (day/vaccine->getInterval())*vaccine->getDelivery())) || (c2 && (c2 > (vaccine->getDelivery() + ((day+vaccine->getRenewing())/vaccine->getInterval())*vaccine->getDelivery())))) {
         return false;
     }
-    unsigned int count = cycles/(hubs[center_idx]->getVaccins()[day]->getRenewing()+1);
-    for (unsigned int vullen = (day/vaccins[vaccine_idx]->getInterval()); vullen <= count; vullen++) {
-        vaccins[vaccine_idx]->getDays()[vullen] += (vaccins[vaccine_idx]->getRenewing() && (vullen >= (day+vaccins[vaccine_idx]->getRenewing())/vaccins[vaccine_idx]->getInterval())) ? 2*vaccins[vaccine_idx]->getTransportation() : vaccins[vaccine_idx]->getTransportation();
+    unsigned int count = cycles/(hubs[center2idx[center]]->getVaccins()[day]->getRenewing()+1);
+    for (unsigned int vullen = (day/vaccine->getInterval()); vullen <= count; vullen++) {
+        vaccine->getDays()[vullen] += (vaccine->getRenewing() && (vullen >= (day+vaccine->getRenewing())/vaccine->getInterval())) ? 2*vaccine->getTransportation() : vaccine->getTransportation();
     }
     ENSURE(!hubs.empty(), "vector of hubs cannot be empty!");
     ENSURE(!centers.empty(), "vector of centers cannot be empty!");

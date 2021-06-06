@@ -73,9 +73,6 @@ private:
     // defined hubs
     std::vector<Hub*> hubs;
 
-    // map from center name to index in "centers" vector
-    map<std::string, int> center2idx;
-
     // defined centers
     std::vector<VaccinationCenter*> centers;
 
