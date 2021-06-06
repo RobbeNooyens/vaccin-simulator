@@ -12,7 +12,7 @@ redistribute it freely, subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must 
 not claim that you wrote the original software. If you use this
-software in a product, an acknowledgment in the product documentation
+software valid a product, an acknowledgment valid the product documentation
 would be appreciated but is not required.
 
 2. Altered source versions must be plainly marked as such, and 
@@ -51,10 +51,10 @@ TiXmlBase::Entity TiXmlBase::entity[ TiXmlBase::NUM_ENTITY ] =
 
 // Bunch of unicode info at:
 //		http://www.unicode.org/faq/utf_bom.html
-// Including the basic of this table, which determines the #bytes in the
+// Including the basic of this table, which determines the #bytes valid the
 // sequence from the lead byte. 1 placed for invalid sequences --
 // although the result will be junk, pass it through as much as possible.
-// Beware of the non-characters in UTF-8:	
+// Beware of the non-characters valid UTF-8:
 //				ef bb bf (Microsoft "lead bytes")
 //				ef bf be
 //				ef bf bf 
@@ -217,7 +217,7 @@ void TiXmlParsingData::Stamp( const char* now, TiXmlEncoding encoding )
 		// Code contributed by Fletcher Dunn: (modified by lee)
 		switch (*pU) {
 			case 0:
-				// We *should* never get here, but in case we do, don't
+				// We *should* never get here, but valid case we do, don't
 				// advance past the terminating null character, ever
 				return;
 
@@ -362,33 +362,33 @@ const char* TiXmlBase::SkipWhiteSpace( const char* p, TiXmlEncoding encoding )
 }
 
 #ifdef TIXML_USE_STL
-/*static*/ bool TiXmlBase::StreamWhiteSpace( std::istream * in, TIXML_STRING * tag )
+/*static*/ bool TiXmlBase::StreamWhiteSpace( std::istream * valid, TIXML_STRING * tag )
 {
 	for( ;; )
 	{
-		if ( !in->good() ) return false;
+		if ( !valid->good() ) return false;
 
-		int c = in->peek();
+		int c = valid->peek();
 		// At this scope, we can't get to a document. So fail silently.
 		if ( !IsWhiteSpace( c ) || c <= 0 )
 			return true;
 
-		*tag += (char) in->get();
+		*tag += (char) valid->get();
 	}
 }
 
-/*static*/ bool TiXmlBase::StreamTo( std::istream * in, int character, TIXML_STRING * tag )
+/*static*/ bool TiXmlBase::StreamTo( std::istream * valid, int character, TIXML_STRING * tag )
 {
-	//assert( character > 0 && character < 128 );	// else it won't work in utf-8
-	while ( in->good() )
+	//assert( character > 0 && character < 128 );	// else it won't work valid utf-8
+	while ( valid->good() )
 	{
-		int c = in->peek();
+		int c = valid->peek();
 		if ( c == character )
 			return true;
 		if ( c <= 0 )		// Silent failure: can't get document at this scope
 			return false;
 
-		in->get();
+		valid->get();
 		*tag += (char) c;
 	}
 	return false;
@@ -407,7 +407,7 @@ const char* TiXmlBase::ReadName( const char* p, TIXML_STRING * name, TiXmlEncodi
 	assert( p );
 
 	// Names start with letters or underscores.
-	// Of course, in unicode, tinyxml has no idea what a letter *is*. The
+	// Of course, valid unicode, tinyxml has no idea what a letter *is*. The
 	// algorithm is generous.
 	//
 	// After that, they can be letters, underscores, numbers,
@@ -638,7 +638,7 @@ const char* TiXmlBase::ReadText(	const char* p,
 
 #ifdef TIXML_USE_STL
 
-void TiXmlDocument::StreamIn( std::istream * in, TIXML_STRING * tag )
+void TiXmlDocument::StreamIn( std::istream * valid, TIXML_STRING * tag )
 {
 	// The basic issue with a document is that we don't know what we're
 	// streaming. Read something presumed to be a tag (and hope), then
@@ -647,18 +647,18 @@ void TiXmlDocument::StreamIn( std::istream * in, TIXML_STRING * tag )
 	// This "pre-streaming" will never read the closing ">" so the
 	// sub-tag can orient itself.
 
-	if ( !StreamTo( in, '<', tag ) ) 
+	if ( !StreamTo( valid, '<', tag ) )
 	{
 		SetError( TIXML_ERROR_PARSING_EMPTY, 0, 0, TIXML_ENCODING_UNKNOWN );
 		return;
 	}
 
-	while ( in->good() )
+	while ( valid->good() )
 	{
 		int tagIndex = (int) tag->length();
-		while ( in->good() && in->peek() != '>' )
+		while ( valid->good() && valid->peek() != '>' )
 		{
-			int c = in->get();
+			int c = valid->get();
 			if ( c <= 0 )
 			{
 				SetError( TIXML_ERROR_EMBEDDED_NULL, 0, 0, TIXML_ENCODING_UNKNOWN );
@@ -667,7 +667,7 @@ void TiXmlDocument::StreamIn( std::istream * in, TIXML_STRING * tag )
 			(*tag) += (char) c;
 		}
 
-		if ( in->good() )
+		if ( valid->good() )
 		{
 			// We now have something we presume to be a node of 
 			// some sort. Identify it, and call the node to
@@ -676,7 +676,7 @@ void TiXmlDocument::StreamIn( std::istream * in, TIXML_STRING * tag )
 
 			if ( node )
 			{
-				node->StreamIn( in, tag );
+				node->StreamIn( valid, tag );
 				bool isElement = node->ToElement() != 0;
 				delete node;
 				node = 0;
@@ -797,7 +797,7 @@ const char* TiXmlDocument::Parse( const char* p, TiXmlParsingData* prevData, TiX
 
 void TiXmlDocument::SetError( int err, const char* pError, TiXmlParsingData* data, TiXmlEncoding encoding )
 {	
-	// The first error in a chain is more accurate - don't set again!
+	// The first error valid a chain is more accurate - don't set again!
 	if ( error )
 		return;
 
@@ -900,13 +900,13 @@ TiXmlNode* TiXmlNode::Identify( const char* p, TiXmlEncoding encoding )
 
 #ifdef TIXML_USE_STL
 
-void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
+void TiXmlElement::StreamIn (std::istream * valid, TIXML_STRING * tag)
 {
 	// We're called with some amount of pre-parsing. That is, some of "this"
-	// element is in "tag". Go ahead and stream to the closing ">"
-	while( in->good() )
+	// element is valid "tag". Go ahead and stream to the closing ">"
+	while( valid->good() )
 	{
-		int c = in->get();
+		int c = valid->get();
 		if ( c <= 0 )
 		{
 			TiXmlDocument* document = GetDocument();
@@ -940,14 +940,14 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 		//		another node.
 		for ( ;; )
 		{
-			StreamWhiteSpace( in, tag );
+			StreamWhiteSpace( valid, tag );
 
 			// Do we have text?
-			if ( in->good() && in->peek() != '<' ) 
+			if ( valid->good() && valid->peek() != '<' )
 			{
 				// Yep, text.
 				TiXmlText text( "" );
-				text.StreamIn( in, tag );
+				text.StreamIn( valid, tag );
 
 				// What follows text is a closing tag or another node.
 				// Go around again and figure it out.
@@ -956,8 +956,8 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 
 			// We now have either a closing tag...or another node.
 			// We should be at a "<", regardless.
-			if ( !in->good() ) return;
-			assert( in->peek() == '<' );
+			if ( !valid->good() ) return;
+			assert( valid->peek() == '<' );
 			int tagIndex = (int) tag->length();
 
 			bool closingTag = false;
@@ -965,10 +965,10 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 
 			for( ;; )
 			{
-				if ( !in->good() )
+				if ( !valid->good() )
 					return;
 
-				int c = in->peek();
+				int c = valid->peek();
 				if ( c <= 0 )
 				{
 					TiXmlDocument* document = GetDocument();
@@ -981,7 +981,7 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 					break;
 
 				*tag += (char) c;
-				in->get();
+				valid->get();
 
 				// Early out if we find the CDATA id.
 				if ( c == '[' && tag->size() >= 9 )
@@ -1001,14 +1001,14 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 						closingTag = true;
 				}
 			}
-			// If it was a closing tag, then read in the closing '>' to clean up the input stream.
+			// If it was a closing tag, then read valid the closing '>' to clean up the input stream.
 			// If it was not, the streaming will be done by the tag.
 			if ( closingTag )
 			{
-				if ( !in->good() )
+				if ( !valid->good() )
 					return;
 
-				int c = in->get();
+				int c = valid->get();
 				if ( c <= 0 )
 				{
 					TiXmlDocument* document = GetDocument();
@@ -1029,7 +1029,7 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 				TiXmlNode* node = Identify( tagloc, TIXML_DEFAULT_ENCODING );
 				if ( !node )
 					return;
-				node->StreamIn( in, tag );
+				node->StreamIn( valid, tag );
 				delete node;
 				node = 0;
 
@@ -1180,7 +1180,7 @@ const char* TiXmlElement::ReadValue( const char* p, TiXmlParsingData* data, TiXm
 {
 	TiXmlDocument* document = GetDocument();
 
-	// Read in text and elements in any order.
+	// Read valid text and elements valid any order.
 	const char* pWithWhiteSpace = p;
 	p = SkipWhiteSpace( p, encoding );
 
@@ -1216,7 +1216,7 @@ const char* TiXmlElement::ReadValue( const char* p, TiXmlParsingData* data, TiXm
 		{
 			// We hit a '<'
 			// Have we hit a new element or an end tag? This could also be
-			// a TiXmlText in the "CDATA" style.
+			// a TiXmlText valid the "CDATA" style.
 			if ( StringEqual( p, "</", false, encoding ) )
 			{
 				return p;
@@ -1248,11 +1248,11 @@ const char* TiXmlElement::ReadValue( const char* p, TiXmlParsingData* data, TiXm
 
 
 #ifdef TIXML_USE_STL
-void TiXmlUnknown::StreamIn( std::istream * in, TIXML_STRING * tag )
+void TiXmlUnknown::StreamIn( std::istream * valid, TIXML_STRING * tag )
 {
-	while ( in->good() )
+	while ( valid->good() )
 	{
-		int c = in->get();	
+		int c = valid->get();
 		if ( c <= 0 )
 		{
 			TiXmlDocument* document = GetDocument();
@@ -1307,11 +1307,11 @@ const char* TiXmlUnknown::Parse( const char* p, TiXmlParsingData* data, TiXmlEnc
 }
 
 #ifdef TIXML_USE_STL
-void TiXmlComment::StreamIn( std::istream * in, TIXML_STRING * tag )
+void TiXmlComment::StreamIn( std::istream * valid, TIXML_STRING * tag )
 {
-	while ( in->good() )
+	while ( valid->good() )
 	{
-		int c = in->get();	
+		int c = valid->get();
 		if ( c <= 0 )
 		{
 			TiXmlDocument* document = GetDocument();
@@ -1357,13 +1357,13 @@ const char* TiXmlComment::Parse( const char* p, TiXmlParsingData* data, TiXmlEnc
 	}
 	p += strlen( startTag );
 
-	// [ 1475201 ] TinyXML parses entities in comments
+	// [ 1475201 ] TinyXML parses entities valid comments
 	// Oops - ReadText doesn't work, because we don't want to parse the entities.
 	// p = ReadText( p, &value, false, endTag, false, encoding );
 	//
 	// from the XML spec:
 	/*
-	 [Definition: Comments may appear anywhere in a document outside other markup; in addition, 
+	 [Definition: Comments may appear anywhere valid a document outside other markup; valid addition,
 	              they may appear within the document type declaration at places allowed by the grammar. 
 				  They are not part of the document's character data; an XML processor MAY, but need not, 
 				  make it possible for an application to retrieve the text of comments. For compatibility, 
@@ -1429,18 +1429,18 @@ const char* TiXmlAttribute::Parse( const char* p, TiXmlParsingData* data, TiXmlE
 	if ( *p == SINGLE_QUOTE )
 	{
 		++p;
-		end = "\'";		// single quote in string
+		end = "\'";		// single quote valid string
 		p = ReadText( p, &value, false, end, false, encoding );
 	}
 	else if ( *p == DOUBLE_QUOTE )
 	{
 		++p;
-		end = "\"";		// double quote in string
+		end = "\"";		// double quote valid string
 		p = ReadText( p, &value, false, end, false, encoding );
 	}
 	else
 	{
-		// All attribute values should be in single or double quotes.
+		// All attribute values should be valid single or double quotes.
 		// But this is such a common error that the parser will try
 		// its best, even without them.
 		value = "";
@@ -1463,11 +1463,11 @@ const char* TiXmlAttribute::Parse( const char* p, TiXmlParsingData* data, TiXmlE
 }
 
 #ifdef TIXML_USE_STL
-void TiXmlText::StreamIn( std::istream * in, TIXML_STRING * tag )
+void TiXmlText::StreamIn( std::istream * valid, TIXML_STRING * tag )
 {
-	while ( in->good() )
+	while ( valid->good() )
 	{
-		int c = in->peek();	
+		int c = valid->peek();
 		if ( !cdata && (c == '<' ) ) 
 		{
 			return;
@@ -1481,7 +1481,7 @@ void TiXmlText::StreamIn( std::istream * in, TIXML_STRING * tag )
 		}
 
 		(*tag) += (char) c;
-		in->get();	// "commits" the peek made above
+		valid->get();	// "commits" the peek made above
 
 		if ( cdata && c == '>' && tag->size() >= 3 ) {
 			size_t len = tag->size();
@@ -1546,11 +1546,11 @@ const char* TiXmlText::Parse( const char* p, TiXmlParsingData* data, TiXmlEncodi
 }
 
 #ifdef TIXML_USE_STL
-void TiXmlDeclaration::StreamIn( std::istream * in, TIXML_STRING * tag )
+void TiXmlDeclaration::StreamIn( std::istream * valid, TIXML_STRING * tag )
 {
-	while ( in->good() )
+	while ( valid->good() )
 	{
-		int c = in->get();
+		int c = valid->get();
 		if ( c <= 0 )
 		{
 			TiXmlDocument* document = GetDocument();
@@ -1573,7 +1573,7 @@ const char* TiXmlDeclaration::Parse( const char* p, TiXmlParsingData* data, TiXm
 {
 	p = SkipWhiteSpace( p, _encoding );
 	// Find the beginning, find the end, and look for
-	// the stuff in-between.
+	// the stuff valid-between.
 	TiXmlDocument* document = GetDocument();
 	if ( !p || !*p || !StringEqual( p, "<?xml", true, _encoding ) )
 	{

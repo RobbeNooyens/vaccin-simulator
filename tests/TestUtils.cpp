@@ -4,10 +4,10 @@
 
 #include "TestUtils.h"
 
-#include "../json/JObject.h"
-#include "../json/JValue.h"
-#include "../json/JArray.h"
-#include "../json/JKeys.h"
+#include "../src/json/JObject.h"
+#include "../src/json/JValue.h"
+#include "../src/json/JArray.h"
+#include "../src/json/JKeys.h"
 
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
 
@@ -34,7 +34,7 @@ JObject *MockObjects::jHub(unsigned int delivery, unsigned int interval, unsigne
 
     JArray* vaccins = new JArray();
     JObject* vaccine = new JObject();
-    vaccine->insertValue(VACCINE_TYPE, new JValue("Standaard"));
+    vaccine->insertValue(VACCINE_TYPE, new JValue((std::string) "Standaard"));
     vaccine->insertValue(VACCINE_DELIVERY, new JValue(delivery));
     vaccine->insertValue(VACCINE_INTERVAL, new JValue(interval));
     vaccine->insertValue(VACCINE_TRANSPORTATION, new JValue(transportation));

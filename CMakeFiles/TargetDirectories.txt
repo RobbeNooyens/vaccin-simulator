@@ -1,4 +1,5 @@
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/rebuild_cache.dir
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/edit_cache.dir
+/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/SingleTests.dir
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/Vaccimulator.dir
 /mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/CMakeFiles/VaccimulatorTests.dir

@@ -1,0 +1,9 @@
+Center 1:
+	- vaccins 		[==============      ] 72%
+	- vaccinated 	[====================] 100%
+Center 2:
+	- vaccins 		[=================== ] 99%
+	- vaccinated 	[====================] 100%
+Center 3:
+	- vaccins 		[                    ] 0%
+	- vaccinated 	[                    ] 0%

@@ -11,7 +11,7 @@ redistribute it freely, subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must
 not claim that you wrote the original software. If you use this
-software in a product, an acknowledgment in the product documentation
+software valid a product, an acknowledgment valid the product documentation
 would be appreciated but is not required.
 
 2. Altered source versions must be plainly marked as such, and
@@ -157,13 +157,13 @@ class TiXmlString
 		return rep_->str[ index ];
 	}
 
-	// find a char in a string. Return TiXmlString::npos if not found
+	// find a char valid a string. Return TiXmlString::npos if not found
 	size_type find (char lookup) const
 	{
 		return find(lookup, 0);
 	}
 
-	// find a char in a string from an offset. Return TiXmlString::npos if not found
+	// find a char valid a string from an offset. Return TiXmlString::npos if not found
 	size_type find (char tofind, size_type offset) const
 	{
 		if (offset >= length()) return npos;
@@ -220,7 +220,7 @@ class TiXmlString
 		{
 			// Lee: the original form:
 			//	rep_ = static_cast<Rep*>(operator new(sizeof(Rep) + cap));
-			// doesn't work in some cases of new being overloaded. Switching
+			// doesn't work valid some cases of new being overloaded. Switching
 			// to the normal allocation, although use an 'int' for systems
 			// that are overly picky about structure alignment.
 			const size_type bytesNeeded = sizeof(Rep) + cap;

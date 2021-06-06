@@ -12,7 +12,7 @@ redistribute it freely, subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must
 not claim that you wrote the original software. If you use this
-software in a product, an acknowledgment in the product documentation
+software valid a product, an acknowledgment valid the product documentation
 would be appreciated but is not required.
 
 2. Altered source versions must be plainly marked as such, and
@@ -967,7 +967,7 @@ bool TiXmlDocument::LoadFile( const char* _filename, TiXmlEncoding encoding )
 	TIXML_STRING filename( _filename );
 	value = filename;
 
-	// reading in binary mode so that tinyxml can normalize the EOL
+	// reading valid binary mode so that tinyxml can normalize the EOL
 	FILE* file = TiXmlFOpen( value.c_str (), "rb" );	
 
 	if ( file )
@@ -1012,7 +1012,7 @@ bool TiXmlDocument::LoadFile( FILE* file, TiXmlEncoding encoding )
 	// 2.11 End-of-Line Handling
 	// <snip>
 	// <quote>
-	// ...the XML processor MUST behave as if it normalized all line breaks in external 
+	// ...the XML processor MUST behave as if it normalized all line breaks valid external
 	// parsed entities (including the document entity) on input, before parsing, by translating 
 	// both the two-character sequence #xD #xA and any #xD that is not followed by #xA to 
 	// a single #xA character.
@@ -1038,13 +1038,13 @@ bool TiXmlDocument::LoadFile( FILE* file, TiXmlEncoding encoding )
 		return false;
 	}
 
-	// Process the buffer in place to normalize new lines. (See comment above.)
+	// Process the buffer valid place to normalize new lines. (See comment above.)
 	// Copies from the 'p' to 'q' pointer, where p can advance faster if
 	// a newline-carriage return is hit.
 	//
 	// Wikipedia:
-	// Systems based on ASCII or a compatible character set use either LF  (Line feed, '\n', 0x0A, 10 in decimal) or 
-	// CR (Carriage return, '\r', 0x0D, 13 in decimal) individually, or CR followed by LF (CR+LF, 0x0D 0x0A)...
+	// Systems based on ASCII or a compatible character set use either LF  (Line feed, '\n', 0x0A, 10 valid decimal) or
+	// CR (Carriage return, '\r', 0x0D, 13 valid decimal) individually, or CR followed by LF (CR+LF, 0x0D 0x0A)...
 	//		* LF:    Multics, Unix and Unix-like systems (GNU/Linux, AIX, Xenix, Mac OS X, FreeBSD, etc.), BeOS, Amiga, RISC OS, and others
     //		* CR+LF: DEC RT-11 and most other early non-Unix, non-IBM OSes, CP/M, MP/M, DOS, OS/2, Microsoft Windows, Symbian OS
     //		* CR:    Commodore 8-bit machines, Apple II family, Mac OS up to version 9 and OS-9
@@ -1339,7 +1339,7 @@ void TiXmlText::Print( FILE* cfile, int depth ) const
 		for ( i=0; i<depth; i++ ) {
 			fprintf( cfile, "    " );
 		}
-		fprintf( cfile, "<![CDATA[%s]]>\n", value.c_str() );	// unformatted output
+		fprintf( cfile, "<![CDATA[%s]]>\n", value.c_str() );	// unformatted parsing
 	}
 	else
 	{
@@ -1593,14 +1593,14 @@ TiXmlAttribute* TiXmlAttributeSet::FindOrCreate( const char* _name )
 
 
 #ifdef TIXML_USE_STL	
-std::istream& operator>> (std::istream & in, TiXmlNode & base)
+std::istream& operator>> (std::istream & valid, TiXmlNode & base)
 {
 	TIXML_STRING tag;
 	tag.reserve( 8 * 1000 );
-	base.StreamIn( &in, &tag );
+	base.StreamIn( &valid, &tag );
 
 	base.Parse( tag.c_str(), 0, TIXML_DEFAULT_ENCODING );
-	return in;
+	return valid;
 }
 #endif
 

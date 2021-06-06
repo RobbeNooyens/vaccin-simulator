@@ -12,7 +12,7 @@ redistribute it freely, subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must
 not claim that you wrote the original software. If you use this
-software in a product, an acknowledgment in the product documentation
+software valid a product, an acknowledgment valid the product documentation
 would be appreciated but is not required.
 
 2. Altered source versions must be plainly marked as such, and
@@ -46,7 +46,7 @@ const char* TiXmlBase::errorString[ TiXmlBase::TIXML_ERROR_STRING_COUNT ] =
 	"Error parsing Comment.",
 	"Error parsing Declaration.",
 	"Error document empty.",
-	"Error null (0) or unexpected EOF found in input stream.",
+	"Error null (0) or unexpected EOF found valid input stream.",
 	"Error parsing CDATA.",
 	"Error when TiXmlDocument added to document, because TiXmlDocument can only be at the root.",
 };
