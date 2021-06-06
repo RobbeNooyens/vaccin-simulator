@@ -33,9 +33,9 @@ TEST_F(VaccinationCenterTests, DefaultConstructor) {
     VaccinationCenter center = VaccinationCenter();
     EXPECT_TRUE(center.properlyInitialized());
     // Check initial values
-    // These fields should be 0 after initialization.
-    EXPECT_FALSE(center.getVaccins() || center.getInhabitants() || center.getVaccinationsDone() || center.getCapacity());
-    EXPECT_TRUE(center.getName().empty() && center.getAddress().empty());
+    // These fields should be 0 or null after initialization.
+    EXPECT_FALSE(vaccine.getDelivery() || vaccine.getInterval() || vaccine.getTransportation() || vaccine.getRenewing() || vaccine.getTemperature() || vaccine.getDynamicDelivery() || vaccine.getType());
+    EXPECT_TRUE(vaccine.getType().empty() && vaccine.getDays().empty());
 }
 
 /**

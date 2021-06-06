@@ -116,10 +116,6 @@ bool VaccinationCenter::properlyInitialized() const {
     return initCheck == this;
 }
 
-VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0) {
-    ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
-}
-
 bool VaccinationCenter::operator<(const VaccinationCenter& s) const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     return capacity < s.getCapacity();

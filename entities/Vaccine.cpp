@@ -10,7 +10,7 @@
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 
-Vaccine::Vaccine(): initCheck(this), dynamicDelivery(0) {
+Vaccine::Vaccine(): initCheck(this), dynamicDelivery(0), hub(nullptr), delivery(0), interval(0), transportation(0), renewing(0), temperature(0) {
     ENSURE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
 }
 
