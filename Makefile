@@ -659,6 +659,30 @@ tests/domain/HubTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.s
 .PHONY : tests/domain/HubTests.cpp.s
 
+tests/domain/PlanningTests.o: tests/domain/PlanningTests.cpp.o
+.PHONY : tests/domain/PlanningTests.o
+
+# target to build an object file
+tests/domain/PlanningTests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.o
+.PHONY : tests/domain/PlanningTests.cpp.o
+
+tests/domain/PlanningTests.i: tests/domain/PlanningTests.cpp.i
+.PHONY : tests/domain/PlanningTests.i
+
+# target to preprocess a source file
+tests/domain/PlanningTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.i
+.PHONY : tests/domain/PlanningTests.cpp.i
+
+tests/domain/PlanningTests.s: tests/domain/PlanningTests.cpp.s
+.PHONY : tests/domain/PlanningTests.s
+
+# target to generate assembly for a file
+tests/domain/PlanningTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.s
+.PHONY : tests/domain/PlanningTests.cpp.s
+
 tests/domain/VaccinationCenterTests.o: tests/domain/VaccinationCenterTests.cpp.o
 .PHONY : tests/domain/VaccinationCenterTests.o
 
@@ -916,6 +940,9 @@ help:
 	@echo "... tests/domain/HubTests.o"
 	@echo "... tests/domain/HubTests.i"
 	@echo "... tests/domain/HubTests.s"
+	@echo "... tests/domain/PlanningTests.o"
+	@echo "... tests/domain/PlanningTests.i"
+	@echo "... tests/domain/PlanningTests.s"
 	@echo "... tests/domain/VaccinationCenterTests.o"
 	@echo "... tests/domain/VaccinationCenterTests.i"
 	@echo "... tests/domain/VaccinationCenterTests.s"

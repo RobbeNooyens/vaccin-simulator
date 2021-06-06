@@ -226,3 +226,15 @@ void VaccinationCenter::removeExpiredVaccines() {
 void VaccinationCenter::setOutputStream(std::ostream *outStream) {
     this->outputStream = outStream;
 }
+
+// Smart distribution
+
+unsigned int VaccinationCenter::getTempCapacity() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    return tempCapacity;
+}
+
+bool VaccinationCenter::operator<(const VaccinationCenter& s) const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    return capacity < s.getCapacity();
+}

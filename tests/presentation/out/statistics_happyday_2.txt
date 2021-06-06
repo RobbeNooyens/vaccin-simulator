@@ -1,0 +1,300 @@
+Vaccine 1: 260000
+Vaccine 2: 51000
+Vaccine 3: 182000
+Vaccine 4: 42500
+Vaccine 5: 102000
+Total vaccinated inhabitants: 1054736
+Vaccine 1: 260000
+Vaccine 2: 51000
+Vaccine 3: 182000
+Vaccine 4: 42500
+Vaccine 5: 102000
+Total vaccinated inhabitants: 1066536
+Vaccine 1: 260000
+Vaccine 2: 52000
+Vaccine 3: 182000
+Vaccine 4: 45000
+Vaccine 5: 105000
+Total vaccinated inhabitants: 1078036
+Vaccine 1: 260000
+Vaccine 2: 52000
+Vaccine 3: 182000
+Vaccine 4: 45000
+Vaccine 5: 105000
+Total vaccinated inhabitants: 1089536
+Vaccine 1: 270000
+Vaccine 2: 53000
+Vaccine 3: 196000
+Vaccine 4: 45000
+Vaccine 5: 105000
+Total vaccinated inhabitants: 1101516
+Vaccine 1: 270000
+Vaccine 2: 53000
+Vaccine 3: 196000
+Vaccine 4: 45000
+Vaccine 5: 108000
+Total vaccinated inhabitants: 1114456
+Vaccine 1: 270000
+Vaccine 2: 54000
+Vaccine 3: 196000
+Vaccine 4: 45000
+Vaccine 5: 108000
+Total vaccinated inhabitants: 1127876
+Vaccine 1: 270000
+Vaccine 2: 54000
+Vaccine 3: 196000
+Vaccine 4: 45000
+Vaccine 5: 108000
+Total vaccinated inhabitants: 1141776
+Vaccine 1: 280000
+Vaccine 2: 55000
+Vaccine 3: 196000
+Vaccine 4: 47500
+Vaccine 5: 111000
+Total vaccinated inhabitants: 1155676
+Vaccine 1: 280000
+Vaccine 2: 55000
+Vaccine 3: 196000
+Vaccine 4: 47500
+Vaccine 5: 111000
+Total vaccinated inhabitants: 1169096
+Vaccine 1: 280000
+Vaccine 2: 56000
+Vaccine 3: 196000
+Vaccine 4: 47500
+Vaccine 5: 111000
+Total vaccinated inhabitants: 1178756
+Vaccine 1: 280000
+Vaccine 2: 56000
+Vaccine 3: 196000
+Vaccine 4: 47500
+Vaccine 5: 114000
+Total vaccinated inhabitants: 1185636
+Vaccine 1: 290000
+Vaccine 2: 57000
+Vaccine 3: 210000
+Vaccine 4: 47500
+Vaccine 5: 114000
+Total vaccinated inhabitants: 1190136
+Vaccine 1: 290000
+Vaccine 2: 57000
+Vaccine 3: 210000
+Vaccine 4: 47500
+Vaccine 5: 114000
+Total vaccinated inhabitants: 1193136
+Vaccine 1: 290000
+Vaccine 2: 58000
+Vaccine 3: 210000
+Vaccine 4: 50000
+Vaccine 5: 117000
+Total vaccinated inhabitants: 1196016
+Vaccine 1: 290000
+Vaccine 2: 58000
+Vaccine 3: 210000
+Vaccine 4: 50000
+Vaccine 5: 117000
+Total vaccinated inhabitants: 1197996
+Vaccine 1: 300000
+Vaccine 2: 59000
+Vaccine 3: 210000
+Vaccine 4: 50000
+Vaccine 5: 117000
+Total vaccinated inhabitants: 1199496
+Vaccine 1: 300000
+Vaccine 2: 59000
+Vaccine 3: 210000
+Vaccine 4: 50000
+Vaccine 5: 120000
+Total vaccinated inhabitants: 1200496
+Vaccine 1: 300000
+Vaccine 2: 60000
+Vaccine 3: 210000
+Vaccine 4: 50000
+Vaccine 5: 120000
+Total vaccinated inhabitants: 1201496
+Vaccine 1: 300000
+Vaccine 2: 60000
+Vaccine 3: 210000
+Vaccine 4: 50000
+Vaccine 5: 120000
+Total vaccinated inhabitants: 1202496
+Vaccine 1: 310000
+Vaccine 2: 61000
+Vaccine 3: 224000
+Vaccine 4: 52500
+Vaccine 5: 123000
+Total vaccinated inhabitants: 1206296
+Vaccine 1: 310000
+Vaccine 2: 61000
+Vaccine 3: 224000
+Vaccine 4: 52500
+Vaccine 5: 123000
+Total vaccinated inhabitants: 1214696
+Vaccine 1: 310000
+Vaccine 2: 62000
+Vaccine 3: 224000
+Vaccine 4: 52500
+Vaccine 5: 123000
+Total vaccinated inhabitants: 1227496
+Vaccine 1: 310000
+Vaccine 2: 62000
+Vaccine 3: 224000
+Vaccine 4: 52500
+Vaccine 5: 126000
+Total vaccinated inhabitants: 1239096
+Vaccine 1: 320000
+Vaccine 2: 63000
+Vaccine 3: 224000
+Vaccine 4: 52500
+Vaccine 5: 126000
+Total vaccinated inhabitants: 1250596
+Vaccine 1: 320000
+Vaccine 2: 63000
+Vaccine 3: 224000
+Vaccine 4: 52500
+Vaccine 5: 126000
+Total vaccinated inhabitants: 1262096
+Vaccine 1: 320000
+Vaccine 2: 64000
+Vaccine 3: 224000
+Vaccine 4: 55000
+Vaccine 5: 129000
+Total vaccinated inhabitants: 1274076
+Vaccine 1: 320000
+Vaccine 2: 64000
+Vaccine 3: 224000
+Vaccine 4: 55000
+Vaccine 5: 129000
+Total vaccinated inhabitants: 1287016
+Vaccine 1: 330000
+Vaccine 2: 65000
+Vaccine 3: 238000
+Vaccine 4: 55000
+Vaccine 5: 129000
+Total vaccinated inhabitants: 1300916
+Vaccine 1: 330000
+Vaccine 2: 65000
+Vaccine 3: 238000
+Vaccine 4: 55000
+Vaccine 5: 132000
+Total vaccinated inhabitants: 1314816
+Vaccine 1: 330000
+Vaccine 2: 66000
+Vaccine 3: 238000
+Vaccine 4: 55000
+Vaccine 5: 132000
+Total vaccinated inhabitants: 1328716
+Vaccine 1: 330000
+Vaccine 2: 66000
+Vaccine 3: 238000
+Vaccine 4: 55000
+Vaccine 5: 132000
+Total vaccinated inhabitants: 1342136
+Vaccine 1: 340000
+Vaccine 2: 67000
+Vaccine 3: 238000
+Vaccine 4: 57500
+Vaccine 5: 135000
+Total vaccinated inhabitants: 1351596
+Vaccine 1: 340000
+Vaccine 2: 67000
+Vaccine 3: 238000
+Vaccine 4: 57500
+Vaccine 5: 135000
+Total vaccinated inhabitants: 1357596
+Vaccine 1: 340000
+Vaccine 2: 68000
+Vaccine 3: 238000
+Vaccine 4: 57500
+Vaccine 5: 135000
+Total vaccinated inhabitants: 1362096
+Vaccine 1: 340000
+Vaccine 2: 68000
+Vaccine 3: 238000
+Vaccine 4: 57500
+Vaccine 5: 138000
+Total vaccinated inhabitants: 1365996
+Vaccine 1: 350000
+Vaccine 2: 69000
+Vaccine 3: 252000
+Vaccine 4: 57500
+Vaccine 5: 138000
+Total vaccinated inhabitants: 1368476
+Vaccine 1: 350000
+Vaccine 2: 69000
+Vaccine 3: 252000
+Vaccine 4: 57500
+Vaccine 5: 138000
+Total vaccinated inhabitants: 1370456
+Vaccine 1: 350000
+Vaccine 2: 70000
+Vaccine 3: 252000
+Vaccine 4: 60000
+Vaccine 5: 141000
+Total vaccinated inhabitants: 1371956
+Vaccine 1: 350000
+Vaccine 2: 70000
+Vaccine 3: 252000
+Vaccine 4: 60000
+Vaccine 5: 141000
+Total vaccinated inhabitants: 1373436
+Vaccine 1: 360000
+Vaccine 2: 71000
+Vaccine 3: 252000
+Vaccine 4: 60000
+Vaccine 5: 141000
+Total vaccinated inhabitants: 1374916
+Vaccine 1: 360000
+Vaccine 2: 71000
+Vaccine 3: 252000
+Vaccine 4: 60000
+Vaccine 5: 144000
+Total vaccinated inhabitants: 1375916
+Vaccine 1: 360000
+Vaccine 2: 72000
+Vaccine 3: 252000
+Vaccine 4: 60000
+Vaccine 5: 144000
+Total vaccinated inhabitants: 1379916
+Vaccine 1: 360000
+Vaccine 2: 72000
+Vaccine 3: 252000
+Vaccine 4: 60000
+Vaccine 5: 144000
+Total vaccinated inhabitants: 1389016
+Vaccine 1: 370000
+Vaccine 2: 73000
+Vaccine 3: 266000
+Vaccine 4: 62500
+Vaccine 5: 147000
+Total vaccinated inhabitants: 1401416
+Vaccine 1: 370000
+Vaccine 2: 73000
+Vaccine 3: 266000
+Vaccine 4: 62500
+Vaccine 5: 147000
+Total vaccinated inhabitants: 1413316
+Vaccine 1: 370000
+Vaccine 2: 74000
+Vaccine 3: 266000
+Vaccine 4: 62500
+Vaccine 5: 147000
+Total vaccinated inhabitants: 1425296
+Vaccine 1: 370000
+Vaccine 2: 74000
+Vaccine 3: 266000
+Vaccine 4: 62500
+Vaccine 5: 150000
+Total vaccinated inhabitants: 1437276
+Vaccine 1: 380000
+Vaccine 2: 75000
+Vaccine 3: 266000
+Vaccine 4: 62500
+Vaccine 5: 150000
+Total vaccinated inhabitants: 1449256
+Vaccine 1: 380000
+Vaccine 2: 75000
+Vaccine 3: 266000
+Vaccine 4: 62500
+Vaccine 5: 150000
+Total vaccinated inhabitants: 1462676

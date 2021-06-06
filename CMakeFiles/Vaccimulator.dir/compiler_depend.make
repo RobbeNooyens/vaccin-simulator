@@ -474,7 +474,9 @@ CMakeFiles/Vaccimulator.dir/src/entities/Planning.cpp.o: src/entities/Planning.c
   /usr/include/c++/7/bits/ostream.tcc \
   /usr/include/c++/7/istream \
   /usr/include/c++/7/bits/istream.tcc \
-  src/entities/Hub.h
+  src/entities/Hub.h \
+  src/entities/Vaccine.h \
+  src/entities/VaccinationCenter.h
 
 CMakeFiles/Vaccimulator.dir/src/entities/SimulationData.cpp.o: src/entities/SimulationData.cpp \
   /usr/include/stdc-predef.h \
@@ -604,7 +606,13 @@ CMakeFiles/Vaccimulator.dir/src/entities/SimulationData.cpp.o: src/entities/Simu
   /usr/include/c++/7/bits/ostream.tcc \
   /usr/include/c++/7/istream \
   /usr/include/c++/7/bits/istream.tcc \
-  src/entities/Vaccine.h
+  src/entities/Vaccine.h \
+  /usr/include/c++/7/vector \
+  /usr/include/c++/7/bits/stl_construct.h \
+  /usr/include/c++/7/bits/stl_uninitialized.h \
+  /usr/include/c++/7/bits/stl_vector.h \
+  /usr/include/c++/7/bits/stl_bvector.h \
+  /usr/include/c++/7/bits/vector.tcc
 
 CMakeFiles/Vaccimulator.dir/src/entities/Simulator.cpp.o: src/entities/Simulator.cpp \
   /usr/include/stdc-predef.h \
@@ -737,6 +745,10 @@ CMakeFiles/Vaccimulator.dir/src/entities/Simulator.cpp.o: src/entities/Simulator
   /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
   /usr/include/c++/7/bits/fstream.tcc \
+  /usr/include/c++/7/set \
+  /usr/include/c++/7/bits/stl_tree.h \
+  /usr/include/c++/7/bits/stl_set.h \
+  /usr/include/c++/7/bits/stl_multiset.h \
   src/entities/Simulator.h \
   src/parsing/XMLParser.h \
   /usr/include/c++/7/vector \
@@ -747,7 +759,6 @@ CMakeFiles/Vaccimulator.dir/src/entities/Simulator.cpp.o: src/entities/Simulator
   /usr/include/c++/7/bits/vector.tcc \
   src/entities/VaccinationCenter.h \
   /usr/include/c++/7/map \
-  /usr/include/c++/7/bits/stl_tree.h \
   /usr/include/c++/7/bits/stl_map.h \
   /usr/include/c++/7/bits/stl_multimap.h \
   src/entities/Vaccine.h \
@@ -896,13 +907,13 @@ CMakeFiles/Vaccimulator.dir/src/entities/VaccinationCenter.cpp.o: src/entities/V
   /usr/include/c++/7/bits/stl_map.h \
   /usr/include/c++/7/bits/stl_multimap.h \
   src/entities/Vaccine.h \
-  src/json/JObject.h \
   /usr/include/c++/7/vector \
   /usr/include/c++/7/bits/stl_construct.h \
   /usr/include/c++/7/bits/stl_uninitialized.h \
   /usr/include/c++/7/bits/stl_vector.h \
   /usr/include/c++/7/bits/stl_bvector.h \
   /usr/include/c++/7/bits/vector.tcc \
+  src/json/JObject.h \
   src/json/JValue.h \
   src/json/JKeys.h \
   src/utilities/utils.h \
@@ -1023,6 +1034,12 @@ CMakeFiles/Vaccimulator.dir/src/entities/Vaccine.cpp.o: src/entities/Vaccine.cpp
   /usr/include/x86_64-linux-gnu/c++/7/bits/atomic_word.h \
   /usr/include/c++/7/ext/alloc_traits.h \
   /usr/include/c++/7/bits/basic_string.tcc \
+  /usr/include/c++/7/vector \
+  /usr/include/c++/7/bits/stl_construct.h \
+  /usr/include/c++/7/bits/stl_uninitialized.h \
+  /usr/include/c++/7/bits/stl_vector.h \
+  /usr/include/c++/7/bits/stl_bvector.h \
+  /usr/include/c++/7/bits/vector.tcc \
   DesignByContract.h \
   /usr/include/assert.h \
   /usr/include/c++/7/iostream \
@@ -1052,12 +1069,6 @@ CMakeFiles/Vaccimulator.dir/src/entities/Vaccine.cpp.o: src/entities/Vaccine.cpp
   /usr/include/c++/7/bits/stl_tree.h \
   /usr/include/c++/7/bits/stl_map.h \
   /usr/include/c++/7/bits/stl_multimap.h \
-  /usr/include/c++/7/vector \
-  /usr/include/c++/7/bits/stl_construct.h \
-  /usr/include/c++/7/bits/stl_uninitialized.h \
-  /usr/include/c++/7/bits/stl_vector.h \
-  /usr/include/c++/7/bits/stl_bvector.h \
-  /usr/include/c++/7/bits/vector.tcc \
   src/json/JValue.h \
   src/json/JKeys.h
 
@@ -2176,13 +2187,13 @@ tests/TestUtils.cpp:
 
 src/utilities/utils.cpp:
 
-/usr/include/c++/7/set:
-
 src/parsing/XMLParser.cpp:
 
 src/json/JArray.cpp:
 
 src/entities/Vaccine.cpp:
+
+/usr/include/c++/7/set:
 
 src/entities/Simulator.cpp:
 

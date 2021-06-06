@@ -90,3 +90,30 @@ JObject *Vaccine::toJSON() const {
     return json;
 
 }
+
+// Smart distribution
+
+bool Vaccine::operator<(const Vaccine& s) const {
+    REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
+    return transportation < s.getTransportation();
+}
+
+unsigned int Vaccine::getDynamicDelivery() const {
+    REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
+    return dynamicDelivery;
+}
+
+Hub* Vaccine::getHub() const {
+    REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
+    return hub;
+}
+
+void Vaccine::setHub(Hub* h) {
+    REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
+    hub = h;
+}
+
+std::vector<unsigned int>& Vaccine::getDays() {
+    REQUIRE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
+    return days;
+}

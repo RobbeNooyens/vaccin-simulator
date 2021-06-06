@@ -44,15 +44,14 @@ protected:
 
     }
 
-    // TODO: uncommenting this causes segmentation fault
-//    virtual void TearDown() {
-//        ITERATE(VaccinationCenters, vaccinationCenters, center) {
-//            delete *center;
-//        }
-//        ITERATE(JValues, vaccines, vaccine) {
-//            delete *vaccine;
-//        }
-//    }
+    virtual void TearDown() {
+        ITERATE(VaccinationCenters, vaccinationCenters, center) {
+            delete *center;
+        }
+        ITERATE(JValues, vaccines, vaccine) {
+            delete *vaccine;
+        }
+    }
 };
 
 /**
@@ -77,6 +76,7 @@ TEST_F(HubTests, LoadFromJSON) {
     EXPECT_EQ((unsigned int) 1, vaccine->getDelivery());
     EXPECT_EQ((unsigned int) 2, vaccine->getInterval());
     EXPECT_EQ((unsigned int) 3, vaccine->getTransportation());
+    EXPECT_EQ(&jsonHub, vaccine->getHub());
 }
 
 TEST_F(HubTests, LoadFromJSONVaccineTypes) {

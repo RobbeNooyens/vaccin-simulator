@@ -1,0 +1,4 @@
+Vaccine 1: 1000
+Vaccine 2: 3000
+Vaccine 3: 7000
+Total vaccinated inhabitants: 6000

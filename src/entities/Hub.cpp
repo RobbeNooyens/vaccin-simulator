@@ -71,6 +71,7 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList) {
         // TODO: replace string fields with macros or static variables
         Vaccine* vaccine = new Vaccine();
         vaccine->fromJSON((*vaccin)->asJObject());
+        vaccine->setHub(this);
         vaccines.push_back(vaccine);
         vaccineCount.insert(std::pair<Vaccine*, unsigned int>(vaccine, vaccine->getDelivery()));
     }
@@ -117,13 +118,15 @@ void Hub::simulateDelivery(unsigned int day, SimulationData &statistics) {
     ENSURE(isConsistent(), "Hub needs to be consistent to run the simulation");
 }
 
-void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads) const {
+void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> &loads) const {
     // TODO: rewrite every REQUIRE and ENSURE to work with public methods instead of private vars
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(center, "VaccinationCenter can't be NULL!");
     unsigned int totalLoads = 0, totalVaccines = 0;
     C_ITERATE(Vaccines, vaccines, v) {
         Vaccine* vaccine = *v;
+        if(vaccine->getHub() != this)
+            continue;
         unsigned int dose = loads[vaccine];
         (*center).transportationArrived(vaccine, dose * vaccine->getTransportation());
         totalLoads += dose;
@@ -221,4 +224,22 @@ std::map<Vaccine *, unsigned int> Hub::getVaccineCount() const {
 
 void Hub::setOutputStream(std::ostream* outStream) {
     this->outputStream = outStream;
+}
+
+
+// Smart simulation
+
+bool Hub::is_connected(const std::string& name) {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    return centersMap[name];
+}
+
+int Hub::get_connections() const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    return connections;
+}
+
+unsigned int Hub::getTotalvaccins() const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+    return totalvaccins;
 }

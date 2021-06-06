@@ -108,4 +108,6 @@ CMakeFiles/SingleTests.dir/src/entities/Planning.cpp.o: \
  /usr/include/c++/7/bits/basic_ios.tcc \
  /usr/include/c++/7/bits/ostream.tcc /usr/include/c++/7/istream \
  /usr/include/c++/7/bits/istream.tcc \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Hub.h
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Hub.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Vaccine.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/VaccinationCenter.h

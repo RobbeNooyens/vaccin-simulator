@@ -31,6 +31,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/VaccimulatorTests.dir/tests/data/XMLParserTests.cpp.o.d"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.o.d"
+  "CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.o"
+  "CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.o.d"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccinationCenterTests.cpp.o.d"
   "CMakeFiles/VaccimulatorTests.dir/tests/domain/VaccineTests.cpp.o"

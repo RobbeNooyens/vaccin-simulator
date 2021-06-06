@@ -10,10 +10,12 @@
 
 
 #include <string>
+#include <vector>
 
 #define DEFAULT_VACCINE "Standaard"
 
 class JObject;
+class Hub;
 
 class Vaccine {
 public:
@@ -93,6 +95,34 @@ public:
      */
     double getTemperature() const;
 
+    // Smart distribution
+    /**
+     * @return unsigned int; dynamic, with simulation changing delivery of vaccins, total number of vaccins currently for this particular vaccin
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    unsigned int getDynamicDelivery() const;
+    /**
+     * @return Hub*; dynamic, the particular hub connected with this particular vaccin object
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    Hub* getHub() const;
+    /**
+     * @return vector<unsigned int>&; vector with information over total collected vaccins over time
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    std::vector<unsigned int>& getDays();
+    /**
+     * defines comparison between Vaccine objects
+     * @param s: the Vaccine to be compared to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    bool operator<(const Vaccine& s) const;
+    /**
+     * sets the hub connected with this vaccin
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    void setHub(Hub* h);
+
 
 private:
     // Initialization
@@ -106,7 +136,10 @@ private:
     unsigned int renewing;
     double temperature;
 
-
+    // Smart distribution
+    Hub* hub;
+    std::vector<unsigned int> days;
+    unsigned int dynamicDelivery;
 };
 
 

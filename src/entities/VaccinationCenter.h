@@ -162,6 +162,20 @@ public:
      */
     void toProgressStream(std::ostream& stream) const;
 
+
+    // Smart distribution
+    /**
+     * defines comparison between VaccinationCenter objects
+     * @param s: the VaccinationCenter to be compared to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    bool operator<(const VaccinationCenter& s) const;
+    /**
+     * @return unsigned int; current capacity in some day in the simulation
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    unsigned int getTempCapacity() const;
+
 private:
     // Initialization
     const VaccinationCenter* initCheck;
@@ -178,6 +192,9 @@ private:
     // Simulation
     bool connectedToHub;
     std::ostream* outputStream;
+
+    // Smart distribution
+    unsigned int tempCapacity;
 };
 
 

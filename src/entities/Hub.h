@@ -126,7 +126,7 @@ public:
      * @param vaccinCount: the amount of vaccins to transport
      */
     void
-    transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> loads) const;
+    transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> &loads) const;
     /**
      * Adds vaccines valid case cargo is being delivered
      * @param day: unsigned int; current day
@@ -154,8 +154,33 @@ public:
     bool containsInvalidCenter() const;
 
     // Setters
-    // TODO: documentation
+    /**
+     * Sets the output stream to send output to during the simulation
+     * @param outStream: ostream*; output stream
+     */
     void setOutputStream(std::ostream* outStream);
+
+
+    // Smart distribution
+
+    /**
+     * Checks if center with the given name is connected to this hub
+     * @return bool; true if this hub is connected to center with name "name"
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    bool is_connected(const std::string& name);
+    /**
+     * Returns the amount of connected vaccination centers
+     * @return int; the total of centers the hub is connected to
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    int get_connections() const;
+    /**
+     * Returns the total amount of vaccines for the smart distribution
+     * @return unsigned int; the total number of vaccins of all sorts in the hub
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    unsigned int getTotalvaccins() const;
 
 private:
 
@@ -171,6 +196,11 @@ private:
     Vaccines vaccines;
 
     std::map<Vaccine*, unsigned int> vaccineCount;
+
+    // Smart distribution
+    int connections;
+    std::map<std::string, bool> centersMap;
+    unsigned int totalvaccins;
 };
 
 
