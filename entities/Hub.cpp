@@ -138,19 +138,23 @@ Hub::~Hub() {
 // }
 
 void Hub::toProgressStream(std::ostream &outStream) const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     C_ITERATE(VaccinationCenters, centers, center) {
         (*center)->toProgressStream(outStream);
     }
 }
 
 bool Hub::is_connected(const std::string name) const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return centers[name];
 }
 
 int Hub::get_connections() const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return connections;
 }
 
 int Hub::getTotalvaccins() const {
+    REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     return totalvaccins;
 }

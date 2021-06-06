@@ -82,7 +82,7 @@ public:
      * @return unsigned int; amount of inhabitants who are already vaccinated
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
-    unsigned int getVaccinationsDone() const;
+    unsigned int getVaccinated() const;
     /**
      * @return unsigned int; the amount of non-vaccinated inhabitants
      * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
@@ -110,10 +110,26 @@ public:
      * ENSURE(outStream.good(), "Failed to write to output stream!");
      */
     void toSummaryStream(std::ostream& stream) const;
-    
+    /**
+     * Sends the center represented as a string to the given stream
+     * @param stream: The stream that should be used
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     * REQUIRE(outStream != NULL, "Output stream cannot be NULL!");
+     * REQUIRE(outStream.good(), "Output stream contains error flags!");
+     * ENSURE(outStream.good(), "Failed to write to output stream!");
+     */
     void toProgressStream(std::ostream& stream) const;
-
+    /**
+     * defines comparison between VaccinationCenter objects
+     * @param s: the VaccinationCenter to be compared to
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     bool operator<(const VaccinationCenter& s) const;
+    /**
+     * @return unsigned int; current capacity in some day in the simulation
+     * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    unsigned int getTempCapacity() const;
 
 private:
     // Initialization
@@ -126,6 +142,7 @@ private:
     unsigned int inhabitants;
     unsigned int vaccinated;
     unsigned int capacity;
+    unsigned int tempCapacity;
 };
 
 

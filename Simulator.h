@@ -53,24 +53,42 @@ public:
      */
     void run();
 
-    void make_calender();
-
-    bool is_valid(unsigned int k, int z, int i);
-
-    void simulateDay(unsigned int day);
+    /**
+     * simulates a day of the simulation
+     * @param day: specific day of the simulation procces
+     * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
+     * REQUIRE(day < 0, "day cannot be negative!");
+     * REQUIRE(day+1 > cycles, "day cannot be bigger than total days defined in the simulation!");
+     * ENSURE(daycount == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
+     */
+    void simulateDay(const unsigned int day);
 
 private:
     // Initialization
     const Simulator* initCheck;
 
-    // Simulation
+    // Days defined
     unsigned int cycles;
+
+    // defined hubs
     std::vector<Hub*> hubs;
+
+    // map from center name to index in "centers" vector
     map<std::string, int> center2idx;
+
+    // defined centers
     std::vector<VaccinationCenter*> centers;
+
+    // defined vaccins in all hubs
     std::vector<Vaccine*> vaccins;
+
+    // parser
     XMLParser xmlParser;
+
+    // dynamic daycount, gives what day we are currently running the simulation on
     unsigned int daycount;
+
+    // plan for total days for transporting vaccins between hubs en centra
     Planning plan;
 };
 

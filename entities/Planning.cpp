@@ -15,11 +15,16 @@ Planning::Planning(): initCheck(this) {
 }
 
 Planning::~Planning() {
-
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
 }
 
 bool Planning::properlyInitialized() {
     return initCheck == this;
+}
+
+std::vector<std::vector<std::pair<int,std::map<Vaccine*, int>>>> Planning::getPlanned() const {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    return planned;
 }
 
 //vaccins met temperatuur < 0 gaan eerst
@@ -27,6 +32,7 @@ bool Planning::properlyInitialized() {
 
 //code houdt niet rekening met lading van vaccin > capacity om te  gebruiken voor volgende dag
 bool Simulator::is_valid(unsigned int k, int z, int i, std::vector<Vaccine*>& vaccins, std::vector<VaccinationCenter*>& centers, std::vector<Hub*>& hubs, unsigned int cycles) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     if (((k+vaccins[z]->getRenewing() < cycles) && (planned[i][k+vaccins[z]->getRenewing()].first == centers[i]->getCapacity()))) {
         return false;
     }
@@ -43,6 +49,10 @@ bool Simulator::is_valid(unsigned int k, int z, int i, std::vector<Vaccine*>& va
     for (unsigned int vullen = (k/vaccins[z]->getInterval()); vullen <= count; vullen++) {
         vaccins[z]->getDays()[vullen] += (vaccins[z]->getRenewing() && (vullen >= (k+vaccins[z]->getRenewing())/vaccins[z]->getInterval())) ? 2*vaccins[z]->getTransportation() : vaccins[z]->getTransportation();
     }
+    ENSURE(!hubs.empty(), "vector of hubs cannot be empty!");
+    ENSURE(!centers.empty(), "vector of centers cannot be empty!");
+    ENSURE(!vaccins.empty(), "vector of vaccins cannot be empty!");
+    ENSURE(cycles != 0, "total cycles in simulation can be 0!");
     return true;
 }
 
@@ -115,4 +125,8 @@ void generatePlanning(std::vector<Hub*>& hubs, std::vector<VaccinationCenter*>& 
             }
         }
     }
+    ENSURE(!hubs.empty(), "vector of hubs cannot be empty!");
+    ENSURE(!centers.empty(), "vector of centers cannot be empty!");
+    ENSURE(!vaccins.empty(), "vector of vaccins cannot be empty!");
+    ENSURE(cycles != 0, "total cycles in simulation can be 0!");
 }

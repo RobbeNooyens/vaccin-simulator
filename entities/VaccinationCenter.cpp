@@ -12,7 +12,7 @@
 #include "../json/JObject.h"
 #include "../json/JValue.h"
 
-VaccinationCenter::VaccinationCenter() : initCheck(this) {
+VaccinationCenter::VaccinationCenter() : initCheck(this), vaccins(0), inhabitants(0), vaccinated(0), capacity(0), tempCapacity(0) {
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -31,7 +31,7 @@ void VaccinationCenter::fromJSON(JObject* json) {
     name = json->getValue("naam")->asString();
     totalInhabitants = inhabitants;
 }
-
+get
 void VaccinationCenter::toSummaryStream(std::ostream &stream) const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     REQUIRE(stream != NULL, "Output stream cannot be NULL!");
@@ -81,9 +81,14 @@ unsigned int VaccinationCenter::getVaccins() const {
     return vaccins;
 }
 
-unsigned int VaccinationCenter::getVaccinationsDone() const {
+unsigned int VaccinationCenter::getVaccinated() const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     return vaccinated;
+}
+
+unsigned int VaccinationCenter::getTempCapacity() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    return tempCapacity;
 }
 
 unsigned int VaccinationCenter::getVaccinationsLeft() const {
@@ -116,5 +121,6 @@ VaccinationCenter::VaccinationCenter(): initCheck(this), vaccins(0), inhabitants
 }
 
 bool VaccinationCenter::operator<(const VaccinationCenter& s) const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     return capacity < s.getCapacity();
 }

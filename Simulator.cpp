@@ -65,8 +65,41 @@ void Simulator::exportSimulation(const std::string& fileName) const {
     ENSURE(!file.is_open(), "File wasn't closed properly!");
 }
 
-void Simulator::simulateDay(unsigned int day) {
+void Simulator::simulateDay(const unsigned int day) {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    REQUIRE(day < 0, "day cannot be negative!");
+    REQUIRE(day+1 > cycles, "day cannot be bigger than total days defined in the simulation!");
+    for (int i = 0; i < (int) vaccins.size(); i++) {
+        if (day%vaccins[i]->getInterval() == 0) { //mss 1 dag later?
+            vaccins[i]->getDynamicDelivery() += vaccins[i]->getDelivery();
+        }
+    }
+    for (int center_kolom = 0; center_kolom < (int) centers.size(); center_kolom++) {
+        centers[center_kolom]->getTempCapacity() = centers[center_kolom]->getCapacity();
+        for (int k = 0; k < cycles; k++) {
+            for (auto it = plan.planned[center_kolom][k].second.begin; it != plan.planned[center_kolom][k].second.end; it++) {
+                if ((it->first->getTemperature() < 0) && (centers[center_kolom]->getTempCapacity()-it->second >= 0) {
+                    centers[center_kolom]->getTempCapacity() -= it->second;
+                    it->first->getDynamicDelivery() -= it->second;
+                    centers[center_kolom]->getVaccinated() += it->second;
+                    it->second = 0;
+                }
+            }
+        }
+    }
 
+    for (int center_kolom = 0; center_kolom < (int) centers.size(); center_kolom++) {
+        for (int k = 0; k < cycles; k++) {
+            for (auto it = plan.planned[center_kolom][k].second.begin; it != plan.planned[center_kolom][k].second.end; it++) {
+                if (centers[center_kolom]->getTempCapacity()-it->second >= 0) { //kan een vaccinatiecenter max "capacity" aantal vaccins vaccinere?
+                    centers[center_kolom]->getTempCapacity() -= it->second;
+                    it->first->getDynamicDelivery() -= it->second;
+                    centers[center_kolom]->getVaccinated() += it->second;
+                    it->second = 0;
+                }
+            }
+        }
+    }
 }
 
 void Simulator::run() {
@@ -84,6 +117,7 @@ bool Simulator::properlyInitialized() const {
 }
 
 void Simulator::generate_animation() const {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     double width_hub, width_center, hub_space, center_space;
     long long id = 0;
     if ((int) hubs.size() < 4) {

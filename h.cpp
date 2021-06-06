@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <vector>
+#include <map>
+#include <string>
+#include <algorithm>
+#include <cmath>
+#include <ostream>
+#include <fstream>
 
 using namespace std;
 

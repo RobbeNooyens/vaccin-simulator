@@ -38,12 +38,24 @@ public:
      */
     bool properlyInitialized() const;
 
+
     // Getters
     /**
-     * @return the amount of vaccins there are currently available in the hub
+     * @return vector<Vaccine*>&; the amount of vaccins there are currently available in the hub
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     std::vector<Vaccine*>& getVaccins() const;
+    /**
+     * @return int; the total of centers the hub is connected to
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    int get_connections() const;
+    /**
+     * @return unsigned int; the total number of vaccins of all sorts in the hub
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
+    unsigned int getTotalvaccins() const;
+
 
     // IO
     /**
@@ -71,6 +83,7 @@ public:
     void toSummaryStream(std::ostream&) const;
     void toProgressStream(std::ostream&) const;
 
+
     // Events
     /**
      * Simulates the transportation and vaccination for one day
@@ -78,6 +91,7 @@ public:
      * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      */
     // void simulateDay(unsigned int day);
+
 
     // Validations
     /**
@@ -87,45 +101,22 @@ public:
      * REQUIRE(&centers != NULL, "Centers can't be NULL!");
      */
     // bool containsInvalidCenter() const;
-
+    /**
+     * Checks if center with name is connected to this hub
+     * @return bool: true if this hub is connected to center with name "name"
+     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
+     */
     bool is_connected(const std::string name) const;
 
-    int get_connections() const;
-
-    unsigned int getTotalvaccins() const;
-
 private:
-    int connections;
-    std::vector<Vaccine*> vaccins;
-    map<std::string, bool> centers;
-    unsigned int totalvaccins;
     // Initialization
     const Hub* initCheck;
 
     // Metadata
-    //unsigned int delivery;
-    //unsigned int interval;
-    //unsigned int transport; // Vaccines per load
-    //unsigned int vaccinsCount;
-
-    // Connected vaccinationcenters
-    //VaccinationCenters centers;
-
-    // Amount of vaccines per type
-    //std::map<Vaccine*, int> vaccinCount;
-
-    // Simulation
-    /**
-     * Simulate vaccin distribution over the vaccinationcenters
-     * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-     */
-    // void distributeVaccins(std::ostream& outStream = std::cout);
-    /**
-     * Transport a specific amount of vaccinations to the specified vaccination center.
-     * @param center: the center where the vaccins should be transported to
-     * @param vaccinCount: the amount of vaccins to transport
-     */
-    // static void transportVaccinsTo(VaccinationCenter* center, unsigned int vaccinCount);
+    int connections;
+    std::vector<Vaccine*> vaccins;
+    map<std::string, bool> centers;
+    unsigned int totalvaccins;
 };
 
 
