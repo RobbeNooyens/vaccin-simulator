@@ -65,11 +65,19 @@ public:
      */
     void simulateDay(const unsigned int day);
 
-    void spaceBetweenObjects(double& space_between_centers, double& space_between_hubs, double width_of_hub, double width_of_center) const;
-    void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_center, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
-    void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const
-    void widthOfObjects(double& width_of_hub, double& width_of_center) const;
-
+    void widthOfObjects(double& width_of_hub, double& width_of_vaccinationcenter) const;
+    void spaceBetweenObjects(double& space_between_vaccinationcenters, double& space_between_hubs, double width_of_hub, double width_of_vaccinationcenter) const;
+    void generateBodyOfVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
+    void generateRoofOfVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
+    void generateBodyOfHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const;
+    void generateBodyCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const;
+    void generateVaccinBoxesInVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
+    void generateVaccinBoxesInHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const;
+    void generateVaccinBoxesInCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const;
+    void generateWheelsOfCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const;
+    void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
+    void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const;
+    void generateCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const;
 private:
     // Initialization
     const Simulator* initCheck;

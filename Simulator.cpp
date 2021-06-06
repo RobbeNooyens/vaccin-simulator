@@ -12,6 +12,12 @@
 #include "json/JObject.h"
 
 #define HUB_SIZE 4
+#define CENTER_SIZE 4
+#define MAXIMUM_BOXES 5
+#define BOX_PER_VACCINS_CENTER 1000
+#define BOX_PER_VACCINS_HUB 10000
+#define BOXES_CENTER_OFFSET 999
+#define BOXES_HUB_OFFSET 9999
 
 Simulator::Simulator(const unsigned int cycles): initCheck(this), daycount(0), cycles(cycles) {//, planned_hubs(cycles) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
@@ -122,33 +128,31 @@ bool Simulator::properlyInitialized() const {
 void Simulator::widthOfObjects(double& width_of_hub, double& width_of_vaccinationcenter) const {
 
     //define width of a hub in the animation
-    if ((int) hubs.size() < 4) {
+    if ((int) hubs.size() < HUB_SIZE) {
         width_of_hub = 0.5;
     } else {
-        width_of_hub = 4.0/(3.0*((double) hubs.size()) + 1.0);
+        width_of_hub = 4.0 / (3.0 * ((double) hubs.size()) + 1.0);
     }
 
     //define width of a center in the animation
-    if ((int) centers.size() < 4) {
+    if ((int) centers.size() < CENTER_SIZE) {
         width_of_vaccinationcenter = 0.5;
     } else {
-        width_of_vaccinationcenter = 4.0/(3.0*((double) centers.size()) + 1.0);
+        width_of_vaccinationcenter = 4.0 / (3.0 * ((double) centers.size()) + 1.0);
     }
 }
-
-
 
 void Simulator::spaceBetweenObjects(double& space_between_vaccinationcenters, double& space_between_hubs, double width_of_hub, double width_of_vaccinationcenter) const {
 
     //define space between consecutive hubs on the ground in animation
-    if ((int) hubs.size() < 4) {
+    if ((int) hubs.size() < HUB_SIZE) {
         space_between_hubs = (2.0 - ((double) hubs.size() * 0.5))/((double) hubs.size() + 1.0);
     } else {
         space_between_hubs = width_of_hub/2.0;
     }
 
     //define space between consecutive vaccinationcenters on the ground in animation
-    if ((int) centers.size()  < 4) {
+    if ((int) centers.size()  < CENTER_SIZE) {
         space_between_vaccinationcenters = (2.0 - (((double) centers.size()) * 0.5))/(((double) centers.size()) + 1.0);
     } else {
         space_between_vaccinationcenters = width_of_vaccinationcenter/2.0;
@@ -157,21 +161,47 @@ void Simulator::spaceBetweenObjects(double& space_between_vaccinationcenters, do
 
 
 
-void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
+
+void Simulator::generateBodyOfVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
 
     //specifications for body of VaccinationCenter, generated body for ini_file
     ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/2.0 <<
     "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
     plan_of_vaccinationcenter *(width_of_vaccinationcenter + space_between_vaccinationcenters) << ", " << 2.0 - width_of_vaccinationcenter/2.0
     << ", " << width_of_vaccinationcenter/2.0 + 0.1*width_of_vaccinationcenter << ")\ncolor = (1, 0, 0)\nobject = vaccinationcenter\n";
+}
+
+void Simulator::generateRoofOfVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
 
     //specifications for roof of VaccinationCenter, generated roof for ini_file
     ini_file << "\n[Figure" << nrFigures + 1 << "]\ntype = \"Cone\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/2.0 <<
     "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
     plan_of_vaccinationcenter*(width_of_vaccinationcenter +space_between_vaccinationcenters) << ", " << 2.0 - width_of_vaccinationcenter/2.0
-    << ", " << width_of_vaccinationcenter + 0.1*width_of_vaccinationcenter << ")\ncolor = (" <<
-    1 - ((double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/(double)centers[plan_of_vaccinationcenter]->getInhabitants())) <<
-    ", " << (double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/(double) centers[plan_of_vaccinationcenter]->getInhabitants()) << ", 0)\nn = 20\nheight = 10.0\nobject = vaccinationcenter\n";
+    << ", " << width_of_vaccinationcenter + 0.1*width_of_vaccinationcenter << ")\ncolor = (" << 1 - ((double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()
+    /(double)centers[plan_of_vaccinationcenter]->getInhabitants())) << ", " << (double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/
+    (double) centers[plan_of_vaccinationcenter]->getInhabitants()) << ", 0)\nn = 20\nheight = 10.0\nobject = vaccinationcenter\n";
+}
+
+void Simulator::generateBodyOfHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
+
+    //specifications for body of Hub, generated body for ini_file
+    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub/2.0 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 << ", "
+    << width_of_hub/2.0 + 0.1*width_of_hub << ")\ncolor = (0, 1, 0)\nobject = hub\n";
+}
+
+void Simulator::generateBodyCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
+
+    //specifications for body of the car, generated body for ini_file
+    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/2 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 <<
+    ", " << width_of_car/2.0 + width_of_wheel << ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " << *center_idx_iterator << "\n"; //+ 0.1*wheel_width
+}
+
+
+
+
+void Simulator::generateVaccinBoxesInVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
 
     if (vaccin_boxes_in_center >= 1) {
         /*  ___________________ (boxes locations) 1 vaccine_box in the vaccinationcenter
@@ -245,14 +275,7 @@ void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationc
     }
 }
 
-
-
-void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
-
-    //specifications for body of Hub, generated body for ini_file
-    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub/2.0 <<
-    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 << ", "
-    << width_of_hub/2.0 + 0.1*width_of_hub << ")\ncolor = (0, 1, 0)\nobject = hub\n";
+void Simulator::generateVaccinBoxesInHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
 
     if (vaccin_boxes_in_hub >= 1) {
         /*  ___________________ (boxes locations) 1 vaccine_box in the hub
@@ -321,25 +344,94 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
     }
 }
 
-void generateCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
-
-    //specifications for body of the car, generated body for ini_file
-    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/2 <<
-    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 <<
-    ", " << width_of_car/2.0 + width_of_wheel << ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " << *center_idx_iterator << "\n"; //+ 0.1*wheel_width
+void Simulator::generateVaccinBoxesInCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
 
     //specifications for the vaccin_boxes in the car (that it transports) for the ini_file
-    ini_file << "\n[Figure" << nrFigures+1 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 << ", " << width_of_car/6 + width_of_car/3 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/6 << ", " << width_of_hub/2.0 + width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/6 << ", " << width_of_hub/2.0 - width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/6 << ", " << width_of_hub/2.0 + width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/6 << ", " << width_of_hub/2.0 - width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+
+    //box 1
+    ini_file << "\n[Figure" << nrFigures+1 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 <<
+    ", " << width_of_car/6 + width_of_car/3 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nvisit = " << *center_idx_iterator << "\n";
+
+    //box 2
+    ini_file << "\n[Figure" << nrFigures+2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/6 << ", " <<
+    width_of_hub/2.0 + width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+
+    //box 3
+    ini_file << "\n[Figure" << nrFigures+3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/6 << ", " <<
+    width_of_hub/2.0 - width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+
+    //box 4
+    ini_file << "\n[Figure" << nrFigures+4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/6 << ", " <<
+    width_of_hub/2.0 + width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+
+    //box 5
+    ini_file << "\n[Figure" << nrFigures+5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/6 << ", " <<
+    width_of_hub/2.0 - width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+}
+
+void Simulator::generateWheelsOfCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
 
     //specifications for the wheels of the car for the ini_file
-    ini_file << "\n[Figure" << nrFigures+6 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/2 - width_of_wheel/2 << ", " << width_of_hub/2.0 + width_of_car/2 - width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+7 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/2 - width_of_wheel/2 << ", " << width_of_hub/2.0 - width_of_car/2 + width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+8 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/2 + width_of_wheel/2 << ", " << width_of_hub/2.0 + width_of_car/2 - width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
-    ini_file << "\n[Figure" << nrFigures+9 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/2 + width_of_wheel/2 << ", " << width_of_hub/2.0 - width_of_car/2 + width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+
+    //wheel 1
+    ini_file << "\n[Figure" << nrFigures+6 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/2 - width_of_wheel/2 <<
+    ", " << width_of_hub/2.0 + width_of_car/2 - width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+
+    //wheel 2
+    ini_file << "\n[Figure" << nrFigures+7 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/2 - width_of_wheel/2 <<
+    ", " << width_of_hub/2.0 - width_of_car/2 + width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+
+    //wheel 3
+    ini_file << "\n[Figure" << nrFigures+8 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/2 + width_of_wheel/2 <<
+    ", " << width_of_hub/2.0 + width_of_car/2 - width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+
+    //wheel 4
+    ini_file << "\n[Figure" << nrFigures+9 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/2 + width_of_wheel/2 <<
+    ", " << width_of_hub/2.0 - width_of_car/2 + width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+}
+
+
+
+void Simulator::generateVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
+
+    //generate body of the vaccinationCenter
+    generateBodyOfVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
+
+    //generate roof of the vaccinationCenter
+    generateRoofOfVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
+
+    //generate vaccin boxes in the vaccinationCenter
+    generateVaccinBoxesInVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
+}
+
+void Simulator::generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
+
+    //generate body of the Hub
+    generateBodyOfHub(ini_file, hub_idx, center_position_of_hub, nrFigures, id, width_of_hub, space_between_hubs, vaccin_boxes_in_hub);
+
+    //generate vaccin boxes in the Hub
+    generateVaccinBoxesInHub(ini_file, hub_idx, center_position_of_hub, nrFigures, id, width_of_hub, space_between_hubs, vaccin_boxes_in_hub);
+}
+
+void Simulator::generateCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
+
+    //generate body of the car
+    generateBodyCar(ini_file, nrFigures, id, width_of_car, width_of_hub, width_of_wheel, center_position_of_hub, center_idx_iterator);
+
+    //generate vaccinBoxes in the car (to transport)
+    generateVaccinBoxesInCar(ini_file, nrFigures, id, width_of_car, width_of_hub, width_of_wheel, center_position_of_hub, center_idx_iterator);
+
+    //generate wheels for the car
+    generateWheelsOfCar(ini_file, nrFigures, id, width_of_car, width_of_hub, width_of_wheel, center_position_of_hub, center_idx_iterator);
 }
 
 
@@ -365,7 +457,7 @@ void Simulator::generate_animation() const {
     for (int plan_of_vaccinationcenter = 0; plan_of_vaccinationcenter < (int) centers.size(); plan_of_vaccinationcenter++) {
 
         //define total number of vaccin_boxes in the centrum upon receiving from a hub
-        int vaccin_boxes_in_center = std::min(5,(plan.getPlanned()[plan_of_vaccinationcenter][daycount] + 999)/1000); //add total boxes to nrFigures
+        int vaccin_boxes_in_center = std::min(MAXIMUM_BOXES,(plan.getPlanned()[plan_of_vaccinationcenter][daycount] + BOXES_CENTER_OFFSET)/BOX_PER_VACCINS_CENTER); //add total boxes to nrFigures
 
         //generate a string representation of a vaccinationcenter for the ini_file
         generateVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
@@ -384,7 +476,7 @@ void Simulator::generate_animation() const {
         double center_position_of_hub = width_of_hub/2.0 + space_between_hubs + hub_idx*(width_of_hub + space_between_hubs);
 
         //total vaccin boxes present in hub
-        int vaccin_boxes_in_hub = std::min(5,(hubs[hub_idx]->getTotalvaccins() + 9999)/10000);
+        int vaccin_boxes_in_hub = std::min(MAXIMUM_BOXES,(hubs[hub_idx]->getTotalvaccins() + BOXES_HUB_OFFSET)/BOX_PER_VACCINS_HUB);
 
         //generate a string representation of a hub for the ini_file
         generateHub(ini_file, hub_idx, center_position_of_hub, nrFigures, id, width_of_hub, space_between_hubs, vaccin_boxes_in_hub);
