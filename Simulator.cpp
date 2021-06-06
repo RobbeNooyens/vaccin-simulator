@@ -11,6 +11,7 @@
 #include "DesignByContract.h"
 #include "json/JObject.h"
 
+#define HUB_SIZE 4
 
 Simulator::Simulator(const unsigned int cycles): initCheck(this), daycount(0), cycles(cycles) {//, planned_hubs(cycles) {
     ENSURE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
@@ -117,6 +118,7 @@ bool Simulator::properlyInitialized() const {
 }
 
 
+
 void Simulator::widthOfObjects(double& width_of_hub, double& width_of_vaccinationcenter) const {
 
     //define width of a hub in the animation
@@ -133,6 +135,7 @@ void Simulator::widthOfObjects(double& width_of_hub, double& width_of_vaccinatio
         width_of_vaccinationcenter = 4.0/(3.0*((double) centers.size()) + 1.0);
     }
 }
+
 
 
 void Simulator::spaceBetweenObjects(double& space_between_vaccinationcenters, double& space_between_hubs, double width_of_hub, double width_of_vaccinationcenter) const {
@@ -153,66 +156,25 @@ void Simulator::spaceBetweenObjects(double& space_between_vaccinationcenters, do
 }
 
 
-void generateVaccineBoxInCenter(std::ofstream& ini_file, int offset, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters) {
-        ini_file << "\n[Figure" + std::to_string(nrFigures + offset) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) +
-        "\nscale = " + std::to_string(width_of_vaccinationcenter / 6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = ("
-        + std::to_string(width_of_vaccinationcenter / 2.0 + space_between_vaccinationcenters + plan_of_vaccinationcenter *
-        (width_of_vaccinationcenter + space_between_vaccinationcenters) + width_of_vaccinationcenter / 6) + ", " +
-        std::to_string(2.0 - width_of_vaccinationcenter / 2.0 + width_of_vaccinationcenter / 6) + ", " +
-        std::to_string(width_of_vaccinationcenter / 6) + ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
-}
-
 
 void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_vaccinationcenter, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const {
 
     //specifications for body of VaccinationCenter, generated body for ini_file
-    ini_file << "\n[Figure" + std::to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) + "\nscale = " +
-    std::to_string(width_of_vaccinationcenter/2.0) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" +
-    std::to_string(width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters + plan_of_vaccinationcenter *
-    (width_of_vaccinationcenter + space_between_vaccinationcenters)) + ", " + std::to_string(2.0 - width_of_vaccinationcenter/2.0)
-    + ", " + std::to_string(width_of_vaccinationcenter/2.0 + 0.1*width_of_vaccinationcenter) + ")\ncolor = (1, 0, 0)\nobject = vaccinationcenter\n";
+    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/2.0 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+    plan_of_vaccinationcenter *(width_of_vaccinationcenter + space_between_vaccinationcenters) << ", " << 2.0 - width_of_vaccinationcenter/2.0
+    << ", " << width_of_vaccinationcenter/2.0 + 0.1*width_of_vaccinationcenter << ")\ncolor = (1, 0, 0)\nobject = vaccinationcenter\n";
 
     //specifications for roof of VaccinationCenter, generated roof for ini_file
-    ini_file << "\n[Figure" + std::to_string(nrFigures + 1) + "]\ntype = \"Cone\"\nid = " + std::to_string(id) + "\nscale = " +
-    std::to_string(width_of_vaccinationcenter/2.0) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" +
-    std::to_string(width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters + plan_of_vaccinationcenter*(width_of_vaccinationcenter +
-    space_between_vaccinationcenters)) + ", " + std::to_string(2.0 - width_of_vaccinationcenter/2.0) + ", " + std::to_string(width_of_vaccinationcenter +
-    0.1*width_of_vaccinationcenter) + ")\ncolor = (" + to_string(1 - ((double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/(double)
-    centers[plan_of_vaccinationcenter]->getInhabitants())) + ", " + to_string((double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/
-    (double) centers[plan_of_vaccinationcenter]->getInhabitants()) + ", 0)\nn = 20\nheight = 10.0\nobject = vaccinationcenter\n";
+    ini_file << "\n[Figure" << nrFigures + 1 << "]\ntype = \"Cone\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/2.0 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+    plan_of_vaccinationcenter*(width_of_vaccinationcenter +space_between_vaccinationcenters) << ", " << 2.0 - width_of_vaccinationcenter/2.0
+    << ", " << width_of_vaccinationcenter + 0.1*width_of_vaccinationcenter << ")\ncolor = (" <<
+    1 - ((double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/(double)centers[plan_of_vaccinationcenter]->getInhabitants())) <<
+    ", " << (double) centers[plan_of_vaccinationcenter]->getVaccinationsDone()/(double) centers[plan_of_vaccinationcenter]->getInhabitants()) << ", 0)\nn = 20\nheight = 10.0\nobject = vaccinationcenter\n";
 
-    //  1 vaccine_box in VaccinationCenter
     if (vaccin_boxes_in_center >= 1) {
-        generateVaccineBoxInCenter(ini_file, 2, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters);
-    }
-    //  2 vaccine_boxes in VaccinationCenter
-    if (vaccin_boxes_in_center >= 2) {
-        generateVaccineBoxInCenter(ini_file, 3, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters);
-    }
-    // 3 vaccine_boxes in VaccinationCenter
-    if (vaccin_boxes_in_center >= 3) {
-        generateVaccineBoxInCenter(ini_file, 4, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters);
-    }
-    // 4 vaccine_boxes in VaccinationCenter
-    if (vaccin_boxes_in_center >= 4) {
-        generateVaccineBoxInCenter(ini_file, 5, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters);
-    }
-    // 5 vaccine_boxes in VaccinationCenter
-    if (vaccin_boxes_in_center == 5) {
-        generateVaccineBoxInCenter(ini_file, 6, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters); //is dit hetzelfde als de vorige
-    }
-}
-
-
-void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
-
-    //specifications for body of Hub, generated body for ini_file
-    ini_file << "\n[Figure" + std::to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) + "\nscale = " +
-    std::to_string(width_of_hub/2.0) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + std::to_string(center_position_of_hub)
-    + ", " + std::to_string(width_of_hub/2.0) + ", " + std::to_string(width_of_hub/2.0 + 0.1*width_of_hub) + ")\ncolor = (0, 1, 0)\nobject = hub\n";
-
-    if (vaccin_boxes_in_hub >= 1) {
-        /*  ___________________ (boxes locations)
+        /*  ___________________ (boxes locations) 1 vaccine_box in the vaccinationcenter
          *  |        |        |
          *  |   box  |        |
          *  |________|        |
@@ -220,15 +182,13 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
          *  |                 |
          *  |_________________|
          */
-        ini_file << "\n[Figure" + std::to_string(nrFigures + 1) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) +
-                    "\nscale = " + std::to_string(width_of_hub / 6.0) +
-                    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" +
-                    std::to_string(center_position_of_hub + width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 2.0 + width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 6.0) + ")\ncolor = (0, 0, 1)\nobject = hub\n";
+        ini_file << "\n[Figure" << nrFigures + 2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/6
+        << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+        plan_of_vaccinationcenter*(width_of_vaccinationcenter + space_between_vaccinationcenters) + width_of_vaccinationcenter/6 << ", "
+        << 2.0 - width_of_vaccinationcenter/2.0 + width_of_vaccinationcenter/6 << ", " << width_of_vaccinationcenter/6 << ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
     }
-    if (vaccin_boxes_in_hub >= 2) {
-        /*  ___________________ (boxes locations)
+    if (vaccin_boxes_in_center >= 2) {
+        /*  ___________________ (boxes locations) 2 vaccine_boxes in the vaccinationcenter
          *  |        |        |
          *  |   box  |        |
          *  |________|        |
@@ -236,15 +196,13 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
          *  |   box  |        |
          *  |________|________|
          */
-        ini_file << "\n[Figure" + std::to_string(nrFigures + 2) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) +
-                    "\nscale = " + std::to_string(width_of_hub / 6.0) +
-                    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" +
-                    std::to_string(center_position_of_hub + width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 2.0 - width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 6.0) + ")\ncolor = (0, 0, 1)\nobject = hub\n";
+        ini_file << "\n[Figure" << nrFigures + 3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/6 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+        plan_of_vaccinationcenter*(width_of_vaccinationcenter + space_between_vaccinationcenters) + width_of_vaccinationcenter/6
+        << ", " << 2.0 - width_of_vaccinationcenter/2.0 - width_of_vaccinationcenter/6 << ", " << width_of_vaccinationcenter/6 << ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
     }
-    if (vaccin_boxes_in_hub >= 3) {
-        /*  ___________________ (boxes locations)
+    if (vaccin_boxes_in_center >= 3) {
+        /*  ___________________ (boxes locations) 3 vaccine_boxes in the vaccinationcenter
          *  |        |        |
          *  |   box  |        |
          *  |________|________|
@@ -252,15 +210,13 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
          *  |   box  |   box  |
          *  |________|________|
          */
-        ini_file << "\n[Figure" + std::to_string(nrFigures + 3) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) +
-                    "\nscale = " + std::to_string(width_of_hub / 6.0) +
-                    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" +
-                    std::to_string(center_position_of_hub - width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 2.0 + width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 6.0) + ")\ncolor = (0, 0, 1)\nobject = hub\n";
+        ini_file << "\n[Figure" << nrFigures + 4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/6 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+        plan_of_vaccinationcenter*(width_of_vaccinationcenter + space_between_vaccinationcenters) - width_of_vaccinationcenter/6
+        << ", " << 2.0 - width_of_vaccinationcenter/2.0 + width_of_vaccinationcenter/6 << ", " << width_of_vaccinationcenter/6 << ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
     }
-    if (vaccin_boxes_in_hub >= 4) {
-        /*  ___________________ (boxes locations)
+    if (vaccin_boxes_in_center >= 4) {
+        /*  ___________________ (boxes locations) 4 vaccine_boxes in the vaccinationcenter
          *  |        |        |
          *  |   box  |   box  |
          *  |________|________|
@@ -268,15 +224,13 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
          *  |   box  |   box  |
          *  |________|________|
          */
-        ini_file << "\n[Figure" + std::to_string(nrFigures + 4) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) +
-                    "\nscale = " + std::to_string(width_of_hub / 6.0) +
-                    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" +
-                    std::to_string(center_position_of_hub - width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 2.0 - width_of_hub / 6.0) + ", " +
-                    std::to_string(width_of_hub / 6.0) + ")\ncolor = (0, 0, 1)\nobject = hub\n";
+        ini_file << "\n[Figure" << nrFigures + 5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/6 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+        plan_of_vaccinationcenter*(width_of_vaccinationcenter + space_between_vaccinationcenters) - width_of_vaccinationcenter/6
+        << ", " << 2.0 - width_of_vaccinationcenter/2.0 - width_of_vaccinationcenter/6 << ", " << width_of_vaccinationcenter/6 << ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
     }
-    if (vaccin_boxes_in_hub == 5) {
-        /*  ____________________ (boxes locations)
+    if (vaccin_boxes_in_center == 5) {
+        /*  ____________________ (boxes locations) 5 vaccine_boxes in the vaccinationcenter
          *  |     ________     |
          *  | box |      | box |
          *  |_____|  box |_____|
@@ -284,13 +238,89 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
          *  |   box  |   box   |
          *  |________|_________|
          */
-        ini_file << "\n[Figure" + std::to_string(nrFigures + 5) + "]\ntype = \"Cube\"\nid = " + std::to_string(id) +
-                    "\nscale = " + std::to_string(width_of_hub / 6.0) +
-                    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + std::to_string(center_position_of_hub) +
-                    ", " + std::to_string(width_of_hub / 2.0) + ", " +
-                    std::to_string(width_of_hub / 3 + width_of_hub / 6) + ")\ncolor = (0, 0, 1)\nobject = hub\n";
+        ini_file << "\n[Figure" << nrFigures + 6 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_vaccinationcenter/6 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << width_of_vaccinationcenter/2.0 + space_between_vaccinationcenters +
+        plan_of_vaccinationcenter*(width_of_vaccinationcenter + space_between_vaccinationcenters) << ", " << 2.0 - width_of_vaccinationcenter/2.0 <<
+        ", " << width_of_vaccinationcenter/3 + width_of_vaccinationcenter/6 << ")\ncolor = (0, 0, 1)\nobject = vaccinationcenter_box\n";
     }
 }
+
+
+
+void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const {
+
+    //specifications for body of Hub, generated body for ini_file
+    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub/2.0 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 << ", "
+    << width_of_hub/2.0 + 0.1*width_of_hub << ")\ncolor = (0, 1, 0)\nobject = hub\n";
+
+    if (vaccin_boxes_in_hub >= 1) {
+        /*  ___________________ (boxes locations) 1 vaccine_box in the hub
+         *  |        |        |
+         *  |   box  |        |
+         *  |________|        |
+         *  |                 |
+         *  |                 |
+         *  |_________________|
+         */
+        ini_file << "\n[Figure" << nrFigures + 1 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub / 6.0 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_hub / 6.0 << ", " <<
+        width_of_hub / 2.0 + width_of_hub / 6.0 << ", " << width_of_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
+    }
+    if (vaccin_boxes_in_hub >= 2) {
+        /*  ___________________ (boxes locations) 2 vaccine_boxes in the hub
+         *  |        |        |
+         *  |   box  |        |
+         *  |________|        |
+         *  |        |        |
+         *  |   box  |        |
+         *  |________|________|
+         */
+        ini_file << "\n[Figure" << nrFigures + 2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub / 6.0 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_hub / 6.0 << ", " <<
+        width_of_hub / 2.0 - width_of_hub / 6.0 << ", " << width_of_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
+    }
+    if (vaccin_boxes_in_hub >= 3) {
+        /*  ___________________ (boxes locations) 3 vaccine_boxes in the hub
+         *  |        |        |
+         *  |   box  |        |
+         *  |________|________|
+         *  |        |        |
+         *  |   box  |   box  |
+         *  |________|________|
+         */
+        ini_file << "\n[Figure" << nrFigures + 3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub / 6.0 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_hub / 6.0 << ", " <<
+        width_of_hub / 2.0 + width_of_hub / 6.0 << ", " << width_of_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
+    }
+    if (vaccin_boxes_in_hub >= 4) {
+        /*  ___________________ (boxes locations) 4 vaccine_boxes in the hub
+         *  |        |        |
+         *  |   box  |   box  |
+         *  |________|________|
+         *  |        |        |
+         *  |   box  |   box  |
+         *  |________|________|
+         */
+        ini_file << "\n[Figure" << nrFigures + 4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub / 6.0 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_hub / 6.0 << ", " <<
+        width_of_hub / 2.0 - width_of_hub / 6.0 << ", " << width_of_hub / 6.0 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
+    }
+    if (vaccin_boxes_in_hub == 5) {
+        /*  ____________________ (boxes locations) 5 vaccine_boxes in the hub
+         *  |     ________     |
+         *  | box |      | box |
+         *  |_____|  box |_____|
+         *  |     |______|     |
+         *  |   box  |   box   |
+         *  |________|_________|
+         */
+        ini_file << "\n[Figure" << nrFigures + 5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_hub / 6.0 <<
+        "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub / 2.0 << ", " <<
+        width_of_hub / 3 + width_of_hub / 6 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
+    }
+}
+
 
 void Simulator::generate_animation() const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
@@ -330,9 +360,14 @@ void Simulator::generate_animation() const {
 
         //total vaccin boxes present in hub
         int vaccin_boxes_in_hub = std::min(5,(hubs[hub_idx]->getTotalvaccins() + 9999)/10000);
-        
+
+        //generate a string representation of a hub for the ini_file
+        generateHub(ini_file, hub_idx, center_position_of_hub, nrFigures, id, width_of_hub, space_between_hubs, vaccin_boxes_in_hub);
+
+        // 1 is the number of figures that makes up a hub and vaccin_boxes_in_hub are the number of figures representing the vaccin boxes in the hub
         nrFigures += 1 + vaccin_boxes_in_hub;
         id++;
+
         std::set<unsigned int> centers_connected = planned_hubs[daycount][hubs[hub_idx]];
         for (auto it = centers_connected.begin(); it != centers_connected.end(); it++) {
             double car_width = std::min(width_hub/2.0, width_center/2.0);

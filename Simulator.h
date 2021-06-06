@@ -66,7 +66,7 @@ public:
 
     void spaceBetweenObjects(double& space_between_centers, double& space_between_hubs, double width_of_hub, double width_of_center) const;
     void generateVaccinationCenter(std::ofstream& ini_file, int plan_of_center, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const;
-    void generateHub(std::ofstream& ini_file, int plan_of_center, int nrFigures, int id, double width_of_vaccinationcenter, double space_between_vaccinationcenters, int vaccin_boxes_in_center) const
+    void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of_hub, int nrFigures, int id, double width_of_hub, double space_between_hubs, int vaccin_boxes_in_hub) const
     void widthOfObjects(double& width_of_hub, double& width_of_center) const;
 
 private:
