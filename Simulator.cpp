@@ -308,7 +308,7 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
     }
     if (vaccin_boxes_in_hub == 5) {
         /*  ____________________ (boxes locations) 5 vaccine_boxes in the hub
-         *  |     ________     |
+         *  |     ___|____     |
          *  | box |      | box |
          *  |_____|  box |_____|
          *  |     |______|     |
@@ -319,6 +319,27 @@ void generateHub(std::ofstream& ini_file, int hub_idx, double center_position_of
         "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub / 2.0 << ", " <<
         width_of_hub / 3 + width_of_hub / 6 << ")\ncolor = (0, 0, 1)\nobject = hub\n";
     }
+}
+
+void generateCar(std::ofstream& ini_file, int nrFigures, int id, double width_of_car, double width_of_hub, double width_of_wheel, double center_position_of_hub, std::set<unsigned int>::iterator center_idx_iterator) const {
+
+    //specifications for body of the car, generated body for ini_file
+    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/2 <<
+    "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 <<
+    ", " << width_of_car/2.0 + width_of_wheel << ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " << *center_idx_iterator << "\n"; //+ 0.1*wheel_width
+
+    //specifications for the vaccin_boxes in the car (that it transports) for the ini_file
+    ini_file << "\n[Figure" << nrFigures+1 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub << ", " << width_of_hub/2.0 << ", " << width_of_car/6 + width_of_car/3 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+2 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/6 << ", " << width_of_hub/2.0 + width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+3 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/6 << ", " << width_of_hub/2.0 - width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+4 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/6 << ", " << width_of_hub/2.0 + width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+5 << "]\ntype = \"Cube\"\nid = " << id << "\nscale = " << width_of_car/6 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/6 << ", " << width_of_hub/2.0 - width_of_car/6 << ", " << width_of_car/6 + width_of_wheel << ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " << *center_idx_iterator << "\n";
+
+    //specifications for the wheels of the car for the ini_file
+    ini_file << "\n[Figure" << nrFigures+6 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/2 - width_of_wheel/2 << ", " << width_of_hub/2.0 + width_of_car/2 - width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+7 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub + width_of_car/2 - width_of_wheel/2 << ", " << width_of_hub/2.0 - width_of_car/2 + width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+8 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/2 + width_of_wheel/2 << ", " << width_of_hub/2.0 + width_of_car/2 - width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
+    ini_file << "\n[Figure" << nrFigures+9 << "]\ntype = \"Sphere\"\nid = " << id << "\nscale = " << width_of_wheel/2 << "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" << center_position_of_hub - width_of_car/2 + width_of_wheel/2 << ", " << width_of_hub/2.0 - width_of_car/2 + width_of_wheel << ", " << width_of_wheel/2 << ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " << *center_idx_iterator << "\n";
 }
 
 
@@ -340,6 +361,7 @@ void Simulator::generate_animation() const {
     //define space between consecutive hubs and consecutive centers
     spaceBetweenObjects(space_between_vaccinationcenters, space_between_hubs, width_of_hub, width_of_vaccinationcenter);
 
+    //generate VaccinationCenters for ini_file
     for (int plan_of_vaccinationcenter = 0; plan_of_vaccinationcenter < (int) centers.size(); plan_of_vaccinationcenter++) {
 
         //define total number of vaccin_boxes in the centrum upon receiving from a hub
@@ -352,7 +374,10 @@ void Simulator::generate_animation() const {
         nrFigures += 2 + vaccin_boxes_in_center;
         id++;
     }
+
     id = 0;
+
+    //generate hubs for ini_file
     for (int hub_idx = 0; hub_idx < ((int) hubs.size()); hub_idx++) {
 
         //center x-coordinate position of the hub in 3d space
@@ -368,26 +393,29 @@ void Simulator::generate_animation() const {
         nrFigures += 1 + vaccin_boxes_in_hub;
         id++;
 
+        //indices of VaccinationCenter objects in "centers" that are connected to the current hub
         std::set<unsigned int> centers_connected = planned_hubs[daycount][hubs[hub_idx]];
-        for (auto it = centers_connected.begin(); it != centers_connected.end(); it++) {
-            double car_width = std::min(width_hub/2.0, width_center/2.0);
-            double wheel_width = std::min(width_hub/2.0, width_center/2.0)/4;
-            myfile << "\n[Figure" + to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position) + ", " + to_string(width_hub/2.0) + ", " + to_string(car_width/2.0 + wheel_width) + ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " + to_string(*it) + "\n"; //+ 0.1*wheel_width
-            myfile << "\n[Figure" + to_string(nrFigures+1) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position) + ", " + to_string(width_hub/2.0) + ", " + to_string(car_width/6 + car_width/3 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+2) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/6) + ", " + to_string(width_hub/2.0 + car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+3) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/6) + ", " + to_string(width_hub/2.0 - car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+4) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/6) + ", " + to_string(width_hub/2.0 + car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+5) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/6) + ", " + to_string(width_hub/2.0 - car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
 
-            myfile << "\n[Figure" + to_string(nrFigures+6) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/2 - wheel_width/2) + ", " + to_string(width_hub/2.0 + car_width/2 - wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+7) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/2 - wheel_width/2) + ", " + to_string(width_hub/2.0 - car_width/2 + wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+8) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/2 + wheel_width/2) + ", " + to_string(width_hub/2.0 + car_width/2 - wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+9) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/2 + wheel_width/2) + ", " + to_string(width_hub/2.0 - car_width/2 + wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
+        //generate cars that go from a hub to a VaccinationCenter
+        for (std::set<unsigned int>::iterator center_idx_iterator = centers_connected.begin(); center_idx_iterator != centers_connected.end(); center_idx_iterator++) {
+
+            double width_of_car = std::min(width_of_hub/2.0, width_of_vaccinationcenter/2.0);
+            double width_of_wheel = std::min(width_of_hub/2.0, width_of_vaccinationcenter/2.0)/4;
+
+            //generate a string representation of a car for the ini_file
+            generateCar(ini_file, nrFigures, id, width_of_car, width_of_hub, width_of_wheel, center_position_of_hub, center_idx_iterator);
+
             nrFigures += 10;
             id++;
         }
     }
-    myfile << "\n[Figure" + to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = 1\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (1, 1, -1)\ncolor = (0, 0, 1)\nobject = ground\n";
-    myfile << "[General]\ntype = \"Animation\"\nsize = 1024\neye = (20, 15, 50)\nbackgroundcolor = (0.0, 0.0, 0.0)\nnrFigures = " + to_string(nrFigures) + "\nnrVaccinationCenters = " + to_string((int) centers.size()) + "\n";
-    myfile.close();
+
+    //generate the ground for the animation (a cube)
+    ini_file << "\n[Figure" << nrFigures << "]\ntype = \"Cube\"\nid = " << id << "\nscale = 1\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (1, 1, -1)\ncolor = (0, 0, 1)\nobject = ground\n";
+
+    //generate "GENERAL" section of the ini_file for general specifications
+    ini_file << "[General]\ntype = \"Animation\"\nsize = 1024\neye = (20, 15, 50)\nbackgroundcolor = (0.0, 0.0, 0.0)\nnrFigures = " << nrFigures << "\nnrVaccinationCenters = " << (int) centers.size() << "\n";
+
+    //close the file
+    ini_file.close();
 }

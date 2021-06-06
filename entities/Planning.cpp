@@ -82,14 +82,14 @@ void generatePlanning(std::vector<Hub*>& hubs, std::vector<VaccinationCenter*>& 
                 planned[center_idx][day].second[vaccins[vaccine_idx]] += tt;
                 planned[center_idx][day].first += tt;
                 TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
-                //planned_hubs[day][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                planned_hubs[day][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                 if (TotalInhabitantsInCenter == 0) {
                     break;
                 }
                 if ((day+vaccins[vaccine_idx]->getRenewing() < cycles) && vaccins[vaccine_idx]->getRenewing()) {
                     planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].second[vaccins[vaccine_idx]] += tt;
                     planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].first += tt;
-                    //planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                    planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                     TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
                 }
                 break;
@@ -113,7 +113,7 @@ void generatePlanning(std::vector<Hub*>& hubs, std::vector<VaccinationCenter*>& 
                     }
                     planned[center_idx][day].second[vaccins[vaccine_idx]] += tt;
                     planned[center_idx][day].first += tt;
-                    //planned_hubs[day//][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                    planned_hubs[day][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                     TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
                     if (TotalInhabitantsInCenter == 0) {
                         break;
@@ -121,7 +121,7 @@ void generatePlanning(std::vector<Hub*>& hubs, std::vector<VaccinationCenter*>& 
                     if ((day+vaccins[vaccine_idx]->getRenewing() < cycles) && vaccins[vaccine_idx]->getRenewing()) {
                         planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].second[vaccins[vaccine_idx]] += tt;
                         planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].first += tt;
-                        //planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                        planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                         TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
                     }                
                 }

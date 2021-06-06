@@ -12,6 +12,7 @@
 #include "io/XMLParser.h"
 #include "entities/Planning.h"
 #include <string>
+#include <set>
 
 typedef std::vector<Hub> Hubs;
 typedef std::vector<VaccinationCenter> Centers;
@@ -93,6 +94,9 @@ private:
 
     // plan for total days for transporting vaccins between hubs en centra
     Planning plan;
+
+    //shows on each day, the centers that the hub is connected to on that day
+    std::vector<std::map<Hub*, std::set<unsigned int>>> planned_hubs;
 };
 
 
