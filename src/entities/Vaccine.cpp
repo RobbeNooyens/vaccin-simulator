@@ -47,8 +47,8 @@ void Vaccine::fromJSON(JObject *json) {
     ENSURE(getDelivery() == json->getValue(VACCINE_DELIVERY)->asUnsignedint(), "Vaccine delivery didn't load properly!");
     ENSURE(getInterval() == json->getValue(VACCINE_INTERVAL)->asUnsignedint(), "Vaccine interval didn't load properly!");
     ENSURE(getTransportation() == json->getValue(VACCINE_TRANSPORTATION)->asUnsignedint(), "Vaccine transportation didn't load properly!");
-    ENSURE(getRenewing() == json->getValue(VACCINE_RENEWING)->asUnsignedint(), "Vaccine renewing didn't load properly!");
-    ENSURE(getTemperature() == json->getValue(VACCINE_TEMPERATURE)->asDouble(), "Vaccine temperature didn't load properly!");
+    ENSURE(getRenewing() == (json->contains(VACCINE_RENEWING) ? json->getValue(VACCINE_RENEWING)->asUnsignedint() : 0), "Vaccine renewing didn't load properly!");
+    ENSURE(getTemperature() == (json->contains(VACCINE_TEMPERATURE) ? json->getValue(VACCINE_TEMPERATURE)->asDouble() : 0), "Vaccine temperature didn't load properly!");
 }
 
 // Getters

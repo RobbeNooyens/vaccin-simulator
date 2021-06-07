@@ -106,7 +106,8 @@ CMakeFiles/SingleTests.dir/src/entities/Simulator.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
  /usr/include/c++/7/bits/fstream.tcc /usr/include/c++/7/set \
  /usr/include/c++/7/bits/stl_tree.h /usr/include/c++/7/bits/stl_set.h \
- /usr/include/c++/7/bits/stl_multiset.h \
+ /usr/include/c++/7/bits/stl_multiset.h /usr/include/c++/7/map \
+ /usr/include/c++/7/bits/stl_map.h /usr/include/c++/7/bits/stl_multimap.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Simulator.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../parsing/XMLParser.h \
  /usr/include/c++/7/vector /usr/include/c++/7/bits/stl_construct.h \
@@ -114,12 +115,12 @@ CMakeFiles/SingleTests.dir/src/entities/Simulator.cpp.o: \
  /usr/include/c++/7/bits/stl_vector.h \
  /usr/include/c++/7/bits/stl_bvector.h /usr/include/c++/7/bits/vector.tcc \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/VaccinationCenter.h \
- /usr/include/c++/7/map /usr/include/c++/7/bits/stl_map.h \
- /usr/include/c++/7/bits/stl_multimap.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Vaccine.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Hub.h \
  /usr/include/c++/7/iostream \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/SimulationData.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../parsing/IniExporter.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../parsing/../entities/Planning.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../utilities/utils.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/sstream \
@@ -130,4 +131,20 @@ CMakeFiles/SingleTests.dir/src/entities/Simulator.cpp.o: \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../json/JValue.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../json/JArray.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../json/JKeys.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Planning.h
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Planning.h \
+ /usr/include/c++/7/algorithm /usr/include/c++/7/utility \
+ /usr/include/c++/7/bits/stl_relops.h /usr/include/c++/7/bits/stl_algo.h \
+ /usr/include/c++/7/cstdlib /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
+ /usr/include/x86_64-linux-gnu/bits/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/c++/7/bits/std_abs.h /usr/include/c++/7/bits/algorithmfwd.h \
+ /usr/include/c++/7/bits/stl_heap.h /usr/include/c++/7/bits/stl_tempbuf.h

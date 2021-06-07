@@ -162,20 +162,36 @@ TEST_F(SimulationOutputTests, IniFileGeneration) {
     // Test Summary
     simulator.reset();
 
-    std::ofstream iniFile;
-    iniFile.open("tests/presentation/out/ini_file_1.ini");
-    ASSERT_TRUE(iniFile.is_open());
-    simulator.exportSimulationIniFile(iniFile);
-    iniFile.close();
-    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_1.ini", "tests/presentation/expected/ini_file_1.ini"));
+    std::string fileName = "tests/presentation/out/ini_file_1_";
+    simulator.exportSimulationIniFile(fileName, 3);
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_1_1.ini", "tests/presentation/expected/ini_file_1_1.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_1_2.ini", "tests/presentation/expected/ini_file_1_2.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_1_3.ini", "tests/presentation/expected/ini_file_1_3.ini"));
 
-    simulator.run(80);
+    simulator.run(50);
 
-    iniFile.open("tests/presentation/out/ini_file_2.ini");
-    ASSERT_TRUE(iniFile.is_open());
-    simulator.exportSimulationIniFile(iniFile);
-    iniFile.close();
-    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2.ini", "tests/presentation/expected/ini_file_2.ini"));
+    fileName = "tests/presentation/out/ini_file_2_";
+    simulator.exportSimulationIniFile(fileName, 5);
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_1.ini", "tests/presentation/expected/ini_file_2_1.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_2.ini", "tests/presentation/expected/ini_file_2_2.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_3.ini", "tests/presentation/expected/ini_file_2_3.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_4.ini", "tests/presentation/expected/ini_file_2_4.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_5.ini", "tests/presentation/expected/ini_file_2_5.ini"));
+
+    simulator.run(50);
+
+    fileName = "tests/presentation/out/ini_file_3_";
+    simulator.exportSimulationIniFile(fileName, 10);
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_1.ini", "tests/presentation/expected/ini_file_3_1.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_2.ini", "tests/presentation/expected/ini_file_3_2.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_3.ini", "tests/presentation/expected/ini_file_3_3.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_4.ini", "tests/presentation/expected/ini_file_3_4.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_5.ini", "tests/presentation/expected/ini_file_3_5.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_6.ini", "tests/presentation/expected/ini_file_3_6.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_7.ini", "tests/presentation/expected/ini_file_3_7.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_8.ini", "tests/presentation/expected/ini_file_3_8.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_9.ini", "tests/presentation/expected/ini_file_3_9.ini"));
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_3_10.ini", "tests/presentation/expected/ini_file_3_10.ini"));
 }
 
 TEST_F(SimulationOutputTests, Statistics) {
@@ -302,15 +318,6 @@ TEST_F(SimulationOutputTests, HappyDay) {
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress_happyday_1.txt",
                                       "tests/presentation/expected/graphical_progress_happyday_1.txt"));
 
-    // Test Ini
-    std::ofstream iniFile;
-    iniFile.open("tests/presentation/out/ini_file_happyday_1.ini");
-    ASSERT_TRUE(iniFile.is_open());
-    happydaySimulator.exportSimulationIniFile(iniFile);
-    iniFile.close();
-    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_happyday_1.ini",
-                                      "tests/presentation/expected/ini_file_happyday_1.ini"));
-
 
     // Test Statistics
     statisticsFile.close();
@@ -339,14 +346,6 @@ TEST_F(SimulationOutputTests, HappyDay) {
     progressFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress_happyday_2.txt",
                                       "tests/presentation/expected/graphical_progress_happyday_2.txt"));
-
-    // Test Ini
-    iniFile.open("tests/presentation/out/ini_file_happyday_2.ini");
-    ASSERT_TRUE(iniFile.is_open());
-    happydaySimulator.exportSimulationIniFile(iniFile);
-    iniFile.close();
-    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_happyday_2.ini",
-                                      "tests/presentation/expected/ini_file_happyday_2.ini"));
 
     // Test Statistics
     statisticsFile.close();

@@ -7,6 +7,7 @@
 
 #include <fstream>
 #include <set>
+#include <map>
 #include "Simulator.h"
 #include "../utilities/utils.h"
 #include "../../DesignByContract.h"
@@ -15,9 +16,14 @@
 #include "../json/JArray.h"
 #include "../json/JKeys.h"
 #include "Planning.h"
+#include <algorithm>
 
 #define C_ITERATE(type, iteratable, name) for(type::const_iterator name = iteratable.begin(); name != iteratable.end(); name++)
 #define ITERATE(type, iteratable, name) for(type::iterator name = iteratable.begin(); name != iteratable.end(); name++)
+#define COMMA ,
+
+#define IMAGE_SIZE 1024
+#define SPACING 3
 
 // Constructors
 
@@ -108,6 +114,8 @@ void Simulator::run(const unsigned int cycles) {
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int lastDay = daycount + cycles, oldDaycount = daycount;
     while(daycount < lastDay){
+        // Clear transportations
+        statistics.getTransportations().clear();
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
         ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, statistics);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
@@ -120,32 +128,44 @@ void Simulator::run(const unsigned int cycles) {
     ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
 }
 
+bool compareVaccinationCenters(Vaccine* firstVaccine, Vaccine* secondVaccine)  {
+    return (firstVaccine->getTemperature() < secondVaccine->getTemperature());
+}
+
 void Simulator::runEfficient(unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int oldDaycount = daycount;
-    Planning planning = Planning();
-    Vaccines vaccines;
-    ITERATE(std::vector<Hub*>, hubs, h) {
-        Vaccines hubVaccines = (*h)->getVaccines();
-        ITERATE(Vaccines, hubVaccines, vaccine) {
-            vaccines.push_back(*vaccine);
-        }
-    }
-    planning.generatePlanning(hubs, centers, vaccines, cycles);
 
-    unsigned int lastDay = daycount + cycles;
-    while(daycount < lastDay) {
-        // Deliver vaccines to the hub if expected and transport vaccines to the centers
-        ITERATE(std::vector<Hub*>, hubs, hub) {
-            (*hub)->simulateDelivery(daycount, statistics);
-            (*hub)->distributeEfficient(daycount, planning);
-        }
-        // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
-        daycount++;
+    ITERATE(VaccinationCenters, centers, center) {
+        VaccinationCenter* c = *center;
+        Vaccines vaccinesStripped;
+        std::map<Vaccine*, unsigned int> vaccines = c->getVaccinesMap();
     }
+
+//    unsigned int oldDaycount = daycount;
+//    Vaccines vaccines;
+//    ITERATE(std::vector<Hub*>, hubs, h) {
+//        Vaccines hubVaccines = (*h)->getVaccines();
+//        ITERATE(Vaccines, hubVaccines, vaccine) {
+//            vaccines.push_back(*vaccine);
+//        }
+//    }
+//    planning.reset();
+//    planning.generatePlanning(hubs, centers, vaccines, cycles);
+//
+//    unsigned int lastDay = daycount + cycles;
+//    while(daycount < lastDay) {
+//        // Deliver vaccines to the hub if expected and transport vaccines to the centers
+//        ITERATE(std::vector<Hub*>, hubs, hub) {
+//            (*hub)->simulateDelivery(daycount, statistics);
+//            (*hub)->distributeEfficient(daycount, planning);
+//        }
+//        // Vaccinate inhabitants (should happen here to prevent double vaccinations)
+//        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
+//        daycount++;
+//    }
 
     ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
     ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
@@ -225,69 +245,94 @@ unsigned int Simulator::getDayCount() {
     return daycount;
 }
 
-void Simulator::exportSimulationIniFile(std::ostream &out) const {
+void Simulator::exportSimulationIniFile(std::string &output, unsigned int frames) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    REQUIRE(frames >= 1, "Frames should be higher than 1!");
+    std::ofstream file;
+    std::map<Hub*, std::vector<VaccinationCenter*> > transportations = statistics.getTransportations();
 
-    IniExporter iniExporter;
-
-    //variabelen
-    double width_of_hub;
-    double width_of_vaccinationcenter;
-    double space_between_hubs;
-    double space_between_vaccinationcenters;
-    long long id = 0; //id per figure in ini file
-    int nrFigures = 0; //number of figures present in ini file
-    std::ofstream ini_file("frame" + std::to_string(daycount) + ".ini");
-
-    //define width of centers and hubs
-    widthOfObjects(width_of_hub, width_of_vaccinationcenter);
-
-    //define space between consecutive hubs and consecutive centers
-    spaceBetweenObjects(space_between_vaccinationcenters, space_between_hubs, width_of_hub, width_of_vaccinationcenter);
-
-    for (int plan_of_vaccinationcenter = 0; plan_of_vaccinationcenter < (int) centers.size(); plan_of_vaccinationcenter++) {
-
-        //define total number of vaccin_boxes in the centrum upon receiving from a hub
-        int vaccin_boxes_in_center = std::min(5,(plan.getPlanned()[plan_of_vaccinationcenter][daycount] + 999)/1000); //add total boxes to nrFigures
-
-        //generate a string representation of a vaccinationcenter for the iniFile
-        generateVaccinationCenter(ini_file, plan_of_vaccinationcenter, nrFigures, id, width_of_vaccinationcenter, space_between_vaccinationcenters, vaccin_boxes_in_center);
-
-        // 2 is the number of figures that makes up a vaccinationCenter and vaccin_boxes_in_center are the number of figures representing the vaccin boxes in the center
-        nrFigures += 2 + vaccin_boxes_in_center;
-        id++;
+    unsigned int transportationsCount = 0;
+    ITERATE(std::map<Hub* COMMA std::vector<VaccinationCenter*> >, transportations, transport) {
+        transportationsCount += transport->second.size();
     }
-    id = 0;
-    for (int hub_idx = 0; hub_idx < ((int) hubs.size()); hub_idx++) {
 
-        //center x-coordinate position of the hub in 3d space
-        double center_position_of_hub = width_of_hub/2.0 + space_between_hubs + hub_idx*(width_of_hub + space_between_hubs);
+    for(int frame = 1; frame <= (int) frames; frame++) {
+        std::stringstream fileName;
+        fileName << output << frame << ".ini";
+        file.open(fileName.str().c_str());
 
-        //total vaccin boxes present in hub
-        int vaccin_boxes_in_hub = std::min(5,(hubs[hub_idx]->getTotalvaccins() + 9999)/10000);
+        file << "[General]" << std::endl;
+        file << "size = " << IMAGE_SIZE << std::endl;
+        file << "backgroundcolor = " << "(0,0,0)" << std::endl;
+        file << "type = \"" << "ZBuffering" << "\"" << std::endl;
+        file << "eye = " << "(50, 50, 50)" << std::endl;
+        file << "nrFigures = " << centers.size() + hubs.size() + transportationsCount << std::endl;
+        file << std::endl;
 
-        nrFigures += 1 + vaccin_boxes_in_hub;
-        id++;
-        std::set<unsigned int> centers_connected = planned_hubs[daycount][hubs[hub_idx]];
-        for (auto it = centers_connected.begin(); it != centers_connected.end(); it++) {
-            double car_width = std::min(width_hub/2.0, width_center/2.0);
-            double wheel_width = std::min(width_hub/2.0, width_center/2.0)/4;
-            myfile << "\n[Figure" + to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position) + ", " + to_string(width_hub/2.0) + ", " + to_string(car_width/2.0 + wheel_width) + ")\ncolor = (1, 0.0784, 0.5764)\nobject = car\nvisit = " + to_string(*it) + "\n"; //+ 0.1*wheel_width
-            myfile << "\n[Figure" + to_string(nrFigures+1) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position) + ", " + to_string(width_hub/2.0) + ", " + to_string(car_width/6 + car_width/3 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+2) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/6) + ", " + to_string(width_hub/2.0 + car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+3) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/6) + ", " + to_string(width_hub/2.0 - car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+4) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/6) + ", " + to_string(width_hub/2.0 + car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+5) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = " + to_string(car_width/6) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/6) + ", " + to_string(width_hub/2.0 - car_width/6) + ", " + to_string(car_width/6 + wheel_width) + ")\ncolor = (1, 0.5, 0.2)\nobject = car_box\nvisit = " + to_string(*it) + "\n";
-
-            myfile << "\n[Figure" + to_string(nrFigures+6) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/2 - wheel_width/2) + ", " + to_string(width_hub/2.0 + car_width/2 - wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+7) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position + car_width/2 - wheel_width/2) + ", " + to_string(width_hub/2.0 - car_width/2 + wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+8) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/2 + wheel_width/2) + ", " + to_string(width_hub/2.0 + car_width/2 - wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            myfile << "\n[Figure" + to_string(nrFigures+9) + "]\ntype = \"Sphere\"\nid = " + to_string(id) + "\nscale = " + to_string(wheel_width/2) + "\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (" + to_string(center_position - car_width/2 + wheel_width/2) + ", " + to_string(width_hub/2.0 - car_width/2 + wheel_width) + ", " + to_string(wheel_width/2) + ")\ncolor = (1, 1, 1)\nn = 5\nobject = car\nvisit = " + to_string(*it) + "\n";
-            nrFigures += 10;
-            id++;
+        int index = 0;
+        unsigned int totalInhabitants = 0;
+        for(int i = 0; i < (int) centers.size(); i++, index++) {
+            file << "[Figure" << index << "]" << std::endl;
+            file << "type = \"" << "Cube" << "\"" << std::endl;
+            file << "scale = 1" << std::endl;
+            file << "rotateX = 0" << std::endl;
+            file << "rotateY = 0" << std::endl;
+            file << "rotateZ = 0" << std::endl;
+            file << "center = (" << 0 << ", " << i * SPACING << ", " << 0 << ")" << std::endl;
+            double intensity = centers[i]->getPercentageVaccines();
+            file << "color = (" << intensity << ", " << intensity << ", " << 50 << ")" << std::endl;
+            file << std::endl;
+            totalInhabitants += centers[i]->getInhabitants();
         }
+        for(int i = 0; i < (int) hubs.size(); i++, index++) {
+            file << "[Figure" << index << "]" << std::endl;
+            file << "type = \"" << "Cylinder" << "\"" << std::endl;
+            file << "height = " << 2 << std::endl;
+            file << "n = " << 360 << std::endl;
+            file << "scale = 1" << std::endl;
+            file << "rotateX = 0" << std::endl;
+            file << "rotateY = 0" << std::endl;
+            file << "rotateZ = 0" << std::endl;
+            file << "center = (" << 8 * SPACING << ", " << i * SPACING << ", " << 0 << ")" << std::endl;
+            double intensity = std::min(1.0, (double) hubs[i]->getTotalVaccinesCount() / (double) totalInhabitants);
+            file << "color = (" << intensity << ", " << intensity << ", " << 50 << ")" << std::endl;
+            file << std::endl;
+        }
+        for(int h = 0; h < (int) hubs.size(); h++) {
+            Hub* hub = hubs[h];
+            if(transportations.find(hub) == transportations.end())
+                continue;
+            for(int c = 0; c < (int) centers.size(); c++) {
+                VaccinationCenter* center = centers[c];
+                std::vector<VaccinationCenter*> transportCenters = transportations[hub];
+                if(std::find(transportCenters.begin(), transportCenters.end(), center) == transportCenters.end())
+                    continue;
+                double xFrom = 8 * SPACING;
+                double yFrom = h * SPACING;
+                double xTo = 0;
+                double yTo = c * SPACING;
+                // to - from
+                double x = xFrom + frame * ((xTo - xFrom) / frames);
+                double y = yFrom + frame * ((yTo - yFrom) / frames);
+
+                file << "[Figure" << index << "]" << std::endl;
+                file << "type = \"" << "Sphere" << "\"" << std::endl;
+                file << "n = " << 5 << std::endl;
+                file << "scale = 1" << std::endl;
+                file << "rotateX = 0" << std::endl;
+                file << "rotateY = 0" << std::endl;
+                file << "rotateZ = 0" << std::endl;
+                file << "center = (" << x << ", " << y << ", " << 0 << ")" << std::endl;
+                file << "color = (" << 0 << ", " << 0 << ", " << 50 << ")" << std::endl;
+                file << std::endl;
+
+                index++;
+            }
+        }
+        file.close();
     }
-    myfile << "\n[Figure" + to_string(nrFigures) + "]\ntype = \"Cube\"\nid = " + to_string(id) + "\nscale = 1\nrotateX = 0\nrotateY = 0\nrotateZ = 0\ncenter = (1, 1, -1)\ncolor = (0, 0, 1)\nobject = ground\n";
-    myfile << "[General]\ntype = \"Animation\"\nsize = 1024\neye = (20, 15, 50)\nbackgroundcolor = (0.0, 0.0, 0.0)\nnrFigures = " + to_string(nrFigures) + "\nnrVaccinationCenters = " + to_string((int) centers.size()) + "\n";
-    myfile.close();
+
+
+
+
 }

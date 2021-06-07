@@ -11,10 +11,12 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Vaccine;
+class Hub;
+class VaccinationCenter;
 
-// TODO: documentation
 class SimulationData {
 public:
     /**
@@ -71,6 +73,21 @@ public:
      * ENSURE(getAmountVaccinated() == 0, "SimulationData didn't reset well!");
      */
     void reset();
+    /**
+     * Connects a center to a hub to indicate the hub sent a transportation to the center
+     * @param hub: Hub*; hub the transportation came from
+     * @param center: VaccinationCenter*; center to sent the transportation to
+     * * REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+     * * REQUIRE(hub, "Hub cannot be NULL!");
+     * * REQUIRE(center, "Center cannot be NULL!");
+     * * ENSURE(getTransportations().find(hub) == getTransportations().end(), "Hub should be added to the map!");
+     */
+    void addTransportation(Hub* hub, VaccinationCenter* center);
+    /**
+     * @return the transportations done the last run
+     * * REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+     */
+    std::map<Hub*, std::vector<VaccinationCenter*> >& getTransportations();
 
 
 private:
@@ -78,6 +95,8 @@ private:
 
     std::map<std::string, unsigned int> vaccinsDelivered;
     unsigned int vaccinated;
+
+    std::map<Hub*, std::vector<VaccinationCenter*> > transportations;
 
 };
 

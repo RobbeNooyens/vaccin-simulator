@@ -84,7 +84,6 @@ bool JValue::properlyInitialized() const {
 }
 
 JValue::~JValue() {
-    // TODO: decide whether or not to keep this
     delete valJArray;
     delete valJObject;
     valJArray = NULL;

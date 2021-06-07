@@ -30,6 +30,10 @@ VaccinationCenter::VaccinationCenter(const std::string name, const std::string a
                                      unsigned int capacity) : initCheck(this), name(name), address(address),
                                                               inhabitants(inhabitants), vaccinated(0),
                                                               capacity(capacity), connectedToHub(false), outputStream(NULL) {
+    REQUIRE(!name.empty(), "Name cannot be empty!");
+    REQUIRE(!address.empty(), "Address cannot be empty!");
+    REQUIRE(inhabitants > 0, "Center can't have zero inhabitants!");
+    REQUIRE(capacity > 0, "Center can't have a capacity of 0!");
     ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
 }
 
@@ -242,4 +246,9 @@ unsigned int VaccinationCenter::getTempCapacity() const {
 bool VaccinationCenter::operator<(const VaccinationCenter& s) const {
     REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
     return capacity < s.getCapacity();
+}
+
+std::map<Vaccine*, unsigned int> VaccinationCenter::getVaccinesMap() const {
+    REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+    return vaccines;
 }

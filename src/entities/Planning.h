@@ -13,6 +13,7 @@
 
 #include <map>
 #include <vector>
+#include <set>
 
 class Vaccine;
 class VaccinationCenter;
@@ -55,6 +56,8 @@ public:
      */
     void generatePlanning(std::vector<Hub*>& hubs, std::vector<VaccinationCenter*>& centers, std::vector<Vaccine*>& vaccins, unsigned int cycles);
 
+    void reset();
+
 
     // Getters
     /**
@@ -71,12 +74,15 @@ public:
      */
     std::map<Vaccine*, unsigned int>& getDistribution(unsigned int day, VaccinationCenter* center);
 
+    std::vector<std::map<Hub *, std::set<unsigned int> > >& getPlannedHubs();
+
 private:
     // Initialization
     Planning* initCheck;
 
     // metadata
     std::vector<std::vector<std::pair<int,std::map<Vaccine*, unsigned int> > > > planned;
+    std::vector<std::map<Hub *, std::set<unsigned int> > > planned_hubs;
 
     // map from center name to index in "centers" vector
     std::map<VaccinationCenter*, unsigned int> center2idx;

@@ -19,8 +19,6 @@
 #define ADDRESS "TestStreet"
 #define TRANSPORT (unsigned int) 100
 
-// TODO: Test output during distribution
-
 class VaccinationCenterTests: public ::testing::Test {
 protected:
     Vaccine* vaccine;
@@ -132,4 +130,41 @@ TEST_F(VaccinationCenterTests, FailFromJSON) {
     centerObject->insertValue("capaciteit", new JValue((unsigned int) 100));
     EXPECT_NO_FATAL_FAILURE(c.fromJSON(centerObject));
     delete centerObject;
+}
+
+TEST_F(VaccinationCenterTests, BadConstructor) {
+    EXPECT_DEATH(VaccinationCenter("","correctAddress",500,500),"Name cannot be empty!");
+    EXPECT_DEATH(VaccinationCenter("correctName","",500,500),"Address cannot be empty!");
+    EXPECT_DEATH(VaccinationCenter("correctName","correctAddress",0,500),"Center can't have zero inhabitants!");
+    EXPECT_DEATH(VaccinationCenter("correctName","correctAddress",500,0),"Center can't have a capacity of 0!");
+}
+
+TEST_F(VaccinationCenterTests, RemoveExpiredVaccines) {
+    VaccinationCenter * centre = new VaccinationCenter("testName","testAddress",500,500);
+    Vaccine * vaccine = new Vaccine("testType",99,99,99,50,-1);
+    centre->transportationArrived(vaccine, 1000);
+    centre->removeExpiredVaccines();
+    EXPECT_EQ((unsigned int) 0, centre->getVaccinesMap()[vaccine]);
+    delete centre;
+    delete vaccine;
+}
+
+TEST_F(VaccinationCenterTests, Getters) {
+    std::string name = "Name";
+    std::string address = "Address";
+    unsigned int inhabitants = 500;
+    unsigned int capacity = 500;
+    VaccinationCenter * centre = new VaccinationCenter(name,address,inhabitants,capacity);
+
+    EXPECT_EQ(name, centre->getName());
+    EXPECT_EQ(address, centre->getAddress());
+    EXPECT_EQ(inhabitants, centre->getInhabitants());
+    EXPECT_EQ(capacity, centre->getCapacity());
+
+    // Testing data we didnt set
+    EXPECT_EQ((unsigned int) 0, centre->getVaccins());
+    EXPECT_EQ(0.0, centre->getPercentageVaccines());
+    EXPECT_EQ(0.0, centre->getPercentageVaccinated());
+    EXPECT_EQ(centre->getInhabitants(), centre->getVaccinationsLeft());
+    delete centre;
 }

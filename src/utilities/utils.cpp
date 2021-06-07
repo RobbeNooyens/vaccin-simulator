@@ -123,6 +123,7 @@ std::string TimeUtil::getCurrentDateTime(std::string format) {
 }
 
 bool ParseUtil::isConsistent(JObject *parsed) {
+    REQUIRE(parsed, "JSON object cannot be NULL!");
     // There should be a hubs and centers element to be consistent
     if(!parsed->contains(SIMULATION_HUBS) || !parsed->contains(SIMULATION_CENTERS))
         return false;

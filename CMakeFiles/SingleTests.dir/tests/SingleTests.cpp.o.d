@@ -133,4 +133,6 @@ CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o: \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/../parsing/XMLParser.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/VaccinationCenter.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/Hub.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/SimulationData.h
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/SimulationData.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/../parsing/IniExporter.h \
+ /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/tests/../src/entities/../parsing/../entities/Planning.h

@@ -62,13 +62,11 @@ void Hub::toProgressStream(std::ostream &outStream) const {
 
 void Hub::fromJSON(JObject* json, VaccinationCenters &centerList) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     REQUIRE(json, "JSON can't be NULL!");
     REQUIRE(json->contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
     REQUIRE(json->contains(HUB_VACCINES), StringUtil::concat("Hub JSON should contain field ", HUB_VACCINES).c_str());
     JValues vaccins = json->getValue(HUB_VACCINES)->asJArray()->getItems();
     ITERATE(JValues, vaccins, vaccin) {
-        // TODO: replace string fields with macros or static variables
         Vaccine* vaccine = new Vaccine();
         vaccine->fromJSON((*vaccin)->asJObject());
         vaccine->setHub(this);
@@ -101,7 +99,7 @@ void Hub::simulateDay(unsigned int day, SimulationData &statistics) {
     // Check if the cargo will be delivered today
     simulateDelivery(day, statistics);
     // Distribute the vaccins over the centra
-    distributeVaccins();
+    distributeVaccins(statistics);
     ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation for a day!");
     ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!");
 }
@@ -120,7 +118,6 @@ void Hub::simulateDelivery(unsigned int day, SimulationData &statistics) {
 }
 
 void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsigned int> &loads) const {
-    // TODO: rewrite every REQUIRE and ENSURE to work with public methods instead of private vars
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(center, "VaccinationCenter can't be NULL!");
     REQUIRE(!getOutputStream() || getOutputStream()->good(), "Output stream not available");
@@ -139,7 +136,7 @@ void Hub::transportVaccinsTo(VaccinationCenter *center, std::map<Vaccine *, unsi
     ENSURE(center, "Center became corrupted during transport!");
 }
 
-void Hub::distributeVaccins() {
+void Hub::distributeVaccins(SimulationData &statistics) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
@@ -157,6 +154,9 @@ void Hub::distributeVaccins() {
                 totalVaccines += vaccine->getTransportation();
             }
             vaccinePerCenter.insert(std::pair<Vaccine*, unsigned int>(vaccine, loadCount));
+        }
+        if(totalVaccines > 0) {
+            statistics.addTransportation(this, center);
         }
         Hub::transportVaccinsTo(center, vaccinePerCenter);
     }
@@ -210,9 +210,9 @@ Vaccines Hub::getVaccines() const {
 
 bool Hub::isConsistent() const {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-    bool result = true;
+    bool result = false;
     C_ITERATE(Vaccines, vaccines, vaccin) {
-        result = result && (*vaccin)->getDelivery() > 0 && (*vaccin)->getTransportation() > 0;
+        result = result || ((*vaccin)->getInterval() > 0 && (*vaccin)->getDelivery() > 0);
     }
     result = result && !centers.empty();
     C_ITERATE(VaccinationCenters, centers, center) {

@@ -67,3 +67,23 @@ std::map<std::string, unsigned int> &SimulationData::getVaccinsDelivered() {
     REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
     return vaccinsDelivered;
 }
+
+void SimulationData::addTransportation(Hub *hub, VaccinationCenter *center) {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+    REQUIRE(hub, "Hub cannot be NULL!");
+    REQUIRE(center, "Center cannot be NULL!");
+    if(transportations.find(hub) == transportations.end()) {
+        std::vector<VaccinationCenter*> centers;
+        centers.push_back(center);
+        transportations.insert(std::pair<Hub*, std::vector<VaccinationCenter*> >(hub, centers));
+    } else {
+        transportations[hub].push_back(center);
+    }
+    ENSURE(getTransportations().find(hub) == getTransportations().end(), "Hub should be added to the map!");
+}
+
+std::map<Hub *, std::vector<VaccinationCenter *> > &SimulationData::getTransportations() {
+    REQUIRE(properlyInitialized(), "SimulationData wasn't initialized properly!");
+    return transportations;
+}
+

@@ -17,6 +17,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/src/json/JArray.cpp" "CMakeFiles/SingleTests.dir/src/json/JArray.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/src/json/JArray.cpp.o.d"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/src/json/JObject.cpp" "CMakeFiles/SingleTests.dir/src/json/JObject.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/src/json/JObject.cpp.o.d"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/src/json/JValue.cpp" "CMakeFiles/SingleTests.dir/src/json/JValue.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/src/json/JValue.cpp.o.d"
+  "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/src/parsing/IniExporter.cpp" "CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.o.d"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/src/parsing/XMLParser.cpp" "CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.o.d"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/src/utilities/utils.cpp" "CMakeFiles/SingleTests.dir/src/utilities/utils.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/src/utilities/utils.cpp.o.d"
   "/mnt/d/University/Bachelor 1/PSE/Vaccin Simulator/tests/SingleTests.cpp" "CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o" "gcc" "CMakeFiles/SingleTests.dir/tests/SingleTests.cpp.o.d"

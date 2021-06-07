@@ -40,7 +40,6 @@
 
 #define ITERATE_ELEMENTS(parent, child) for(TiXmlElement* child = parent->FirstChildElement(); child; child = child->NextSiblingElement())
 #define COMMA ,
-// TODO: encountered error macro
 
 JObject* XMLParser::parse(const std::string& fileName, std::ostream &errorStream, std::vector<ParseError> &errors) {
     REQUIRE(!fileName.empty(), "Filename can't be empty!");

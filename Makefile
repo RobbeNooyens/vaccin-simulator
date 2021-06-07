@@ -449,6 +449,36 @@ src/json/JValue.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JValue.cpp.s
 .PHONY : src/json/JValue.cpp.s
 
+src/parsing/IniExporter.o: src/parsing/IniExporter.cpp.o
+.PHONY : src/parsing/IniExporter.o
+
+# target to build an object file
+src/parsing/IniExporter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/IniExporter.cpp.o
+.PHONY : src/parsing/IniExporter.cpp.o
+
+src/parsing/IniExporter.i: src/parsing/IniExporter.cpp.i
+.PHONY : src/parsing/IniExporter.i
+
+# target to preprocess a source file
+src/parsing/IniExporter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/IniExporter.cpp.i
+.PHONY : src/parsing/IniExporter.cpp.i
+
+src/parsing/IniExporter.s: src/parsing/IniExporter.cpp.s
+.PHONY : src/parsing/IniExporter.s
+
+# target to generate assembly for a file
+src/parsing/IniExporter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/IniExporter.cpp.s
+.PHONY : src/parsing/IniExporter.cpp.s
+
 src/parsing/XMLParser.o: src/parsing/XMLParser.cpp.o
 .PHONY : src/parsing/XMLParser.o
 
@@ -916,6 +946,9 @@ help:
 	@echo "... src/json/JValue.o"
 	@echo "... src/json/JValue.i"
 	@echo "... src/json/JValue.s"
+	@echo "... src/parsing/IniExporter.o"
+	@echo "... src/parsing/IniExporter.i"
+	@echo "... src/parsing/IniExporter.s"
 	@echo "... src/parsing/XMLParser.o"
 	@echo "... src/parsing/XMLParser.i"
 	@echo "... src/parsing/XMLParser.s"

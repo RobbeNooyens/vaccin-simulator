@@ -102,6 +102,5 @@ TEST_F(HubTests, LoadFromJSONFail) {
     centerNames.push_back("RandomNameThatDoesntExist");
     EXPECT_DEATH(failHub.fromJSON(MockObjects::jHub(vaccines, centerNames), vaccinationCenters), ".*invalid name.*");
     centerNames.pop_back();
-    // TODO: make deletion possible
-    // delete jObject;
+    delete jObject;
 }

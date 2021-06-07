@@ -5,7 +5,6 @@
 #ifndef VACCIMULATOR_JKEYS_H
 #define VACCIMULATOR_JKEYS_H
 
-// TODO: refactor valid other files
 #define SIMULATION_HUBS "hubs"
 #define SIMULATION_CENTERS "centra"
 

@@ -67,7 +67,6 @@ public:
      * @param json: JSON object containing the data for the hub
      * @param centers: loaded centers
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
-     * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
      * * REQUIRE(json, "JSON can't be NULL!");
      * * REQUIRE(json->contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());
      * * REQUIRE(json->contains(HUB_VACCINES), StringUtil::concat("Hub JSON should contain field ", HUB_VACCINES).c_str());
@@ -114,7 +113,6 @@ public:
      * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation for a day!");
      * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!");
      */
-     // TODO: documentation
      void simulateDay(unsigned int day, SimulationData &statistics);
     /**
      * Simulate vaccin distribution over the vaccinationcenters
@@ -124,7 +122,7 @@ public:
      * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");
      * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
      */
-    void distributeVaccins();
+    void distributeVaccins(SimulationData &statistics);
     /**
      * Simulate smart vaccin distribution over the vaccinationcenters
      * @param day: unsigned int; daycount
@@ -153,7 +151,6 @@ public:
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * * ENSURE(isConsistent(), "Hub needs to be consistent to run the simulation");
      */
-     // TODO: documentation
      void simulateDelivery(unsigned int day, SimulationData &statistics);
 
     // Validations

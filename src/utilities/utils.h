@@ -108,7 +108,12 @@ namespace TimeUtil {
 }
 
 namespace ParseUtil {
-    // TODO: documentation
+    /**
+     * Checks if a given simulation JSON is consistent or not
+     * @param parsed: JObject*; simulation as JSON object
+     * @return true if the given json object represents a consistent simulation
+     * * REQUIRE(parsed, "JSON object cannot be NULL!");
+     */
     bool isConsistent(JObject* parsed);
 }
 

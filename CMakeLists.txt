@@ -30,7 +30,8 @@ set(RELEASE_SOURCE_FILES src/Vaccimulator.cpp
         src/utilities/utils.cpp src/utilities/utils.h
         tests/TestUtils.h tests/TestUtils.cpp
         src/entities/Planning.cpp src/entities/Planning.h
-        src/entities/SimulationData.cpp src/entities/SimulationData.h)
+        src/entities/SimulationData.cpp src/entities/SimulationData.h
+        )
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES tests/VaccimulatorTests.cpp
@@ -58,7 +59,7 @@ set(DEBUG_SOURCE_FILES tests/VaccimulatorTests.cpp
         src/json/JArray.cpp src/json/JArray.h
         src/json/JKeys.h
         DesignByContract.h
-        tests/domain/PlanningTests.cpp)
+        )
 
 # Set source files for single DEBUG target
 set(SINGLE_DEBUG_SOURCE_FILES tests/SingleTests.cpp
@@ -79,7 +80,8 @@ set(SINGLE_DEBUG_SOURCE_FILES tests/SingleTests.cpp
         src/json/JObject.cpp src/json/JObject.h
         src/json/JArray.cpp src/json/JArray.h
         src/json/JKeys.h
-        DesignByContract.h src/parsing/IniExporter.cpp src/parsing/IniExporter.h)
+        DesignByContract.h
+        )
 
 
 # Create RELEASE target

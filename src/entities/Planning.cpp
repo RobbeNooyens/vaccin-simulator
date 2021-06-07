@@ -12,7 +12,7 @@
 #include "Vaccine.h"
 #include "VaccinationCenter.h"
 
-Planning::Planning(): initCheck(this) {
+Planning::Planning(): initCheck(this), planned(), planned_hubs(), center2idx() {
     ENSURE(properlyInitialized(), "Planning object hasn't been initialized properly!");
 }
 
@@ -67,6 +67,7 @@ void Planning::generatePlanning(std::vector<Hub*>& hubs, std::vector<Vaccination
             if (TotalInhabitantsInCenter == 0) {
                 break;
             }
+
             if (planned[center_idx][day].first || test) { //let ook op de einde positie met renewing
                 continue;
             }
@@ -81,14 +82,14 @@ void Planning::generatePlanning(std::vector<Hub*>& hubs, std::vector<Vaccination
                 planned[center_idx][day].second[vaccins[vaccine_idx]] += tt;
                 planned[center_idx][day].first += tt;
                 TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
-                //planned_hubs[day][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                planned_hubs[day][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                 if (TotalInhabitantsInCenter == 0) {
                     break;
                 }
                 if ((day+vaccins[vaccine_idx]->getRenewing() < cycles) && vaccins[vaccine_idx]->getRenewing()) {
                     planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].second[vaccins[vaccine_idx]] += tt;
                     planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].first += tt;
-                    //planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                    planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                     TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
                 }
                 break;
@@ -112,7 +113,7 @@ void Planning::generatePlanning(std::vector<Hub*>& hubs, std::vector<Vaccination
                     }
                     planned[center_idx][day].second[vaccins[vaccine_idx]] += tt;
                     planned[center_idx][day].first += tt;
-                    //planned_hubs[day//][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                    planned_hubs[day][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                     TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
                     if (TotalInhabitantsInCenter == 0) {
                         break;
@@ -120,7 +121,7 @@ void Planning::generatePlanning(std::vector<Hub*>& hubs, std::vector<Vaccination
                     if ((day+vaccins[vaccine_idx]->getRenewing() < cycles) && vaccins[vaccine_idx]->getRenewing()) {
                         planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].second[vaccins[vaccine_idx]] += tt;
                         planned[center_idx][day+vaccins[vaccine_idx]->getRenewing()].first += tt;
-                        //planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
+                        planned_hubs[day+vaccins[vaccine_idx]->getRenewing()][vaccins[vaccine_idx]->getHub()].insert(center_idx);
                         TotalInhabitantsInCenter -= std::min(TotalInhabitantsInCenter, tt);
                     }
                 }
@@ -136,4 +137,15 @@ void Planning::generatePlanning(std::vector<Hub*>& hubs, std::vector<Vaccination
 std::map<Vaccine*, unsigned int>& Planning::getDistribution(unsigned int day, VaccinationCenter* center) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     return planned[center2idx[center]][day].second;
+}
+
+void Planning::reset() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    planned.clear();
+    center2idx.clear();
+}
+
+std::vector<std::map<Hub *, std::set<unsigned int> > >& Planning::getPlannedHubs() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    return planned_hubs;
 }

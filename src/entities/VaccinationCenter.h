@@ -30,6 +30,10 @@ public:
      * @param address: the address where the center is located
      * @param inhabitants: the amount of inhabitants that should be vaccinated valid this center
      * @param capacity: the max amount of people that can be vaccinated here daily
+     * * REQUIRE(!name.empty(), "Name cannot be empty!");
+     * * REQUIRE(!address.empty(), "Address cannot be empty!");
+     * * REQUIRE(inhabitants > 0, "Center can't have zero inhabitants!");
+     * * REQUIRE(capacity > 0, "Center can't have a capacity of 0!");
      * * ENSURE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity);
@@ -72,7 +76,11 @@ public:
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     void setConnectedToHub(bool connected);
-    // TODO: documentation
+    /**
+     * Sets the output stream to send vaccination messages to
+     * @param outStream: ostream*; stream to send message to if not NULL
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
     void setOutputStream(std::ostream* outStream);
 
     // Getters
@@ -101,6 +109,11 @@ public:
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
      */
     unsigned int getVaccins() const;
+    /**
+     * @return the map with a vaccine as key and the amount stored of that type as value
+     * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");
+     */
+    std::map<Vaccine*, unsigned int> getVaccinesMap() const;
     /**
      * @return unsigned int; amount of inhabitants who are already vaccinated
      * * REQUIRE(properlyInitialized(), "VaccinationCenter object hasn't been initialized properly!");

@@ -91,13 +91,13 @@ public:
     void exportSimulationProgress(std::ostream &out) const;
     /**
      * Writes contents of the objects valid the simulation to an ini file
-     * @param out: string; name of the file to write to
+     * @param output: string; name of the file to write to
      * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
      * * REQUIRE(StringUtil::contains(fileName, ".ini"), "File should be an ini file!");
      * * REQUIRE(!fileName.empty(), "Filename cannot be empty!");
      * * ENSURE(!file.is_open(), "File wasn't closed properly!");
      */
-    void exportSimulationIniFile(std::ostream &out) const;
+    void exportSimulationIniFile(std::string &output, unsigned int frames);
     /**
      *
      * @param json
