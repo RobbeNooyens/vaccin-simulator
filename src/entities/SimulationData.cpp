@@ -79,7 +79,7 @@ void SimulationData::addTransportation(Hub *hub, VaccinationCenter *center) {
     } else {
         transportations[hub].push_back(center);
     }
-    ENSURE(getTransportations().find(hub) == getTransportations().end(), "Hub should be added to the map!");
+    ENSURE(getTransportations().find(hub) != getTransportations().end(), "Hub should be added to the map!");
 }
 
 std::map<Hub *, std::vector<VaccinationCenter *> > &SimulationData::getTransportations() {

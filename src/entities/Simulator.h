@@ -121,7 +121,7 @@ public:
      * * ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      * * ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
      */
-    void run(unsigned int cycles);
+    void run(const unsigned int cycles, bool smartDistribution = false);
     /**
      * Runs the simulation for a specific amount of times with smart distribution
      * @param startFromDay: int; the day to start from

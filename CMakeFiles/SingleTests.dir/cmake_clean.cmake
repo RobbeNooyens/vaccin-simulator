@@ -17,8 +17,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/SingleTests.dir/src/json/JObject.cpp.o.d"
   "CMakeFiles/SingleTests.dir/src/json/JValue.cpp.o"
   "CMakeFiles/SingleTests.dir/src/json/JValue.cpp.o.d"
-  "CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.o"
-  "CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.o.d"
   "CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.o"
   "CMakeFiles/SingleTests.dir/src/parsing/XMLParser.cpp.o.d"
   "CMakeFiles/SingleTests.dir/src/utilities/utils.cpp.o"

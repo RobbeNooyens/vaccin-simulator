@@ -449,36 +449,6 @@ src/json/JValue.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/json/JValue.cpp.s
 .PHONY : src/json/JValue.cpp.s
 
-src/parsing/IniExporter.o: src/parsing/IniExporter.cpp.o
-.PHONY : src/parsing/IniExporter.o
-
-# target to build an object file
-src/parsing/IniExporter.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/IniExporter.cpp.o
-.PHONY : src/parsing/IniExporter.cpp.o
-
-src/parsing/IniExporter.i: src/parsing/IniExporter.cpp.i
-.PHONY : src/parsing/IniExporter.i
-
-# target to preprocess a source file
-src/parsing/IniExporter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/IniExporter.cpp.i
-.PHONY : src/parsing/IniExporter.cpp.i
-
-src/parsing/IniExporter.s: src/parsing/IniExporter.cpp.s
-.PHONY : src/parsing/IniExporter.s
-
-# target to generate assembly for a file
-src/parsing/IniExporter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SingleTests.dir/build.make CMakeFiles/SingleTests.dir/src/parsing/IniExporter.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Vaccimulator.dir/build.make CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/src/parsing/IniExporter.cpp.s
-.PHONY : src/parsing/IniExporter.cpp.s
-
 src/parsing/XMLParser.o: src/parsing/XMLParser.cpp.o
 .PHONY : src/parsing/XMLParser.o
 
@@ -688,30 +658,6 @@ tests/domain/HubTests.s: tests/domain/HubTests.cpp.s
 tests/domain/HubTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/HubTests.cpp.s
 .PHONY : tests/domain/HubTests.cpp.s
-
-tests/domain/PlanningTests.o: tests/domain/PlanningTests.cpp.o
-.PHONY : tests/domain/PlanningTests.o
-
-# target to build an object file
-tests/domain/PlanningTests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.o
-.PHONY : tests/domain/PlanningTests.cpp.o
-
-tests/domain/PlanningTests.i: tests/domain/PlanningTests.cpp.i
-.PHONY : tests/domain/PlanningTests.i
-
-# target to preprocess a source file
-tests/domain/PlanningTests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.i
-.PHONY : tests/domain/PlanningTests.cpp.i
-
-tests/domain/PlanningTests.s: tests/domain/PlanningTests.cpp.s
-.PHONY : tests/domain/PlanningTests.s
-
-# target to generate assembly for a file
-tests/domain/PlanningTests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VaccimulatorTests.dir/build.make CMakeFiles/VaccimulatorTests.dir/tests/domain/PlanningTests.cpp.s
-.PHONY : tests/domain/PlanningTests.cpp.s
 
 tests/domain/VaccinationCenterTests.o: tests/domain/VaccinationCenterTests.cpp.o
 .PHONY : tests/domain/VaccinationCenterTests.o
@@ -946,9 +892,6 @@ help:
 	@echo "... src/json/JValue.o"
 	@echo "... src/json/JValue.i"
 	@echo "... src/json/JValue.s"
-	@echo "... src/parsing/IniExporter.o"
-	@echo "... src/parsing/IniExporter.i"
-	@echo "... src/parsing/IniExporter.s"
 	@echo "... src/parsing/XMLParser.o"
 	@echo "... src/parsing/XMLParser.i"
 	@echo "... src/parsing/XMLParser.s"
@@ -973,9 +916,6 @@ help:
 	@echo "... tests/domain/HubTests.o"
 	@echo "... tests/domain/HubTests.i"
 	@echo "... tests/domain/HubTests.s"
-	@echo "... tests/domain/PlanningTests.o"
-	@echo "... tests/domain/PlanningTests.i"
-	@echo "... tests/domain/PlanningTests.s"
 	@echo "... tests/domain/VaccinationCenterTests.o"
 	@echo "... tests/domain/VaccinationCenterTests.i"
 	@echo "... tests/domain/VaccinationCenterTests.s"

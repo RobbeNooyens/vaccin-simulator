@@ -36,11 +36,11 @@ int main() {
 
     simulator.importSimulation("io/xml_files/time_test.xml", std::cerr);
 //    simulator.runEfficient(30);
-    simulator.run(30);
+    simulator.run(30, false);
 //    simulator.exportSimulationSummary(file);
     simulator.exportSimulationProgress(file);
 //    simulator.exportSimulationIniFile("parsing/ini_files/generated.ini");
-    simulator.run(30);
+    simulator.run(30, false);
 //    simulator.exportSimulationSummary(file);
     simulator.exportSimulationProgress(file);
     return 0;

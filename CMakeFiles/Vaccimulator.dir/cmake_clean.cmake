@@ -19,8 +19,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Vaccimulator.dir/src/json/JObject.cpp.o.d"
   "CMakeFiles/Vaccimulator.dir/src/json/JValue.cpp.o"
   "CMakeFiles/Vaccimulator.dir/src/json/JValue.cpp.o.d"
-  "CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.o"
-  "CMakeFiles/Vaccimulator.dir/src/parsing/IniExporter.cpp.o.d"
   "CMakeFiles/Vaccimulator.dir/src/parsing/XMLParser.cpp.o"
   "CMakeFiles/Vaccimulator.dir/src/parsing/XMLParser.cpp.o.d"
   "CMakeFiles/Vaccimulator.dir/src/utilities/utils.cpp.o"

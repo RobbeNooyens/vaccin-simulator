@@ -122,7 +122,7 @@ TEST_F(SimulationOutputTests, SimpleOutput) {
     file.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/simple_output_1.txt", "tests/presentation/expected/simple_output_1.txt"));
 
-    simulator.run(80);
+    simulator.run(80, false);
 
     file.open("tests/presentation/out/simple_output_2.txt");
     ASSERT_TRUE(file.is_open());
@@ -146,7 +146,7 @@ TEST_F(SimulationOutputTests, GraphicalProgress) {
     file.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/graphical_progress_1.txt", "tests/presentation/expected/graphical_progress_1.txt"));
 
-    simulator.run(80);
+    simulator.run(80, false);
 
     file.open("tests/presentation/out/graphical_progress_2.txt");
     ASSERT_TRUE(file.is_open());
@@ -168,7 +168,7 @@ TEST_F(SimulationOutputTests, IniFileGeneration) {
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_1_2.ini", "tests/presentation/expected/ini_file_1_2.ini"));
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_1_3.ini", "tests/presentation/expected/ini_file_1_3.ini"));
 
-    simulator.run(50);
+    simulator.run(50, false);
 
     fileName = "tests/presentation/out/ini_file_2_";
     simulator.exportSimulationIniFile(fileName, 5);
@@ -178,7 +178,7 @@ TEST_F(SimulationOutputTests, IniFileGeneration) {
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_4.ini", "tests/presentation/expected/ini_file_2_4.ini"));
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/ini_file_2_5.ini", "tests/presentation/expected/ini_file_2_5.ini"));
 
-    simulator.run(50);
+    simulator.run(50, false);
 
     fileName = "tests/presentation/out/ini_file_3_";
     simulator.exportSimulationIniFile(fileName, 10);
@@ -201,7 +201,7 @@ TEST_F(SimulationOutputTests, Statistics) {
     statisticsFile.open("tests/presentation/out/statistics_1.txt");
     ASSERT_TRUE(statisticsFile.is_open());
     simulator.setStatisticsStream(&statisticsFile);
-    simulator.run(1);
+    simulator.run(1, false);
     statisticsFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/statistics_1.txt", "tests/presentation/expected/statistics_1.txt"));
 
@@ -209,7 +209,7 @@ TEST_F(SimulationOutputTests, Statistics) {
     statisticsFile.open("tests/presentation/out/statistics_2.txt");
     ASSERT_TRUE(statisticsFile.is_open());
     simulator.setStatisticsStream(&statisticsFile);
-    simulator.run(100);
+    simulator.run(100, false);
     statisticsFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/statistics_2.txt", "tests/presentation/expected/statistics_2.txt"));
 
@@ -227,7 +227,7 @@ TEST_F(SimulationOutputTests, Transportation) {
     ASSERT_TRUE(transportationFile.is_open());
     simulator.setTransportationStream(&transportationFile);
 
-    simulator.run(10);
+    simulator.run(10, false);
 
     transportationFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/transportation_1.txt", "tests/presentation/expected/transportation_1.txt"));
@@ -236,7 +236,7 @@ TEST_F(SimulationOutputTests, Transportation) {
     ASSERT_TRUE(transportationFile.is_open());
     simulator.setTransportationStream(&transportationFile);
 
-    simulator.run(50);
+    simulator.run(50, false);
 
     transportationFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/transportation_2.txt", "tests/presentation/expected/transportation_2.txt"));
@@ -255,7 +255,7 @@ TEST_F(SimulationOutputTests, Vaccinations) {
     ASSERT_TRUE(vaccinationsFile.is_open());
     simulator.setVaccinationsStream(&vaccinationsFile);
 
-    simulator.run(30);
+    simulator.run(30, false);
 
     vaccinationsFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/vaccinations_1.txt", "tests/presentation/expected/vaccinations_1.txt"));
@@ -264,12 +264,34 @@ TEST_F(SimulationOutputTests, Vaccinations) {
     ASSERT_TRUE(vaccinationsFile.is_open());
     simulator.setVaccinationsStream(&vaccinationsFile);
 
-    simulator.run(60);
+    simulator.run(60, false);
 
     vaccinationsFile.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/vaccinations_2.txt", "tests/presentation/expected/vaccinations_2.txt"));
 
     simulator.setVaccinationsStream(NULL);
+}
+
+TEST_F(SimulationOutputTests, SmartDistribution) {
+    simulator.reset();
+
+    simulator.run(40, true);
+
+    ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
+    std::ofstream file;
+    file.open("tests/presentation/out/smart_distribution_1.txt");
+    ASSERT_TRUE(file.is_open());
+    simulator.exportSimulationProgress(file);
+    file.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/smart_distribution_1.txt", "tests/presentation/expected/smart_distribution_1.txt"));
+
+    simulator.run(40, true);
+
+    file.open("tests/presentation/out/smart_distribution_2.txt");
+    ASSERT_TRUE(file.is_open());
+    simulator.exportSimulationProgress(file);
+    file.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/smart_distribution_2.txt", "tests/presentation/expected/smart_distribution_2.txt"));
 }
 
 /**
@@ -296,7 +318,7 @@ TEST_F(SimulationOutputTests, HappyDay) {
     ASSERT_TRUE(vaccinationsFile.is_open());
     happydaySimulator.setVaccinationsStream(&vaccinationsFile);
 
-    happydaySimulator.run(100);
+    happydaySimulator.run(100, false);
 
     ASSERT_TRUE(FileUtil::DirectoryExists("tests/presentation/out"));
 
@@ -329,7 +351,7 @@ TEST_F(SimulationOutputTests, HappyDay) {
     statisticsFile.open("tests/presentation/out/statistics_happyday_2.txt");
     ASSERT_TRUE(statisticsFile.is_open());
 
-    happydaySimulator.run(50);
+    happydaySimulator.run(50, false);
 
     // Test Summary
     summaryFile.open("tests/presentation/out/simple_output_happyday_2.txt");

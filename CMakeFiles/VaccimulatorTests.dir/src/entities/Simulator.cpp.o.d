@@ -119,8 +119,6 @@ CMakeFiles/VaccimulatorTests.dir/src/entities/Simulator.cpp.o: \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/Hub.h \
  /usr/include/c++/7/iostream \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/SimulationData.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../parsing/IniExporter.h \
- /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../parsing/../entities/Planning.h \
  /mnt/d/University/Bachelor\ 1/PSE/Vaccin\ Simulator/src/entities/../utilities/utils.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/c++/7/sstream \

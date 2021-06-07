@@ -75,18 +75,27 @@ int main() {
     EXPECT_EQ(hubs->getItems().size(), simulator.getHubs().size());
     EXPECT_TRUE(simulator.isConsistent());
 
-    std::string fileName = "tests/presentation/out/ini_file_1_";
-    simulator.exportSimulationIniFile(fileName, 0);
+    simulator.reset();
 
-    simulator.run(50);
+    simulator.run(40, true);
 
-    fileName = "tests/presentation/out/ini_file_2_";
-    simulator.exportSimulationIniFile(fileName, 0);
+    std::ofstream statisticsFile;
+    statisticsFile.open("tests/presentation/out/statistics_1.txt");
+            ASSERT_TRUE(statisticsFile.is_open());
+    simulator.setStatisticsStream(&statisticsFile);
+    simulator.run(1, false);
+    statisticsFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/statistics_1.txt", "tests/presentation/expected/statistics_1.txt"));
 
-    simulator.run(50);
 
-    fileName = "tests/presentation/out/ini_file_3_";
-    simulator.exportSimulationIniFile(fileName, 0);
+    statisticsFile.open("tests/presentation/out/statistics_2.txt");
+            ASSERT_TRUE(statisticsFile.is_open());
+    simulator.setStatisticsStream(&statisticsFile);
+    simulator.run(100, false);
+    statisticsFile.close();
+    EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/statistics_2.txt", "tests/presentation/expected/statistics_2.txt"));
+
+    simulator.setStatisticsStream(NULL);
 
 
 //    // Test Summary

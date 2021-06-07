@@ -108,7 +108,7 @@ void Simulator::fromJSON(JObject *json) {
 
 // Simulation controls
 
-void Simulator::run(const unsigned int cycles) {
+void Simulator::run(const unsigned int cycles, bool smartDistribution) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
@@ -117,7 +117,7 @@ void Simulator::run(const unsigned int cycles) {
         // Clear transportations
         statistics.getTransportations().clear();
         // Deliver vaccines to the hub if expected and transport vaccines to the centers
-        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, statistics);
+        ITERATE(std::vector<Hub*>, hubs, hub)(*hub)->simulateDay(daycount, statistics, smartDistribution);
         // Vaccinate inhabitants (should happen here to prevent double vaccinations)
         ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
         if(statisticsOutputStream)
@@ -128,21 +128,13 @@ void Simulator::run(const unsigned int cycles) {
     ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
 }
 
-bool compareVaccinationCenters(Vaccine* firstVaccine, Vaccine* secondVaccine)  {
-    return (firstVaccine->getTemperature() < secondVaccine->getTemperature());
-}
-
 void Simulator::runEfficient(unsigned int cycles) {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     REQUIRE(cycles != 0, "Cycles cannot be 0!");
     REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
     unsigned int oldDaycount = daycount;
 
-    ITERATE(VaccinationCenters, centers, center) {
-        VaccinationCenter* c = *center;
-        Vaccines vaccinesStripped;
-        std::map<Vaccine*, unsigned int> vaccines = c->getVaccinesMap();
-    }
+
 
 //    unsigned int oldDaycount = daycount;
 //    Vaccines vaccines;

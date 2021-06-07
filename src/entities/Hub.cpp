@@ -92,14 +92,17 @@ void Hub::fromJSON(JObject* json, VaccinationCenters &centerList) {
 
 // Simulation controls
 
-void Hub::simulateDay(unsigned int day, SimulationData &statistics) {
+void Hub::simulateDay(unsigned int day, SimulationData &statistics, bool smartDistribution) {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation!");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
     // Check if the cargo will be delivered today
     simulateDelivery(day, statistics);
     // Distribute the vaccins over the centra
-    distributeVaccins(statistics);
+    if(smartDistribution)
+        distributeEfficient();
+    else
+        distributeVaccins(statistics);
     ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation for a day!");
     ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!");
 }
@@ -164,13 +167,53 @@ void Hub::distributeVaccins(SimulationData &statistics) {
     ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
 }
 
-void Hub::distributeEfficient(unsigned int day, Planning &planning) {
+void Hub::distributeEfficient() {
     REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
     REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
     REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+    REQUIRE(!getVaccinationCenters().empty(), "Centers cannot be empty!");
+    REQUIRE(!getVaccines().empty(), "Vaccines cannot be empty!");
+
+    std::map<VaccinationCenter*, std::map<Vaccine*, unsigned int> > transportation;
+
+    // Create map with center as key and the amount of free capacity as value
+    std::map<VaccinationCenter*, int> freeCapacity;
+    ITERATE(VaccinationCenters, centers, c) {
+        freeCapacity[*c] = (int) ((*c)->getCapacity() - (*c)->getPercentageVaccines() * (*c)->getCapacity());
+    }
+
+    bool foundVaccine = false;
+    while(true) {
+        foundVaccine = false;
+        // Search center with most free capacity
+        VaccinationCenter* center = centers.front();
+        ITERATE(VaccinationCenters, centers, c) {
+            if (freeCapacity[*c] > freeCapacity[center])
+                center = *c;
+        }
+        if(freeCapacity[center] <= 0)
+            break;
+        // Search vaccine with smallest renew days
+        Vaccine* leastRenew = vaccines.front();
+        ITERATE(Vaccines, vaccines, v) {
+            Vaccine* vaccine = *v;
+            if(freeCapacity[center] < (int) leastRenew->getTransportation())
+                continue;
+            if(vaccine->getRenewing() <= leastRenew->getRenewing()) {
+                leastRenew = vaccine;
+                foundVaccine = true;
+            }
+        }
+        if(foundVaccine) {
+            freeCapacity[center] -= leastRenew->getTransportation();
+            transportation[center][leastRenew] += 1;
+        } else {
+            break;
+        }
+    }
 
     ITERATE(VaccinationCenters, centers, c) {
-        Hub::transportVaccinsTo(*c, planning.getDistribution(day, *c));
+        Hub::transportVaccinsTo(*c, transportation[*c]);
     }
 
     ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");

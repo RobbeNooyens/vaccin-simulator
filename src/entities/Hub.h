@@ -113,7 +113,7 @@ public:
      * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation for a day!");
      * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!");
      */
-     void simulateDay(unsigned int day, SimulationData &statistics);
+    void simulateDay(unsigned int day, SimulationData &statistics, bool smartDistribution = false);
     /**
      * Simulate vaccin distribution over the vaccinationcenters
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
@@ -130,10 +130,12 @@ public:
      * * REQUIRE(properlyInitialized(), "Hub object hasn't been initialized properly!");
      * * REQUIRE(isConsistent(), "Hub needs to be consistent to run the simulation");
      * * REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");
+     * * REQUIRE(getVaccinationCenters().empty(), "Centers cannot be empty!");
+     * * REQUIRE(!getVaccines().empty(), "Vaccines cannot be empty!");
      * * ENSURE(isConsistent(), "Hub needs to be consistent after running the simulation");
      * * ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!");
      */
-    void distributeEfficient(unsigned int day, Planning& planning);
+    void distributeEfficient();
     /**
      * Transport a specific amount of vaccinations to the specified vaccination center.
      * @param center: the center where the vaccins should be transported to
