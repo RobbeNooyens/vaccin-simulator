@@ -8,8 +8,6 @@
 #ifndef VACCIMULATOR_PLANNING_H
 #define VACCIMULATOR_PLANNING_H
 
-// TODO: documentation + tests
-
 
 #include <map>
 #include <vector>

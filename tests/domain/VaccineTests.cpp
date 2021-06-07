@@ -42,6 +42,15 @@ TEST_F(VaccineTests, ParameterConstructors) {
     EXPECT_EQ(TEMPERATURE, parameterConstructor.getTemperature());
 }
 
+TEST_F(VaccineTests, BadConstructor) {
+    // Empty type
+    EXPECT_DEATH(Vaccine("", DELIVERY, INTERVAL, TRANSPORTATION, RENEWING, TEMPERATURE), "Type cannot be empty!");
+    // Delivery = 0
+    EXPECT_DEATH(Vaccine(TYPE, 0, INTERVAL, TRANSPORTATION, RENEWING, TEMPERATURE), "Delivery cannot be 0!");
+    // Transportation = 0
+    EXPECT_DEATH(Vaccine(TYPE, DELIVERY, INTERVAL, 0, RENEWING, TEMPERATURE), "Transportation cannot be 0!");
+}
+
 TEST_F(VaccineTests, LoadFromJSON) {
     Vaccine jsonVaccine = Vaccine();
     jsonVaccine.fromJSON(MockObjects::jVaccine(TYPE, DELIVERY, INTERVAL, TRANSPORTATION, RENEWING, TEMPERATURE));

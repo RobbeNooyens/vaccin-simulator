@@ -26,9 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vaccimulator
-   &#160;<span id="projectnumber">2.0</span>
    </div>
-   <div id="projectbrief">Vaccine distribution simulator</div>
   </td>
  </tr>
  </tbody>
@@ -93,19 +91,240 @@ $(document).ready(function(){initNavTree('class_planning.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af30b24118bbd6c8e8d064aea69d5a128"><td class="memItemLeft" align="right" valign="top"><a id="af30b24118bbd6c8e8d064aea69d5a128"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>properlyInitialized</b> ()</td></tr>
-<tr class="separator:af30b24118bbd6c8e8d064aea69d5a128"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad970e02543c82a9809df6dbf5b727848"><td class="memItemLeft" align="right" valign="top"><a id="ad970e02543c82a9809df6dbf5b727848"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generatePlanning</b> (unsigned int days, std::vector&lt; <a class="el" href="class_hub.html">Hub</a> * &gt; hubs, std::vector&lt; <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> * &gt; centers, unsigned int startFrom=0)</td></tr>
-<tr class="separator:ad970e02543c82a9809df6dbf5b727848"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bd41687be93d5d84c4c6be085bf5750"><td class="memItemLeft" align="right" valign="top"><a id="a6bd41687be93d5d84c4c6be085bf5750"></a>
-std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getDistribution</b> (unsigned int day, <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> *center)</td></tr>
-<tr class="separator:a6bd41687be93d5d84c4c6be085bf5750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a788755e4dedf591d0703a87d70bf2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#a42a788755e4dedf591d0703a87d70bf2">Planning</a> ()</td></tr>
+<tr class="separator:a42a788755e4dedf591d0703a87d70bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21cdd1921e457af33596f1458c414eb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#a21cdd1921e457af33596f1458c414eb8">~Planning</a> ()</td></tr>
+<tr class="separator:a21cdd1921e457af33596f1458c414eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448119d89ed3cb2449e8bd61a6d998d4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized</a> () const</td></tr>
+<tr class="separator:a448119d89ed3cb2449e8bd61a6d998d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4e4bb3cb877569391f448ee298a6580"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#ad4e4bb3cb877569391f448ee298a6580">is_valid</a> (unsigned int day, int vaccine_idx, int center_idx, std::vector&lt; <a class="el" href="class_vaccine.html">Vaccine</a> * &gt; &amp;vaccins, std::vector&lt; <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> * &gt; &amp;centers, std::vector&lt; <a class="el" href="class_hub.html">Hub</a> * &gt; &amp;hubs, unsigned int cycles)</td></tr>
+<tr class="separator:ad4e4bb3cb877569391f448ee298a6580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d4bbca57af24907b6700b18b1960ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#a24d4bbca57af24907b6700b18b1960ee">generatePlanning</a> (std::vector&lt; <a class="el" href="class_hub.html">Hub</a> * &gt; &amp;hubs, std::vector&lt; <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> * &gt; &amp;centers, std::vector&lt; <a class="el" href="class_vaccine.html">Vaccine</a> * &gt; &amp;vaccins, unsigned int cycles)</td></tr>
+<tr class="separator:a24d4bbca57af24907b6700b18b1960ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a337d50c2ccee22acb6664bed56a17762"><td class="memItemLeft" align="right" valign="top"><a id="a337d50c2ccee22acb6664bed56a17762"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
+<tr class="separator:a337d50c2ccee22acb6664bed56a17762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4682e5912581b70ed72bf519daf00c8a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::pair&lt; int, std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#a4682e5912581b70ed72bf519daf00c8a">getPlanned</a> () const</td></tr>
+<tr class="separator:a4682e5912581b70ed72bf519daf00c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538fe3871a285cadae934b8c509eb1e6"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_planning.html#a538fe3871a285cadae934b8c509eb1e6">getDistribution</a> (unsigned int day, <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> *center)</td></tr>
+<tr class="separator:a538fe3871a285cadae934b8c509eb1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ab7985ab0c9a70f48befde211a9db5"><td class="memItemLeft" align="right" valign="top"><a id="ad1ab7985ab0c9a70f48befde211a9db5"></a>
+std::vector&lt; std::map&lt; <a class="el" href="class_hub.html">Hub</a> *, std::set&lt; unsigned int &gt; &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPlannedHubs</b> ()</td></tr>
+<tr class="separator:ad1ab7985ab0c9a70f48befde211a9db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a42a788755e4dedf591d0703a87d70bf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42a788755e4dedf591d0703a87d70bf2">&#9670;&nbsp;</a></span>Planning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Planning::Planning </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ENSURE(<a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </p>
+
+</div>
+</div>
+<a id="a21cdd1921e457af33596f1458c414eb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21cdd1921e457af33596f1458c414eb8">&#9670;&nbsp;</a></span>~Planning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Planning::~Planning </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>REQUIRE(<a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a24d4bbca57af24907b6700b18b1960ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d4bbca57af24907b6700b18b1960ee">&#9670;&nbsp;</a></span>generatePlanning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Planning::generatePlanning </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_hub.html">Hub</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>hubs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>centers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_vaccine.html">Vaccine</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vaccins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>cycles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>generates the plan for the simulation REQUIRE(<a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </p>
+
+</div>
+</div>
+<a id="a538fe3871a285cadae934b8c509eb1e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538fe3871a285cadae934b8c509eb1e6">&#9670;&nbsp;</a></span>getDistribution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; &amp; Planning::getDistribution </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vaccination_center.html">VaccinationCenter</a> *&#160;</td>
+          <td class="paramname"><em>center</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a map with the amount to transport per vaccine type </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">day</td><td>unsigned int; day number </td></tr>
+    <tr><td class="paramname">center</td><td>VaccinationCenter*; center to transport vaccines to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::map&lt;Vaccine*, unsigned int&gt;; map containing how many vaccines of each type should be transported </dd></dl>
+
+</div>
+</div>
+<a id="a4682e5912581b70ed72bf519daf00c8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4682e5912581b70ed72bf519daf00c8a">&#9670;&nbsp;</a></span>getPlanned()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; std::pair&lt; int, std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; &gt; &gt; &gt; Planning::getPlanned </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::vector&lt;std::pair&lt;int,std::map&lt;Vaccine*, int&gt;&gt;&gt;&gt;; the plan calender for the simulation REQUIRE(<a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </dd></dl>
+
+</div>
+</div>
+<a id="ad4e4bb3cb877569391f448ee298a6580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e4bb3cb877569391f448ee298a6580">&#9670;&nbsp;</a></span>is_valid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Planning::is_valid </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vaccine_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>center_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_vaccine.html">Vaccine</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vaccins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_vaccination_center.html">VaccinationCenter</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>centers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_hub.html">Hub</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>hubs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>cycles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if k, z and i are a valid combination of integers REQUIRE(<a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </p><dl class="section return"><dt>Returns</dt><dd>bool; true if the triple is valid </dd></dl>
+
+</div>
+</div>
+<a id="a448119d89ed3cb2449e8bd61a6d998d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448119d89ed3cb2449e8bd61a6d998d4">&#9670;&nbsp;</a></span>properlyInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Planning::properlyInitialized </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if the current object was initialized properly </p><dl class="section return"><dt>Returns</dt><dd>bool; true if the initCheck pointer points to the current instance </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>entities/<a class="el" href="_planning_8h_source.html">Planning.h</a></li>
-<li>entities/Planning.cpp</li>
+<li>D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/<a class="el" href="_planning_8h_source.html">Planning.h</a></li>
+<li>D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/Planning.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

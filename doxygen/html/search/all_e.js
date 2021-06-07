@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['queryboolattribute_156',['QueryBoolAttribute',['../class_ti_xml_element.html#a5789b1488af75b6ae37a749700495ceb',1,'TiXmlElement']]],
-  ['querydoubleattribute_157',['QueryDoubleAttribute',['../class_ti_xml_element.html#ae04bad29ddb281a7e6c662b3882e9928',1,'TiXmlElement']]],
-  ['querydoublevalue_158',['QueryDoubleValue',['../class_ti_xml_attribute.html#a6fa41b710c1b79de37a97004aa600c06',1,'TiXmlAttribute']]],
-  ['queryfloatattribute_159',['QueryFloatAttribute',['../class_ti_xml_element.html#a5591929834178699b4561ab6ab460068',1,'TiXmlElement']]],
-  ['queryintattribute_160',['QueryIntAttribute',['../class_ti_xml_element.html#a5c0f739e0f6f5905a201364532e54a60',1,'TiXmlElement']]],
-  ['queryintvalue_161',['QueryIntValue',['../class_ti_xml_attribute.html#a6caa8090d2fbb7966700a16e45ed33de',1,'TiXmlAttribute']]],
-  ['queryunsignedattribute_162',['QueryUnsignedAttribute',['../class_ti_xml_element.html#ab75c83543d4ace62f4c40d7e8e392fc3',1,'TiXmlElement']]]
+  ['vaccinateinhabitants_92',['vaccinateInhabitants',['../class_vaccination_center.html#a1715b90dff4123888d010960a48e3e65',1,'VaccinationCenter']]],
+  ['vaccinationcenter_93',['VaccinationCenter',['../class_vaccination_center.html',1,'VaccinationCenter'],['../class_vaccination_center.html#a922d14621d82c327637941e9bf103e51',1,'VaccinationCenter::VaccinationCenter()'],['../class_vaccination_center.html#a5edfdac379d61fd133febfa001de6957',1,'VaccinationCenter::VaccinationCenter(std::string name, std::string address, unsigned int inhabitants, unsigned int capacity)']]],
+  ['vaccine_94',['Vaccine',['../class_vaccine.html',1,'Vaccine'],['../class_vaccine.html#a04cd9ff1916995112bca175cc82d1369',1,'Vaccine::Vaccine()'],['../class_vaccine.html#ab7a634c9b5a8714b985ebdff091f3bea',1,'Vaccine::Vaccine(std::string type, unsigned int delivery, unsigned int interval, unsigned int transportation, unsigned int renewing=0, double temperature=0)']]]
 ];

@@ -25,7 +25,7 @@ protected:
     SimulationData statistics;
 
     void SetUp() {
-        vaccine = new Vaccine("Test", 0,0,0);
+        vaccine = new Vaccine("Test", 1,0,1);
         CLOSE_COUT;
     }
 
@@ -140,8 +140,8 @@ TEST_F(VaccinationCenterTests, BadConstructor) {
 }
 
 TEST_F(VaccinationCenterTests, RemoveExpiredVaccines) {
-    VaccinationCenter * centre = new VaccinationCenter("testName","testAddress",500,500);
-    Vaccine * vaccine = new Vaccine("testType",99,99,99,50,-1);
+    VaccinationCenter * centre = new VaccinationCenter("Center 1","Address 1",100,100);
+    Vaccine * vaccine = new Vaccine("Vaccine 1",100,100,100,100,-1);
     centre->transportationArrived(vaccine, 1000);
     centre->removeExpiredVaccines();
     EXPECT_EQ((unsigned int) 0, centre->getVaccinesMap()[vaccine]);
@@ -150,18 +150,15 @@ TEST_F(VaccinationCenterTests, RemoveExpiredVaccines) {
 }
 
 TEST_F(VaccinationCenterTests, Getters) {
-    std::string name = "Name";
-    std::string address = "Address";
-    unsigned int inhabitants = 500;
-    unsigned int capacity = 500;
+    std::string name = "Center 1";
+    std::string address = "Address 1";
+    unsigned int inhabitants = 100;
+    unsigned int capacity = 100;
     VaccinationCenter * centre = new VaccinationCenter(name,address,inhabitants,capacity);
-
     EXPECT_EQ(name, centre->getName());
     EXPECT_EQ(address, centre->getAddress());
     EXPECT_EQ(inhabitants, centre->getInhabitants());
     EXPECT_EQ(capacity, centre->getCapacity());
-
-    // Testing data we didnt set
     EXPECT_EQ((unsigned int) 0, centre->getVaccins());
     EXPECT_EQ(0.0, centre->getPercentageVaccines());
     EXPECT_EQ(0.0, centre->getPercentageVaccinated());

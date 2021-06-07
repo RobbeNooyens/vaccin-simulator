@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vaccimulator: entities/Hub.h Source File</title>
+<title>Vaccimulator: D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/Hub.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vaccimulator
-   &#160;<span id="projectnumber">2.0</span>
    </div>
-   <div id="projectbrief">Vaccine distribution simulator</div>
   </td>
  </tr>
  </tbody>
@@ -103,92 +101,109 @@ $(document).ready(function(){initNavTree('_hub_8h_source.html',''); initResizabl
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_ti_xml_element.html">TiXmlElement</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span>TiXmlElement;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="class_vaccination_center.html">VaccinationCenter</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_j_object.html">JObject</a>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span><a class="code" href="class_vaccine.html">Vaccine</a>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span><a class="code" href="class_planning.html">Planning</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">typedef</span> std::vector&lt;Vaccine*&gt; Vaccines;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">typedef</span> std::vector&lt;VaccinationCenter*&gt; VaccinationCenters;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_hub.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_hub.html">Hub</a> {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Constructor</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span>    <a class="code" href="class_hub.html#a45ea2586f93c96c1a5e133f0c82060f9">Hub</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Getters</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_hub.html#ac8761562596292316deb787327293a8a">getTotalVaccinesCount</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    VaccinationCenters <a class="code" href="class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27">getVaccinationCenters</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Vaccines <a class="code" href="class_hub.html#af8986291510968c2d5746e57de7b20df">getVaccines</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// IO</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a7be5ecaea3860361e8a46e3a1559a78b">fromJSON</a>(<a class="code" href="class_j_object.html">JObject</a>* json, VaccinationCenters &amp;centers);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a6f6a51e126bf0499192c35fcfaa2a093">toSummaryStream</a>(std::ostream &amp;stream) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a31bf574e205846e7d7dea298244c8752">toProgressStream</a>(std::ostream &amp;stream) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Simulation controls</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a1a7af1a78e5ea5a0d486c595cd306fbf">simulateDay</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a2e582d151d22773e035bd6297138f8b7">distributeVaccins</a>();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#aabcbcf678e3d3aefa14005f4e7b8f282">distributeEfficient</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day, <a class="code" href="class_planning.html">Planning</a>&amp; planning);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#aef60dc4bcd31e6316182a3f42fb81167">transportVaccinsTo</a>(<a class="code" href="class_vaccination_center.html">VaccinationCenter</a> *center, std::map&lt;Vaccine*, unsigned int&gt; doses) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#acb0b4529408869983c9ed26475aca14b">simulateDelivery</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="comment">// Validations</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#aa1857512a4418251e48b8573129540bb">setOutputStream</a>(std::ostream &amp;outputStream);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#aa53075b7fd96ce395a138d8cb8862ddd">containsInvalidCenter</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">// Initialization</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_hub.html">Hub</a>* initCheck;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="class_simulation_data.html">SimulationData</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">typedef</span> std::vector&lt;Vaccine*&gt; Vaccines;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">typedef</span> std::vector&lt;VaccinationCenter*&gt; VaccinationCenters;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_hub.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_hub.html">Hub</a> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Constructor</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"></span>    <a class="code" href="class_hub.html#a45ea2586f93c96c1a5e133f0c82060f9">Hub</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Getters</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_hub.html#ac8761562596292316deb787327293a8a">getTotalVaccinesCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    VaccinationCenters <a class="code" href="class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27">getVaccinationCenters</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    Vaccines <a class="code" href="class_hub.html#af8986291510968c2d5746e57de7b20df">getVaccines</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::map&lt;Vaccine*, unsigned int&gt; <a class="code" href="class_hub.html#ac779152fa39e8fadd70d3e9ce3bf2dae">getVaccineCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// IO</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a7be5ecaea3860361e8a46e3a1559a78b">fromJSON</a>(<a class="code" href="class_j_object.html">JObject</a>* json, VaccinationCenters &amp;centers);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a6f6a51e126bf0499192c35fcfaa2a093">toSummaryStream</a>(std::ostream &amp;stream) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a31bf574e205846e7d7dea298244c8752">toProgressStream</a>(std::ostream &amp;stream) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#af5992e70e69e2eafbf033b27e468a1ae">setOutputStream</a>(std::ostream* outStream);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::ostream * getOutputStream() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// Simulation controls</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#adf200fc86dfc2d2e70290599477c2a04">simulateDay</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day, <a class="code" href="class_simulation_data.html">SimulationData</a> &amp;statistics, <span class="keywordtype">bool</span> smartDistribution = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#ab1afb00eea2db25c4ca7889f062dc389">distributeVaccins</a>(<a class="code" href="class_simulation_data.html">SimulationData</a> &amp;statistics);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a332032e05c3ee1add9bc5eaf30e9964c">distributeEfficient</a>();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hub.html#aa6e9c89e033b8c38d7ebd010f49cbf61">transportVaccinsTo</a>(<a class="code" href="class_vaccination_center.html">VaccinationCenter</a> *center, std::map&lt;Vaccine *, unsigned int&gt; &amp;loads) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_hub.html#a85ae510c0f9deac6669bc2a9f7ab4899">simulateDelivery</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day, <a class="code" href="class_simulation_data.html">SimulationData</a> &amp;statistics);</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="comment">// Connected vaccinationcenters</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    VaccinationCenters centers;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">// Vaccines</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    Vaccines vaccines;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    std::map&lt;Vaccine*, unsigned int&gt; vaccineCount;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">// Simulation</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    std::ostream* outStream;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;};</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//VACCIN_SIMULATOR_HUB_H</span></div>
-<div class="ttc" id="aclass_hub_html"><div class="ttname"><a href="class_hub.html">Hub</a></div><div class="ttdef"><b>Definition:</b> Hub.h:26</div></div>
-<div class="ttc" id="aclass_hub_html_a19461dd5d785c75855a62afd2077470e"><div class="ttname"><a href="class_hub.html#a19461dd5d785c75855a62afd2077470e">Hub::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:34</div></div>
-<div class="ttc" id="aclass_hub_html_a1a7af1a78e5ea5a0d486c595cd306fbf"><div class="ttname"><a href="class_hub.html#a1a7af1a78e5ea5a0d486c595cd306fbf">Hub::simulateDay</a></div><div class="ttdeci">void simulateDay(unsigned int day)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:89</div></div>
-<div class="ttc" id="aclass_hub_html_a2e582d151d22773e035bd6297138f8b7"><div class="ttname"><a href="class_hub.html#a2e582d151d22773e035bd6297138f8b7">Hub::distributeVaccins</a></div><div class="ttdeci">void distributeVaccins()</div><div class="ttdef"><b>Definition:</b> Hub.cpp:123</div></div>
-<div class="ttc" id="aclass_hub_html_a31bf574e205846e7d7dea298244c8752"><div class="ttname"><a href="class_hub.html#a31bf574e205846e7d7dea298244c8752">Hub::toProgressStream</a></div><div class="ttdeci">void toProgressStream(std::ostream &amp;stream) const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:51</div></div>
-<div class="ttc" id="aclass_hub_html_a330c79afe17e06a4045b4c20c6078908"><div class="ttname"><a href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">Hub::isConsistent</a></div><div class="ttdeci">bool isConsistent() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:188</div></div>
-<div class="ttc" id="aclass_hub_html_a45ea2586f93c96c1a5e133f0c82060f9"><div class="ttname"><a href="class_hub.html#a45ea2586f93c96c1a5e133f0c82060f9">Hub::Hub</a></div><div class="ttdeci">Hub()</div><div class="ttdef"><b>Definition:</b> Hub.cpp:30</div></div>
-<div class="ttc" id="aclass_hub_html_a6f6a51e126bf0499192c35fcfaa2a093"><div class="ttname"><a href="class_hub.html#a6f6a51e126bf0499192c35fcfaa2a093">Hub::toSummaryStream</a></div><div class="ttdeci">void toSummaryStream(std::ostream &amp;stream) const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:40</div></div>
-<div class="ttc" id="aclass_hub_html_a7be5ecaea3860361e8a46e3a1559a78b"><div class="ttname"><a href="class_hub.html#a7be5ecaea3860361e8a46e3a1559a78b">Hub::fromJSON</a></div><div class="ttdeci">void fromJSON(JObject *json, VaccinationCenters &amp;centers)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:58</div></div>
-<div class="ttc" id="aclass_hub_html_aa1857512a4418251e48b8573129540bb"><div class="ttname"><a href="class_hub.html#aa1857512a4418251e48b8573129540bb">Hub::setOutputStream</a></div><div class="ttdeci">void setOutputStream(std::ostream &amp;outputStream)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:202</div></div>
-<div class="ttc" id="aclass_hub_html_aa53075b7fd96ce395a138d8cb8862ddd"><div class="ttname"><a href="class_hub.html#aa53075b7fd96ce395a138d8cb8862ddd">Hub::containsInvalidCenter</a></div><div class="ttdeci">bool containsInvalidCenter() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:157</div></div>
-<div class="ttc" id="aclass_hub_html_aabcbcf678e3d3aefa14005f4e7b8f282"><div class="ttname"><a href="class_hub.html#aabcbcf678e3d3aefa14005f4e7b8f282">Hub::distributeEfficient</a></div><div class="ttdeci">void distributeEfficient(unsigned int day, Planning &amp;planning)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:146</div></div>
-<div class="ttc" id="aclass_hub_html_ac8761562596292316deb787327293a8a"><div class="ttname"><a href="class_hub.html#ac8761562596292316deb787327293a8a">Hub::getTotalVaccinesCount</a></div><div class="ttdeci">unsigned int getTotalVaccinesCount() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:169</div></div>
-<div class="ttc" id="aclass_hub_html_acb0b4529408869983c9ed26475aca14b"><div class="ttname"><a href="class_hub.html#acb0b4529408869983c9ed26475aca14b">Hub::simulateDelivery</a></div><div class="ttdeci">void simulateDelivery(unsigned int day)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:99</div></div>
-<div class="ttc" id="aclass_hub_html_ae688ae8ebf4b21e791c67c7bd456ef27"><div class="ttname"><a href="class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27">Hub::getVaccinationCenters</a></div><div class="ttdeci">VaccinationCenters getVaccinationCenters() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:178</div></div>
-<div class="ttc" id="aclass_hub_html_aef60dc4bcd31e6316182a3f42fb81167"><div class="ttname"><a href="class_hub.html#aef60dc4bcd31e6316182a3f42fb81167">Hub::transportVaccinsTo</a></div><div class="ttdeci">void transportVaccinsTo(VaccinationCenter *center, std::map&lt; Vaccine *, unsigned int &gt; doses) const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:110</div></div>
-<div class="ttc" id="aclass_hub_html_af8986291510968c2d5746e57de7b20df"><div class="ttname"><a href="class_hub.html#af8986291510968c2d5746e57de7b20df">Hub::getVaccines</a></div><div class="ttdeci">Vaccines getVaccines() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:183</div></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="comment">// Validations</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#aa53075b7fd96ce395a138d8cb8862ddd">containsInvalidCenter</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">// Smart distribution</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="class_hub.html#ad560e574241feacedfb4ca137265bc61">is_connected</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_hub.html#a67582bcbf7d7ac7c8016a2eca8f6d296">get_connections</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_hub.html#a91a2142b5ecdc0121a3f4dec493ec760">getTotalvaccins</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">// Initialization</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_hub.html">Hub</a>* initCheck;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="comment">// Output stream</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    std::ostream* outputStream;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="comment">// Connected vaccinationcenters</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    VaccinationCenters centers;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// Vaccines</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    Vaccines vaccines;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    std::map&lt;Vaccine*, unsigned int&gt; vaccineCount;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="comment">// Smart distribution</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordtype">int</span> connections;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    std::map&lt;std::string, bool&gt; centersMap;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> totalvaccins;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;};</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//VACCIN_SIMULATOR_HUB_H</span></div>
+<div class="ttc" id="aclass_hub_html"><div class="ttname"><a href="class_hub.html">Hub</a></div><div class="ttdef"><b>Definition:</b> Hub.h:27</div></div>
+<div class="ttc" id="aclass_hub_html_a19461dd5d785c75855a62afd2077470e"><div class="ttname"><a href="class_hub.html#a19461dd5d785c75855a62afd2077470e">Hub::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:35</div></div>
+<div class="ttc" id="aclass_hub_html_a31bf574e205846e7d7dea298244c8752"><div class="ttname"><a href="class_hub.html#a31bf574e205846e7d7dea298244c8752">Hub::toProgressStream</a></div><div class="ttdeci">void toProgressStream(std::ostream &amp;stream) const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:52</div></div>
+<div class="ttc" id="aclass_hub_html_a330c79afe17e06a4045b4c20c6078908"><div class="ttname"><a href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">Hub::isConsistent</a></div><div class="ttdeci">bool isConsistent() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:254</div></div>
+<div class="ttc" id="aclass_hub_html_a332032e05c3ee1add9bc5eaf30e9964c"><div class="ttname"><a href="class_hub.html#a332032e05c3ee1add9bc5eaf30e9964c">Hub::distributeEfficient</a></div><div class="ttdeci">void distributeEfficient()</div><div class="ttdef"><b>Definition:</b> Hub.cpp:170</div></div>
+<div class="ttc" id="aclass_hub_html_a45ea2586f93c96c1a5e133f0c82060f9"><div class="ttname"><a href="class_hub.html#a45ea2586f93c96c1a5e133f0c82060f9">Hub::Hub</a></div><div class="ttdeci">Hub()</div><div class="ttdef"><b>Definition:</b> Hub.cpp:31</div></div>
+<div class="ttc" id="aclass_hub_html_a67582bcbf7d7ac7c8016a2eca8f6d296"><div class="ttname"><a href="class_hub.html#a67582bcbf7d7ac7c8016a2eca8f6d296">Hub::get_connections</a></div><div class="ttdeci">int get_connections() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:285</div></div>
+<div class="ttc" id="aclass_hub_html_a6f6a51e126bf0499192c35fcfaa2a093"><div class="ttname"><a href="class_hub.html#a6f6a51e126bf0499192c35fcfaa2a093">Hub::toSummaryStream</a></div><div class="ttdeci">void toSummaryStream(std::ostream &amp;stream) const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:41</div></div>
+<div class="ttc" id="aclass_hub_html_a7be5ecaea3860361e8a46e3a1559a78b"><div class="ttname"><a href="class_hub.html#a7be5ecaea3860361e8a46e3a1559a78b">Hub::fromJSON</a></div><div class="ttdeci">void fromJSON(JObject *json, VaccinationCenters &amp;centers)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:63</div></div>
+<div class="ttc" id="aclass_hub_html_a85ae510c0f9deac6669bc2a9f7ab4899"><div class="ttname"><a href="class_hub.html#a85ae510c0f9deac6669bc2a9f7ab4899">Hub::simulateDelivery</a></div><div class="ttdeci">void simulateDelivery(unsigned int day, SimulationData &amp;statistics)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:110</div></div>
+<div class="ttc" id="aclass_hub_html_a91a2142b5ecdc0121a3f4dec493ec760"><div class="ttname"><a href="class_hub.html#a91a2142b5ecdc0121a3f4dec493ec760">Hub::getTotalvaccins</a></div><div class="ttdeci">unsigned int getTotalvaccins() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:290</div></div>
+<div class="ttc" id="aclass_hub_html_aa53075b7fd96ce395a138d8cb8862ddd"><div class="ttname"><a href="class_hub.html#aa53075b7fd96ce395a138d8cb8862ddd">Hub::containsInvalidCenter</a></div><div class="ttdeci">bool containsInvalidCenter() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:223</div></div>
+<div class="ttc" id="aclass_hub_html_aa6e9c89e033b8c38d7ebd010f49cbf61"><div class="ttname"><a href="class_hub.html#aa6e9c89e033b8c38d7ebd010f49cbf61">Hub::transportVaccinsTo</a></div><div class="ttdeci">void transportVaccinsTo(VaccinationCenter *center, std::map&lt; Vaccine *, unsigned int &gt; &amp;loads) const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:123</div></div>
+<div class="ttc" id="aclass_hub_html_ab1afb00eea2db25c4ca7889f062dc389"><div class="ttname"><a href="class_hub.html#ab1afb00eea2db25c4ca7889f062dc389">Hub::distributeVaccins</a></div><div class="ttdeci">void distributeVaccins(SimulationData &amp;statistics)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:142</div></div>
+<div class="ttc" id="aclass_hub_html_ac779152fa39e8fadd70d3e9ce3bf2dae"><div class="ttname"><a href="class_hub.html#ac779152fa39e8fadd70d3e9ce3bf2dae">Hub::getVaccineCount</a></div><div class="ttdeci">std::map&lt; Vaccine *, unsigned int &gt; getVaccineCount() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:268</div></div>
+<div class="ttc" id="aclass_hub_html_ac8761562596292316deb787327293a8a"><div class="ttname"><a href="class_hub.html#ac8761562596292316deb787327293a8a">Hub::getTotalVaccinesCount</a></div><div class="ttdeci">unsigned int getTotalVaccinesCount() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:235</div></div>
+<div class="ttc" id="aclass_hub_html_ad560e574241feacedfb4ca137265bc61"><div class="ttname"><a href="class_hub.html#ad560e574241feacedfb4ca137265bc61">Hub::is_connected</a></div><div class="ttdeci">bool is_connected(const std::string &amp;name)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:280</div></div>
+<div class="ttc" id="aclass_hub_html_adf200fc86dfc2d2e70290599477c2a04"><div class="ttname"><a href="class_hub.html#adf200fc86dfc2d2e70290599477c2a04">Hub::simulateDay</a></div><div class="ttdeci">void simulateDay(unsigned int day, SimulationData &amp;statistics, bool smartDistribution=false)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:95</div></div>
+<div class="ttc" id="aclass_hub_html_ae688ae8ebf4b21e791c67c7bd456ef27"><div class="ttname"><a href="class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27">Hub::getVaccinationCenters</a></div><div class="ttdeci">VaccinationCenters getVaccinationCenters() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:244</div></div>
+<div class="ttc" id="aclass_hub_html_af5992e70e69e2eafbf033b27e468a1ae"><div class="ttname"><a href="class_hub.html#af5992e70e69e2eafbf033b27e468a1ae">Hub::setOutputStream</a></div><div class="ttdeci">void setOutputStream(std::ostream *outStream)</div><div class="ttdef"><b>Definition:</b> Hub.cpp:273</div></div>
+<div class="ttc" id="aclass_hub_html_af8986291510968c2d5746e57de7b20df"><div class="ttname"><a href="class_hub.html#af8986291510968c2d5746e57de7b20df">Hub::getVaccines</a></div><div class="ttdeci">Vaccines getVaccines() const</div><div class="ttdef"><b>Definition:</b> Hub.cpp:249</div></div>
 <div class="ttc" id="aclass_j_object_html"><div class="ttname"><a href="class_j_object.html">JObject</a></div><div class="ttdef"><b>Definition:</b> JObject.h:16</div></div>
 <div class="ttc" id="aclass_planning_html"><div class="ttname"><a href="class_planning.html">Planning</a></div><div class="ttdef"><b>Definition:</b> Planning.h:20</div></div>
-<div class="ttc" id="aclass_ti_xml_element_html"><div class="ttname"><a href="class_ti_xml_element.html">TiXmlElement</a></div><div class="ttdef"><b>Definition:</b> tinyxml.h:941</div></div>
-<div class="ttc" id="aclass_vaccination_center_html"><div class="ttname"><a href="class_vaccination_center.html">VaccinationCenter</a></div><div class="ttdef"><b>Definition:</b> VaccinationCenter.h:18</div></div>
-<div class="ttc" id="aclass_vaccine_html"><div class="ttname"><a href="class_vaccine.html">Vaccine</a></div><div class="ttdef"><b>Definition:</b> Vaccine.h:18</div></div>
+<div class="ttc" id="aclass_simulation_data_html"><div class="ttname"><a href="class_simulation_data.html">SimulationData</a></div><div class="ttdef"><b>Definition:</b> SimulationData.h:20</div></div>
+<div class="ttc" id="aclass_vaccination_center_html"><div class="ttname"><a href="class_vaccination_center.html">VaccinationCenter</a></div><div class="ttdef"><b>Definition:</b> VaccinationCenter.h:19</div></div>
+<div class="ttc" id="aclass_vaccine_html"><div class="ttname"><a href="class_vaccine.html">Vaccine</a></div><div class="ttdef"><b>Definition:</b> Vaccine.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_9404ca00d5cf333c309ae0ebf80749c4.html">entities</a></li><li class="navelem"><b>Hub.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li><li class="navelem"><b>Hub.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['name_136',['Name',['../class_ti_xml_attribute.html#a008ef948268ee752b58c60d63d84bb01',1,'TiXmlAttribute']]],
-  ['nativearray_137',['NativeArray',['../classtesting_1_1internal_1_1_native_array.html',1,'testing::internal']]],
-  ['next_138',['Next',['../class_ti_xml_attribute.html#af2e78f1ba9ed56a26ddc80614ed1c393',1,'TiXmlAttribute']]],
-  ['nextsibling_139',['NextSibling',['../class_ti_xml_node.html#ae99c572ac7901a15993ea7a4efaa10e7',1,'TiXmlNode::NextSibling() const'],['../class_ti_xml_node.html#a0864ea784b53cdca0a37829d3391ca4b',1,'TiXmlNode::NextSibling(const char *) const']]],
-  ['nextsiblingelement_140',['NextSiblingElement',['../class_ti_xml_node.html#ac6105781c913a42aa7f3f17bd1964f7c',1,'TiXmlNode::NextSiblingElement() const'],['../class_ti_xml_node.html#a22def4746238abaee042f99b47ef3c94',1,'TiXmlNode::NextSiblingElement(const char *) const']]],
-  ['nochildren_141',['NoChildren',['../class_ti_xml_node.html#abe85e0ec04ea59c033f324c8504653e5',1,'TiXmlNode']]],
-  ['node_142',['Node',['../class_ti_xml_handle.html#aec0e3ea58ff98a45cd13507a02e2ca1e',1,'TiXmlHandle']]],
-  ['nodetype_143',['NodeType',['../class_ti_xml_node.html#a836eded4920ab9e9ef28496f48cd95a2',1,'TiXmlNode']]]
+  ['setconnectedtohub_77',['setConnectedToHub',['../class_vaccination_center.html#ab9519b3de0bc60c6b2f2c262efa3e700',1,'VaccinationCenter']]],
+  ['sethub_78',['setHub',['../class_vaccine.html#a410e47931f49501dfdaa2f8385fc2875',1,'Vaccine']]],
+  ['setinitialstate_79',['setInitialState',['../class_simulator.html#a54627db66d6a118ded326684d5a65b04',1,'Simulator']]],
+  ['setoutputstream_80',['setOutputStream',['../class_hub.html#af5992e70e69e2eafbf033b27e468a1ae',1,'Hub::setOutputStream()'],['../class_vaccination_center.html#a28092f7cb546a8396b29d0abc4a971dc',1,'VaccinationCenter::setOutputStream()']]],
+  ['setstatisticsstream_81',['setStatisticsStream',['../class_simulator.html#a59a7e7fcd51b387cc524a30ee4886b80',1,'Simulator']]],
+  ['settransportationstream_82',['setTransportationStream',['../class_simulator.html#a4fd5eec47b1e88b54b5f515c4ea6dedc',1,'Simulator']]],
+  ['setvaccinationsstream_83',['setVaccinationsStream',['../class_simulator.html#a631eaa74ffa253178e1618f33a4fe454',1,'Simulator']]],
+  ['simulateday_84',['simulateDay',['../class_hub.html#adf200fc86dfc2d2e70290599477c2a04',1,'Hub']]],
+  ['simulatedelivery_85',['simulateDelivery',['../class_hub.html#a85ae510c0f9deac6669bc2a9f7ab4899',1,'Hub']]],
+  ['simulationdata_86',['SimulationData',['../class_simulation_data.html',1,'SimulationData'],['../class_simulation_data.html#af660806599170e9fdcf51f0f0169358e',1,'SimulationData::SimulationData()']]],
+  ['simulator_87',['Simulator',['../class_simulator.html',1,'Simulator'],['../class_simulator.html#a031573bfcfe2e0f5c9539bcc1c7fc5d9',1,'Simulator::Simulator()']]]
 ];

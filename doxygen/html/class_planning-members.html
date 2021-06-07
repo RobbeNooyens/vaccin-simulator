@@ -26,9 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vaccimulator
-   &#160;<span id="projectnumber">2.0</span>
    </div>
-   <div id="projectbrief">Vaccine distribution simulator</div>
   </td>
  </tr>
  </tbody>
@@ -90,11 +88,15 @@ $(document).ready(function(){initNavTree('class_planning.html',''); initResizabl
 
 <p>This is the complete list of members for <a class="el" href="class_planning.html">Planning</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>generatePlanning</b>(unsigned int days, std::vector&lt; Hub * &gt; hubs, std::vector&lt; VaccinationCenter * &gt; centers, unsigned int startFrom=0) (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getDistribution</b>(unsigned int day, VaccinationCenter *center) (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Planning</b>() (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>properlyInitialized</b>() (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Planning</b>() (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_planning.html#a24d4bbca57af24907b6700b18b1960ee">generatePlanning</a>(std::vector&lt; Hub * &gt; &amp;hubs, std::vector&lt; VaccinationCenter * &gt; &amp;centers, std::vector&lt; Vaccine * &gt; &amp;vaccins, unsigned int cycles)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_planning.html#a538fe3871a285cadae934b8c509eb1e6">getDistribution</a>(unsigned int day, VaccinationCenter *center)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_planning.html#a4682e5912581b70ed72bf519daf00c8a">getPlanned</a>() const</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getPlannedHubs</b>() (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_planning.html#ad4e4bb3cb877569391f448ee298a6580">is_valid</a>(unsigned int day, int vaccine_idx, int center_idx, std::vector&lt; Vaccine * &gt; &amp;vaccins, std::vector&lt; VaccinationCenter * &gt; &amp;centers, std::vector&lt; Hub * &gt; &amp;hubs, unsigned int cycles)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_planning.html#a42a788755e4dedf591d0703a87d70bf2">Planning</a>()</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized</a>() const</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>reset</b>() (defined in <a class="el" href="class_planning.html">Planning</a>)</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_planning.html#a21cdd1921e457af33596f1458c414eb8">~Planning</a>()</td><td class="entry"><a class="el" href="class_planning.html">Planning</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

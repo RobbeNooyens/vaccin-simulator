@@ -26,9 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vaccimulator
-   &#160;<span id="projectnumber">2.0</span>
    </div>
-   <div id="projectbrief">Vaccine distribution simulator</div>
   </td>
  </tr>
  </tbody>
@@ -103,28 +101,39 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae688ae8ebf4b21e791c67c7bd456ef27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8986291510968c2d5746e57de7b20df"><td class="memItemLeft" align="right" valign="top">Vaccines&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#af8986291510968c2d5746e57de7b20df">getVaccines</a> () const</td></tr>
 <tr class="separator:af8986291510968c2d5746e57de7b20df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac779152fa39e8fadd70d3e9ce3bf2dae"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#ac779152fa39e8fadd70d3e9ce3bf2dae">getVaccineCount</a> () const</td></tr>
+<tr class="separator:ac779152fa39e8fadd70d3e9ce3bf2dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7be5ecaea3860361e8a46e3a1559a78b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a7be5ecaea3860361e8a46e3a1559a78b">fromJSON</a> (<a class="el" href="class_j_object.html">JObject</a> *json, VaccinationCenters &amp;centers)</td></tr>
 <tr class="separator:a7be5ecaea3860361e8a46e3a1559a78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f6a51e126bf0499192c35fcfaa2a093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a6f6a51e126bf0499192c35fcfaa2a093">toSummaryStream</a> (std::ostream &amp;stream) const</td></tr>
 <tr class="separator:a6f6a51e126bf0499192c35fcfaa2a093"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31bf574e205846e7d7dea298244c8752"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a31bf574e205846e7d7dea298244c8752">toProgressStream</a> (std::ostream &amp;stream) const</td></tr>
 <tr class="separator:a31bf574e205846e7d7dea298244c8752"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a7af1a78e5ea5a0d486c595cd306fbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a1a7af1a78e5ea5a0d486c595cd306fbf">simulateDay</a> (unsigned int day)</td></tr>
-<tr class="separator:a1a7af1a78e5ea5a0d486c595cd306fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e582d151d22773e035bd6297138f8b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a2e582d151d22773e035bd6297138f8b7">distributeVaccins</a> ()</td></tr>
-<tr class="separator:a2e582d151d22773e035bd6297138f8b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabcbcf678e3d3aefa14005f4e7b8f282"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#aabcbcf678e3d3aefa14005f4e7b8f282">distributeEfficient</a> (unsigned int day, <a class="el" href="class_planning.html">Planning</a> &amp;planning)</td></tr>
-<tr class="separator:aabcbcf678e3d3aefa14005f4e7b8f282"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef60dc4bcd31e6316182a3f42fb81167"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#aef60dc4bcd31e6316182a3f42fb81167">transportVaccinsTo</a> (<a class="el" href="class_vaccination_center.html">VaccinationCenter</a> *center, std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; doses) const</td></tr>
-<tr class="separator:aef60dc4bcd31e6316182a3f42fb81167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb0b4529408869983c9ed26475aca14b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#acb0b4529408869983c9ed26475aca14b">simulateDelivery</a> (unsigned int day)</td></tr>
-<tr class="separator:acb0b4529408869983c9ed26475aca14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5992e70e69e2eafbf033b27e468a1ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#af5992e70e69e2eafbf033b27e468a1ae">setOutputStream</a> (std::ostream *outStream)</td></tr>
+<tr class="separator:af5992e70e69e2eafbf033b27e468a1ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96e46d5652573f2de2969e54d1591864"><td class="memItemLeft" align="right" valign="top"><a id="a96e46d5652573f2de2969e54d1591864"></a>
+std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><b>getOutputStream</b> () const</td></tr>
+<tr class="separator:a96e46d5652573f2de2969e54d1591864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf200fc86dfc2d2e70290599477c2a04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#adf200fc86dfc2d2e70290599477c2a04">simulateDay</a> (unsigned int day, <a class="el" href="class_simulation_data.html">SimulationData</a> &amp;statistics, bool smartDistribution=false)</td></tr>
+<tr class="separator:adf200fc86dfc2d2e70290599477c2a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1afb00eea2db25c4ca7889f062dc389"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#ab1afb00eea2db25c4ca7889f062dc389">distributeVaccins</a> (<a class="el" href="class_simulation_data.html">SimulationData</a> &amp;statistics)</td></tr>
+<tr class="separator:ab1afb00eea2db25c4ca7889f062dc389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a332032e05c3ee1add9bc5eaf30e9964c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a332032e05c3ee1add9bc5eaf30e9964c">distributeEfficient</a> ()</td></tr>
+<tr class="separator:a332032e05c3ee1add9bc5eaf30e9964c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e9c89e033b8c38d7ebd010f49cbf61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#aa6e9c89e033b8c38d7ebd010f49cbf61">transportVaccinsTo</a> (<a class="el" href="class_vaccination_center.html">VaccinationCenter</a> *center, std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; &amp;loads) const</td></tr>
+<tr class="separator:aa6e9c89e033b8c38d7ebd010f49cbf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ae510c0f9deac6669bc2a9f7ab4899"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a85ae510c0f9deac6669bc2a9f7ab4899">simulateDelivery</a> (unsigned int day, <a class="el" href="class_simulation_data.html">SimulationData</a> &amp;statistics)</td></tr>
+<tr class="separator:a85ae510c0f9deac6669bc2a9f7ab4899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a330c79afe17e06a4045b4c20c6078908"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent</a> () const</td></tr>
 <tr class="separator:a330c79afe17e06a4045b4c20c6078908"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1857512a4418251e48b8573129540bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#aa1857512a4418251e48b8573129540bb">setOutputStream</a> (std::ostream &amp;outputStream)</td></tr>
-<tr class="separator:aa1857512a4418251e48b8573129540bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa53075b7fd96ce395a138d8cb8862ddd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#aa53075b7fd96ce395a138d8cb8862ddd">containsInvalidCenter</a> () const</td></tr>
 <tr class="separator:aa53075b7fd96ce395a138d8cb8862ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad560e574241feacedfb4ca137265bc61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#ad560e574241feacedfb4ca137265bc61">is_connected</a> (const std::string &amp;name)</td></tr>
+<tr class="separator:ad560e574241feacedfb4ca137265bc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67582bcbf7d7ac7c8016a2eca8f6d296"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a67582bcbf7d7ac7c8016a2eca8f6d296">get_connections</a> () const</td></tr>
+<tr class="separator:a67582bcbf7d7ac7c8016a2eca8f6d296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91a2142b5ecdc0121a3f4dec493ec760"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hub.html#a91a2142b5ecdc0121a3f4dec493ec760">getTotalvaccins</a> () const</td></tr>
+<tr class="separator:a91a2142b5ecdc0121a3f4dec493ec760"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a45ea2586f93c96c1a5e133f0c82060f9"></a>
@@ -170,8 +179,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aabcbcf678e3d3aefa14005f4e7b8f282"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabcbcf678e3d3aefa14005f4e7b8f282">&#9670;&nbsp;</a></span>distributeEfficient()</h2>
+<a id="a332032e05c3ee1add9bc5eaf30e9964c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a332032e05c3ee1add9bc5eaf30e9964c">&#9670;&nbsp;</a></span>distributeEfficient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,19 +188,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Hub::distributeEfficient </td>
           <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>day</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_planning.html">Planning</a> &amp;&#160;</td>
-          <td class="paramname"><em>planning</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,7 +199,11 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">planning</td><td><a class="el" href="class_planning.html">Planning</a>; calendar<ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
 <li>REQUIRE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent to run the simulation");</li>
-<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!"); </li>
+<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");</li>
+<li>REQUIRE(<a class="el" href="class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27">getVaccinationCenters()</a>.empty(), "Centers cannot be empty!");</li>
+<li>REQUIRE(!getVaccines().empty(), "Vaccines cannot be empty!");</li>
+<li>ENSURE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent after running the simulation");</li>
+<li>ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!"); </li>
 </ul>
 </td></tr>
   </table>
@@ -210,8 +212,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2e582d151d22773e035bd6297138f8b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e582d151d22773e035bd6297138f8b7">&#9670;&nbsp;</a></span>distributeVaccins()</h2>
+<a id="ab1afb00eea2db25c4ca7889f062dc389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1afb00eea2db25c4ca7889f062dc389">&#9670;&nbsp;</a></span>distributeVaccins()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +221,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Hub::distributeVaccins </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_simulation_data.html">SimulationData</a> &amp;&#160;</td>
+          <td class="paramname"><em>statistics</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -227,7 +230,9 @@ Public Member Functions</h2></td></tr>
 <p>Simulate vaccin distribution over the vaccinationcenters</p><ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
 <li>REQUIRE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent to run the simulation");</li>
-<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!"); </li>
+<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");</li>
+<li>ENSURE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent after running the simulation");</li>
+<li>ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation!"); </li>
 </ul>
 
 </div>
@@ -262,18 +267,36 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">json</td><td>JSON object containing the data for the hub </td></tr>
     <tr><td class="paramname">centers</td><td>loaded centers<ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
-<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");</li>
-<li>REQUIRE(json != NULL, "JSON can't be NULL!");</li>
-<li>REQUIRE(json-&gt;contains("hub.levering"), "Hub JSON should contain field 'hub.levering'");</li>
-<li>REQUIRE(json-&gt;contains("hub.interval"), "Hub JSON should contain field 'hub.interval'");</li>
-<li>REQUIRE(json-&gt;contains("hub.transport"), "Hub JSON should contain field 'hub.transport'");</li>
-<li>REQUIRE(json-&gt;contains("centra"), "Hub JSON should contain field 'hub.centra'");</li>
-<li>ENSURE(centra.size() == centers.size(), "Not all centers are loaded succesfully."); </li>
+<li>REQUIRE(json, "JSON can't be NULL!");</li>
+<li>REQUIRE(json-&gt;contains(HUB_CENTERS), StringUtil::concat("Hub JSON should contain field ", HUB_CENTERS).c_str());</li>
+<li>REQUIRE(json-&gt;contains(HUB_VACCINES), StringUtil::concat("Hub JSON should contain field ", HUB_VACCINES).c_str());</li>
+<li>ENSURE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub isn't consistent after parsing!");</li>
+<li>ENSURE(json-&gt;getValue(HUB_CENTERS)-&gt;asJArray()-&gt;getItems().size() == <a class="el" href="class_hub.html#ae688ae8ebf4b21e791c67c7bd456ef27">getVaccinationCenters()</a>.size(), "Hub's centers JSON contains an invalid name!");</li>
+<li>ENSURE(<a class="el" href="class_hub.html#af8986291510968c2d5746e57de7b20df">getVaccines()</a>.size() == <a class="el" href="class_hub.html#ac779152fa39e8fadd70d3e9ce3bf2dae">getVaccineCount()</a>.size(), "Vaccines vector and vaccineCount map should have the same size!");</li>
+<li>ENSURE(!containsInvalidCenter(), "Hub contains an invalid center!"); </li>
 </ul>
 </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a67582bcbf7d7ac7c8016a2eca8f6d296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67582bcbf7d7ac7c8016a2eca8f6d296">&#9670;&nbsp;</a></span>get_connections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Hub::get_connections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the amount of connected vaccination centers </p><dl class="section return"><dt>Returns</dt><dd>int; the total of centers the hub is connected to REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </dd></dl>
 
 </div>
 </div>
@@ -291,10 +314,28 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>unsigned int; the amount of vaccins there are currently available in the hub<ul>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int; the amount of vaccins there are currently available valid the hub<ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </li>
 </ul>
 </dd></dl>
+
+</div>
+</div>
+<a id="a91a2142b5ecdc0121a3f4dec493ec760"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91a2142b5ecdc0121a3f4dec493ec760">&#9670;&nbsp;</a></span>getTotalvaccins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Hub::getTotalvaccins </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the total amount of vaccines for the smart distribution </p><dl class="section return"><dt>Returns</dt><dd>unsigned int; the total number of vaccins of all sorts in the hub REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </dd></dl>
 
 </div>
 </div>
@@ -319,6 +360,27 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ac779152fa39e8fadd70d3e9ce3bf2dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac779152fa39e8fadd70d3e9ce3bf2dae">&#9670;&nbsp;</a></span>getVaccineCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; Hub::getVaccineCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>std::map&lt;Vaccine*, unsigned int&gt;; vaccines as key and their amount as value<ul>
+<li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="af8986291510968c2d5746e57de7b20df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af8986291510968c2d5746e57de7b20df">&#9670;&nbsp;</a></span>getVaccines()</h2>
 
@@ -337,6 +399,25 @@ Public Member Functions</h2></td></tr>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </li>
 </ul>
 </dd></dl>
+
+</div>
+</div>
+<a id="ad560e574241feacedfb4ca137265bc61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad560e574241feacedfb4ca137265bc61">&#9670;&nbsp;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Hub::is_connected </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if center with the given name is connected to this hub </p><dl class="section return"><dt>Returns</dt><dd>bool; true if this hub is connected to center with name "name" REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </dd></dl>
 
 </div>
 </div>
@@ -380,8 +461,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1857512a4418251e48b8573129540bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1857512a4418251e48b8573129540bb">&#9670;&nbsp;</a></span>setOutputStream()</h2>
+<a id="af5992e70e69e2eafbf033b27e468a1ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5992e70e69e2eafbf033b27e468a1ae">&#9670;&nbsp;</a></span>setOutputStream()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -389,26 +470,23 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Hub::setOutputStream </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>outputStream</em></td><td>)</td>
+          <td class="paramtype">std::ostream *&#160;</td>
+          <td class="paramname"><em>outStream</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets the output stream to the given stream </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Sets the output stream to send output to during the simulation </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">outputStream</td><td>ostream; stream to output events to<ul>
-<li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </li>
-</ul>
-</td></tr>
+    <tr><td class="paramname">outStream</td><td>ostream*; output stream </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a1a7af1a78e5ea5a0d486c595cd306fbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a7af1a78e5ea5a0d486c595cd306fbf">&#9670;&nbsp;</a></span>simulateDay()</h2>
+<a id="adf200fc86dfc2d2e70290599477c2a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf200fc86dfc2d2e70290599477c2a04">&#9670;&nbsp;</a></span>simulateDay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -417,8 +495,24 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void Hub::simulateDay </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>day</em></td><td>)</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_simulation_data.html">SimulationData</a> &amp;&#160;</td>
+          <td class="paramname"><em>statistics</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>smartDistribution</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -427,7 +521,9 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">day</td><td>daynumber relative to the startdate<ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
 <li>REQUIRE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent to run the simulation");</li>
-<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!"); </li>
+<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");</li>
+<li>ENSURE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent after running the simulation for a day!");</li>
+<li>ENSURE(!containsInvalidCenter(), "Hub contains an invalid center after running the simulation for a day!"); </li>
 </ul>
 </td></tr>
   </table>
@@ -436,8 +532,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acb0b4529408869983c9ed26475aca14b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb0b4529408869983c9ed26475aca14b">&#9670;&nbsp;</a></span>simulateDelivery()</h2>
+<a id="a85ae510c0f9deac6669bc2a9f7ab4899"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85ae510c0f9deac6669bc2a9f7ab4899">&#9670;&nbsp;</a></span>simulateDelivery()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -446,16 +542,27 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void Hub::simulateDelivery </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>day</em></td><td>)</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_simulation_data.html">SimulationData</a> &amp;&#160;</td>
+          <td class="paramname"><em>statistics</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds vaccines in case cargo is being delivered </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Adds vaccines valid case cargo is being delivered </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">day</td><td>unsigned int; current day<ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
-<li>REQUIRE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent to run the simulation"); </li>
+<li>REQUIRE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent to run the simulation");</li>
+<li>ENSURE(<a class="el" href="class_hub.html#a330c79afe17e06a4045b4c20c6078908">isConsistent()</a>, "Hub needs to be consistent to run the simulation"); </li>
 </ul>
 </td></tr>
   </table>
@@ -481,8 +588,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Exports <a class="el" href="class_hub.html">Hub</a> progress to the given stream </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stream</td><td>ostream; stream to push output strings to<ul>
-<li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!"); </li>
+    <tr><td class="paramname">stream</td><td>ostream; stream to push parsing strings to<ul>
+<li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
+<li>REQUIRE(outStream, "Output stream cannot be NULL!");</li>
+<li>REQUIRE(outStream.good(), "Output stream contains error flags!");</li>
+<li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");</li>
+<li>ENSURE(outStream.good(), "Failed to write to parsing stream!"); </li>
 </ul>
 </td></tr>
   </table>
@@ -508,12 +619,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Exports <a class="el" href="class_hub.html">Hub</a> object summary to the given stream </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stream</td><td>ostream; stream to push output strings to<ul>
+    <tr><td class="paramname">stream</td><td>ostream; stream to push parsing strings to<ul>
 <li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
 <li>REQUIRE(outStream != NULL, "Output stream cannot be NULL!");</li>
 <li>REQUIRE(outStream.good(), "Output stream contains error flags!");</li>
 <li>REQUIRE(!containsInvalidCenter(), "Hub contains an invalid center!");</li>
-<li>ENSURE(outStream.good(), "Failed to write to output stream!"); </li>
+<li>ENSURE(outStream.good(), "Failed to write to parsing stream!"); </li>
 </ul>
 </td></tr>
   </table>
@@ -522,8 +633,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aef60dc4bcd31e6316182a3f42fb81167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef60dc4bcd31e6316182a3f42fb81167">&#9670;&nbsp;</a></span>transportVaccinsTo()</h2>
+<a id="aa6e9c89e033b8c38d7ebd010f49cbf61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e9c89e033b8c38d7ebd010f49cbf61">&#9670;&nbsp;</a></span>transportVaccinsTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -537,8 +648,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt;&#160;</td>
-          <td class="paramname"><em>doses</em>&#160;</td>
+          <td class="paramtype">std::map&lt; <a class="el" href="class_vaccine.html">Vaccine</a> *, unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>loads</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -550,7 +661,13 @@ Public Member Functions</h2></td></tr>
 <p>Transport a specific amount of vaccinations to the specified vaccination center. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">center</td><td>the center where the vaccins should be transported to </td></tr>
-    <tr><td class="paramname">vaccinCount</td><td>the amount of vaccins to transport </td></tr>
+    <tr><td class="paramname">vaccinCount</td><td>the amount of vaccins to transport<ul>
+<li>REQUIRE(<a class="el" href="class_hub.html#a19461dd5d785c75855a62afd2077470e">properlyInitialized()</a>, "Hub object hasn't been initialized properly!");</li>
+<li>REQUIRE(center, "VaccinationCenter can't be NULL!");</li>
+<li>REQUIRE(!getOutputStream() || getOutputStream()-&gt;good(), "Output stream not available");</li>
+<li>ENSURE(center, "Center became corrupted during transport!"); </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -558,8 +675,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>entities/<a class="el" href="_hub_8h_source.html">Hub.h</a></li>
-<li>entities/Hub.cpp</li>
+<li>D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/<a class="el" href="_hub_8h_source.html">Hub.h</a></li>
+<li>D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/Hub.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

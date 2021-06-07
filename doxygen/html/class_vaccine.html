@@ -26,9 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vaccimulator
-   &#160;<span id="projectnumber">2.0</span>
    </div>
-   <div id="projectbrief">Vaccine distribution simulator</div>
   </td>
  </tr>
  </tbody>
@@ -101,8 +99,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abcdeee3ac6d68ee32bb2798aeb898158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82548f2b3645e8165fdaa1eb93e3912f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a82548f2b3645e8165fdaa1eb93e3912f">fromJSON</a> (<a class="el" href="class_j_object.html">JObject</a> *json)</td></tr>
 <tr class="separator:a82548f2b3645e8165fdaa1eb93e3912f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceeb596b80191cc1c337ba2b780e52c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_j_object.html">JObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#aceeb596b80191cc1c337ba2b780e52c3">toJSON</a> () const</td></tr>
-<tr class="separator:aceeb596b80191cc1c337ba2b780e52c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bad4aacf404365e6c4d32178e38b1df"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a1bad4aacf404365e6c4d32178e38b1df">getType</a> () const</td></tr>
 <tr class="separator:a1bad4aacf404365e6c4d32178e38b1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a1a33352d03fded09b77ad0a26bf83a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a2a1a33352d03fded09b77ad0a26bf83a">getDelivery</a> () const</td></tr>
@@ -115,6 +111,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad2e5e5d9fbb14936e3660ea92b75b32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d6ecb9e07b1d68f7fcca8e9cef4ad89"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a5d6ecb9e07b1d68f7fcca8e9cef4ad89">getTemperature</a> () const</td></tr>
 <tr class="separator:a5d6ecb9e07b1d68f7fcca8e9cef4ad89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0629fc9e5c718f6e26a5a1b73dbae009"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a0629fc9e5c718f6e26a5a1b73dbae009">getDynamicDelivery</a> () const</td></tr>
+<tr class="separator:a0629fc9e5c718f6e26a5a1b73dbae009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a222dcda3c49a499860b645b6a9da14b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_hub.html">Hub</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a222dcda3c49a499860b645b6a9da14b3">getHub</a> () const</td></tr>
+<tr class="separator:a222dcda3c49a499860b645b6a9da14b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a687230717df77f5f73b69680904ec947"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a687230717df77f5f73b69680904ec947">getDays</a> ()</td></tr>
+<tr class="separator:a687230717df77f5f73b69680904ec947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e4d03f07b46f0a2213244db292cbc7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#af5e4d03f07b46f0a2213244db292cbc7">operator&lt;</a> (const <a class="el" href="class_vaccine.html">Vaccine</a> &amp;s) const</td></tr>
+<tr class="separator:af5e4d03f07b46f0a2213244db292cbc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a410e47931f49501dfdaa2f8385fc2875"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vaccine.html#a410e47931f49501dfdaa2f8385fc2875">setHub</a> (<a class="el" href="class_hub.html">Hub</a> *h)</td></tr>
+<tr class="separator:a410e47931f49501dfdaa2f8385fc2875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a04cd9ff1916995112bca175cc82d1369"></a>
@@ -221,18 +227,42 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Loads data from a JSON object </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">json</td><td><a class="el" href="class_j_object.html">JObject</a>; <a class="el" href="class_j_object.html">JObject</a> that holds the data to load in into the object<ul>
+    <tr><td class="paramname">json</td><td><a class="el" href="class_j_object.html">JObject</a>; <a class="el" href="class_j_object.html">JObject</a> that holds the data to load valid into the object<ul>
 <li>REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "Vaccine object wasn't initialized properly!");</li>
 <li>REQUIRE(json != NULL, "JObject can't be NULL!");</li>
 <li>REQUIRE(json-&gt;contains(VACCINE_TYPE), "Vaccine JSON should contain field 'type'");</li>
 <li>REQUIRE(json-&gt;contains(VACCINE_DELIVERY), "Vaccine JSON should contain field 'levering'");</li>
 <li>REQUIRE(json-&gt;contains(VACCINE_INTERVAL), "Vaccine JSON should contain field 'interval'");</li>
-<li>REQUIRE(json-&gt;contains(VACCINE_TRANSPORTATION), "Vaccine JSON should contain field 'transport'"); </li>
+<li>REQUIRE(json-&gt;contains(VACCINE_TRANSPORTATION), "Vaccine JSON should contain field 'transport'");</li>
+<li>ENSURE(<a class="el" href="class_vaccine.html#a1bad4aacf404365e6c4d32178e38b1df">getType()</a> == json-&gt;getValue(VACCINE_TYPE)-&gt;asString(), "Vaccine type didn't load properly!");</li>
+<li>ENSURE(<a class="el" href="class_vaccine.html#a2a1a33352d03fded09b77ad0a26bf83a">getDelivery()</a> == json-&gt;getValue(VACCINE_DELIVERY)-&gt;asUnsignedint(), "Vaccine delivery didn't load properly!");</li>
+<li>ENSURE(<a class="el" href="class_vaccine.html#af597109a1a44a5eaa2ea515ecb452c2d">getInterval()</a> == json-&gt;getValue(VACCINE_INTERVAL)-&gt;asUnsignedint(), "Vaccine interval didn't load properly!");</li>
+<li>ENSURE(<a class="el" href="class_vaccine.html#a00e9f50a44b56bdb22cb134822dc21f4">getTransportation()</a> == json-&gt;getValue(VACCINE_TRANSPORTATION)-&gt;asUnsignedint(), "Vaccine transportation didn't load properly!");</li>
+<li>ENSURE(<a class="el" href="class_vaccine.html#ad2e5e5d9fbb14936e3660ea92b75b32d">getRenewing()</a> == json-&gt;getValue(VACCINE_RENEWING)-&gt;asUnsignedint(), "Vaccine renewing didn't load properly!");</li>
+<li>ENSURE(<a class="el" href="class_vaccine.html#a5d6ecb9e07b1d68f7fcca8e9cef4ad89">getTemperature()</a> == json-&gt;getValue(VACCINE_TEMPERATURE)-&gt;asDouble(), "Vaccine temperature didn't load properly!"); </li>
 </ul>
 </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a687230717df77f5f73b69680904ec947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a687230717df77f5f73b69680904ec947">&#9670;&nbsp;</a></span>getDays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; unsigned int &gt; &amp; Vaccine::getDays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;unsigned int&gt;&amp;; vector with information over total collected vaccins over time REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "VaccinationCenter object hasn't been initialized properly!"); </dd></dl>
 
 </div>
 </div>
@@ -254,6 +284,42 @@ Public Member Functions</h2></td></tr>
 <li>REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "Vaccine object wasn't initialized properly!"); </li>
 </ul>
 </dd></dl>
+
+</div>
+</div>
+<a id="a0629fc9e5c718f6e26a5a1b73dbae009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0629fc9e5c718f6e26a5a1b73dbae009">&#9670;&nbsp;</a></span>getDynamicDelivery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Vaccine::getDynamicDelivery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>unsigned int; dynamic, with simulation changing delivery of vaccins, total number of vaccins currently for this particular vaccin REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "VaccinationCenter object hasn't been initialized properly!"); </dd></dl>
+
+</div>
+</div>
+<a id="a222dcda3c49a499860b645b6a9da14b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a222dcda3c49a499860b645b6a9da14b3">&#9670;&nbsp;</a></span>getHub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_hub.html">Hub</a> * Vaccine::getHub </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Hub*; dynamic, the particular hub connected with this particular vaccin object REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "VaccinationCenter object hasn't been initialized properly!"); </dd></dl>
 
 </div>
 </div>
@@ -313,7 +379,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>double; the required temperature to store the vaccine in<ul>
+<dl class="section return"><dt>Returns</dt><dd>double; the required temperature to store the vaccine valid<ul>
 <li>REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "Vaccine object wasn't initialized properly!"); </li>
 </ul>
 </dd></dl>
@@ -362,6 +428,30 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af5e4d03f07b46f0a2213244db292cbc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e4d03f07b46f0a2213244db292cbc7">&#9670;&nbsp;</a></span>operator&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Vaccine::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vaccine.html">Vaccine</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>defines comparison between <a class="el" href="class_vaccine.html">Vaccine</a> objects </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the <a class="el" href="class_vaccine.html">Vaccine</a> to be compared to REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "VaccinationCenter object hasn't been initialized properly!"); </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="abcdeee3ac6d68ee32bb2798aeb898158"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abcdeee3ac6d68ee32bb2798aeb898158">&#9670;&nbsp;</a></span>properlyInitialized()</h2>
 
@@ -380,30 +470,28 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aceeb596b80191cc1c337ba2b780e52c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aceeb596b80191cc1c337ba2b780e52c3">&#9670;&nbsp;</a></span>toJSON()</h2>
+<a id="a410e47931f49501dfdaa2f8385fc2875"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a410e47931f49501dfdaa2f8385fc2875">&#9670;&nbsp;</a></span>setHub()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_j_object.html">JObject</a> * Vaccine::toJSON </td>
+          <td class="memname">void Vaccine::setHub </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype"><a class="el" href="class_hub.html">Hub</a> *&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Creates a <a class="el" href="class_j_object.html">JObject</a> that holds the current data </p><dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_j_object.html">JObject</a>; <a class="el" href="class_j_object.html">JObject</a> with the vaccine data<ul>
-<li>REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "Vaccine object wasn't initialized properly!"); </li>
-</ul>
-</dd></dl>
+<p>sets the hub connected with this vaccin REQUIRE(<a class="el" href="class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158">properlyInitialized()</a>, "VaccinationCenter object hasn't been initialized properly!"); </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>entities/<a class="el" href="_vaccine_8h_source.html">Vaccine.h</a></li>
-<li>entities/Vaccine.cpp</li>
+<li>D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/<a class="el" href="_vaccine_8h_source.html">Vaccine.h</a></li>
+<li>D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/Vaccine.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

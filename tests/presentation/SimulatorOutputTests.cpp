@@ -292,6 +292,15 @@ TEST_F(SimulationOutputTests, SmartDistribution) {
     simulator.exportSimulationProgress(file);
     file.close();
     EXPECT_TRUE(FileUtil::FileCompare("tests/presentation/out/smart_distribution_2.txt", "tests/presentation/expected/smart_distribution_2.txt"));
+
+    // Check whether or not the smart distribution is actually faster
+
+    unsigned int vaccinatedSmartDistribution = simulator.getStatistics().getAmountVaccinated();
+    simulator.reset();
+    simulator.run(80, false);
+    unsigned int vaccinatedNormalDistribution = simulator.getStatistics().getAmountVaccinated();
+
+    EXPECT_LT(vaccinatedNormalDistribution, vaccinatedSmartDistribution);
 }
 
 /**

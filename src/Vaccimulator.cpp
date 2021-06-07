@@ -34,7 +34,7 @@ int main() {
     simulator.setTransportationStream(&file);
     simulator.setVaccinationsStream(&file);
 
-    simulator.importSimulation("io/xml_files/time_test.xml", std::cerr);
+    simulator.importSimulation("io/xml_files/input.xml", std::cerr);
 //    simulator.runEfficient(30);
     simulator.run(30, false);
 //    simulator.exportSimulationSummary(file);

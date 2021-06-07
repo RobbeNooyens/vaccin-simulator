@@ -21,6 +21,9 @@ Vaccine::Vaccine(std::string type, unsigned int delivery, unsigned int interval,
                  unsigned int renewing, double temperature) : initCheck(this), type(type), delivery(delivery), interval(interval),
                                                               transportation(transportation), renewing(renewing),
                                                               temperature(temperature) {
+    REQUIRE(!type.empty(), "Type cannot be empty!");
+    REQUIRE(delivery > 0, "Delivery cannot be 0!");
+    REQUIRE(transportation > 0, "Transportation cannot be 0!");
     ENSURE(properlyInitialized(), "Vaccine object wasn't initialized properly!");
 }
 

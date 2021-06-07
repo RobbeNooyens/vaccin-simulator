@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['lastattribute_127',['LastAttribute',['../class_ti_xml_element.html#a42939f55ed4cec5fc1daaecfded7ba16',1,'TiXmlElement']]],
-  ['lastchild_128',['LastChild',['../class_ti_xml_node.html#a6432d2b2495f6caf9cb4278df706a031',1,'TiXmlNode::LastChild()'],['../class_ti_xml_node.html#abad5bf1059c48127b958711ef89e8e5d',1,'TiXmlNode::LastChild(const char *_value)']]],
-  ['linebreak_129',['LineBreak',['../class_ti_xml_printer.html#a11f1b4804a460b175ec244eb5724d96d',1,'TiXmlPrinter']]],
-  ['linked_5fptr_130',['linked_ptr',['../classtesting_1_1internal_1_1linked__ptr.html',1,'testing::internal']]],
-  ['linked_5fptr_5finternal_131',['linked_ptr_internal',['../classtesting_1_1internal_1_1linked__ptr__internal.html',1,'testing::internal']]],
-  ['linkendchild_132',['LinkEndChild',['../class_ti_xml_node.html#a1a881212554b759865f6cac79a851d38',1,'TiXmlNode']]],
-  ['loadfile_133',['LoadFile',['../class_ti_xml_document.html#a4c852a889c02cf251117fd1d9fe1845f',1,'TiXmlDocument::LoadFile(TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)'],['../class_ti_xml_document.html#a879cdf5e981b8b2d2ef82f2546dd28fb',1,'TiXmlDocument::LoadFile(const char *filename, TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)'],['../class_ti_xml_document.html#a41f6fe7200864d1dca663d230caf8db6',1,'TiXmlDocument::LoadFile(FILE *, TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)']]]
+  ['planning_71',['Planning',['../class_planning.html',1,'Planning'],['../class_planning.html#a42a788755e4dedf591d0703a87d70bf2',1,'Planning::Planning()']]],
+  ['printstatistics_72',['printStatistics',['../class_simulation_data.html#a8e1dc1558390b106b3a9b6b2afd2102f',1,'SimulationData']]],
+  ['properlyinitialized_73',['properlyInitialized',['../class_hub.html#a19461dd5d785c75855a62afd2077470e',1,'Hub::properlyInitialized()'],['../class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4',1,'Planning::properlyInitialized()'],['../class_simulation_data.html#a1f13fab007745a0cd5a010181229b0cc',1,'SimulationData::properlyInitialized()'],['../class_simulator.html#a3f8126eaf7f1749d2ffb34bc2458223e',1,'Simulator::properlyInitialized()'],['../class_vaccination_center.html#a673bb61ee66254080abbd7ef279dc343',1,'VaccinationCenter::properlyInitialized()'],['../class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158',1,'Vaccine::properlyInitialized()'],['../class_j_array.html#a79248b7021e1160cf607178c8d26a8cd',1,'JArray::properlyInitialized()'],['../class_j_object.html#ae4b8965bf62fb9d495eb5f8eaa2817f7',1,'JObject::properlyInitialized()'],['../class_j_value.html#acf84bbbfa234ed47d51dc6c9198a0b1e',1,'JValue::properlyInitialized()']]]
 ];

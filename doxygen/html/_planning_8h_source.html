@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vaccimulator: entities/Planning.h Source File</title>
+<title>Vaccimulator: D:/University/Bachelor 1/PSE/Vaccin Simulator/src/entities/Planning.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vaccimulator
-   &#160;<span id="projectnumber">2.0</span>
    </div>
-   <div id="projectbrief">Vaccine distribution simulator</div>
   </td>
  </tr>
  </tbody>
@@ -97,10 +95,10 @@ $(document).ready(function(){initNavTree('_planning_8h_source.html',''); initRes
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef VACCIMULATOR_PLANNING_H</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define VACCIMULATOR_PLANNING_H</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// TODO: documentation + tests</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;set&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_vaccine.html">Vaccine</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_vaccination_center.html">VaccinationCenter</a>;</div>
@@ -108,31 +106,64 @@ $(document).ready(function(){initNavTree('_planning_8h_source.html',''); initRes
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_planning.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_planning.html">Planning</a> {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_planning.html">Planning</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ~<a class="code" href="class_planning.html">Planning</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> properlyInitialized();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> generatePlanning(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> days, std::vector&lt;Hub*&gt; hubs, std::vector&lt;VaccinationCenter*&gt; centers, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> startFrom = 0);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// Constructor</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"></span>    <a class="code" href="class_planning.html#a42a788755e4dedf591d0703a87d70bf2">Planning</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::map&lt;Vaccine*, unsigned int&gt; getDistribution(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day, <a class="code" href="class_vaccination_center.html">VaccinationCenter</a>* center);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_planning.html">Planning</a>* initCheck;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Destructor</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span>    <a class="code" href="class_planning.html#a21cdd1921e457af33596f1458c414eb8">~Planning</a>();</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//VACCIMULATOR_PLANNING_H</span></div>
-<div class="ttc" id="aclass_hub_html"><div class="ttname"><a href="class_hub.html">Hub</a></div><div class="ttdef"><b>Definition:</b> Hub.h:26</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Validation</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">properlyInitialized</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_planning.html#ad4e4bb3cb877569391f448ee298a6580">is_valid</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day, <span class="keywordtype">int</span> vaccine_idx, <span class="keywordtype">int</span> center_idx, std::vector&lt;Vaccine*&gt;&amp; vaccins, std::vector&lt;VaccinationCenter*&gt;&amp; centers, std::vector&lt;Hub*&gt;&amp; hubs, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cycles);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Initialization</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_planning.html#a24d4bbca57af24907b6700b18b1960ee">generatePlanning</a>(std::vector&lt;Hub*&gt;&amp; hubs, std::vector&lt;VaccinationCenter*&gt;&amp; centers, std::vector&lt;Vaccine*&gt;&amp; vaccins, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cycles);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> reset();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Getters</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span>    std::vector&lt;std::vector&lt;std::pair&lt;int,std::map&lt;Vaccine*, unsigned int&gt; &gt; &gt; &gt; <a class="code" href="class_planning.html#a4682e5912581b70ed72bf519daf00c8a">getPlanned</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::map&lt;Vaccine*, unsigned int&gt;&amp; <a class="code" href="class_planning.html#a538fe3871a285cadae934b8c509eb1e6">getDistribution</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> day, <a class="code" href="class_vaccination_center.html">VaccinationCenter</a>* center);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::vector&lt;std::map&lt;Hub *, std::set&lt;unsigned int&gt; &gt; &gt;&amp; getPlannedHubs();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Initialization</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="class_planning.html">Planning</a>* initCheck;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// metadata</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::vector&lt;std::vector&lt;std::pair&lt;int,std::map&lt;Vaccine*, unsigned int&gt; &gt; &gt; &gt; planned;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::vector&lt;std::map&lt;Hub *, std::set&lt;unsigned int&gt; &gt; &gt; planned_hubs;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// map from center name to index in &quot;centers&quot; vector</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    std::map&lt;VaccinationCenter*, unsigned int&gt; center2idx;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//VACCIMULATOR_PLANNING_H</span></div>
+<div class="ttc" id="aclass_hub_html"><div class="ttname"><a href="class_hub.html">Hub</a></div><div class="ttdef"><b>Definition:</b> Hub.h:27</div></div>
 <div class="ttc" id="aclass_planning_html"><div class="ttname"><a href="class_planning.html">Planning</a></div><div class="ttdef"><b>Definition:</b> Planning.h:20</div></div>
-<div class="ttc" id="aclass_vaccination_center_html"><div class="ttname"><a href="class_vaccination_center.html">VaccinationCenter</a></div><div class="ttdef"><b>Definition:</b> VaccinationCenter.h:18</div></div>
-<div class="ttc" id="aclass_vaccine_html"><div class="ttname"><a href="class_vaccine.html">Vaccine</a></div><div class="ttdef"><b>Definition:</b> Vaccine.h:18</div></div>
+<div class="ttc" id="aclass_planning_html_a21cdd1921e457af33596f1458c414eb8"><div class="ttname"><a href="class_planning.html#a21cdd1921e457af33596f1458c414eb8">Planning::~Planning</a></div><div class="ttdeci">~Planning()</div><div class="ttdef"><b>Definition:</b> Planning.cpp:19</div></div>
+<div class="ttc" id="aclass_planning_html_a24d4bbca57af24907b6700b18b1960ee"><div class="ttname"><a href="class_planning.html#a24d4bbca57af24907b6700b18b1960ee">Planning::generatePlanning</a></div><div class="ttdeci">void generatePlanning(std::vector&lt; Hub * &gt; &amp;hubs, std::vector&lt; VaccinationCenter * &gt; &amp;centers, std::vector&lt; Vaccine * &gt; &amp;vaccins, unsigned int cycles)</div><div class="ttdef"><b>Definition:</b> Planning.cpp:61</div></div>
+<div class="ttc" id="aclass_planning_html_a42a788755e4dedf591d0703a87d70bf2"><div class="ttname"><a href="class_planning.html#a42a788755e4dedf591d0703a87d70bf2">Planning::Planning</a></div><div class="ttdeci">Planning()</div><div class="ttdef"><b>Definition:</b> Planning.cpp:15</div></div>
+<div class="ttc" id="aclass_planning_html_a448119d89ed3cb2449e8bd61a6d998d4"><div class="ttname"><a href="class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4">Planning::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const</div><div class="ttdef"><b>Definition:</b> Planning.cpp:23</div></div>
+<div class="ttc" id="aclass_planning_html_a4682e5912581b70ed72bf519daf00c8a"><div class="ttname"><a href="class_planning.html#a4682e5912581b70ed72bf519daf00c8a">Planning::getPlanned</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; std::pair&lt; int, std::map&lt; Vaccine *, unsigned int &gt; &gt; &gt; &gt; getPlanned() const</div><div class="ttdef"><b>Definition:</b> Planning.cpp:27</div></div>
+<div class="ttc" id="aclass_planning_html_a538fe3871a285cadae934b8c509eb1e6"><div class="ttname"><a href="class_planning.html#a538fe3871a285cadae934b8c509eb1e6">Planning::getDistribution</a></div><div class="ttdeci">std::map&lt; Vaccine *, unsigned int &gt; &amp; getDistribution(unsigned int day, VaccinationCenter *center)</div><div class="ttdef"><b>Definition:</b> Planning.cpp:137</div></div>
+<div class="ttc" id="aclass_planning_html_ad4e4bb3cb877569391f448ee298a6580"><div class="ttname"><a href="class_planning.html#ad4e4bb3cb877569391f448ee298a6580">Planning::is_valid</a></div><div class="ttdeci">bool is_valid(unsigned int day, int vaccine_idx, int center_idx, std::vector&lt; Vaccine * &gt; &amp;vaccins, std::vector&lt; VaccinationCenter * &gt; &amp;centers, std::vector&lt; Hub * &gt; &amp;hubs, unsigned int cycles)</div><div class="ttdef"><b>Definition:</b> Planning.cpp:36</div></div>
+<div class="ttc" id="aclass_vaccination_center_html"><div class="ttname"><a href="class_vaccination_center.html">VaccinationCenter</a></div><div class="ttdef"><b>Definition:</b> VaccinationCenter.h:19</div></div>
+<div class="ttc" id="aclass_vaccine_html"><div class="ttname"><a href="class_vaccine.html">Vaccine</a></div><div class="ttdef"><b>Definition:</b> Vaccine.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_9404ca00d5cf333c309ae0ebf80749c4.html">entities</a></li><li class="navelem"><b>Planning.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li><li class="navelem"><b>Planning.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

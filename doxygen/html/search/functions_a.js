@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['name_563',['Name',['../class_ti_xml_attribute.html#a008ef948268ee752b58c60d63d84bb01',1,'TiXmlAttribute']]],
-  ['next_564',['Next',['../class_ti_xml_attribute.html#af2e78f1ba9ed56a26ddc80614ed1c393',1,'TiXmlAttribute']]],
-  ['nextsibling_565',['NextSibling',['../class_ti_xml_node.html#ae99c572ac7901a15993ea7a4efaa10e7',1,'TiXmlNode::NextSibling() const'],['../class_ti_xml_node.html#a0864ea784b53cdca0a37829d3391ca4b',1,'TiXmlNode::NextSibling(const char *) const']]],
-  ['nextsiblingelement_566',['NextSiblingElement',['../class_ti_xml_node.html#ac6105781c913a42aa7f3f17bd1964f7c',1,'TiXmlNode::NextSiblingElement() const'],['../class_ti_xml_node.html#a22def4746238abaee042f99b47ef3c94',1,'TiXmlNode::NextSiblingElement(const char *) const']]],
-  ['nochildren_567',['NoChildren',['../class_ti_xml_node.html#abe85e0ec04ea59c033f324c8504653e5',1,'TiXmlNode']]],
-  ['node_568',['Node',['../class_ti_xml_handle.html#aec0e3ea58ff98a45cd13507a02e2ca1e',1,'TiXmlHandle']]]
+  ['planning_180',['Planning',['../class_planning.html#a42a788755e4dedf591d0703a87d70bf2',1,'Planning']]],
+  ['printstatistics_181',['printStatistics',['../class_simulation_data.html#a8e1dc1558390b106b3a9b6b2afd2102f',1,'SimulationData']]],
+  ['properlyinitialized_182',['properlyInitialized',['../class_hub.html#a19461dd5d785c75855a62afd2077470e',1,'Hub::properlyInitialized()'],['../class_planning.html#a448119d89ed3cb2449e8bd61a6d998d4',1,'Planning::properlyInitialized()'],['../class_simulation_data.html#a1f13fab007745a0cd5a010181229b0cc',1,'SimulationData::properlyInitialized()'],['../class_simulator.html#a3f8126eaf7f1749d2ffb34bc2458223e',1,'Simulator::properlyInitialized()'],['../class_vaccination_center.html#a673bb61ee66254080abbd7ef279dc343',1,'VaccinationCenter::properlyInitialized()'],['../class_vaccine.html#abcdeee3ac6d68ee32bb2798aeb898158',1,'Vaccine::properlyInitialized()'],['../class_j_array.html#a79248b7021e1160cf607178c8d26a8cd',1,'JArray::properlyInitialized()'],['../class_j_object.html#ae4b8965bf62fb9d495eb5f8eaa2817f7',1,'JObject::properlyInitialized()'],['../class_j_value.html#acf84bbbfa234ed47d51dc6c9198a0b1e',1,'JValue::properlyInitialized()']]]
 ];

@@ -121,17 +121,7 @@ public:
      * * ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
      * * ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
      */
-    void run(const unsigned int cycles, bool smartDistribution = false);
-    /**
-     * Runs the simulation for a specific amount of times with smart distribution
-     * @param startFromDay: int; the day to start from
-     * * REQUIRE(properlyInitialized(), "Object hasn't been initialized properly!");
-     * * REQUIRE(cycles != 0, "Cycles cannot be 0!");
-     * * REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
-     * * ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
-     * * ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
-     */
-    void runEfficient(unsigned int cycles);
+    void run(unsigned int cycles, bool smartDistribution = false);
     /**
      * Checks if the data valid the simulation is valid
      * @return bool; true if the data is consistent
@@ -170,6 +160,11 @@ public:
      * * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
      */
     std::vector<Hub*> getHubs();
+    /**
+     * @return object that holds the statistical data during the simulation
+     * * REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+     */
+    SimulationData& getStatistics();
 
 private:
     // Initialization

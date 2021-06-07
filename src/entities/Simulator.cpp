@@ -128,41 +128,6 @@ void Simulator::run(const unsigned int cycles, bool smartDistribution) {
     ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
 }
 
-void Simulator::runEfficient(unsigned int cycles) {
-    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
-    REQUIRE(cycles != 0, "Cycles cannot be 0!");
-    REQUIRE(isConsistent(), "Simulation needs to be consistent to run!");
-    unsigned int oldDaycount = daycount;
-
-
-
-//    unsigned int oldDaycount = daycount;
-//    Vaccines vaccines;
-//    ITERATE(std::vector<Hub*>, hubs, h) {
-//        Vaccines hubVaccines = (*h)->getVaccines();
-//        ITERATE(Vaccines, hubVaccines, vaccine) {
-//            vaccines.push_back(*vaccine);
-//        }
-//    }
-//    planning.reset();
-//    planning.generatePlanning(hubs, centers, vaccines, cycles);
-//
-//    unsigned int lastDay = daycount + cycles;
-//    while(daycount < lastDay) {
-//        // Deliver vaccines to the hub if expected and transport vaccines to the centers
-//        ITERATE(std::vector<Hub*>, hubs, hub) {
-//            (*hub)->simulateDelivery(daycount, statistics);
-//            (*hub)->distributeEfficient(daycount, planning);
-//        }
-//        // Vaccinate inhabitants (should happen here to prevent double vaccinations)
-//        ITERATE(VaccinationCenters, centers, center)(*center)->vaccinateInhabitants(daycount, statistics);
-//        daycount++;
-//    }
-
-    ENSURE(getDayCount() == oldDaycount + cycles, "Simulator didn't succesfully finish the right amount of cycles!");
-    ENSURE(isConsistent(), "Simulation needs to be consistent after running!");
-}
-
 bool Simulator::isConsistent() const {
     REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
     // There's at least 1 hub
@@ -188,6 +153,7 @@ void Simulator::reset() {
     centers.clear();
     daycount = 0;
     fromJSON(initialState);
+    statistics.reset();
     ENSURE(isConsistent(), "Simulator should be consistent after reset!");
 }
 
@@ -323,8 +289,9 @@ void Simulator::exportSimulationIniFile(std::string &output, unsigned int frames
         }
         file.close();
     }
+}
 
-
-
-
+SimulationData &Simulator::getStatistics() {
+    REQUIRE(properlyInitialized(), "Simulator object hasn't been initialized properly!");
+    return statistics;
 }

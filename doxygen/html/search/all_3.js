@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['deprecated_20list_36',['Deprecated List',['../deprecated.html',1,'']]],
-  ['distributeefficient_37',['distributeEfficient',['../class_hub.html#aabcbcf678e3d3aefa14005f4e7b8f282',1,'Hub']]],
-  ['distributevaccins_38',['distributeVaccins',['../class_hub.html#a2e582d151d22773e035bd6297138f8b7',1,'Hub']]],
-  ['doublevalue_39',['DoubleValue',['../class_ti_xml_attribute.html#a8cca240fb2a7130c87b0fc6156e8b34f',1,'TiXmlAttribute']]]
+  ['exportsimulationinifile_17',['exportSimulationIniFile',['../class_simulator.html#afef91c720708700510ec7b9a689c998b',1,'Simulator']]],
+  ['exportsimulationprogress_18',['exportSimulationProgress',['../class_simulator.html#ad3588eeb4119f97ceb6ad241140acc03',1,'Simulator']]],
+  ['exportsimulationsummary_19',['exportSimulationSummary',['../class_simulator.html#a5016d3d0ef06b25da6e903a61eb5ef13',1,'Simulator']]]
 ];
